@@ -16,3 +16,4 @@ var  	=> (Tokens.VAR(yypos,yypos+3));
 "123"	=> (Tokens.INT(123,yypos,yypos+3));
 .       => (ErrorMsg.error yypos ("illegal character " ^ yytext); continue());
 
+/* Comments in Tiger language can be nested. */
