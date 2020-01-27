@@ -1,0 +1,3 @@
+type pos = int
+  type lexresult = Tokens.token
+  val lineNu

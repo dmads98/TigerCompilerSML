@@ -4,14 +4,14 @@ type lexresult = Tokens.token
 val lineNum = ErrorMsg.lineNum
 val linePos = ErrorMsg.linePos
 fun err(p1,p2) = ErrorMsg.error p1
-  
+
 fun eof() = let val pos = hd(!linePos) in Tokens.EOF(pos,pos) end
 
 
 %% 
 %%
+
 \n	=> (lineNum := !lineNum+1; linePos := yypos :: !linePos; continue());
-var  	=> (Tokens.VAR(yypos,yypos+3));
 "type"  => (Tokens.TYPE(yypos,yypos+4));
 "var" => (Tokens.VAR(yypos,yypos+3));
 "function"  => (Tokens.FUNCTION(yypos,yypos+8));
@@ -41,6 +41,7 @@ var  	=> (Tokens.VAR(yypos,yypos+3));
 "/"     => (Tokens.DIVIDE(yypos,yypos+1));
 "*"     => (Tokens.TIMES(yypos,yypos+1));
 "-"     => (Tokens.MINUS(yypos,yypos+1));
+"+"     => (Tokens.PLUS(yypos,yypos+1);
 "."     => (Tokens.DOT(yypos,yypos+1));
 "}"     => (Tokens.RBRACE(yypos,yypos+1));
 "{"     => (Tokens.LBRACE(yypos,yypos+1));
@@ -51,7 +52,7 @@ var  	=> (Tokens.VAR(yypos,yypos+3));
 ";"     => (Tokens.SEMICOLON(yypos,yypos+1));
 ":"     => (Tokens.COLON(yypos,yypos+1));
 ","	=> (Tokens.COMMA(yypos,yypos+1));
-"+"     => (Tokens.PLUS(yypos,yypos+1));
 "123"	=> (Tokens.INT(123,yypos,yypos+3));
 .       => (ErrorMsg.error yypos ("illegal character " ^ yytext); continue());
+
 
