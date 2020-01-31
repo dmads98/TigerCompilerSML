@@ -1,12 +1,30 @@
-"Hello World!"
-/*"new world\
+"hello\
+
+
+\end of new line"
+
+/*"Hello World!"
+
+"new world\
+    
      
+     
+     
+
+     
+
 	
 
-\ next line"*/
-"Trying out escape seq \r \t \n "
+\ next line"
+
+"Trying out escape seq \t \n "
+
 "Trying formfeed \f"
-""
+
 "\^M\^J"
 "more\^M"
 "again\^J"
+"\n \t \"\\"
+"invalid\
+\^012 
+\new ones"*/
