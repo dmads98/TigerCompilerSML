@@ -1,4 +1,6 @@
-/* A program to solve the 8-queens problem */
+/* A program to solve the 8-queens problem /*Nesting Comments
+
+*/*/
 
 let
     var N := 8

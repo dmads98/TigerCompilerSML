@@ -1,0 +1,12 @@
+"Hello World!"
+/*"new world\
+     
+	
+
+\ next line"*/
+"Trying out escape seq \r \t \n "
+"Trying formfeed \f"
+""
+"\^M\^J"
+"more\^M"
+"again\^J"
