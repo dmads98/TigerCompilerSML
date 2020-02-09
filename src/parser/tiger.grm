@@ -5,13 +5,13 @@
   | INT of int | STRING of string 
   | COMMA | COLON | SEMICOLON | LPAREN | RPAREN | LBRACK | RBRACK 
   | LBRACE | RBRACE | DOT 
-  | PLUS | MINUS | TIMES | DIVIDE | EQ | NEQ | LT | LE | GT | GE
+  | PLUS | MINUS | TIMES | DIVIDE | EQ | NEQ | LT | LE | GT | GE | UMINUS
   | AND | OR | ASSIGN
   | ARRAY | IF | THEN | ELSE | WHILE | FOR | TO | DO | LET | IN | END | OF 
   | BREAK | NIL
   | FUNCTION | VAR | TYPE 
 
-%nonterm  exp | program
+%nonterm  exp | program | exp_body
 
 %pos int
 %verbose
@@ -24,6 +24,15 @@
 %keyword WHILE FOR TO BREAK LET IN END FUNCTION VAR TYPE ARRAY IF THEN ELSE 
 	DO OF NIL
 
+%left ASSIGN (* Associativity? *)
+%left OR (* Associativity? *)
+%left AND (* Associativity? *)
+%nonassoc EQ NEQ LT GT LE GE
+%left PLUS MINUS
+%left TIMES DIVIDE
+%left UMINUS
+%nonassoc LPAREN RPAREN (* Paren associativity? *)
+
 %prefer THEN ELSE LPAREN
 
 %value ID ("bogus")
@@ -33,6 +42,56 @@
 %%
 
 program	: exp				()
-exp : INT 				()
-exp : ID				()
-exp: 			()
+
+exp_body : exp				()
+| exp BREAK exp				()
+
+exp :
+(* Literals *)
+INT					()
+| ID					()
+| STRING				()
+(* Arithmetic expressions *)
+| exp PLUS exp				()
+| exp MINUS exp				()
+| exp TIMES exp				()
+| exp DIVIDE exp			()
+| MINUS exp	%prec UMINUS		()
+| LPAREN exp RPAREN			()
+(* Comparison *)
+| exp EQ exp				()
+| exp NEQ exp				()
+| exp GT exp				()
+| exp LT exp				()
+| exp GE exp				()
+| exp LE exp				()
+(* Boolean Operators *)
+| exp AND exp				()
+| exp OR exp				()
+(* Conditionals -- how to resolve conflict? *)
+| IF exp THEN exp ELSE exp		()
+| IF exp THEN exp			()
+(* Assign, for and while -- use exp_body for BREAK *)
+| ID ASSIGN exp				()
+| WHILE exp DO exp_body			()
+| FOR ID ASSIGN exp TO exp DO exp_body	()
+(* Let *)
+| LET exp IN exp END			()
+| 					()
+
+(* Q1. Can we use other non-terminals?
+e.g. 
+exp: assign_exp
+| while_exp
+| for_exp
+
+assign_exp : ID ASSIGN exp (* returns no value*)
+
+while_exp : WHILE exp DO exp_body (* returns the result of exp *)
+for_exp : FOR ID ASSIGN exp TO exp DO exp_body (* *)
+
+exp_body : exp
+| exp BREAK
+
+
+ *)
