@@ -11,7 +11,7 @@
   | BREAK | NIL
   | FUNCTION | VAR | TYPE 
 
-%nonterm  exp | program | exp_body
+%nonterm  exp | program | exp_body | exp_seq | decs
 
 %pos int
 %verbose
@@ -46,10 +46,16 @@ program	: exp				()
 exp_body : exp				()
 | exp BREAK exp				()
 
+exp_seq : LPAREN exp SEMICOLON exp_seq RPAREN		() (* Nesting allowed? *)
+| exp					()
+
+decs :
+
+
 exp :
 (* Literals *)
 INT					()
-| ID					()
+| ID					() (* id->lvalue *)
 | STRING				()
 (* Arithmetic expressions *)
 | exp PLUS exp				()
@@ -76,22 +82,10 @@ INT					()
 | WHILE exp DO exp_body			()
 | FOR ID ASSIGN exp TO exp DO exp_body	()
 (* Let *)
-| LET exp IN exp END			()
+| LET decs IN exp_seq END		()
 | 					()
 
-(* Q1. Can we use other non-terminals?
-e.g. 
-exp: assign_exp
-| while_exp
-| for_exp
-
-assign_exp : ID ASSIGN exp (* returns no value*)
-
-while_exp : WHILE exp DO exp_body (* returns the result of exp *)
-for_exp : FOR ID ASSIGN exp TO exp DO exp_body (* *)
-
-exp_body : exp
-| exp BREAK
-
+(* Q1. Do we care about differentiating/adding non-terms for 
+dec, type, operator, etc. e.g. See parser-2/absyn.sml
 
  *)
