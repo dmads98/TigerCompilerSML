@@ -33,6 +33,6 @@
 %%
 
 program	: exp				()
-
-	
+exp : INT 				()
+exp : ID				()
 exp: 			()
