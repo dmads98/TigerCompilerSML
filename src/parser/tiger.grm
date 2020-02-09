@@ -89,4 +89,12 @@ INT					()
 (* Q1. Do we care about differentiating/adding non-terms for 
 dec, type, operator, etc. e.g. See parser-2/absyn.sml
 
+
+KNOWN CONFLICTS:
+exp
+LPAREN exp RPAREN
+vs. exp_seq LPAREN exp_list RPAREN
+
  *)
+
+ 
