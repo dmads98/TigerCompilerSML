@@ -24,14 +24,17 @@
 %keyword WHILE FOR TO BREAK LET IN END FUNCTION VAR TYPE ARRAY IF THEN ELSE 
 	DO OF NIL
 
-%left ASSIGN (* Associativity? *)
+%nonassoc ASSIGN (* Associativity? *)
+%right DO
+%right OF
+%right ELSE
+%right THEN
 %left OR (* Associativity? *)
 %left AND (* Associativity? *)
 %nonassoc EQ NEQ LT GT LE GE
 %left PLUS MINUS
 %left TIMES DIVIDE
 %left UMINUS
-%nonassoc LPAREN RPAREN (* Paren associativity? *)
 
 %prefer THEN ELSE LPAREN
 
@@ -41,8 +44,8 @@
 
 %%
 
-program	: exp				()
-
+program	: exp				(exp)
+	
 exp_body : exp				()
 | exp BREAK exp				()
 
