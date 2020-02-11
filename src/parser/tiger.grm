@@ -1,17 +1,18 @@
+structure A = Absyn
 %%
 %term
-    EOF 
+    EOF
   | ID of string
-  | INT of int | STRING of string 
-  | COMMA | COLON | SEMICOLON | LPAREN | RPAREN | LBRACK | RBRACK 
-  | LBRACE | RBRACE | DOT 
+  | INT of int | STRING of string
+  | COMMA | COLON | SEMICOLON | LPAREN | RPAREN | LBRACK | RBRACK
+  | LBRACE | RBRACE | DOT
   | PLUS | MINUS | TIMES | DIVIDE | EQ | NEQ | LT | LE | GT | GE | UMINUS
   | AND | OR | ASSIGN
-  | ARRAY | IF | THEN | ELSE | WHILE | FOR | TO | DO | LET | IN | END | OF 
+  | ARRAY | IF | THEN | ELSE | WHILE | FOR | TO | DO | LET | IN | END | OF
   | BREAK | NIL
-  | FUNCTION | VAR | TYPE 
+  | FUNCTION | VAR | TYPE
 
-%nonterm  exp | program | exp_body | exp_seq | exp_list | decs
+%nonterm  exp | program | exp_body | exp_seq | exp_list | decs | mathExp
 
 %pos int
 %verbose
@@ -21,7 +22,7 @@
 
 %name Tiger
 
-%keyword WHILE FOR TO BREAK LET IN END FUNCTION VAR TYPE ARRAY IF THEN ELSE 
+%keyword WHILE FOR TO BREAK LET IN END FUNCTION VAR TYPE ARRAY IF THEN ELSE
 	DO OF NIL
 
 %nonassoc ASSIGN (* Associativity? *)
@@ -45,7 +46,7 @@
 %%
 
 program	: exp				(exp)
-	
+
 exp_body : exp				()
 | exp BREAK exp				()
 
@@ -57,39 +58,45 @@ exp_list : exp SEMICOLON exp_list	()
 
 
 exp :
-(* Literals *)
-INT					()
-| ID					() (* Assuming ID is same as lvalue expr described in Tiger lang appendix *)
-| STRING				()
-(* Arithmetic expressions *)
-| exp PLUS exp				()
-| exp MINUS exp				()
-| exp TIMES exp				()
-| exp DIVIDE exp			()
-| MINUS exp	%prec UMINUS		()
-| LPAREN exp RPAREN			()
-(* Comparison *)
-| exp EQ exp				()
-| exp NEQ exp				()
-| exp GT exp				()
-| exp LT exp				()
-| exp GE exp				()
-| exp LE exp				()
-(* Boolean Operators *)
-| exp AND exp				()
-| exp OR exp				()
-(* Conditionals -- how to resolve conflict? *)
-| IF exp THEN exp ELSE exp		()
-| IF exp THEN exp			()
-(* Assign, for and while -- use exp_body for BREAK *)
-| ID ASSIGN exp				()
-| WHILE exp DO exp_body			()
-| FOR ID ASSIGN exp TO exp DO exp_body	()
-(* Let *)
-| LET decs IN exp_seq END		()
-| 					()
+    (* Literals *)
+    STRING				        (A.StringExp(STRING, STRINGleft))
+    | ID					() (* Assuming ID is same as lvalue expr described in Tiger lang appendix *)
+    | LPAREN exp RPAREN			()
 
-(* Q1. Do we care about differentiating/adding non-terms for 
+    | mathExp                   (mathExp)
+    (* Conditionals -- how to resolve conflict? *)
+    | IF exp THEN exp ELSE exp		()
+    | IF exp THEN exp			()
+    (* Assign, for and while -- use exp_body for BREAK *)
+    | ID ASSIGN exp				()
+    | WHILE exp DO exp_body			()
+    | FOR ID ASSIGN exp TO exp DO exp_body	()
+    (* Let *)
+    | LET decs IN exp_seq END		()
+    | 					()
+
+mathExp:
+    (* Arithmetic expressions *)
+    exp PLUS exp				(A.OpExp({left = exp1, oper = A.PlusOp, right = exp2, pos = exp1left}))
+    | exp MINUS exp				(A.OpExp({left = exp1, oper = A.MinusOp, right = exp2, pos = exp1left}))
+    | exp TIMES exp				(A.OpExp({left = exp1, oper = A.TimesOp, right = exp2, pos = exp1left}))
+    | exp DIVIDE exp			(A.OpExp({left = exp1, oper = A.DivideOp, right = exp2, pos = exp1left}))
+    | MINUS exp	%prec UMINUS	(A.OpExp({A.IntExp(0), oper = A.MinusOp, right = exp, pos = expleft))
+    (* Comparison *)
+    | exp EQ exp				(A.OpExp({left = exp1, oper = A.EqOp, right = exp2, pos = exp1left}))
+    | exp NEQ exp				(A.OpExp({left = exp1, oper = A.NeqOp, right = exp2, pos = exp1left}))
+    | exp GT exp				(A.OpExp({left = exp1, oper = A.GtOp, right = exp2, pos = exp1left}))
+    | exp LT exp				(A.OpExp({left = exp1, oper = A.LtOp, right = exp2, pos = exp1left}))
+    | exp GE exp				(A.OpExp({left = exp1, oper = A.GeOp, right = exp2, pos = exp1left}))
+    | exp LE exp				(A.OpExp({left = exp1, oper = A.LeOp, right = exp2, pos = exp1left}))
+    (* Boolean Operators *)
+    | exp AND exp				(A.IfExp({test = exp1, then' = exp2, else' = SOME(A.IntExp(0)), pos = exp1left}))
+    | exp OR exp				(A.IfExp({test = exp1, then' = A.IntExp(1), else' = SOME(exp2), pos = exp1left}))
+    | INT                       (A.IntExp(INT))
+
+
+
+(* Q1. Do we care about differentiating/adding non-terms for
 dec, type, operator, etc. e.g. See parser-2/absyn.sml
 
 
@@ -99,5 +106,3 @@ LPAREN exp RPAREN
 vs. exp_seq LPAREN exp_list RPAREN
 
  *)
-
- 
