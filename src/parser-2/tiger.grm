@@ -97,7 +97,7 @@ mathExp:
     | exp MINUS exp			(A.OpExp({left = exp1, oper = A.MinusOp, right = exp2, pos = exp1left}))
     | exp TIMES exp			(A.OpExp({left = exp1, oper = A.TimesOp, right = exp2, pos = exp1left}))
     | exp DIVIDE exp			(A.OpExp({left = exp1, oper = A.DivideOp, right = exp2, pos = exp1left}))
-    | MINUS exp	%prec UMINUS		(A.OpExp({left = A.IntExp(0), oper = A.MinusOp, right = exp, pos = expleft})) (* todo: debug error on this line *)
+    | MINUS exp	%prec UMINUS		(A.OpExp({left = A.IntExp(0), oper = A.MinusOp, right = exp, pos = expleft}))
     (* Comparison *)
     | exp EQ exp			(A.OpExp({left = exp1, oper = A.EqOp, right = exp2, pos = exp1left}))
     | exp NEQ exp			(A.OpExp({left = exp1, oper = A.NeqOp, right = exp2, pos = exp1left}))
