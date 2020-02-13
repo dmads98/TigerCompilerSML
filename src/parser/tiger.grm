@@ -11,7 +11,7 @@
   | BREAK | NIL
   | FUNCTION | VAR | TYPE
 
-%nonterm  exp | program | exp_seq | exp_list | exp_body | decs | mathExp | func_exp | func_args | record_args
+%nonterm  exp | program | exp_seq | exp_list | exp_body | decs | mathExp | func_exp | func_args | record_args | type_fields | assigns
 
 %pos int
 %verbose
@@ -47,6 +47,7 @@
 program	: exp				()
 
 exp_seq : LPAREN exp_list RPAREN	() (* Assuming nesting not allowed; exp_list required? *)
+
 exp_list : exp SEMICOLON exp_list	()
 | exp					()
 
@@ -58,7 +59,27 @@ record_args:
   ID EQ exp				()
 | ID EQ exp COMMA record_args		() (* Also allow nothing *)
 
-(* decs : *)
+type_fields:
+(* decalring a type *)
+    ID COLON ID				()
+    | ID COLON ID COMMA type_fields	()
+
+decs:
+(* decalring a type *)
+    TYPE ID EQ ID			()
+(* declaring fields of type *)
+    | ID				()
+    | LBRACE type_fields RBRACE		()
+    | ARRAY OF ID			()
+
+assigns:
+(* Assignments - Exps *)
+(* Array and Record Assignment *)
+    ID ASSIGN exp		        ()
+(* Record Creation *)
+    | ID LBRACE record_args RBRACE	()
+(* Array Creation *)
+    | ID LBRACK exp RBRACK OF exp	()
 
 (* Function *)
 func_exp:
@@ -75,20 +96,17 @@ exp :
     (* Conditionals*)
     | IF exp THEN exp ELSE exp	        ()
     | IF exp THEN exp			()
-    (* Assign, for and while -- use exp_body for BREAK *)
-    | ID ASSIGN exp		        ()
+    (* for and while -- use exp_body for BREAK *)
     | WHILE exp DO exp	                ()
     | FOR ID ASSIGN exp TO exp DO exp	()
     | BREAK				()  (* Need to allow break within exp e.g. if x then break *)
     (* Let *)
     | LET decs IN exp_seq END		()
+    | LET decs IN exp END		()
 (* Function Call *)
     | func_exp				()
-(* Record Creation *)
-    | ID LBRACE record_args RBRACE	()
-(* Array Creation *)
-(* Array and Record Assignment *)
-
+    | decs				()
+    | assigns				()
 
 (* Arithmetic expressions *)
 mathExp:

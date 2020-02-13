@@ -12,7 +12,7 @@ structure A = Absyn
   | BREAK | NIL
   | FUNCTION | VAR | TYPE
 
-%nonterm  exp | program | exp_seq | exp_list | exp_body | decs | mathExp | func_exp | func_args | record_args
+%nonterm  exp | program | exp_seq | exp_list | exp_body | decs | mathExp | func_exp | func_args | record_args | type_fields | assigns
 
 %pos int
 %verbose
@@ -59,7 +59,27 @@ record_args:
   ID EQ exp				()
 | ID EQ exp COMMA record_args		() (* Also allow nothing *)
 
-(* decs : *)
+type_fields:
+(* decalring a type *)
+    ID COLON ID				()
+    | ID COLON ID COMMA type_fields	()
+
+decs:
+(* decalring a type *)
+    TYPE ID EQ ID			()
+(* declaring fields of type *)
+    | ID				()
+    | LBRACE type_fields RBRACE		()
+    | ARRAY OF ID			()
+
+assigns:
+(* Assignments - Exps *)
+(* Array and Record Assignment *)
+    ID ASSIGN exp		        ()
+(* Record Creation *)
+    | ID LBRACE record_args RBRACE	()
+(* Array Creation *)
+    | ID LBRACK exp RBRACK OF exp	()
 
 (* Function *)
 func_exp:
@@ -85,11 +105,8 @@ exp :
     | LET decs IN exp_seq END		()
 (* Function Call *)
     | func_exp				(func_exp)
-(* Record Creation *)
-    | ID LBRACE record_args RBRACE	()
-(* Array Creation *)
-(* Array and Record Assignment *)
-
+    | decs				()
+    | assigns				()
 
 (* Arithmetic expressions *)
 mathExp:
