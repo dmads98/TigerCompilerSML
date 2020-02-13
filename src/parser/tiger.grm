@@ -1,4 +1,3 @@
-structure A = Absyn
 %%
 %term
     EOF
@@ -12,7 +11,7 @@ structure A = Absyn
   | BREAK | NIL
   | FUNCTION | VAR | TYPE
 
-%nonterm  exp | program | exp_seq | exp_list | exp_body | decs | mathExp
+%nonterm  exp | program | exp_seq | exp_list | exp_body | decs | mathExp | func_exp | func_args | record_args
 
 %pos int
 %verbose
@@ -45,54 +44,70 @@ structure A = Absyn
 
 %%
 
-program	: exp				(exp)
+program	: exp				()
 
-exp_seq : LPAREN exp_list RPAREN	(exp_list) (* Assuming nesting not allowed; exp_list required? *)
-exp_list : exp SEMICOLON exp_list	(exp_list)
-| exp					(exp)
+exp_seq : LPAREN exp_list RPAREN	() (* Assuming nesting not allowed; exp_list required? *)
+exp_list : exp SEMICOLON exp_list	()
+| exp					()
+
+func_args:
+  exp					()
+| exp COMMA func_args			()
+
+record_args:
+  ID EQ exp				()
+| ID EQ exp COMMA record_args		() (* Also allow nothing *)
 
 (* decs : *)
 
+(* Function *)
+func_exp:
+  ID LPAREN RPAREN			()
+| ID LPAREN func_args RPAREN		()
 
 exp :
     (* Literals *)
-    STRING					(A.StringExp(STRING, STRINGleft))
-    | ID					() (* Assuming ID is same as lvalue expr described in Tiger lang appendix *)
-    | LPAREN exp RPAREN			(exp)
-    | NIL                               (A.NilExp)
-    | mathExp                           (mathExp)
+    STRING				()
+    | ID				() (* Assuming ID is same as lvalue expr described in Tiger lang appendix *)
+    | LPAREN exp RPAREN			()
+    | NIL                               ()
+    | mathExp                           ()
     (* Conditionals*)
-    | IF exp THEN exp ELSE exp	        (A.IfExp({test = exp1, then' = exp2, else' = SOME(exp3), pos = IFleft}))
-    | IF exp THEN exp			        (A.IfExp({test = exp1, then' = exp2, else' = NONE, pos = IFleft}))
+    | IF exp THEN exp ELSE exp	        ()
+    | IF exp THEN exp			()
     (* Assign, for and while -- use exp_body for BREAK *)
-    | ID ASSIGN exp				        ()
-    | WHILE exp DO exp	                (A.WhileExp({test = exp1, body = exp2, pos = WHILEleft}))
-    | FOR ID ASSIGN exp TO exp DO exp	(A.ForExp({var = Symbol.symbol(ID), escape = ref true, lo = exp1, hi = exp2, body = exp3, pos = FORleft}))
-    | BREAK				(A.BreakExp(BREAKleft))  (* Need to allow break within exp e.g. if x then break *)
+    | ID ASSIGN exp		        ()
+    | WHILE exp DO exp	                ()
+    | FOR ID ASSIGN exp TO exp DO exp	()
+    | BREAK				()  (* Need to allow break within exp e.g. if x then break *)
     (* Let *)
     | LET decs IN exp_seq END		()
+(* Function Call *)
+    | func_exp				()
+(* Record Creation *)
+    | ID LBRACE record_args RBRACE	()
+(* Array Creation *)
+(* Array and Record Assignment *)
 
 
 (* Arithmetic expressions *)
 mathExp:
-    exp PLUS exp				(A.OpExp({left = exp1, oper = A.PlusOp, right = exp2, pos = exp1left}))
-    | exp MINUS exp				(A.OpExp({left = exp1, oper = A.MinusOp, right = exp2, pos = exp1left}))
-    | exp TIMES exp				(A.OpExp({left = exp1, oper = A.TimesOp, right = exp2, pos = exp1left}))
-    | exp DIVIDE exp			(A.OpExp({left = exp1, oper = A.DivideOp, right = exp2, pos = exp1left}))
-    | MINUS exp	%prec UMINUS	(A.OpExp({A.IntExp(0), oper = A.MinusOp, right = exp, pos = expleft))
+    exp PLUS exp			()
+    | exp MINUS exp			()
+    | exp TIMES exp			()
+    | exp DIVIDE exp			()
+    | MINUS exp	%prec UMINUS		()
     (* Comparison *)
-    | exp EQ exp				(A.OpExp({left = exp1, oper = A.EqOp, right = exp2, pos = exp1left}))
-    | exp NEQ exp				(A.OpExp({left = exp1, oper = A.NeqOp, right = exp2, pos = exp1left}))
-    | exp GT exp				(A.OpExp({left = exp1, oper = A.GtOp, right = exp2, pos = exp1left}))
-    | exp LT exp				(A.OpExp({left = exp1, oper = A.LtOp, right = exp2, pos = exp1left}))
-    | exp GE exp				(A.OpExp({left = exp1, oper = A.GeOp, right = exp2, pos = exp1left}))
-    | exp LE exp				(A.OpExp({left = exp1, oper = A.LeOp, right = exp2, pos = exp1left}))
+    | exp EQ exp			()
+    | exp NEQ exp			()
+    | exp GT exp			()
+    | exp LT exp			()
+    | exp GE exp			()
+    | exp LE exp			()
     (* Boolean Operators *)
-    | exp AND exp				(A.IfExp({test = exp1, then' = exp2, else' = SOME(A.IntExp(0)), pos = exp1left}))
-    | exp OR exp				(A.IfExp({test = exp1, then' = A.IntExp(1), else' = SOME(exp2), pos = exp1left}))
-    | INT                       (A.IntExp(INT))
-
-
+    | exp AND exp			()
+    | exp OR exp			()
+    | INT                       	()
 
 (* Q1. Do we care about differentiating/adding non-terms for
 dec, type, operator, etc. e.g. See parser-2/absyn.sml
