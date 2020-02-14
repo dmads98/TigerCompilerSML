@@ -12,7 +12,8 @@ structure A = Absyn
   | BREAK | NIL
   | FUNCTION | VAR | TYPE
 
-%nonterm  exp | program | exp_seq | exp_list | mathExp | func_exp | func_args | record_args | type_fields | assigns | ty | typedec | funcdec | vardec | funclist | l_value | structBuilder | typelist | dec | decList
+%nonterm  exp of A.exp | program of A.exp | exp_seq of (A.exp * A.pos) list | mathExp of A.exp | func_exp of A.exp | func_args of A.exp list | record_args of (A.symbol * A.exp * A.pos) list | type_fields of A.field list | typedec of {name: A.symbol, ty: A.ty, pos: A.pos} | funcdec of A.fundec | vardec of A.dec | funclist of A.fundec list | l_value of A.var | structBuilder of A.exp | typelist of {name: A.symbol, ty: A.ty, pos: A.pos} list | dec of A.dec | decList of A.dec list
+	      | ty of A.ty 
 
 %pos int
 %verbose
@@ -28,8 +29,8 @@ structure A = Absyn
 %nonassoc ASSIGN
 %right DO
 %right OF
-%right ELSE
 %right THEN
+%right ELSE
 %left OR
 %left AND
 %nonassoc EQ NEQ LT GT LE GE
@@ -51,7 +52,7 @@ exp_seq : exp                       ([(exp, expleft)])
         | exp_seq SEMICOLON exp 	(exp_seq @ [(exp, expleft)])
 
 record_args:
-  ID EQ exp				            ([Symbol.symbol(ID), exp, IDleft])
+  ID EQ exp				            ([(Symbol.symbol(ID), exp, IDleft)])
 | ID EQ exp COMMA record_args		((Symbol.symbol(ID), exp, IDleft) :: record_args)
 
 structBuilder:
@@ -72,6 +73,7 @@ func_args: exp					     ([exp])
 l_value: ID                             (A.SimpleVar(Symbol.symbol(ID), IDleft))
        | l_value LBRACK exp RBRACK      (A.SubscriptVar(l_value, exp, l_valueleft))
        | l_value DOT ID                 (A.FieldVar(l_value, Symbol.symbol(ID), l_valueleft))
+       | ID LBRACK exp RBRACK	      (A.SubscriptVar(A.SimpleVar(Symbol.symbol(ID), IDleft), exp, IDleft))
 
 exp :
     (* Literals *)
@@ -105,7 +107,7 @@ dec: typelist                           (A.TypeDec(typelist))
    | vardec                             (vardec)
 
 funclist: funcdec                       ([funcdec])
-        | funclist funcdec              (funcList @ [funcdec])
+        | funclist funcdec              (funclist @ [funcdec])
 
 funcdec: FUNCTION ID LPAREN type_fields RPAREN COLON ID EQ exp      ({name=Symbol.symbol(ID1), params = type_fields, result = SOME((Symbol.symbol(ID2), ID2left)), body = exp, pos = FUNCTIONleft} : A.fundec)
        | FUNCTION ID LPAREN RPAREN COLON ID EQ exp                  ({name=Symbol.symbol(ID1), params = [], result = SOME((Symbol.symbol(ID2), ID2left)), body = exp, pos = FUNCTIONleft} : A.fundec)
@@ -117,7 +119,7 @@ vardec: VAR ID COLON ID ASSIGN exp      (A.VarDec({name = Symbol.symbol(ID1), es
       | VAR ID ASSIGN exp               (A.VarDec({name = Symbol.symbol(ID), escape = ref true, typ = NONE, init = exp, pos = VARleft}))
 
 typelist: typedec                       ([typedec])
-        | typelist typedec              (typeList @ [typedec])
+        | typelist typedec              (typelist @ [typedec])
 
 typedec: TYPE ID EQ ty                  ({name = Symbol.symbol(ID), ty = ty, pos = TYPEleft})
 

@@ -68,11 +68,15 @@ func_exp: ID LPAREN RPAREN		()
 func_args: exp				()
          | exp COMMA func_args		()
 
-l_value : ID lvalue'                 ()
+(* l_value : ID lvalue'                 () *)
 
-lvalue' :                           ()
-        | DOT ID lvalue'            ()
-        | LBRACK exp RBRACK lvalue' ()
+(* lvalue' :                           () *)
+(*         | DOT ID lvalue'            () *)
+(*         | LBRACK exp RBRACK lvalue' () *)
+l_value: ID                             ()
+       | l_value LBRACK exp RBRACK      ()
+       | l_value DOT ID                 ()
+       | ID LBRACK exp RBRACK		()
 
 exp :
     (* Literals *)
