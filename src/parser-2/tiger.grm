@@ -12,7 +12,7 @@ structure A = Absyn
   | BREAK | NIL
   | FUNCTION | VAR | TYPE
 
-%nonterm  exp | program | exp_seq | exp_list | decs | mathExp | func_exp | func_args | record_args | type_fields | assigns
+%nonterm  exp | program | exp_seq | exp_list | mathExp | func_exp | func_args | record_args | type_fields | assigns | ty | typedec | funcdec | vardec | funclist | l_value | structBuilder | typelist | dec | decList
 
 %pos int
 %verbose
@@ -94,12 +94,12 @@ exp :
     | structBuilder                     (structBuilder)
     (* Let *)
     | LET decList IN exp_seq END		(A.LetExp({decs = decList, body = A.SeqExp(exp_seq), pos = LETleft}))
-    | LET decList IN end                (A.LetExp({decs = decList, body = A.SeqExp([]), pos = LETleft}))
+    | LET decList IN END                (A.LetExp({decs = decList, body = A.SeqExp([]), pos = LETleft}))
 (* Function Call *)
     | func_exp				            (func_exp)
 
 decList: dec                            ([dec])
-       | decList decs                   (decs @ [dec])
+       | decList dec                   (decList @ [dec])
 
 dec: typelist                           (A.TypeDec(typelist))
    | funclist                           (A.FunctionDec(funclist))

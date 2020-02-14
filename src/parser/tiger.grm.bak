@@ -1,0 +1,139 @@
+%%
+%term
+    EOF
+  | ID of string
+  | INT of int | STRING of string
+  | COMMA | COLON | SEMICOLON | LPAREN | RPAREN | LBRACK | RBRACK
+  | LBRACE | RBRACE | DOT
+  | PLUS | MINUS | TIMES | DIVIDE | EQ | NEQ | LT | LE | GT | GE | UMINUS
+  | AND | OR | ASSIGN
+  | ARRAY | IF | THEN | ELSE | WHILE | FOR | TO | DO | LET | IN | END | OF
+  | BREAK | NIL
+  | FUNCTION | VAR | TYPE
+
+%nonterm  exp | program | exp_seq | exp_list | exp_body | decs | mathExp | func_exp | func_args | record_args | type_fields | assigns
+
+%pos int
+%verbose
+%start program
+%eop EOF
+%noshift EOF
+
+%name Tiger
+
+%keyword WHILE FOR TO BREAK LET IN END FUNCTION VAR TYPE ARRAY IF THEN ELSE
+	DO OF NIL
+
+%nonassoc ASSIGN (* Associativity? *)
+%right DO
+%right OF
+%right ELSE
+%right THEN
+%left OR (* Associativity? *)
+%left AND (* Associativity? *)
+%nonassoc EQ NEQ LT GT LE GE
+%left PLUS MINUS
+%left TIMES DIVIDE
+%left UMINUS
+
+%prefer THEN ELSE LPAREN
+
+%value ID ("bogus")
+%value INT (1)
+%value STRING ("")
+
+%%
+
+program	: exp				()
+
+exp_seq : LPAREN exp_list RPAREN	() (* Assuming nesting not allowed; exp_list required? *)
+
+exp_list : exp SEMICOLON exp_list	()
+| exp					()
+
+func_args:
+  exp					()
+| exp COMMA func_args			()
+
+record_args:
+  ID EQ exp				()
+| ID EQ exp COMMA record_args		() (* Also allow nothing *)
+
+type_fields:
+(* decalring a type *)
+    ID COLON ID				()
+    | ID COLON ID COMMA type_fields	()
+
+decs:
+(* decalring a type *)
+    TYPE ID EQ ID			()
+(* declaring fields of type *)
+    | ID				()
+    | LBRACE type_fields RBRACE		()
+    | ARRAY OF ID			()
+
+assigns:
+(* Assignments - Exps *)
+(* Array and Record Assignment *)
+    ID ASSIGN exp		        ()
+(* Record Creation *)
+    | ID LBRACE record_args RBRACE	()
+(* Array Creation *)
+    | ID LBRACK exp RBRACK OF exp	()
+
+(* Function *)
+func_exp:
+  ID LPAREN RPAREN			()
+| ID LPAREN func_args RPAREN		()
+
+exp :
+    (* Literals *)
+    STRING				()
+    | ID				() (* Assuming ID is same as lvalue expr described in Tiger lang appendix *)
+    | LPAREN exp RPAREN			()
+    | NIL                               ()
+    | mathExp                           ()
+    (* Conditionals*)
+    | IF exp THEN exp ELSE exp	        ()
+    | IF exp THEN exp			()
+    (* for and while -- use exp_body for BREAK *)
+    | WHILE exp DO exp	                ()
+    | FOR ID ASSIGN exp TO exp DO exp	()
+    | BREAK				()  (* Need to allow break within exp e.g. if x then break *)
+    (* Let *)
+    | LET decs IN exp_seq END		()
+    | LET decs IN exp END		()
+(* Function Call *)
+    | func_exp				()
+    | decs				()
+    | assigns				()
+
+(* Arithmetic expressions *)
+mathExp:
+    exp PLUS exp			()
+    | exp MINUS exp			()
+    | exp TIMES exp			()
+    | exp DIVIDE exp			()
+    | MINUS exp	%prec UMINUS		()
+    (* Comparison *)
+    | exp EQ exp			()
+    | exp NEQ exp			()
+    | exp GT exp			()
+    | exp LT exp			()
+    | exp GE exp			()
+    | exp LE exp			()
+    (* Boolean Operators *)
+    | exp AND exp			()
+    | exp OR exp			()
+    | INT                       	()
+
+(* Q1. Do we care about differentiating/adding non-terms for
+dec, type, operator, etc. e.g. See parser-2/absyn.sml
+
+
+KNOWN CONFLICTS:
+exp
+LPAREN exp RPAREN
+vs. exp_seq LPAREN exp_list RPAREN
+
+ *)

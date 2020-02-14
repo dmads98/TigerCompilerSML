@@ -11,7 +11,7 @@
   | BREAK | NIL
   | FUNCTION | VAR | TYPE
 
-%nonterm  exp | program | exp_seq | exp_list | exp_body | decs | mathExp | func_exp | func_args | record_args | type_fields | assigns
+%nonterm  exp | program | exp_seq | exp_list | mathExp | func_exp | func_args | record_args | type_fields | assigns | ty | typedec | funcdec | vardec | funclist | l_value | structBuilder | typelist | dec | decList
 
 %pos int
 %verbose
@@ -24,13 +24,13 @@
 %keyword WHILE FOR TO BREAK LET IN END FUNCTION VAR TYPE ARRAY IF THEN ELSE
 	DO OF NIL
 
-%nonassoc ASSIGN (* Associativity? *)
+%nonassoc ASSIGN
 %right DO
 %right OF
-%right ELSE
 %right THEN
-%left OR (* Associativity? *)
-%left AND (* Associativity? *)
+%right ELSE
+%left OR
+%left AND
 %nonassoc EQ NEQ LT GT LE GE
 %left PLUS MINUS
 %left TIMES DIVIDE
@@ -46,86 +46,111 @@
 
 program	: exp				()
 
-exp_seq : LPAREN exp_list RPAREN	() (* Assuming nesting not allowed; exp_list required? *)
-
-exp_list : exp SEMICOLON exp_list	()
-| exp					()
-
-func_args:
-  exp					()
-| exp COMMA func_args			()
+exp_seq : exp				()
+        | exp_seq SEMICOLON exp		()
 
 record_args:
   ID EQ exp				()
-| ID EQ exp COMMA record_args		() (* Also allow nothing *)
+| ID EQ exp COMMA record_args		()
 
-type_fields:
-(* decalring a type *)
-    ID COLON ID				()
-    | ID COLON ID COMMA type_fields	()
-
-decs:
-(* decalring a type *)
-    TYPE ID EQ ID			()
-(* declaring fields of type *)
-    | ID				()
-    | LBRACE type_fields RBRACE		()
-    | ARRAY OF ID			()
-
-assigns:
-(* Assignments - Exps *)
+structBuilder:
 (* Array and Record Assignment *)
-    ID ASSIGN exp		        ()
 (* Record Creation *)
-    | ID LBRACE record_args RBRACE	()
+      ID LBRACE record_args RBRACE	()
+    | ID LBRACE RBRACE			()
 (* Array Creation *)
     | ID LBRACK exp RBRACK OF exp	()
 
 (* Function *)
-func_exp:
-  ID LPAREN RPAREN			()
-| ID LPAREN func_args RPAREN		()
+func_exp: ID LPAREN RPAREN		()
+        | ID LPAREN func_args RPAREN	()
+
+func_args: exp				()
+         | exp COMMA func_args		()
+
+l_value: ID				()
+       | l_value LBRACK exp RBRACK	()
+       | l_value DOT ID			()
 
 exp :
     (* Literals *)
-    STRING				()
-    | ID				() (* Assuming ID is same as lvalue expr described in Tiger lang appendix *)
-    | LPAREN exp RPAREN			()
+    STRING				                ()
+    | l_value				            ()
+    | l_value ASSIGN exp                ()
+    | LPAREN exp RPAREN			        ()
+    | LPAREN RPAREN                     ()
+    | LPAREN exp SEMICOLON exp_seq RPAREN      ()
     | NIL                               ()
     | mathExp                           ()
     (* Conditionals*)
     | IF exp THEN exp ELSE exp	        ()
-    | IF exp THEN exp			()
-    (* for and while -- use exp_body for BREAK *)
-    | WHILE exp DO exp	                ()
+    | IF exp THEN exp			        ()
+    (* for and while *)
+    | WHILE exp DO exp            ()
     | FOR ID ASSIGN exp TO exp DO exp	()
-    | BREAK				()  (* Need to allow break within exp e.g. if x then break *)
+    | BREAK				                ()
+    | structBuilder               ()
     (* Let *)
-    | LET decs IN exp_seq END		()
-    | LET decs IN exp END		()
+    | LET decList IN exp_seq END	()
+    | LET decList IN END          ()
 (* Function Call *)
-    | func_exp				()
-    | decs				()
-    | assigns				()
+    | func_exp				            ()
+
+decList: dec                      ()
+       | decList dec              ()
+
+dec: typelist                     ()
+   | funclist                     ()
+   | vardec                       ()
+
+funclist: funcdec                 ()
+        | funclist funcdec        ()
+
+funcdec: FUNCTION ID LPAREN type_fields RPAREN COLON ID EQ exp      ()
+       | FUNCTION ID LPAREN RPAREN COLON ID EQ exp                  ()
+       | FUNCTION ID LPAREN type_fields RPAREN EQ exp               ()
+       | FUNCTION ID LPAREN RPAREN EQ exp                           ()
+
+
+vardec: VAR ID COLON ID ASSIGN exp      ()
+      | VAR ID ASSIGN exp               ()
+
+typelist: typedec                       ()
+        | typelist typedec              ()
+
+typedec: TYPE ID EQ ty                  ()
+
+ty: ARRAY OF ID                         ()
+  | ID                                  ()
+  | LBRACE RBRACE                       ()
+  | LBRACE type_fields RBRACE           ()
+
+(* declaring a type *)
+type_fields: ID COLON ID				        ()
+        | ID COLON ID COMMA type_fields	()
+
 
 (* Arithmetic expressions *)
 mathExp:
-    exp PLUS exp			()
-    | exp MINUS exp			()
-    | exp TIMES exp			()
-    | exp DIVIDE exp			()
-    | MINUS exp	%prec UMINUS		()
+    exp PLUS exp			                  ()
+    | exp MINUS exp			                ()
+    | exp TIMES exp			                ()
+    | exp DIVIDE exp                    ()
+    | MINUS exp	%prec UMINUS            ()
     (* Comparison *)
-    | exp EQ exp			()
-    | exp NEQ exp			()
-    | exp GT exp			()
-    | exp LT exp			()
-    | exp GE exp			()
-    | exp LE exp			()
+    | exp EQ exp			    ()
+    | exp NEQ exp			    ()
+    | exp GT exp			    ()
+    | exp LT exp			    ()
+    | exp GE exp			    ()
+    | exp LE exp			    ()
     (* Boolean Operators *)
-    | exp AND exp			()
-    | exp OR exp			()
-    | INT                       	()
+    | exp AND exp			    ()
+    | exp OR exp			    ()
+    | INT                 ()
+
+
+
 
 (* Q1. Do we care about differentiating/adding non-terms for
 dec, type, operator, etc. e.g. See parser-2/absyn.sml
