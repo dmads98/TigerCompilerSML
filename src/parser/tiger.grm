@@ -11,7 +11,7 @@
   | BREAK | NIL
   | FUNCTION | VAR | TYPE
 
-%nonterm  exp | program | exp_seq | exp_list | mathExp | func_exp | func_args | record_args | type_fields | assigns | ty | typedec | funcdec | vardec | funclist | l_value | structBuilder | typelist | dec | decList
+%nonterm  exp | program | exp_seq | exp_list | mathExp | func_exp | func_args | record_args | type_fields | assigns | ty | typedec | funcdec | vardec | funclist | l_value | structBuilder | typelist | dec | decList | lvalue'
 
 %pos int
 %verbose
@@ -68,9 +68,11 @@ func_exp: ID LPAREN RPAREN		()
 func_args: exp				()
          | exp COMMA func_args		()
 
-l_value: ID				()
-       | l_value LBRACK exp RBRACK	()
-       | l_value DOT ID			()
+l_value : ID lvalue'                 ()
+
+lvalue' :                           ()
+        | DOT ID lvalue'            ()
+        | LBRACK exp RBRACK lvalue' ()
 
 exp :
     (* Literals *)
