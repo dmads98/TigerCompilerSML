@@ -1,3 +1,6 @@
+Dhanush Madabusi (dm322)
+Prathikshaa Rangarajan (pr109)
+
 CHAP-3
 -------------------------------
 This is the version of the parser built for chap-3 without symantic actions.

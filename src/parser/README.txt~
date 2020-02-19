@@ -1,3 +1,0 @@
-This is the version of the parser built for chap-3 without symantic actions.
-It was verified that all the provided test tiger programs can parse without throwing any errors before moving onto semantic actions.
-The semantic actions were added to the parser-2 directory tiger.grm file.
