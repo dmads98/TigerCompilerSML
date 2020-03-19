@@ -7,15 +7,11 @@ type tenv = Env.ty Symbol.table
 structure A = Absyn
 structure S = Symbol
 structure E = Env
+structure T = Types
 
 (* Prog is an exp *)
 fun transProg(exp: A.exp) : unit =
     (transExp(E.base_venv, E.base_tenv)(exp); ());
-
-(* Type check an int *)
-fun checkInt({exp, ty}, pos) =
-    case ty of Types.INT => ()
-	     | _ => error pos "integer required";
 
 (* Expression base - only plus for now  pg 115, 121 *)
 (* Tiger Expression List: Correlate with absyn.sml to implement
@@ -43,62 +39,88 @@ fun checkInt({exp, ty}, pos) =
    If-then
    While
    For
-   Break   
+   Break
    Let
    Parentheses
-*)
-fun transExp(venv, tenv) =
-    (* Arithmetic *)
-    let fun trexp (A.OpExp{left, oper = A.PlusOp, right, pos}) =
-	    (checkInt(trexp left, pos);
-	     checkInt(trexp right, pos);
+ *)
+
+(* Can use below for T.INT, T.STRING as is *)
+fun typeCheck (exp_ty, given_ty, pos) =
+    if exp_ty <> given ty then error pos "expected " ^ exp_ty ^ " saw " ^ given_ty else ();
+
+(* An exp is {exp=, ty=} *)
+fun checkArith (exp1, exp2, pos) =
+    ((typeCheck (#ty exp1, T.INT, pos); typeCheck (#ty exp2, T.INT, pos)));
+
+(* Both int or both string is okay *)
+fun checkComp (exp1, exp2, pos) =
+    case #ty exp1 of
+	T.INT => ((); (typeCheck(#ty exp2, T.INT, pos)))
+      | T.STRING => ((); (typeCheck(#ty exp2, T.STRING, pos)))
+      | _ => error pos "comp: expected int or string for comparison";
+
+(* Both int or string or array or record refs is okay *)
+fun checkEq (exp1, exp2, pos) =
+    case #ty exp1 of
+	T.INT => ((); (typeCheck(#ty exp2, T.INT, pos)))
+      | T.STRING => ((); (typeCheck(#ty exp2, T.STRING, pos)))
+      | _ => error pos "eq: expected int, string, array or record for comparison";
+
+fun transExp (venv, tenv) =
+    let fun trexp A.NilExp = {exp=(), ty=T.NIL}
+	  | trexp A.IntExp = {exp=(), ty=T.INT}
+	  | trexp A.StringExp = {exp=(), ty=T.STRING}
+	  (* Arithmetic *)
+	  | trexp (A.OpExp{left, oper = A.PlusOp, right, pos}) =
+	    (checkArith(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    )
+	    ) 
 	  (* Uminus is just 0-num *)
 	  | trexp (A.OpExp{left, oper=A.MinusOp, right, pos}) =
-	    (checkInt(trexp left, pos);
-	     checkInt(trexp right, pos);
-	     {exp=(), ty=Types.INT}}
+	    (checkArith(trexp left, trexp right, pos)
+	     {exp=(), ty=Types.INT}
+	    ) 
 	  | trexp (A.OpExp{left, oper=A.DivideOp, right, pos}) =
-	    (checkInt(trexp left, pos);
-	     checkInt(trexp right, pos);
-	     {exp=(), ty=Types.INT}}
+	    (checkArith(trexp left, trexp right, pos)
+	     {exp=(), ty=Types.INT}
+	    ) 
 	  | trexp (A.OpExp{left, oper=A.TimesOp, right, pos}) =
-	    (checkInt(trexp left, pos);
-	     checkInt(trexp right, pos);
-	     {exp=(), ty=Types.INT}}
+	    (checkArith(trexp left, trexp right, pos)
+	     {exp=(), ty=Types.INT}
+	    ) 
 	  (*--Arithmetic--*)
-	  (* Comparison *)
+	  (* Comparison -- int or string, to add string *)
 	  | trexp (A.OpExp{left, oper=A.GtOp, right, pos}) =
-	    (checkInt(trexp left, pos);
-	     checkInt(trexp right, pos);
-	     {exp=(), ty=Types.INT}}
+	    (checkComp(trexp left, trexp right, pos)
+	     {exp=(), ty=Types.INT}
+	    ) 
 	  | trexp (A.OpExp{left, oper=A.GeOp, right, pos}) =
-	    (checkInt(trexp left, pos);
-	     checkInt(trexp right, pos);
-	     {exp=(), ty=Types.INT}}
+	    (checkComp(trexp left, trexp right, pos)
+	     {exp=(), ty=Types.INT}
+	    ) 
 	  | trexp (A.OpExp{left, oper=A.LtOp, right, pos}) =
-	    (checkInt(trexp left, pos);
-	     checkInt(trexp right, pos);
-	     {exp=(), ty=Types.INT}}
+	    (checkComp(trexp left, trexp right, pos)
+	     {exp=(), ty=Types.INT}
+	    ) 
 	  | trexp (A.OpExp{left, oper=A.LeOp, right, pos}) =
-	    (checkInt(trexp left, pos);
-	     checkInt(trexp right, pos);
-	     {exp=(), ty=Types.INT}}
+	    (checkComp(trexp left, trexp right, pos)
+	     {exp=(), ty=Types.INT}
+	    ) 
 	  (* EqOp and NeqOp can take int, array, record on both sides *)
 	  | trexp (A.OpExp{left, oper=A.EqOp, right, pos}) =
-	    (checkIAR(trexp left, pos);
-	     checkIAR(trexp right, pos);
-	     {exp=(), ty=Types.INT}}
+	    (checkEq(trexp left, trexp right, pos)
+	     {exp=(), ty=Types.INT}
+	    ) 
 	  | trexp (A.OpExp{left, oper=A.NeqOp, right, pos}) =
-	    (checkIAR(trexp left, pos);
-	     checkIAR(trexp right, pos);
-	     {exp=(), ty=Types.INT}}
+	    (checkEq(trexp left, trexp right, pos)
+	     {exp=(), ty=Types.INT}
+	    ) 
 	  (*--Comparison--*)
 
 	  (* transDec = Let expressions *)
 	  | trexp (A.LetExp{decs, body, pos}) =
-	    let val {venv = venv', tenv = tenv'} = transDecs(venv, tenv, decs)
+	    let val {venv = venv', tenv = tenv'} = transDecs (venv, tenv, decs)
+						   (* Func yet to be defined *)
 	    in transExp (venv', tenv') body
 	    end
 	  (* For expression needs to call transExp since it needs to modify the env *)
