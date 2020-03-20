@@ -17,36 +17,33 @@ fun transProg(exp: A.exp) : unit =
 (* Tiger Expression List: Correlate with absyn.sml to implement
    l-value
    Valueless exp
-   Nil
+   Nil					- Done
    Sequencing
    No Value
-   Integer Literal
-   String Literal
-   Negation
+   Integer Literal			- Done
+   String Literal 			- Done
+   Negation 				-> Arithmetic 		- Done
    Function Call
-   Arithmetic
-   Comparison
-   String Comparison
-   Boolean Operators
-   Precedence of Operators
-   Associativity of Operators
+   Arithmetic				- Done
+   Comparison 				- Done
+   String Comparison 			- Done
+   Boolean Operators 			-> If-then-else
    Record Creation
    Array Creation
    Array and Record Assignment
    Extent
    Assignment
-   If-then-else
+   If-then-else				- Done
    If-then
    While
    For
    Break
    Let
-   Parentheses
- *)
+*)
 
-(* Can use below for T.INT, T.STRING as is *)
+(* Can use below for T.INT, T.STRING as is: Need to add more types *)
 fun typeCheck (exp_ty, given_ty, pos) =
-    if exp_ty <> given ty then error pos "expected " ^ exp_ty ^ " saw " ^ given_ty else ();
+    if exp_ty <> given_ty then error pos "expected " ^ exp_ty ^ " saw " ^ given_ty else ();
 
 (* An exp is {exp=, ty=} *)
 fun checkArith (exp1, exp2, pos) =
@@ -70,51 +67,63 @@ fun transExp (venv, tenv) =
     let fun trexp A.NilExp = {exp=(), ty=T.NIL}
 	  | trexp A.IntExp = {exp=(), ty=T.INT}
 	  | trexp A.StringExp = {exp=(), ty=T.STRING}
+
+	  | trexp A.VarExp(var) = trvar var (* Need to complete trvar function *)
+	  | trexp A.AssignExp{var, exp, pos} =
+	    let var' = trvar var;
+		exp' = trexp exp;
+	    in typeCheck(#ty var', #ty exp', pos); {exp=(), ty=T.UNIT}
+	    end
+	  | trexp A.IfExp{test, then', else', pos} =
+	    (typeCheck(#ty test, T.INT, pos);
+	     typeCheck(#ty then', #ty else', pos);
+	     {exp=(), ty=(#ty then')})
+	  
 	  (* Arithmetic *)
 	  | trexp (A.OpExp{left, oper = A.PlusOp, right, pos}) =
 	    (checkArith(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    ) 
+	    )
 	  (* Uminus is just 0-num *)
 	  | trexp (A.OpExp{left, oper=A.MinusOp, right, pos}) =
 	    (checkArith(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    ) 
+	    )
 	  | trexp (A.OpExp{left, oper=A.DivideOp, right, pos}) =
 	    (checkArith(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    ) 
+	    )
 	  | trexp (A.OpExp{left, oper=A.TimesOp, right, pos}) =
 	    (checkArith(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    ) 
+	    )
 	  (*--Arithmetic--*)
 	  (* Comparison -- int or string, to add string *)
 	  | trexp (A.OpExp{left, oper=A.GtOp, right, pos}) =
 	    (checkComp(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    ) 
+	    )
 	  | trexp (A.OpExp{left, oper=A.GeOp, right, pos}) =
 	    (checkComp(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    ) 
+	    )
 	  | trexp (A.OpExp{left, oper=A.LtOp, right, pos}) =
 	    (checkComp(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    ) 
+	    )
 	  | trexp (A.OpExp{left, oper=A.LeOp, right, pos}) =
 	    (checkComp(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    ) 
+	    )
 	  (* EqOp and NeqOp can take int, array, record on both sides *)
 	  | trexp (A.OpExp{left, oper=A.EqOp, right, pos}) =
 	    (checkEq(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    ) 
+	    )
 	  | trexp (A.OpExp{left, oper=A.NeqOp, right, pos}) =
 	    (checkEq(trexp left, trexp right, pos)
 	     {exp=(), ty=Types.INT}
-	    ) 
+	    )
 	  (*--Comparison--*)
 
 	  (* transDec = Let expressions *)
