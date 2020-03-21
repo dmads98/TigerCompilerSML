@@ -1,17 +1,15 @@
-structure Semant : SEMANT =
-struct
-
-type venv = Env.enventry Symbol.table
-type tenv = Env.ty Symbol.table
-
 structure A = Absyn
 structure S = Symbol
 structure E = Env
 structure T = Types
 
-(* Prog is an exp *)
-fun transProg(exp: A.exp) : unit =
-    (transExp(E.base_venv, E.base_tenv)(exp); ());
+structure Semant : SEMANT =
+struct
+
+type venv = E.enventry S.table
+type tenv = E.ty S.table
+type ty = T.ty
+type expty = {exp: Translate.exp, ty: ty}	 
 
 (* Expression base - only plus for now  pg 115, 121 *)
 (* Tiger Expression List: Correlate with absyn.sml to implement
@@ -49,27 +47,39 @@ fun typeCheck (exp_ty, given_ty, pos) =
 fun checkArith (exp1, exp2, pos) =
     ((typeCheck (#ty exp1, T.INT, pos); typeCheck (#ty exp2, T.INT, pos)));
 
+fun checkInt ({exp, ty}, pos) = case ty of T.INT => ()
+					 | ty => ErrorMsg.error pos ("integer expected, found " ^ getType(ty)); 
+
 (* Both int or both string is okay *)
-fun checkComp (exp1, exp2, pos) =
-    case #ty exp1 of
-	T.INT => ((); (typeCheck(#ty exp2, T.INT, pos)))
-      | T.STRING => ((); (typeCheck(#ty exp2, T.STRING, pos)))
-      | _ => error pos "comp: expected int or string for comparison";
+fun checkComp ({exp = exp1, ty = T.INT}, {exp = exp2, ty = T.INT}, pos) = ()
+  | checkComp ({exp = exp1, ty = T.STRING}, {exp = exp2, ty = T.STRING}, pos) = ()
+  | checkComp ({exp = exp1, ty = _}, {exp = exp2, ty = _}, pos) = ErrorMsg.error pos "expected a matching int/str for comparison";
 
 (* Both int or string or array or record refs is okay *)
-fun checkEq (exp1, exp2, pos) =
-    case #ty exp1 of
-	T.INT => ((); (typeCheck(#ty exp2, T.INT, pos)))
-      | T.STRING => ((); (typeCheck(#ty exp2, T.STRING, pos)))
-      | _ => error pos "eq: expected int, string, array or record for comparison";
+fun checkEq ({exp = exp1, ty = T.INT}, {exp = exp2, ty = T.INT}, pos) = ()
+  | checkEq ({exp = exp1, ty = T.STRING}, {exp = exp2, ty = T.STRING}, pos) = ()
+  | checkEq ({exp = exp1, ty = T.NIL}, {exp = exp2, ty = T.NIL}, pos) = ()
+  | checkEq ({exp = exp1, ty = T.NIL}, {exp = exp2, ty = T.RECORD _}, pos) = ()
+  | checkEq ({exp = exp1, ty = T.RECORD _}, {exp = exp2, ty = T.NIL}, pos) = ()
+  | checkEq ({exp = exp1, ty = T.RECORD(_, ref1)}, {exp = exp2, ty = T.RECORD(_, ref2)}, pos) = if ref1 <> ref2 then ErrorMsg.error pos ("expected matching record types to check for equality"; ()) else ()
+  | checkEq ({exp = exp1, ty = T.ARRAY(_, ref1)}, {exp = exp2, ty = T.ARRAY(_, ref2)}, pos) = if ref1 <> ref2 then ErrorMsg.error pos ("expected matching array types to check for equality"; ()) else ()   
+  | checkEq ({exp = exp1, ty = _}, {exp = exp2, ty = _}, pos) = ErrorMsg.error pos "expected a matching int/str for comparison";
+
+fun getType (T.NIL) = "NIL"
+  | getType (T.STRING) = "STRING"
+  | getType (T.INT) = "INT"
+  | getType (T.UNIT) = "UNIT"
+  | getType (T.RECORD(ls, un)) = "RECORD"
+  | getType (T.NAME(sym, ty)) = "NAME"
+  | getType (T.ARRAY(ty, un)) = "ARRAY OF " ^ getType(ty)
 
 fun transExp (venv, tenv) =
-    let fun trexp A.NilExp = {exp=(), ty=T.NIL}
-	  | trexp A.IntExp = {exp=(), ty=T.INT}
-	  | trexp A.StringExp = {exp=(), ty=T.STRING}
+    let fun trexp (A.NilExp) = {exp=(), ty=T.NIL}
+	  | trexp (A.IntExp(int)) = {exp=(), ty=T.INT}
+	  | trexp (A.StringExp(str)) = {exp=(), ty=T.STRING}
 
 	  | trexp A.VarExp(var) = trvar var (* Need to complete trvar function *)
-	  | trexp A.AssignExp{var, exp, pos} =
+	  | trexp (A.AssignExp{var, exp, pos}) =
 	    let var' = trvar var;
 		exp' = trexp exp;
 	    in typeCheck(#ty var', #ty exp', pos); {exp=(), ty=T.UNIT}
@@ -81,20 +91,24 @@ fun transExp (venv, tenv) =
 	  
 	  (* Arithmetic *)
 	  | trexp (A.OpExp{left, oper = A.PlusOp, right, pos}) =
-	    (checkArith(trexp left, trexp right, pos)
+	    (checkInt(trexp left, pos);
+	     checkInt(trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
 	  (* Uminus is just 0-num *)
 	  | trexp (A.OpExp{left, oper=A.MinusOp, right, pos}) =
-	    (checkArith(trexp left, trexp right, pos)
+	    (checkInt(trexp left, pos);
+	     checkInt(trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
 	  | trexp (A.OpExp{left, oper=A.DivideOp, right, pos}) =
-	    (checkArith(trexp left, trexp right, pos)
+	    (checkInt(trexp left, pos);
+	     checkInt(trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
 	  | trexp (A.OpExp{left, oper=A.TimesOp, right, pos}) =
-	    (checkArith(trexp left, trexp right, pos)
+	    (checkInt(trexp left, pos);
+	     checkInt(trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
 	  (*--Arithmetic--*)
@@ -132,6 +146,15 @@ fun transExp (venv, tenv) =
 						   (* Func yet to be defined *)
 	    in transExp (venv', tenv') body
 	    end
+
+	  | trexp (A.SeqExp (exprList) =
+		   let fun listCheckHelp [] = {exp = (), ty = T.UNIT}
+			 | listCheckHelp [(exp, pos)] = trexp(exp)
+			 | listCheckHelp ((exp, pos) :: list) = (trexp(exp); listCheckHelp(list))
+		   in
+		       listCheckHelp(exprList)
+		   end
+		       
 	  (* For expression needs to call transExp since it needs to modify the env *)
 
 	  | trexp (A.RecordExp{left, oper = A.PlusOp, right, pos}) =
@@ -139,6 +162,7 @@ fun transExp (venv, tenv) =
 	     checkInt(trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
+	  | trexp (A.ArrayExp = 
 
 	and trvar (A.SimpleVar(id, pos)) =
 	    (case Symbol.look(venv, id)
@@ -185,3 +209,7 @@ fun transDec (venv, tenv, A.VarDec{name, typ=NONE, init, ...}) =   (* var dec *)
     in transExp (venv'', tenv) body;
        {venv=venv', tenv=tenv'}
     end
+
+(* Prog is an exp *)
+fun transProg(exp: A.exp) : unit =
+    (transExp(E.base_venv, E.base_tenv)(exp); ());
