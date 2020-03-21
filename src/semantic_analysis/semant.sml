@@ -77,7 +77,7 @@ fun transExp (venv, tenv) =
     let fun trexp (A.NilExp) = {exp=(), ty=T.NIL}
 	  | trexp (A.IntExp(int)) = {exp=(), ty=T.INT}
 	  | trexp (A.StringExp(str)) = {exp=(), ty=T.STRING}
-
+					   
 	  | trexp A.VarExp(var) = trvar var (* Need to complete trvar function *)
 	  | trexp (A.AssignExp{var, exp, pos}) =
 	    let var' = trvar var;
@@ -114,56 +114,57 @@ fun transExp (venv, tenv) =
 	  (*--Arithmetic--*)
 	  (* Comparison -- int or string, to add string *)
 	  | trexp (A.OpExp{left, oper=A.GtOp, right, pos}) =
-	    (checkComp(trexp left, trexp right, pos)
+	    (checkComp(trexp left, trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
 	  | trexp (A.OpExp{left, oper=A.GeOp, right, pos}) =
-	    (checkComp(trexp left, trexp right, pos)
+	    (checkComp(trexp left, trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
 	  | trexp (A.OpExp{left, oper=A.LtOp, right, pos}) =
-	    (checkComp(trexp left, trexp right, pos)
+	    (checkComp(trexp left, trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
 	  | trexp (A.OpExp{left, oper=A.LeOp, right, pos}) =
-	    (checkComp(trexp left, trexp right, pos)
+	    (checkComp(trexp left, trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
 	  (* EqOp and NeqOp can take int, array, record on both sides *)
 	  | trexp (A.OpExp{left, oper=A.EqOp, right, pos}) =
-	    (checkEq(trexp left, trexp right, pos)
+	    (checkEq(trexp left, trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
 	  | trexp (A.OpExp{left, oper=A.NeqOp, right, pos}) =
-	    (checkEq(trexp left, trexp right, pos)
+	    (checkEq(trexp left, trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
 	  (*--Comparison--*)
-
+		
 	  (* transDec = Let expressions *)
 	  | trexp (A.LetExp{decs, body, pos}) =
 	    let val {venv = venv', tenv = tenv'} = transDecs (venv, tenv, decs)
-						   (* Func yet to be defined *)
-	    in transExp (venv', tenv') body
+							     (* Func yet to be defined *)
+	    in
+		transExp (venv', tenv') body
 	    end
-
-	  | trexp (A.SeqExp (exprList) =
-		   let fun listCheckHelp [] = {exp = (), ty = T.UNIT}
-			 | listCheckHelp [(exp, pos)] = trexp(exp)
-			 | listCheckHelp ((exp, pos) :: list) = (trexp(exp); listCheckHelp(list))
-		   in
-		       listCheckHelp(exprList)
-		   end
+		
+	  | trexp (A.SeqExp (exprList)) =
+	    let fun listCheckHelp [] = {exp = (), ty = T.UNIT}
+		  | listCheckHelp [(exp, pos)] = trexp(exp)
+		  | listCheckHelp ((exp, pos) :: list) = (trexp(exp); listCheckHelp(list))
+	    in
+		listCheckHelp(exprList)
+	    end
 		       
 	  (* For expression needs to call transExp since it needs to modify the env *)
-
+		       
 	  | trexp (A.RecordExp{left, oper = A.PlusOp, right, pos}) =
 	    (checkInt(trexp left, pos);
 	     checkInt(trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
-	  | trexp (A.ArrayExp = 
-
+	  (*| trexp (A.ArrayExp{}) = *)
+		   
 	and trvar (A.SimpleVar(id, pos)) =
 	    (case Symbol.look(venv, id)
 	      of SOME (E.VarEntry{ty}) => {exp=(), ty = actual_ty ty}
@@ -172,17 +173,32 @@ fun transExp (venv, tenv) =
     in
 	{exp=(), ty=Types.INT}
     end
-end
+	
+and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
+  | transDecs (venv, tenv, decs)  = 
+    let fun trdec (A.VarDec{name, escape, typ = SOME((assignType, typPos)), init, pos}, {venv, tenv}) =
+	    let val {exp, ty = typeFound} = transExp(venv, tenv, init)
+	    in
+		if hello (*create functions*)
+		then {venv = S.enter(venv, name, E.VarEntry {ty = typeFound}), tenv = tenv}
+		else (ErrorMsg.error pos ("body of var declaration has incorrect type");
+		      {venv = venv, tenv = tenv})
+	    end
+	  | trdec (A.VarDec{name, escape, typ = NONE, init, pos}, {venv, tenv}) =
+	    let val {exp, ty = typeFound} = transExp(venv, tenv, init)
+	    in
+		if typeFound <> T.NIL
+		then {venv = S.enter(venv, name, E.VarEntry {ty = typeFound}), tenv = tenv}
+		else (ErrorMsg.error pos ("cannot assign var to nil for a non-record type");
+		      {venv = venv, tenv = tenv})
+	    end
+		
+	  | trdec (A.FunctionDec(decList), {venv, tenv}) =
+	    let
+	    in
+	    end
 
-
-fun transDecs (venv, tenv, decs) =
-    let val venv' = venv
-	val tenv' = tenv
-    in
-	{venv= venv', tenv= tenv'} (* Add update *)
-    end
-
-fun transDec (venv, tenv, A.VarDec{name, typ=NONE, init, ...}) =   (* var dec *)
+	    
     let val {exp, ty} = transExp(venv, tenv, init)
     in {tenv = tenv,
        venv = S.enter{venv, name, E.VarEntry}}
