@@ -11,6 +11,10 @@ type tenv = E.ty S.table
 type ty = T.ty
 type expty = {exp: Translate.exp, ty: ty}	 
 
+(* Prog is an exp *)
+fun transProg(exp: A.exp) : unit =
+    (transExp(E.base_venv, E.base_tenv)(exp); ());
+
 (* Expression base - only plus for now  pg 115, 121 *)
 (* Tiger Expression List: Correlate with absyn.sml to implement
    l-value
@@ -378,7 +382,3 @@ and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
     in {tenv = tenv,
        venv = S.enter{venv, name, E.VarEntry}}
     end
-
-(* Prog is an exp *)
-fun transProg(exp: A.exp) : unit =
-    (transExp(E.base_venv, E.base_tenv)(exp); ());
