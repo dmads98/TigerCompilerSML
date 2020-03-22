@@ -43,6 +43,28 @@ type expty = {exp: Translate.exp, ty: ty}
 fun typeCheck (exp_ty, given_ty, pos) =
     if exp_ty <> given_ty then error pos "expected " ^ exp_ty ^ " saw " ^ given_ty else ();
 
+fun typeHelper (tenv, typ: ty, pos) = typ
+  | typeHelper (tenv, T.NAME(symb, ref), pos) =
+    let fun checkHelper (SOME typ) = typeHelper(tenv, typ, pos)
+	  | checkHelper (NONE) = (ErrorMsg.error pos ("type " ^ (S.name symb) ^ " not yet defined"); T.INT)
+    in
+	checkHelper(!ref)
+    end
+
+fun getActualType (tenv, symb : S.symbol, pos) =
+    let val value = S.look(tenv, symb)
+    in
+	case value of NONE => (ErrorMsg.error pos ("type " ^ (S.name symb) ^ " not yet defined"); T.INT)
+		    | SOME(typ) => typeHelper(tenv, typ, pos)
+    end
+
+fun isSameType (tenv, pos, typ1:ty, typ2:ty) = (typeHelper(tenv, typ1, pos) = typeHelper(tenv, typ2, pos))
+  | isSameType (tenv, pos, T.NIL, T.RECORD (typ, ref)) = true
+  | isSameType (tenv, pos, T.RECORD (typ, ref), T.NIL) = true
+  | isSameType (tenv, pos, T.RECORD (typ1, ref1), T.RECORD (typ2, ref2)) = ref1 = ref2
+  | isSameType (tenv, pos, T.ARRAY(typ1, ref1), T.ARRAY(typ2, ref2)) = (ref1 = ref2) andalso
+								       (isSameType(tenv, pos, typeHelper(tenv, typ1,pos), typeHelper(tenv, typ2, pos)))
+
 (* An exp is {exp=, ty=} *)
 fun checkArith (exp1, exp2, pos) =
     ((typeCheck (#ty exp1, T.INT, pos); typeCheck (#ty exp2, T.INT, pos)));
@@ -72,6 +94,9 @@ fun getType (T.NIL) = "NIL"
   | getType (T.RECORD(ls, un)) = "RECORD"
   | getType (T.NAME(sym, ty)) = "NAME"
   | getType (T.ARRAY(ty, un)) = "ARRAY OF " ^ getType(ty)
+
+fun member (x : S.symbol, nil) = false
+  | member (x, y::ys) = x=y orelse member (x,ys); 
 
 fun transExp (venv, tenv) =
     let fun trexp (A.NilExp) = {exp=(), ty=T.NIL}
@@ -179,7 +204,7 @@ and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
     let fun trdec (A.VarDec{name, escape, typ = SOME((assignType, typPos)), init, pos}, {venv, tenv}) =
 	    let val {exp, ty = typeFound} = transExp(venv, tenv, init)
 	    in
-		if hello (*create functions*)
+		if isSameType(tenv, pos, getActualType(tenv, assignType, typPos), typeHelper(tenv, typeFound, pos))
 		then {venv = S.enter(venv, name, E.VarEntry {ty = typeFound}), tenv = tenv}
 		else (ErrorMsg.error pos ("body of var declaration has incorrect type");
 		      {venv = venv, tenv = tenv})
@@ -192,38 +217,75 @@ and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
 		else (ErrorMsg.error pos ("cannot assign var to nil for a non-record type");
 		      {venv = venv, tenv = tenv})
 	    end
+
+
 		
 	  | trdec (A.FunctionDec(decList), {venv, tenv}) =
 	    let
+		fun createTempVenv (params, venv) =
+		    let fun insertIntoVenv({name, escape, typ, pos}, venv) = S.enter(venv, name, E.VarEntry{ty = getActualType(tenv, typ, pos)})
+		    in
+			foldl insertIntoVenv venv params
+		    end
+		
+		fun checkFuncDec (venv, tenv, {name, params, result = NONE, body, pos}) =
+		    let val tempVenv = createTempVenv(params, venv)
+		    in
+			if isSameType(tenv, pos, #ty(transExp(tempVenv, tenv, body)), T.UNIT)
+			then {venv = venv, tenv = tenv}
+			else (ErrorMsg.error pos ("function body and return type do not match"); {venv = venv, tenv = tenv})
+		    end
+		  | checkFuncDec (venv, tenv, {name, params, result = SOME(retType, pos2), body, pos}) =
+		    let val tempVenv = createTempVenv(params, venv)
+		    in
+			if isSameType(tenv, pos, #ty(transExp(tempVenv, tenv, body)), getActualType(tenv, retType, pos))
+			then {venv = venv, tenv = tenv}
+			else (ErrorMsg.error pos ("function body and return type do not match"); {venv = venv, tenv = tenv})
+		    end
+
+		fun updateVenv ({name, params, result = NONE, body, pos}, venv, tenv) =
+		    let val paramTypes = map (fn {name, escape, typ = symb, pos} => getActualType(tenv, symb, pos)) params
+		    in
+			{venv = S.enter(venv, name, E.FunEntry{formals = paramTypes, result = T.UNIT}), tenv = tenv}
+		    end
+		  | updateVenv({name, params, result = SOME(sym, pos2), body, pos}, venv, tenv) =
+		    let val paramTypes = map (fn {name, escape, typ = symb, pos} => getActualType(tenv, symb, pos))params
+		    in
+			{venv = S.enter(venv, name, E.FunEntry{formals = paramTypes, result = getActualType(tenv, sym, pos)}), tenv = tenv}
+		    end 
+
+		fun handleFuncNames (venv, tenv, ls, []) = {venv = venv, tenv = tenv}
+		  | handleFuncNames (venv, tenv, ls [fDec]) =
+		    if member (#name(fDec), ls)
+		    then (ErrorMsg.error (#pos(fDec)) ("function " ^ S.name(#name(fDec)) ^ " already declared in block"); {tenv = tenv, venv = venv})
+		    else updateVenv(fDec, venv, tenv)
+		  | handleFuncNames (venv, tenv, ls, fDec::decs) =
+		    let val {venv = venv', tenv = tenv'} =
+			    if member(#name(fDec), ls)
+			    then (ErrorMsg.error (#pos(fDec)) ("function " ^ S.name(#name(fDec)) ^ " already declared in block"); {tenv = tenv, venv = venv})
+			    else updateVenv(fDec, venv, tenv)
+		    in
+			handleFuncNames(venv', tenv', ls @ [#name(fDec)], decs)
+		    end
+
+		fun handleFuncDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
+		  | handleFuncDecs (venv, tenv, [fDec]) = checkFuncDec(venv, tenv, fDec)
+		  | handleFuncDecs (venv, tenv, fDec::list) =
+		    let val {venv = venv', tenv = tenv'} = checkFuncDec(venv, tenv, fDec)
+		    in
+			handleFuncDecs(venv', tenv', list)
+		    end
+			
 	    in
+		let val {venv = venv', tenv = tenv'} = handleFuncNames(venv, tenv, [], decList)
+		in
+		    handleFuncDecs(venv', tenv', decList)
 	    end
 
 	    
     let val {exp, ty} = transExp(venv, tenv, init)
     in {tenv = tenv,
        venv = S.enter{venv, name, E.VarEntry}}
-    end
-  (* type dec *)
-  | transDec (venv, tenv, A.TypeDec[{name, ty}]) =
-    {venv = venv,
-    tenv = S.enter(tenv, name, transTy(tenv, ty))}
-
-  (* function dec -- needs to be improved *)
-  | transDec (venv, tenv, A.FunctionDec[{name, params, body, pos,
-					 result = SOME(rt, pos)}]) =
-    let val SOME(result_ty) = S.look(tenv, rt)
-	fun transparam{name, typ, pos} =
-	    case S.look(tenv, typ)
-	     of SOME t => {name=name, ty=t}
-	val params' = map transparam params
-	val venv' = S.enter(venv, name,
-			    E.FunEntry{formals= map #ty params',
-				       result=result_ty})
-	fun enterparam ({name, ty}, venv) =
-	    S.enter(venv, name, S.VarEntry{access=(), ty=ty})
-	val venv'' = fold enterparam params' venv'
-    in transExp (venv'', tenv) body;
-       {venv=venv', tenv=tenv'}
     end
 
 (* Prog is an exp *)
