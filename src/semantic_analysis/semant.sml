@@ -87,6 +87,15 @@ fun checkEq ({exp = exp1, ty = T.INT}, {exp = exp2, ty = T.INT}, pos) = ()
   | checkEq ({exp = exp1, ty = T.ARRAY(_, ref1)}, {exp = exp2, ty = T.ARRAY(_, ref2)}, pos) = if ref1 <> ref2 then ErrorMsg.error pos ("expected matching array types to check for equality"; ()) else ()   
   | checkEq ({exp = exp1, ty = _}, {exp = exp2, ty = _}, pos) = ErrorMsg.error pos "expected a matching int/str for comparison";
 
+fun cycleExists (tenv, symb, list) =
+    case S.look(tenv, symb) of SOME(T.NAME(_, ref)) =>
+			       (case !ref of SOME(T.NAME(sym, _)) => if member(sym, list)
+								     then true
+								     else cycleExists(tenv, symb, list @ [symb])
+					   | _ => false)
+			     | SOME(_) => false
+			     | NONE => false
+
 fun getType (T.NIL) = "NIL"
   | getType (T.STRING) = "STRING"
   | getType (T.INT) = "INT"
@@ -255,7 +264,7 @@ and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
 		    end 
 
 		fun handleFuncNames (venv, tenv, ls, []) = {venv = venv, tenv = tenv}
-		  | handleFuncNames (venv, tenv, ls [fDec]) =
+		  | handleFuncNames (venv, tenv, ls, [fDec]) =
 		    if member (#name(fDec), ls)
 		    then (ErrorMsg.error (#pos(fDec)) ("function " ^ S.name(#name(fDec)) ^ " already declared in block"); {tenv = tenv, venv = venv})
 		    else updateVenv(fDec, venv, tenv)
@@ -280,6 +289,88 @@ and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
 		let val {venv = venv', tenv = tenv'} = handleFuncNames(venv, tenv, [], decList)
 		in
 		    handleFuncDecs(venv', tenv', decList)
+		end
+	    end
+
+
+		
+	  | trdec (A.TypeDec(decList), {venv, tenv}) =
+	    let fun checkTypeDec (venv, tenv, {name, ty = A.ArrayTy(symb, tyPos), pos}) =
+		    let val symbVal = S.look(tenv, symb)
+			val nameVal = S.look(tenv, name)
+			val actualType = if isSome(symbVal)
+					 then valOf(symbVal)
+					 else (ErrorMsg.error pos ("type " ^ S.name symb ^ " not yet declared"); T.INT)
+			val typeOption = SOME(T.ARRAY(actualType, ref ()))
+			fun setRef(newRef, T.NAME(name, oldRef)) = ((oldRef := newRef); ())
+			  | setRef (_) = () 
+		    in
+			setRef(valOf(nameVal), typeOption);
+			{venv = venv, tenv = tenv}
+		    end
+		  | checkTypeDec (venv, tenv, {name, ty = A.NameTy(symb, tyPos), pos})  = 
+		    let val symbVal = S.look(tenv, symb)
+			val nameVal = S.look(tenv, name)
+			val actualType = if isSome(symbVal)
+					 then valOf(symbVal)
+					 else (ErrorMsg.error pos ("type " ^ S.name symb ^ " not yet declared"); NONE)
+			fun setRef(newRef, T.NAME(name, oldRef)) = ((oldRef := newRef); ())
+			  | setRef (_) = () 
+		    in
+			setRef(valOf(nameVal), actualType);
+			if cycleExists (tenv, name, [])
+			then (ErrorMsg.error pos "declared type causes a cycle"; setRef(valOf(nameVal), NONE))
+			else ();
+			{venv = venv, tenv = tenv}
+		    end
+		  | checkTypeDec (venv, tenv, {name, ty = A.RecordTy(fields), pos}) =
+		    let val nameVal = S.look(tenv, name)
+			fun checkFields ({name, escape, typ, pos}, (nameList, fieldList)) =
+			    let val curType = S.look(tenv, typ)
+				val actualType = if isSome(curType)
+					 then valOf(curType)
+					 else (ErrorMsg.error pos ("type " ^ S.name typ ^ " not yet declared"); T.INT)
+			    in
+				if member(name, nameList)
+				then (ErrorMsg.error pos ("field " ^ S.name(name) ^ " in record has already been declared"); (nameList, fieldList))
+				else (nameList @ [name], fieldList @ [(name, actualType)])
+			    end
+			val (fields, _) = foldl checkFields ([],[]) fields
+			val typeOption = SOME(T.RECORD(fields, ref ()))
+			fun setRef(newRef, T.NAME(name, oldRef)) = ((oldRef := newRef); ())
+			  | setRef (_) = () 
+		    in
+			setRef(valOf(nameVal), typeOption);
+			{venv = venv, tenv = tenv}
+		     end
+
+			 
+		fun handleTypeNames (venv, tenv, ls, []) = {venv = venv, tenv = tenv}
+		  | handleTypeNames (venv, tenv, ls, [tDec]) =
+		    if member (#name(tDec), ls)
+		    then (ErrorMsg.error (#pos(tDec)) ("type " ^ S.name(#name(tDec)) ^ " already declared in block"); {tenv = tenv, venv = venv})
+		    else {venv = venv, tenv = S.enter(tenv, #name(tDec), T.NAME(#name(tDec), (ref NONE)))}
+		  | handleTypeNames (venv, tenv, ls, tDec::decs) =
+		    let val {venv = venv', tenv = tenv'} =
+			    if member (#name(tDec), ls)
+			    then (ErrorMsg.error (#pos(tDec)) ("type " ^ S.name(#name(tDec)) ^ " already declared in block"); {tenv = tenv, venv = venv})
+			    else {venv = venv, tenv = S.enter(tenv, #name(tDec), T.NAME(#name(tDec), (ref NONE)))}
+		    in
+			handleTypeNames(venv', tenv', ls @ [#name(tDec)], decs)
+		    end
+
+		fun handleTypeDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
+		  | handleTypeDecs (venv, tenv, [tDec]) = checkTypeDec(venv, tenv, tDec)
+		  | handleTypeDecs (venv, tenv, tDec::list) =
+		    let val {venv = venv', tenv = tenv'} = checkTypeDec(venv, tenv, tDec)
+		    in
+			handleTypeDecs(venv', tenv', list)
+		    end
+	    in
+		let val {venv = venv', tenv = tenv'} = handleTypeNames(venv, tenv, [], decList)
+		in
+		    handleFuncDecs(venv', tenv', decList)
+		end
 	    end
 
 	    
