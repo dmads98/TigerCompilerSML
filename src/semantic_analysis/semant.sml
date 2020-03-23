@@ -41,7 +41,7 @@ fun transProg(exp: A.exp) : unit =
    For
    Break
    Let
-*)
+ *)
 
 (* Can use below for T.INT, T.STRING as is: Need to add more types *)
 fun typeCheck (exp_ty, given_ty, pos) =
@@ -118,15 +118,15 @@ fun transExp (venv, tenv) =
 					   
 	  | trexp A.VarExp(var) = trvar var (* Need to complete trvar function *)
 	  | trexp (A.AssignExp{var, exp, pos}) =
-	    let var' = trvar var;
-		exp' = trexp exp;
-	    in typeCheck(#ty var', #ty exp', pos); {exp=(), ty=T.UNIT}
+	    let val var' = trvar var;
+		val exp' = trexp exp;
+	    in (typeCheck(#ty var', #ty exp', pos); {exp=(), ty=T.UNIT})
 	    end
 	  | trexp A.IfExp{test, then', else', pos} =
 	    (typeCheck(#ty test, T.INT, pos);
 	     typeCheck(#ty then', #ty else', pos);
 	     {exp=(), ty=(#ty then')})
-	  
+		
 	  (* Arithmetic *)
 	  | trexp (A.OpExp{left, oper = A.PlusOp, right, pos}) =
 	    (checkInt(trexp left, pos);
@@ -150,7 +150,7 @@ fun transExp (venv, tenv) =
 	     {exp=(), ty=Types.INT}
 	    )
 	  (*--Arithmetic--*)
-	  (* Comparison -- int or string, to add string *)
+	  (* Comparison -- int or string *)
 	  | trexp (A.OpExp{left, oper=A.GtOp, right, pos}) =
 	    (checkComp(trexp left, trexp right, pos);
 	     {exp=(), ty=Types.INT}
@@ -193,16 +193,16 @@ fun transExp (venv, tenv) =
 	    in
 		listCheckHelp(exprList)
 	    end
-		       
+		
 	  (* For expression needs to call transExp since it needs to modify the env *)
-		       
+		
 	  | trexp (A.RecordExp{left, oper = A.PlusOp, right, pos}) =
 	    (checkInt(trexp left, pos);
 	     checkInt(trexp right, pos);
 	     {exp=(), ty=Types.INT}
 	    )
-	  (*| trexp (A.ArrayExp{}) = *)
-		   
+	(*| trexp (A.ArrayExp{}) = *)
+		
 	and trvar (A.SimpleVar(id, pos)) =
 	    (case Symbol.look(venv, id)
 	      of SOME (E.VarEntry{ty}) => {exp=(), ty = actual_ty ty}
@@ -240,7 +240,7 @@ and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
 		    in
 			foldl insertIntoVenv venv params
 		    end
-		
+			
 		fun checkFuncDec (venv, tenv, {name, params, result = NONE, body, pos}) =
 		    let val tempVenv = createTempVenv(params, venv)
 		    in
@@ -332,8 +332,8 @@ and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
 			fun checkFields ({name, escape, typ, pos}, (nameList, fieldList)) =
 			    let val curType = S.look(tenv, typ)
 				val actualType = if isSome(curType)
-					 then valOf(curType)
-					 else (ErrorMsg.error pos ("type " ^ S.name typ ^ " not yet declared"); T.INT)
+						 then valOf(curType)
+						 else (ErrorMsg.error pos ("type " ^ S.name typ ^ " not yet declared"); T.INT)
 			    in
 				if member(name, nameList)
 				then (ErrorMsg.error pos ("field " ^ S.name(name) ^ " in record has already been declared"); (nameList, fieldList))
@@ -346,9 +346,9 @@ and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
 		    in
 			setRef(valOf(nameVal), typeOption);
 			{venv = venv, tenv = tenv}
-		     end
+		    end
 
-			 
+			
 		fun handleTypeNames (venv, tenv, ls, []) = {venv = venv, tenv = tenv}
 		  | handleTypeNames (venv, tenv, ls, [tDec]) =
 		    if member (#name(tDec), ls)
@@ -377,8 +377,8 @@ and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
 		end
 	    end
 
-	    
-    let val {exp, ty} = transExp(venv, tenv, init)
-    in {tenv = tenv,
-       venv = S.enter{venv, name, E.VarEntry}}
-    end
+		
+		let val {exp, ty} = transExp(venv, tenv, init)
+		in {tenv = tenv,
+		    venv = S.enter{venv, name, E.VarEntry}}
+		end
