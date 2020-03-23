@@ -4,6 +4,7 @@ $/basis.cm
 $/smlnj-lib.cm
 $/ml-yacc-lib.cm
 
+prabsyn.sml
 absyn.sml
 errormsg.sml
 table.sig
