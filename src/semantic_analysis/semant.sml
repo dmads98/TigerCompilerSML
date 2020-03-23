@@ -204,12 +204,12 @@ fun transExp (venv, tenv) =
 	(*| trexp (A.ArrayExp{}) = *)
 		
 	and trvar (A.SimpleVar(id, pos)) =
-	    (case Symbol.look(venv, id)
+	    (case S.look(venv, id)
 	      of SOME (E.VarEntry{ty}) => {exp=(), ty = actual_ty ty}
 	       | NONE => (error pos ("undefined variable " ^ S.name id);
 			  exp=(), ty=Types.INT))
     in
-	{exp=(), ty=Types.INT}
+	trexp
     end
 	
 and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
