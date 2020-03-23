@@ -25,7 +25,7 @@ val base_venv = let val map : (enventry Symbol.table) = Symbol.empty
 				   (Symbol.symbol("substring"), FunEntry{formals = [Types.STRING, Types.INT, Types.INT], result = Types.STRING}),
 				   (Symbol.symbol("concat"), FunEntry{formals = [Types.STRING, Types.STRING], result = Types.STRING}),
 				   (Symbol.symbol("flush"), FunEntry{formals = [], result = Types.UNIT}),
-				   (Symbol.symbol("getchar"), FunEntry{formals = [], result = Types.STRING}),
+				   (Symbol.symbol("getchar"), FunEntry{formals = [], result = Types.STRING})
 				  ]
 		    fun addToMap ((sym, ty), curMap) = Symbol.enter(curMap, sym, ty)
 		in
