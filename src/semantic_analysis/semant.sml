@@ -306,11 +306,34 @@ fun transExp (venv, tenv) =
 	     else ErrorMsg.error pos "type of initial value and array do not match";
 	     {exp = (), ty = getActualType(tenv, typ, pos)})
 		   
-	and trvar (A.SimpleVar(id, pos)) =
+	and trvar (A.FieldVar(var, sym, pos)) =
+	    let val recordType = typeHelper(tenv, #ty(trvar(var)), pos)
+	    in
+		case recordType of T.RECORD(list, unique) =>
+				   let val field = List.filter(fn (sy, ty) => S.name(sy) = S.name(sym)) list
+				   in
+				       case field of [(sy, ty)] => {exp = (), ty = typeHelper(tenv, ty, pos)}
+						   | [] => (ErrorMsg.error pos ("record parameter " ^ S.name(sym) ^ " not found");
+							    {exp = (), ty = T.INT})
+						   | _  => (ErrorMsg.error pos ("record parameter " ^ S.name(sym) ^ " has multiple matches??");
+							    {exp = (), ty = T.INT})
+				   end
+				 | _ => (ErrorMsg.error pos "variable is not a record"; {exp = (), ty = T.INT}) 
+	    end
+		
+	  | trvar (A.SubscriptVar(var, exp, pos)) =
+	    let val {exp = _, ty = varType} = trvar(var)
+	    in
+		checkInt(trexp(exp), pos);
+		{exp = (), ty = typeHelper(tenv, arrayType(typeHelper(tenv, varType, pos), pos), pos)}
+	    end
+	    
+	  | trvar (A.SimpleVar(id, pos)) =
 	    (case Symbol.look(venv, id)
-	      of SOME (E.VarEntry{ty}) => {exp=(), ty = actual_ty ty}
-	       | NONE => (error pos ("undefined variable " ^ S.name id);
-			  exp=(), ty=Types.INT))
+	      of SOME (E.VarEntry{ty}) => {exp = (), ty = typeHelper(tenv, ty, pos)}
+	       | SOME(E.FunEntry{...}) => (ErrorMsg.error pos ("improper function call or undefined variable" ^ S.name id); {exp = (), ty = T.INT})
+	       | NONE => (ErrorMsg.error pos ("undefined variable " ^ S.name id);
+			  exp=(), ty=T.INT))
     in
 	trexp (exp)
     end
