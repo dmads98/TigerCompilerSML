@@ -116,7 +116,7 @@ fun cycleExists (tenv, symb, list) =
 	(case !x_ref of
 	     SOME(T.NAME(sym, _)) => if member(sym, list)
 				     then true
-				     else cycleExists(tenv, symb, list @ [symb])
+				     else cycleExists(tenv, sym, list @ [symb])
 	   | _ => false)
       | SOME(_) => false
       | NONE => false
@@ -452,6 +452,7 @@ and transDecs (venv, tenv, []) = {venv = venv, tenv = tenv}
 			  | setRef (_) = () 
 		    in
 			setRef(actualType, valOf(nameVal));
+
 			if cycleExists (tenv, name, [])
 			then (ErrorMsg.error pos "declared type causes a cycle"; setRef(NONE, valOf(nameVal)))
 			else ();

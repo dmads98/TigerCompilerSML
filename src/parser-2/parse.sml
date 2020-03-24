@@ -11,7 +11,8 @@ struct
 	  fun get _ = TextIO.input file
 	  fun parseerror(s,p1,p2) = ErrorMsg.error p1 s
 	  val lexer = LrParser.Stream.streamify (Lex.makeLexer get)
-	  val (absyn, _) = TigerP.parse(30,lexer,parseerror,())
+	  (* val (absyn, _) = TigerP.parse(30,lexer,parseerror,()) *)
+	  val (absyn, res) = TigerP.parse(30,lexer,parseerror,())
        in TextIO.closeIn file;
 	   absyn
       end handle LrParser.ParseError => raise ErrorMsg.Error

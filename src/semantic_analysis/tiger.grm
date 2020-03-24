@@ -65,7 +65,7 @@ structBuilder:
 
 (* Function *)
 func_exp: ID LPAREN RPAREN			       (A.CallExp({func = Symbol.symbol(ID), args = [], pos = IDleft}))
-        | ID LPAREN func_args RPAREN	   (A.CallExp({func = Symbol.symbol(ID), args = [], pos = IDleft}))
+        | ID LPAREN func_args RPAREN	   (A.CallExp({func = Symbol.symbol(ID), args = func_args, pos = IDleft}))
 
 func_args: exp					     ([exp])
          | exp COMMA func_args	     (exp :: func_args)

@@ -730,8 +730,9 @@ end
 func_args1, _, _)) :: _ :: ( _, ( MlyValue.ID ID1, (IDleft as ID1left)
 , _)) :: rest671)) => let val  result = MlyValue.func_exp (fn _ => let
  val  (ID as ID1) = ID1 ()
- val  func_args1 = func_args1 ()
- in (A.CallExp({func = Symbol.symbol(ID), args = [], pos = IDleft}))
+ val  (func_args as func_args1) = func_args1 ()
+ in (
+A.CallExp({func = Symbol.symbol(ID), args = func_args, pos = IDleft}))
 
 end)
  in ( LrTable.NT 4, ( result, ID1left, RPAREN1right), rest671)
