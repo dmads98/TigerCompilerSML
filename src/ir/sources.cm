@@ -19,5 +19,7 @@ semant.sig
 semant.sml
 env.sig
 env.sml
+
+translate.sig
 translate.sml
 types.sml
