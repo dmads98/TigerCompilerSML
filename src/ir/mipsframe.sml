@@ -34,4 +34,7 @@ fun newFrame {name, formals} =
 	{name = name, formals = (map checkBools formals), numLocalsAlloc = numStackFormals}
     end
 						  
-end;
+end
+
+fun exp (InReg(k)) (fP) = Tree.TEMP(k)
+  | exp (InFrame(k)) (fP) = Tree.MEM(Tree.BINOP(Tree.PLUS, fP, Tree.CONST(k)))

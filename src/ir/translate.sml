@@ -1,4 +1,4 @@
-structure Translate =
+structure Translate : TRANSLATE =
 struct
 
 structure Frame : FRAME = MipsFrame
@@ -11,11 +11,31 @@ datatype exp = Ex of T.exp
 	     | Nx of T.stm
 	     | Cx of Temp.label * Temp.label -> Temp.stm
 
+(***** Proc and String Fragments *****)
 type frag = F.frag
 val fragments : frag list ref = ref nil (* frag list ref local *)
 fun reset () = fragments := nil
 fun getResult (): (F.frag list) = !fragments
-						    
+
+(***** Levels and Access *****)
+datatype level = Top
+	       | Level of {parent: level, frame: F.frame} * unit ref
+type access = level * F.access
+val outermost = Top
+fun newLevel {parent, name, formals} =
+    Level ({parent=parent, frame = F.newFrame({name=name, formals=true::formals})}, ref ());
+fun formals (Top) = nil
+  | formals (level as Level({parent, frame}, _)) =
+    let val res_formals = tl (F.formals frame)
+    in (map (fn x => (level, x)) res_formals)
+    end; (* Test if correct *)
+fun allocLevel () = ();
+
+(***** IR translation *****)
+fun seq [s] = s
+  | seq [s1, s2] = T.SEQ(s1, s2)
+  | seq (a::l) = T.SEQ(a, seq l);
+
 (* exp -> T.exp *)
 fun unEx (Ex e) = e
   | unEx (Cx genstm) =
@@ -133,7 +153,13 @@ fun transASSIGN (lhs, rhs) =
     end;
 
 (********** FUNCTIONS: nested->non-nested: explict frame management  **********)
+fun procEntryExit (Level({rame, ...}, _), body) =
+    let val body' = unEx body
+	val body'' = F.procEntryExit1 (frame, T.MOVE(T.TEMP F.RV, body'))
+    in fragments := F.PROC{frame=frame, body=body''}
+    end;
 
+fun transCALL () = ();
 
 (********** LET, FUN: Nested Lexical Scoping -> Global Scope **********)
 fun transLet (decs, body) = (* check if this works *)
@@ -149,6 +175,35 @@ fun transLet (decs, body) = (* check if this works *)
 val transNIL = Ex(T.CONST 0);
 
 fun memInc (e1, e2) = T.MEM(T.BINOP(T.PLUS, e1, e2)); (* Increment memory/FP(T.TEMP + T.CONST) *)
+
+(***** Var: SimpleVar, FieldVar, SubscriptVar *****)
+(* pg 156: lf: level of use, lg: level of definition *)
+fun simpleVar (access, lf) =
+    let val (Level(_, ref_g), access_g) = access
+	fun follow (Level({parent, frame}, cur_ref), cur_acc) =
+	    if ref_g = cur_ref
+	    then F.exp(ref_g)(cur_acc)
+	    else let val next_link = hd (F.formals frame)
+		 in follow (parent, F.exp(next_link)(cur_acc))
+		 end
+    in Ex(follow(lf, T.TEMP(F.FP)))
+    end;
+
+fun fieldVar (base, id, fieldList) =
+    let fun findInd (ind, a::l) =
+	    if id = a then ind else findInd(ind+1, l)
+	val base' = unEx base
+	val index = findInd(0, fieldList)
+	val inc = T.BINOP(T.MUL, T.CONST(index), T.CONST(F.wordSize))
+    in Ex(memInc(base', inc))
+    end;
+
+fun subscriptVar (base, offset) =
+    let val base' = unEx base
+	val offset' = unEx offset
+	val inc = T.BINOP(T.MUl, offset', T.CONST(F.wordSize))
+    in Ex(memInc(base', inc))
+    end;
 
 fun transINT (num : int) = Ex(T.CONST num);
 
@@ -173,9 +228,27 @@ fun transARRAY (size, init) =
 
 (* pg 164, 288 *)
 fun transRECORD (fieldList) =
-    let val res = Temp.newtemp ()
-	val 
-    in
+    let val r = Temp.newtemp ()
+	val alloc = T.MOVE(T.TEMP r,
+			   F.externalCall("allocRecord",
+					  [T.CONST((length fieldList) * F.wordSize)])
+			  )
+	fun iter (nil, ind) = nil
+	  | iter (a::l, ind) = T.MOVE(memInc(T.TEMP r, T.CONST (ind * F.wordsize)),
+				      (unEx a)::(iter (l, ind+1)))
+    in Ex(T.ESEQ(seq(alloc::iter(fieldList, 0)), T.TEMP r))
+    end;
+
+fun transSEQ [] = Nx(T.EXP(T.CONST 0))
+  | transSEQ [e] = e
+  | transSEQ exps =
+    let val first = List.take(exps, length(exps)-1)
+	val first' = seq(map unNx first)
+	val last = List.last exps
+	val last' = unEx last
+    in case last of
+	   Nx s => Nx(T.SEQ(first', s))
+	 | _ => T.ESEQ(first', last')
     end;
 
 end;

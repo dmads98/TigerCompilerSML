@@ -11,7 +11,7 @@ sig
     val name : frame -> Temp.label
     val formals : frame -> access list
     val newFrame : {name: Temp.label, formals : bool list} -> frame
-(*    val exp : access -> Tree.exp -> Tree.exp*)
+    val exp : access -> Tree.exp -> Tree.exp
     val procEntryExit1 : frame -> Tree.stm -> Tree.stm
     datatype frag = PROC of {body: Tree.stm, frame: frame}
 		  | STRING of Temp.label * string

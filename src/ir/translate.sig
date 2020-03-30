@@ -16,6 +16,9 @@ sig
     val allocLocal : alloc -> bool -> access
 
     val simpleVar : access * level -> exp (* pg 154 *)
+    val fieldVar : (exp * Symbol.symbol * Symbol.symbol list) -> exp
+    val subscriptVar : (exp * exp) -> exp
+
     val transIF : (exp * exp * exp option) -> exp
     val transBREAK : Temp.label -> exp
     val transWHILE : (exp * exp * Temp.label) -> exp
