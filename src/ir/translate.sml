@@ -71,7 +71,7 @@ fun unCx (Cx genstm) = genstm (* Return the genstm function *)
 (********** IF WHILE FOR  **********)
 
 (* Return an exp *)
-fun transIF (cond, thenexp, elseexp) = (* allow for missing else? *)
+fun transIFELSE (cond, thenexp, elseexp) = (* allow for missing else? *)
     let val cond' = unCx(cond)
 	val then' = unEx(thenexp)
 	val else' = unEx(elseexp)

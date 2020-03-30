@@ -19,7 +19,7 @@ sig
     val fieldVar : (exp * Symbol.symbol * Symbol.symbol list) -> exp
     val subscriptVar : (exp * exp) -> exp
 
-    val transIF : (exp * exp * exp option) -> exp
+    val transIFELSE : (exp * exp * exp) -> exp
     val transBREAK : Temp.label -> exp
     val transWHILE : (exp * exp * Temp.label) -> exp
     val transDO_WHILE : (exp * exp * Temp.label) -> exp
