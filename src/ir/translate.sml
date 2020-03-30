@@ -15,13 +15,7 @@ type frag = F.frag
 val fragments : frag list ref = ref nil (* frag list ref local *)
 fun reset () = fragments := nil
 fun getResult (): (F.frag list) = !fragments
-
-
 						    
-val procEntryExit : {level: level, body: exp} -> unit (* Remember proc fragments *)
-
-val newLevel (* Function *)
-
 (* exp -> T.exp *)
 fun unEx (Ex e) = e
   | unEx (Cx genstm) =
@@ -42,22 +36,22 @@ fun unNx (Ex e) = T.EXP e (* Constructor T.EXP converts expression to a stm *)
     let val x = Temp.newlabel ()
     in SEQ(genstm(x, x), T.LABEL x)
     end
-  | unNx (Nx s) = s
+  | unNx (Nx s) = s;
 
-(* exp -> (Temp.label * Temp.label -> T.stm) *)
-fun unCx (Ex e) =
-    case e of
-	T.CONST 0 => (fn(t, f) => T.JUMP(T.NAME f, [f])) (* always false *)
-      | T.CONST 1 => (fn(t, f) => T.JUMP(T.NAME t, [t])) (* always true *)
-      | exp => (fn(t, f) => T.CJUMP(T.EQ, exp, T.CONST 0, f, t)) (* If exp=0, jump to false *)
-  | unCx (Cx genstm) = genstm (* Return the genstm function *)
-  | unCx (Nx genstm) = raise ErrorMsg.Error;
+(* exp -> (Temp.label * Temp.label -> T.stm) pg 154 *)
+fun unCx (Cx genstm) = genstm (* Return the genstm function *)
+    | unCx (Nx _) = raise ErrorMsg.Error
+    | unCx (Ex e) =
+      case e of
+	  T.CONST 0 => (fn(t, f) => T.JUMP(T.NAME f, [f])) (* always false *)
+	| T.CONST 1 => (fn(t, f) => T.JUMP(T.NAME t, [t])) (* always true *)
+	| exp => (fn(t, f) => T.CJUMP(T.EQ, exp, T.CONST 0, f, t)); (* If exp=0, jump to false *)
 
 
 (********** IF WHILE FOR  **********)
 
 (* Return an exp *)
-fun transIF (cond, thenexp, elseexp) =
+fun transIF (cond, thenexp, elseexp) = (* allow for missing else? *)
     let val cond' = unCx(cond)
 	val then' = unEx(thenexp)
 	val else' = unEx(elseexp)
@@ -89,8 +83,7 @@ fun transWHILE (cond, body, lend) =
 	      body',
 	      T.LABEL ltest,
 	      cond' (lstart, lend),
-	      T.LABEL lend
-	 )]
+	      T.LABEL lend])
     end;
 
 (* do-while same as above without first jump to test *)
@@ -105,28 +98,6 @@ fun transDO_WHILE (cond, body, lend) =
 	      cond' (lstart, lend),
 	      T.LABEL lend
 	 ])
-    end;
-
-(********** FUNCTIONS: nested->non-nested: explict frame management  **********)
-
-
-(********** LET, FUN: Nested Lexical Scoping -> Global Scope **********)
-fun transLet () = ;
-
-(********** DATA STRUCTURES: int, string, record, array  **********)
-fun transINT (num : int) = Ex(T.CONST num);
-
-(* T.STRING = (Temp.label * string) *)
-fun transSTRING (str : string) =
-    let fun isString (F.PROC _) = false
-	  | isString (F.STRING (l, s)) = str = s
-	val res = List.find(isString) (!fragments)
-    in case res of
-	   SOME (F.STRING(l, s)) => Ex(T.NAME l) (* return label if found *)
-	 | NONE => let val nl = Temp.newlabel () (* else, insert into frags as new string *)
-		   in (fragments := F.STRING (nl, str) :: (!fragments);
-		       Ex(T.NAME nl)) (* and return the new label *)
-		   end
     end;
 
 fun transBINOP (left, oper, right) =
@@ -161,8 +132,51 @@ fun transASSIGN (lhs, rhs) =
     in Nx(T.MOVE(lhs', rhs'))
     end;
 
+(********** FUNCTIONS: nested->non-nested: explict frame management  **********)
 
-	    
+
+(********** LET, FUN: Nested Lexical Scoping -> Global Scope **********)
+fun transLet (decs, body) = (* check if this works *)
+    let val num_decs = List.length decs
+	val body' = unEx body
+	val decs' = map unEx decs
+    in case num_decs of
+	   0 => body
+	 | _ => Ex(T.ESEQ(seq decs', body'))
+    end;
+
+(********** DATA STRUCTURES: int, string, record, array  **********)
+val transNIL = Ex(T.CONST 0);
+
+fun memInc (e1, e2) = T.MEM(T.BINOP(T.PLUS, e1, e2)); (* Increment memory/FP(T.TEMP + T.CONST) *)
+
+fun transINT (num : int) = Ex(T.CONST num);
+
+(* T.STRING = (Temp.label * string) pg 163, 169 *)
+fun transSTRING (str : string) =
+    let fun isString (F.PROC _) = false
+	  | isString (F.STRING (l, s)) = str = s
+	val res = List.find(isString) (!fragments)
+    in case res of
+	   SOME (F.STRING(l, s)) => Ex(T.NAME l) (* return label if found *)
+	 | NONE => let val nl = Temp.newlabel () (* else, insert into frags as new string *)
+		   in (fragments := F.STRING (nl, str) :: (!fragments);
+		       Ex(T.NAME nl)) (* and return the new label *)
+		   end
+    end;
+
+fun transARRAY (size, init) =
+    let val size' = unEx size
+	val init' = unEx init
+    in Ex(F.externalCall("initArray", [size', init']))
+    end;
+
+(* pg 164, 288 *)
+fun transRECORD (fieldList) =
+    let val res = Temp.newtemp ()
+	val 
+    in
+    end;
 
 end;
 (* Assume every variable escapes, keep in local frame and don't bother with findEscape *)
