@@ -90,7 +90,7 @@ exp :
     | IF exp THEN exp			        (A.IfExp({test = exp1, then' = exp2, else' = NONE, pos = IFleft}))
     (* for and while *)
     | WHILE exp DO exp	                (A.WhileExp({test = exp1, body = exp2, pos = WHILEleft}))
-    | FOR ID ASSIGN exp TO exp DO exp	(A.ForExp({var = Symbol.symbol(ID), escape = ref true, lo = exp1, hi = exp2, body = exp3, pos = FORleft}))
+    | FOR ID ASSIGN exp TO exp DO exp	(A.ForExp({var = Symbol.symbol(ID), escape = ref false, lo = exp1, hi = exp2, body = exp3, pos = FORleft}))
     | BREAK				                (A.BreakExp(BREAKleft))
     | structBuilder                     (structBuilder)
     (* Let *)
@@ -115,8 +115,8 @@ funcdec: FUNCTION ID LPAREN type_fields RPAREN COLON ID EQ exp      ({name=Symbo
        | FUNCTION ID LPAREN RPAREN EQ exp                           ({name=Symbol.symbol(ID), params = [], result = NONE, body = exp, pos = FUNCTIONleft} : A.fundec)
 
 
-vardec: VAR ID COLON ID ASSIGN exp      (A.VarDec({name = Symbol.symbol(ID1), escape = ref true, typ = SOME((Symbol.symbol(ID2), ID2left)), init = exp, pos = VARleft}))
-      | VAR ID ASSIGN exp               (A.VarDec({name = Symbol.symbol(ID), escape = ref true, typ = NONE, init = exp, pos = VARleft}))
+vardec: VAR ID COLON ID ASSIGN exp      (A.VarDec({name = Symbol.symbol(ID1), escape = ref false, typ = SOME((Symbol.symbol(ID2), ID2left)), init = exp, pos = VARleft}))
+      | VAR ID ASSIGN exp               (A.VarDec({name = Symbol.symbol(ID), escape = ref false, typ = NONE, init = exp, pos = VARleft}))
 
 typelist: typedec                       ([typedec])
         | typelist typedec              (typelist @ [typedec])
@@ -129,8 +129,8 @@ ty: ARRAY OF ID                         (A.ArrayTy(Symbol.symbol(ID), ARRAYleft)
   | LBRACE type_fields RBRACE           (A.RecordTy(type_fields))
 
 (* declaring a type *)
-type_fields: ID COLON ID				([{name = Symbol.symbol(ID1), escape = ref true, typ = Symbol.symbol(ID2), pos = ID1left} : A.field])
-        | ID COLON ID COMMA type_fields	(({name = Symbol.symbol(ID1), escape = ref true, typ = Symbol.symbol(ID2), pos = ID1left} : A.field) :: type_fields)
+type_fields: ID COLON ID				([{name = Symbol.symbol(ID1), escape = ref false, typ = Symbol.symbol(ID2), pos = ID1left} : A.field])
+        | ID COLON ID COMMA type_fields	(({name = Symbol.symbol(ID1), escape = ref false, typ = Symbol.symbol(ID2), pos = ID1left} : A.field) :: type_fields)
 
 
 (* Arithmetic expressions *)
