@@ -1,9 +1,8 @@
 Prathikshaa Rangarajan (pr109)
 Dhanush Madabusi (dm322)
 
-Semantic Analysis
-* Wrote: env, semant, main
-* Fixed bug in parser where function args were previously hardcoded to empty list. Takes correct list now.
+IR:
+* Generated IR tree in place of unit expressions in semant module using translate.
 
 Compile and Run:
 
