@@ -198,7 +198,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 		if List.length(formals) <> List.length(args)
 		then (ErrorMsg.error pos "number of arguments do not match"; ())
 		else (foldl checkParamTypes 0 formals; ());
-		{exp = Tr.callExp(level, fLevel, fLabel, map (fn e => #exp(e)) exptys), ty = typeHelper(tenv, result, pos)}
+		{exp = Tr.transCALL(level, fLevel, fLabel, map (fn e => #exp(e)) exptys), ty = typeHelper(tenv, result, pos)}
 	    end
 		
 	  (* Arithmetic *)
@@ -296,7 +296,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 	    let val {venv = venv', tenv = tenv', expList = expList'} = transDecs (venv, tenv, decList, level, doneLabel)
 		val {exp = exp', ty = ty'} = transExp(venv', tenv', level, doneLabel)
 	    in
-		{exp = Tr.letBody(expList', exp'), ty = ty'}
+		{exp = Tr.transLET(expList', exp'), ty = ty'}
 	    end
 		
 	  | trexp (A.SeqExp (exprList)) =
@@ -306,7 +306,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 			      else #ty(List.last(exptyList))
 		val expList = map (fn e => #exp(e)) exptyList
 	    in
-		{exp = Tr.seqExp(expList), ty = seqType}
+		{exp = Tr.transSEQ(expList), ty = seqType}
 	    end
 			
 	  | trexp (A.RecordExp{fields = fList, typ = typ, pos = pos}) =
@@ -335,7 +335,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 		(case actualType
 		  of T.RECORD(list, unique) => checkFields(fList', list)
 		   | _ => ErrorMsg.error pos "record type is undefined";
-		 {exp = Tr.recordExp(map (fn (sy, expty, pos) => #exp(expty)) fList'), ty = getActualType(tenv, typ, pos)})
+		 {exp = Tr.transRECORD(map (fn (sy, expty, pos) => #exp(expty)) fList'), ty = getActualType(tenv, typ, pos)})
 	    end
 
 	  | trexp (A.ArrayExp{typ = typ, size = size, init = init, pos = pos}) =
@@ -346,7 +346,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 		 if isSameType(tenv, pos, inTy), typeHelper(tenv, arrayType(getActualType(tenv, typ, pos), pos), pos))
 		 then ()
 		 else ErrorMsg.error pos "type of initial value and array do not match";
-		 {exp = Tr.arrExp(szExp, inExp), ty = getActualType(tenv, typ, pos)})
+		 {exp = Tr.transARRAY(szExp, inExp), ty = getActualType(tenv, typ, pos)})
 	    end
 		    
 	and trvar (A.FieldVar(var, sym, pos)) =
@@ -369,11 +369,11 @@ fun transExp (venv, tenv, level, doneLabel) =
 		   in
 		       case field of [(sy, ty)] => {exp = Tr.fieldVar(vExp, ansIndex), ty = typeHelper(tenv, ty, pos)}
 				   | [] => (ErrorMsg.error pos ("record parameter " ^ S.name(sym) ^ " not found");
-					    {exp = Tr.nilExp(), ty = T.INT})
+					    {exp = Tr.transNIL, ty = T.INT})
 				   | _  => (ErrorMsg.error pos ("record parameter " ^ S.name(sym) ^ " has multiple matches??");
-					    {exp = Tr.nilExp(), ty = T.INT})
+					    {exp = Tr.transNIL, ty = T.INT})
 		   end
-		 | _ => (ErrorMsg.error pos "variable is not a record"; {exp = Tr.nilExp(), ty = T.INT}) 
+		 | _ => (ErrorMsg.error pos "variable is not a record"; {exp = Tr.transNIL, ty = T.INT}) 
 	    end
 		
 	  | trvar (A.SubscriptVar(var, exp, pos)) =
@@ -381,7 +381,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 		val {exp = varExpr, ty = varType} = trvar(var)
 	    in
 		checkInt(dex, pos);
-		{exp = Tr.subscriptExp(varExpr, #exp(index)), ty = typeHelper(tenv, arrayType(typeHelper(tenv, varType, pos), pos), pos)}
+		{exp = Tr.subscriptVar(varExpr, #exp(dex)), ty = typeHelper(tenv, arrayType(typeHelper(tenv, varType, pos), pos), pos)}
 	    end	
 	  | trvar (A.SimpleVar(id, pos)) =
 	    (case S.look(venv, id)
@@ -555,7 +555,7 @@ and transDecs (venv, tenv, [], level, doneLabel) = {venv = venv, tenv = tenv, ex
 		    let val {venv = venv', tenv = tenv', expList = expList'} =
 			    if member (#name(tDec), ls)
 			    then (ErrorMsg.error (#pos(tDec)) ("type " ^ S.name(#name(tDec)) ^ " already declared in block"); {tenv = tenv, venv = venv, expList = expList})
-			    else {venv = venv, tenv = S.enter(tenv, #name(tDec), T.NAME(#name(tDec), (ref NONE))), expList = expList}
+ 			    else {venv = venv, tenv = S.enter(tenv, #name(tDec), T.NAME(#name(tDec), (ref NONE))), expList = expList}
 		    in
 			handleTypeNames(venv', tenv', ls @ [#name(tDec)], decs)
 		    end

@@ -207,17 +207,30 @@ fun procEntryExit (Level({rame, ...}, _), body) =
     in fragments := F.PROC{frame=frame, body=body''}
     end;
 
-fun transCALL () = ();
+fun getFrame (_, Top) = (ErrorMsg.error ~1 "can't find level through static links"; T.CONST 0)
+  | getFrame (Top, _) = (ErrorMsg.error ~1 "functioned declared in outermost level"; T.CONST 0)
+  | getFrame (decLevel as Level({parent = _, frame = _}, uniq1),
+	      callLevel as Level({parent = par, frame = _}, uniq2)) =
+    if uniq1 = uniq2
+    then T.TEMP(F.FP)
+    else T.MEM(getFrame(decLevel, par))
+	      
+fun transCALL (callLev, Level({parent, frame}, uniq), label, argList) =
+    let val statLink = getFrame(parent, callLev)
+    in
+	Ex(T.CALL(T.NAME label, statLink::(map (fn e => unEx e) args)))
+    end
+  | transCALL (_, Top, label, argList) = Ex(T.CALL(T.NAME label, (map (fn e => unEx e) args)))
 
 (********** LET, FUN: Nested Lexical Scoping -> Global Scope **********)
 fun transLet (decs, body) = (* check if this works *)
     let val num_decs = List.length decs
 	val body' = unEx body
-	val decs' = map unEx decs
+	val decs' = map unNx decs
     in case num_decs of
-	   0 => body
+	   0 => Ex(body')
 	 | _ => Ex(T.ESEQ(seq decs', body'))
-    end;
+    end
 
 (********** DATA STRUCTURES: int, string, record, array  **********)
 val transNIL = Ex(T.CONST 0);
@@ -237,22 +250,30 @@ fun simpleVar (access, lf) =
     in Ex(follow(lf, T.TEMP(F.FP)))
     end;
 
-fun fieldVar (base, id, fieldList) =
-    let fun findInd (ind, a::l) =
-	    if id = a then ind else findInd(ind+1, l)
-	val base' = unEx base
-	val index = findInd(0, fieldList)
-	val inc = T.BINOP(T.MUL, T.CONST(index), T.CONST(F.wordSize))
-    in Ex(memInc(base', inc))
-    end;
+fun fieldVar (recRef, index) = Ex(memInc(T.MEM(unEx recRef), T.CONST(index * F.wordSize)))
 
-fun subscriptVar (base, offset) =
-    let val base' = unEx base
-	val offset' = unEx offset
-	val inc = T.BINOP(T.MUl, offset', T.CONST(F.wordSize))
-    in Ex(memInc(base', inc))
-    end;
-
+    
+fun subscriptVar (arrRef, index) =
+    let val indexTemp = Temp.newtemp()
+	val arrTemp = Temp.newtemp()
+	val errorLabel = Temp.newlabel()
+	val successLabel = Temp.newlabel()
+	val nextCheckLab = Temp.newlabel()
+    in
+	Ex(T.ESEQ(seq[
+		       T.MOVE(T.TEMP indexTemp, unEx index),
+		       T.MOVE(T.TEMP arrTemp, unEx arrRef),
+		       T.CJUMP(T.GE, T.TEMP indexTemp, T.MEM(T.TEMP arrTemp), errorLabel, nextCheckLabel),
+		       T.LABEL(nextCheckLabel),
+		       T.CJUMP(T.LT, T.TEMP indexTemp, T.CONST 0, errorLabel, successLabel),
+		       T.LABEL(errorLabel),
+		       T.EXP(F.externalCall("exit", [T.CONST 1])),
+		       T.LABEl(successLabel)
+		   ],
+		  memInc(T.MEM(T.TEMP arrTemp),
+			 T.BINOP(T.MUL, T.BINOP(T.PLUS, T.TEMP indexTemp, T.CONST 1), T.CONST F.wordSize))))
+    end
+    
 fun transINT (num : int) = Ex(T.CONST num);
 
 (* T.STRING = (Temp.label * string) pg 163, 169 *)
@@ -271,33 +292,38 @@ fun transSTRING (str : string) =
 fun transARRAY (size, init) =
     let val size' = unEx size
 	val init' = unEx init
-    in Ex(F.externalCall("initArray", [size', init']))
-    end;
+	val arrRef = Temp.newtemp()
+    in
+	Ex(T.ESEQ(seq[T.MOVE(T.TEMP arrRef, F.externalCall("initArray", [T.BINOP(T.PLUS, size', T.CONST 1), init'])),
+		      T.MOVE(T.MEM(T.TEMP arrRef, size'))
+		     ],
+		  T.TEMP arrRef))
+    end
 
 (* pg 164, 288 *)
 fun transRECORD (fieldList) =
     let val r = Temp.newtemp ()
 	val alloc = T.MOVE(T.TEMP r,
 			   F.externalCall("allocRecord",
-					  [T.CONST((length fieldList) * F.wordSize)])
+					  [T.CONST(List.length fieldList)])
 			  )
-	fun iter (nil, ind) = nil
-	  | iter (a::l, ind) = T.MOVE(memInc(T.TEMP r, T.CONST (ind * F.wordsize)),
-				      (unEx a)::(iter (l, ind+1)))
-    in Ex(T.ESEQ(seq(alloc::iter(fieldList, 0)), T.TEMP r))
-    end;
+	fun iter (exp, (list, index)) = (list @ [T.MOVE(memInc(T.MEM(T.TEMP r), T.CONST (index * F.wordsize)), unEx exp)],
+					 index + 1)
+	val (moves, _) = foldl iter ([], 0) fieldList
+    in
+	Ex(T.ESEQ(seq(alloc::moves), T.TEMP r))
+    end
 
 fun transSEQ [] = Nx(T.EXP(T.CONST 0))
   | transSEQ [e] = e
   | transSEQ exps =
-    let val first = List.take(exps, length(exps)-1)
+    let val first = List.take(exps, List.length(exps)-1)
 	val first' = seq(map unNx first)
 	val last = List.last exps
 	val last' = unEx last
-    in case last of
-	   Nx s => Nx(T.SEQ(first', s))
-	 | _ => T.ESEQ(first', last')
-    end;
+    in
+	Ex(T.ESEQ(first', last'))
+    end
 
-end;
+end
 (* Assume every variable escapes, keep in local frame and don't bother with findEscape *)
