@@ -1,12 +1,12 @@
+structure Semant : SEMANT =
+struct
+
 structure A = Absyn
 structure S = Symbol
 structure E = Env
 structure T = Types
 structure F = FindEscape
 structure Tr = Translate
-		  
-structure Semant : SEMANT =
-struct
 
 type venv = E.enventry S.table
 type tenv = E.ty S.table
@@ -143,7 +143,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 				Temp.newlabel())
 	    in
 		(checkInt({exp = expL, ty = tyL}, pos);
-		 checkInt({exp = expR, ty = tyR}, pos);
+		 checkInt({exp = expH, ty = tyH}, pos);
 		 loopLevel := !loopLevel + 1;
 		 let val tempVenv = S.enter(venv, var, E.VarEntry{access = Tr.allocLocal(level)(!escape), ty = T.INT})
 		     val {exp = expB, ty = tyB} = transExp(tempVenv, tenv, level, SOME(breakLab)) body
@@ -294,7 +294,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 	  (* transDec = Let expressions *)
 	  | trexp (A.LetExp{decs = decList, body = body, pos = pos}) =
 	    let val {venv = venv', tenv = tenv', expList = expList'} = transDecs (venv, tenv, decList, level, doneLabel)
-		val {exp = exp', ty = ty'} = transExp(venv', tenv', level, doneLabel)
+		val {exp = exp', ty = ty'} = transExp(venv', tenv', level, doneLabel) body
 	    in
 		{exp = Tr.transLET(expList', exp'), ty = ty'}
 	    end
@@ -342,11 +342,11 @@ fun transExp (venv, tenv, level, doneLabel) =
 	    let val {exp = szExp, ty = szTy} = trexp(size)
 		val {exp = inExp, ty = inTy} = trexp(init)
 	    in
-		(checkInt({exp = szExp, ty = szTy}, pos);
-		 if isSameType(tenv, pos, inTy), typeHelper(tenv, arrayType(getActualType(tenv, typ, pos), pos), pos))
+		checkInt({exp = szExp, ty = szTy}, pos);
+		(if isSameType(tenv, pos, inTy, typeHelper(tenv, arrayType(getActualType(tenv, typ, pos), pos), pos))
 		 then ()
-		 else ErrorMsg.error pos "type of initial value and array do not match";
-		 {exp = Tr.transARRAY(szExp, inExp), ty = getActualType(tenv, typ, pos)})
+		 else ErrorMsg.error pos "type of initial value and array do not match");
+		{exp = Tr.transARRAY(szExp, inExp), ty = getActualType(tenv, typ, pos)}
 	    end
 		    
 	and trvar (A.FieldVar(var, sym, pos)) =
@@ -356,7 +356,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 		of T.RECORD(list, unique) =>
 		   let val field = List.filter(fn (sy, ty) => S.name(sy) = S.name(sym)) list
 		       val (curIndex, ansIndex) =
-			   let fun findField (curDex, ansDex) =
+			   let fun findField (_, (curDex, ansDex)) : (int * int) =
 				   let val (sy, ty) = List.nth(list, curDex)
 				   in
 				       if S.name(sy) = S.name(sym)
@@ -364,7 +364,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 				       else (curDex + 1, ansDex)
 				   end
 			   in
-			       foldl findField(0, ~1) list
+			       foldl findField (0, ~1) list (* init ?*)
 			   end  
 		   in
 		       case field of [(sy, ty)] => {exp = Tr.fieldVar(vExp, ansIndex), ty = typeHelper(tenv, ty, pos)}
@@ -400,7 +400,7 @@ and transDecs (venv, tenv, [], level, doneLabel) = {venv = venv, tenv = tenv, ex
 		val varAccess = Tr.allocLocal(level)(!escape)
 	    in
 		if isSameType(tenv, pos, getActualType(tenv, assignType, typPos), typeHelper(tenv, typeFound, pos))
-		then {venv = S.enter(venv, name, E.VarEntry {access = varAccess, ty = typeFound}), tenv = tenv, expList = expList @ [Tr.varDec(access, exp)]}
+		then {venv = S.enter(venv, name, E.VarEntry {access = varAccess, ty = typeFound}), tenv = tenv, expList = expList @ [Tr.varDec(varAccess, exp)]}
 		else (ErrorMsg.error pos ("body of var declaration has incorrect type");
 		      {venv = venv, tenv = tenv, expList = expList})
 	    end
@@ -419,7 +419,7 @@ and transDecs (venv, tenv, [], level, doneLabel) = {venv = venv, tenv = tenv, ex
 		fun createTempVenv (pairList, venv) =
 		    let fun insertIntoVenv((access, {name, escape, typ, pos}), venv) = (S.enter(venv, name, E.VarEntry{access = access, ty = getActualType(tenv, typ, pos)}))
 		    in
-			foldl insertIntoVenv venv params
+			foldl insertIntoVenv venv pairList
 		    end
 			
 		fun checkFuncDec (venv, tenv, {name, params, result = NONE, body, pos}) =
@@ -432,7 +432,7 @@ and transDecs (venv, tenv, [], level, doneLabel) = {venv = venv, tenv = tenv, ex
 			val {exp = exp', ty = ty'} = transExp(tempVenv, tenv, entryLevel, NONE) body
 		    in
 			if isSameType(tenv, pos, ty', T.UNIT)
-			then (T.procEntryExit({level = entryLevel, body = exp'});
+			then (Tr.procEntryExit({level = entryLevel, body = exp'});
 			      {venv = venv, tenv = tenv, expList = expList})
 			else (ErrorMsg.error pos ("function body and return type do not match"); {venv = venv, tenv = tenv, expList = expList})
 		    end
@@ -446,7 +446,7 @@ and transDecs (venv, tenv, [], level, doneLabel) = {venv = venv, tenv = tenv, ex
 			val {exp = exp', ty = ty'} = transExp(tempVenv, tenv, entryLevel, NONE) body
 		    in
 			if isSameType(tenv, pos, ty', getActualType(tenv, retType, pos))
-			then (T.procEntryExit({level = entryLevel, body = exp'});
+			then (Tr.procEntryExit({level = entryLevel, body = exp'});
 			      {venv = venv, tenv = tenv, expList = expList})
 			else (ErrorMsg.error pos ("function body and return type do not match"); {venv = venv, tenv = tenv, expList = expList})
 		    end
@@ -546,7 +546,7 @@ and transDecs (venv, tenv, [], level, doneLabel) = {venv = venv, tenv = tenv, ex
 		    end
 
 			
-		fun handleTypeNames (venv, tenv, ls, []) = {venv = venv, tenv = tenv, expList = expist}
+		fun handleTypeNames (venv, tenv, ls, []) = {venv = venv, tenv = tenv, expList = expList}
 		  | handleTypeNames (venv, tenv, ls, [{name, ty, pos}]) =
 		    if member (name, ls)
 		    then (ErrorMsg.error pos ("type " ^ S.name(name) ^ " already declared in block"); {tenv = tenv, venv = venv, expList = expList})
@@ -577,9 +577,10 @@ and transDecs (venv, tenv, [], level, doneLabel) = {venv = venv, tenv = tenv, ex
     end
 
 fun transProg(exp) =
-    let val startLevel = Tr.newLevel({parent = Tr.outermost, name = Temp.newlabel(), formals = []})
+    let val _ = Tr.reset()
+	val startLevel = Tr.newLevel({parent = Tr.outermost, name = Temp.newlabel(), formals = []})
 	val _ = F.findEscape(exp)
-	val result = #exp(transExp(E.base_venv, E.base_tenv, exp, startLevel, NONE))
+	val result = #exp(transExp(E.base_venv, E.base_tenv, startLevel, NONE) exp)
 	val _ = Tr.procEntryExit({level = startLevel, body = result})
 	val frags = Tr.getResult()
     in

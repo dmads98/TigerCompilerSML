@@ -17,7 +17,7 @@ datatype frag = PROC of {body: Tree.stm, frame: frame}
 
 fun name {name, formals, numLocalsAlloc} = name
 fun formals {name, formals, numLocalsAlloc} = formals
-fun allocLocal ({name, formals, numLocalsAlloc} : frame) (true) = numLocalsAlloc := (!numLocalsAlloc + 1;
+fun allocLocal ({name, formals, numLocalsAlloc} : frame) (true) = (numLocalsAlloc := !numLocalsAlloc + 1;
 										     InFrame(~1 * (!numLocalsAlloc - 1) * wordSize))
   | allocLocal ({name, formals, numLocalsAlloc} : frame) (false) = InReg(Temp.newtemp())
 
@@ -26,17 +26,17 @@ fun newFrame {name, formals} =
 	val numStackFormals = ref 0
 	fun checkBools true = (numStackFormals := !numStackFormals + 1;
 			       InFrame(~1 * (!numStackFormals - 1) * wordSize))
-	  | checkBools false = if !numRegsInUse >= !numArgsInRegs
+	  | checkBools false = if !numRegsInUse >= numArgsInRegs
 			       then checkBools true
 			       else (numRegsInUse := !numRegsInUse + 1;
 				     InReg(Temp.newtemp()))
     in
 	{name = name, formals = (map checkBools formals), numLocalsAlloc = numStackFormals}
     end
-						  
-end
 
 fun exp (InReg(k)) (fP) = Tree.TEMP(k)
   | exp (InFrame(k)) (fP) = Tree.MEM(Tree.BINOP(Tree.PLUS, fP, Tree.CONST(k)))
 
-fun externalCall(funcName, expList) = Tree.CALL(Tree.NAME(Temp.namedLabel(funcName)), expList)
+fun externalCall(funcName, expList) = Tree.CALL(Tree.NAME(Temp.namedlabel(funcName)), expList)
+
+end

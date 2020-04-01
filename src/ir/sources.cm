@@ -24,3 +24,10 @@ translate.sig
 translate.sml
 find_escape.sml
 types.sml
+
+tree.sml
+temp.sig
+temp.sml
+frame.sig
+mipsframe.sml
+printtree.sml

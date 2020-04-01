@@ -3,12 +3,13 @@ structure S = Symbol
 
 structure FindEscape : sig val findEscape: A.exp -> unit
 		       end =
+
 struct type depth = int
        type escEnv = (depth * bool ref) S.table
 
        fun traverseVar (env:escEnv, d:depth, s:A.var) : unit =
 	   let
-	       fun trVar (A.FieldVar(var, symb, pos)) = trVar()
+	       fun trVar (A.FieldVar(var, symb, pos)) = trVar(var)
 		 | trVar (A.SubscriptVar(var, exp, pos)) = (trVar(var);
 							    traverseExp(env, d, exp))
 		 | trVar (A.SimpleVar(id, pos)) = (case S.look(env, id) of SOME((actualDepth, escape)) => if d > actualDepth
@@ -55,11 +56,11 @@ struct type depth = int
 		   let fun updateEnv ({name, params, result, body, pos}) =
 			   traverseExp(foldl (fn ({name, escape, typ, pos}, env) => S.enter(env, name, (d + 1, escape))) env params, d + 1, body)
 		   in
-		       (List.app updateVenv decList;
+		       (List.app updateEnv decList;
 			env)
 		   end
 	   in
-	       foldl updateEnv env s
+	       foldl checkDecs env s
 	   end
 
        fun findEscape (prog: A.exp) : unit = traverseExp (S.empty, 0, prog)

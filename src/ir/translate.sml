@@ -10,7 +10,7 @@ structure Ty = Types
 
 datatype exp = Ex of T.exp
 	     | Nx of T.stm
-	     | Cx of Temp.label * Temp.label -> Temp.stm
+	     | Cx of Temp.label * Temp.label -> T.stm
 
 (***** Proc and String Fragments *****)
 type frag = F.frag
@@ -21,15 +21,17 @@ fun getResult (): (F.frag list) = !fragments
 (***** Levels and Access *****)
 datatype level = Top
 	       | Level of {parent: level, frame: F.frame} * unit ref
+
 type access = level * F.access
+
 val outermost = Top
+
 fun newLevel {parent, name, formals} =
     Level ({parent=parent, frame = F.newFrame({name=name, formals=true::formals})}, ref ());
-fun formals (Top) = []
-  | formals (level as Level({parent, frame}, _)) =
-    let val res_formals = List.tl (F.formals frame)
-    in (map (fn x => (level, x)) res_formals)
-    end; (* Test if correct *)
+
+fun formals (Top : level) = []
+  | formals (Level({parent, frame}, lRef) : level) =
+    (map (fn acc => (Level({parent = parent, frame = frame}, lRef) : level, acc : F.access): access) (F.formals(frame)))
 
 fun allocLocal (Top) (escape) = ((ErrorMsg.error ~1 "Cannot allocate variables in outermost level"); (Top, F.allocLocal(F.newFrame({formals = [], name = Temp.newlabel()}))(true)))
   | allocLocal (Level({parent, frame}, lRef)) (escape) =
@@ -50,10 +52,10 @@ fun unEx (Ex e) = e
   | unEx (Cx genstm) =
     let val res = Temp.newtemp() (* register to store true/false result *)
 	val t  = Temp.newlabel() and f = Temp.newlabel () (* Jump Labels: true and false *)
-    in T.ESEQ(seq[T.MOVE(T.TEMP res, T.const 1),
+    in T.ESEQ(seq[T.MOVE(T.TEMP res, T.CONST 1),
 		  genstm(t, f),
 		  T.LABEL f,
-		  T.MOVE(T.Temp res, T.CONST 0),
+		  T.MOVE(T.TEMP res, T.CONST 0),
 		  T.LABEL t],
 	      T.TEMP res)
     end
@@ -63,7 +65,7 @@ fun unEx (Ex e) = e
 fun unNx (Ex e) = T.EXP e (* Constructor T.EXP converts expression to a stm *)
   | unNx (Cx genstm) =
     let val x = Temp.newlabel ()
-    in SEQ(genstm(x, x), T.LABEL x)
+    in ((genstm(x, x); T.LABEL x))
     end
   | unNx (Nx s) = s;
 
@@ -140,12 +142,12 @@ fun transFOR (lo, hi, body, lend) =
     in
 	Nx(seq[T.MOVE(T.TEMP(loopVar), lo'),
 	       T.MOVE(T.TEMP(hiReg), hi'),
-	       T.CJUMP(T.LE, T.TEMP(loopVar), T.TEMP(hiReg), L2, lend),
+	       T.CJUMP(T.LE, T.TEMP(loopVar), T.TEMP(hiReg), lab2, lend),
 	       T.LABEL(lab1),
 	       T.MOVE(T.TEMP(loopVar), T.BINOP(T.PLUS, T.TEMP(loopVar), T.CONST(1))),
 	       T.LABEL(lab2),
 	       body',
-	       T.CJUMP(T.LT, T.TEMP(loopVar), T.TEMP(hiReg), L1, lend),
+	       T.CJUMP(T.LT, T.TEMP(loopVar), T.TEMP(hiReg), lab1, lend),
 	       T.LABEL(lend)
 	  ])
     end
@@ -165,6 +167,7 @@ fun transDO_WHILE (cond, body, lend) =
 	 ])
     end;
 *)
+
 fun transBINOP (left, oper, right) =
     let val left' = unEx left
 	val right' = unEx right
@@ -210,7 +213,7 @@ fun transASSIGN (lhs, rhs) =
 (********** FUNCTIONS: nested->non-nested: explict frame management  **********)
 fun procEntryExit ({level = Level({parent, frame}, _), body}) =
     let val body' = unEx body
-	val body'' = F.PROC{body = T.MOVE(T.TEMP F.RV, body'), frame = frame})
+	val body'' = F.PROC{body = T.MOVE(T.TEMP F.RV, body'), frame = frame}
     in fragments := !fragments @ [body'']
     end
   | procEntryExit ({level = Top, body}) = (ErrorMsg.error ~1 "function is declared in outermost level"; ()) 
@@ -226,12 +229,12 @@ fun getFrame (_, Top) = (ErrorMsg.error ~1 "can't find level through static link
 fun transCALL (callLev, Level({parent, frame}, uniq), label, argList) =
     let val statLink = getFrame(parent, callLev)
     in
-	Ex(T.CALL(T.NAME label, statLink::(map (fn e => unEx e) args)))
+	Ex(T.CALL(T.NAME label, statLink::(map (fn e => unEx e) argList)))
     end
-  | transCALL (_, Top, label, argList) = Ex(T.CALL(T.NAME label, (map (fn e => unEx e) args)))
+  | transCALL (_, Top, label, argList) = Ex(T.CALL(T.NAME label, (map (fn e => unEx e) argList)))
 
 (********** LET, FUN: Nested Lexical Scoping -> Global Scope **********)
-fun transLet (decs, body) = (* check if this works *)
+fun transLET (decs, body) = (* check if this works *)
     let val num_decs = List.length decs
 	val body' = unEx body
 	val decs' = map unNx decs
@@ -253,7 +256,7 @@ fun simpleVar ((Top, fAccess), _) = (ErrorMsg.error ~1 "the variable has been de
     let val (Level(_, ref_g), access_g) = access
 	fun follow (Level({parent, frame}, cur_ref), cur_acc) =
 	    if ref_g = cur_ref
-	    then F.exp(ref_g)(cur_acc)
+	    then F.exp(access_g)(cur_acc)
 	    else let val next_link = List.hd (F.formals frame)
 		 in follow (parent, F.exp(next_link)(cur_acc))
 		 end
@@ -271,7 +274,7 @@ fun subscriptVar (arrRef, index) =
 	val arrTemp = Temp.newtemp()
 	val errorLabel = Temp.newlabel()
 	val successLabel = Temp.newlabel()
-	val nextCheckLab = Temp.newlabel()
+	val nextCheckLabel = Temp.newlabel()
     in
 	Ex(T.ESEQ(seq[
 		       T.MOVE(T.TEMP indexTemp, unEx index),
@@ -281,7 +284,7 @@ fun subscriptVar (arrRef, index) =
 		       T.CJUMP(T.LT, T.TEMP indexTemp, T.CONST 0, errorLabel, successLabel),
 		       T.LABEL(errorLabel),
 		       T.EXP(F.externalCall("exit", [T.CONST 1])),
-		       T.LABEl(successLabel)
+		       T.LABEL(successLabel)
 		   ],
 		  memInc(T.MEM(T.TEMP arrTemp),
 			 T.BINOP(T.MUL, T.BINOP(T.PLUS, T.TEMP indexTemp, T.CONST 1), T.CONST F.wordSize))))
@@ -308,7 +311,7 @@ fun transARRAY (size, init) =
 	val arrRef = Temp.newtemp()
     in
 	Ex(T.ESEQ(seq[T.MOVE(T.TEMP arrRef, F.externalCall("initArray", [T.BINOP(T.PLUS, size', T.CONST 1), init'])),
-		      T.MOVE(T.MEM(T.TEMP arrRef, size'))
+		      T.MOVE(T.MEM(T.TEMP arrRef), size')
 		     ],
 		  T.TEMP arrRef))
     end
@@ -320,7 +323,7 @@ fun transRECORD (fieldList) =
 			   F.externalCall("allocRecord",
 					  [T.CONST(List.length fieldList)])
 			  )
-	fun iter (exp, (list, index)) = (list @ [T.MOVE(memInc(T.MEM(T.TEMP r), T.CONST (index * F.wordsize)), unEx exp)],
+	fun iter (exp, (list, index)) = (list @ [T.MOVE(memInc(T.MEM(T.TEMP r), T.CONST (index * F.wordSize)), unEx exp)],
 					 index + 1)
 	val (moves, _) = foldl iter ([], 0) fieldList
     in

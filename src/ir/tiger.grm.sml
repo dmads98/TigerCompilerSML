@@ -887,7 +887,7 @@ MlyValue.exp exp2, _, _)) :: _ :: ( _, ( MlyValue.exp exp1, _, _)) ::
  val  exp2 = exp2 ()
  val  exp3 = exp3 ()
  in (
-A.ForExp({var = Symbol.symbol(ID), escape = ref true, lo = exp1, hi = exp2, body = exp3, pos = FORleft})
+A.ForExp({var = Symbol.symbol(ID), escape = ref false, lo = exp1, hi = exp2, body = exp3, pos = FORleft})
 )
 end)
  in ( LrTable.NT 0, ( result, FOR1left, exp3right), rest671)
@@ -1049,7 +1049,7 @@ result = MlyValue.vardec (fn _ => let val  ID1 = ID1 ()
  val  ID2 = ID2 ()
  val  (exp as exp1) = exp1 ()
  in (
-A.VarDec({name = Symbol.symbol(ID1), escape = ref true, typ = SOME((Symbol.symbol(ID2), ID2left)), init = exp, pos = VARleft})
+A.VarDec({name = Symbol.symbol(ID1), escape = ref false, typ = SOME((Symbol.symbol(ID2), ID2left)), init = exp, pos = VARleft})
 )
 end)
  in ( LrTable.NT 10, ( result, VAR1left, exp1right), rest671)
@@ -1060,7 +1060,7 @@ rest671)) => let val  result = MlyValue.vardec (fn _ => let val  (ID
  as ID1) = ID1 ()
  val  (exp as exp1) = exp1 ()
  in (
-A.VarDec({name = Symbol.symbol(ID), escape = ref true, typ = NONE, init = exp, pos = VARleft})
+A.VarDec({name = Symbol.symbol(ID), escape = ref false, typ = NONE, init = exp, pos = VARleft})
 )
 end)
  in ( LrTable.NT 10, ( result, VAR1left, exp1right), rest671)
@@ -1126,7 +1126,7 @@ MlyValue.ID ID1, ID1left, _)) :: rest671)) => let val  result =
 MlyValue.type_fields (fn _ => let val  ID1 = ID1 ()
  val  ID2 = ID2 ()
  in (
-[{name = Symbol.symbol(ID1), escape = ref true, typ = Symbol.symbol(ID2), pos = ID1left} : A.field]
+[{name = Symbol.symbol(ID1), escape = ref false, typ = Symbol.symbol(ID2), pos = ID1left} : A.field]
 )
 end)
  in ( LrTable.NT 7, ( result, ID1left, ID2right), rest671)
@@ -1138,7 +1138,7 @@ MlyValue.type_fields (fn _ => let val  ID1 = ID1 ()
  val  ID2 = ID2 ()
  val  (type_fields as type_fields1) = type_fields1 ()
  in (
-({name = Symbol.symbol(ID1), escape = ref true, typ = Symbol.symbol(ID2), pos = ID1left} : A.field) :: type_fields
+({name = Symbol.symbol(ID1), escape = ref false, typ = Symbol.symbol(ID2), pos = ID1left} : A.field) :: type_fields
 )
 end)
  in ( LrTable.NT 7, ( result, ID1left, type_fields1right), rest671)
