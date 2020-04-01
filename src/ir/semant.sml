@@ -386,9 +386,9 @@ fun transExp (venv, tenv, level, doneLabel) =
 	  | trvar (A.SimpleVar(id, pos)) =
 	    (case S.look(venv, id)
 	      of SOME (E.VarEntry{access, ty}) => {exp = Tr.simpleVar(access, level), ty = typeHelper(tenv, ty, pos)}
-	       | SOME(E.FunEntry{...}) => (ErrorMsg.error pos ("improper function call or undefined variable" ^ S.name id); {exp = Tr.nilExp(), ty = T.INT})
+	       | SOME(E.FunEntry{...}) => (ErrorMsg.error pos ("improper function call or undefined variable" ^ S.name id); {exp = Tr.transNIL, ty = T.INT})
 	       | NONE => (ErrorMsg.error pos ("undefined variable " ^ S.name id);
-			  {exp = Tr.nilExp(), ty=T.INT}))
+			  {exp = Tr.transNIL, ty=T.INT}))
     in
 	trexp
     end

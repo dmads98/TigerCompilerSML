@@ -14,7 +14,7 @@ datatype exp = Ex of T.exp
 
 (***** Proc and String Fragments *****)
 type frag = F.frag
-val fragments : frag list ref = ref nil (* frag list ref local *)
+val fragments : frag list ref = ref [] (* frag list ref local *)
 fun reset () = fragments := nil
 fun getResult (): (F.frag list) = !fragments
 
@@ -25,12 +25,19 @@ type access = level * F.access
 val outermost = Top
 fun newLevel {parent, name, formals} =
     Level ({parent=parent, frame = F.newFrame({name=name, formals=true::formals})}, ref ());
-fun formals (Top) = nil
+fun formals (Top) = []
   | formals (level as Level({parent, frame}, _)) =
-    let val res_formals = tl (F.formals frame)
+    let val res_formals = List.tl (F.formals frame)
     in (map (fn x => (level, x)) res_formals)
     end; (* Test if correct *)
-fun allocLevel () = ();
+
+fun allocLocal (Top) (escape) = ((ErrorMsg.error ~1 "Cannot allocate variables in outermost level"); (Top, F.allocLocal(F.newFrame({formals = [], name = Temp.newlabel()}))(true)))
+  | allocLocal (Level({parent, frame}, lRef)) (escape) =
+    let val newAcc = F.allocLocal(frame)(escape)
+	val retVal = (Level({parent = parent, frame = frame}, lRef), newAcc)
+    in
+	retVal
+    end
 
 (***** IR translation *****)
 fun seq [s] = s
@@ -201,11 +208,12 @@ fun transASSIGN (lhs, rhs) =
     end
 
 (********** FUNCTIONS: nested->non-nested: explict frame management  **********)
-fun procEntryExit (Level({rame, ...}, _), body) =
+fun procEntryExit ({level = Level({parent, frame}, _), body}) =
     let val body' = unEx body
-	val body'' = F.procEntryExit1 (frame, T.MOVE(T.TEMP F.RV, body'))
-    in fragments := F.PROC{frame=frame, body=body''}
-    end;
+	val body'' = F.PROC{body = T.MOVE(T.TEMP F.RV, body'), frame = frame})
+    in fragments := !fragments @ [body'']
+    end
+  | procEntryExit ({level = Top, body}) = (ErrorMsg.error ~1 "function is declared in outermost level"; ()) 
 
 fun getFrame (_, Top) = (ErrorMsg.error ~1 "can't find level through static links"; T.CONST 0)
   | getFrame (Top, _) = (ErrorMsg.error ~1 "functioned declared in outermost level"; T.CONST 0)
@@ -239,18 +247,23 @@ fun memInc (e1, e2) = T.MEM(T.BINOP(T.PLUS, e1, e2)); (* Increment memory/FP(T.T
 
 (***** Var: SimpleVar, FieldVar, SubscriptVar *****)
 (* pg 156: lf: level of use, lg: level of definition *)
-fun simpleVar (access, lf) =
+fun simpleVar ((Top, fAccess), _) = (ErrorMsg.error ~1 "the variable has been declared in outermost level"; Ex(T.CONST 0))
+  | simpleVar ((_, fAccess), Top) = (ErrorMsg.error ~1 "the variable has been called in outermost level"; Ex(T.CONST 0))
+  | simpleVar (access, lf) =
     let val (Level(_, ref_g), access_g) = access
 	fun follow (Level({parent, frame}, cur_ref), cur_acc) =
 	    if ref_g = cur_ref
 	    then F.exp(ref_g)(cur_acc)
-	    else let val next_link = hd (F.formals frame)
+	    else let val next_link = List.hd (F.formals frame)
 		 in follow (parent, F.exp(next_link)(cur_acc))
 		 end
     in Ex(follow(lf, T.TEMP(F.FP)))
-    end;
+    end
 
-fun fieldVar (recRef, index) = Ex(memInc(T.MEM(unEx recRef), T.CONST(index * F.wordSize)))
+fun varDec ((Top, fAccess), e) = (ErrorMsg.error ~1 "Cannot declare variable in outermost level"; Ex(T.CONST 0))
+  | varDec ((Level(_, _), fAccess), e) = Nx(T.MOVE(F.exp(fAccess)(T.TEMP(F.FP)), unEx e)) 
+
+fun fieldVar (recRef, index) = Ex(memInc(unEx recRef, T.CONST(index * F.wordSize)))
 
     
 fun subscriptVar (arrRef, index) =
