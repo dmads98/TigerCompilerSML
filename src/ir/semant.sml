@@ -97,9 +97,9 @@ fun cycleExists (tenv, symb, list) =
       | NONE => false
 
 fun transExp (venv, tenv, level, doneLabel) =
-    let fun trexp (A.NilExp) = {exp = Tr.nilExp(), ty = T.NIL}
-	  | trexp (A.IntExp(int)) = {exp = Tr.intExp(int), ty = T.INT}
-	  | trexp (A.StringExp(str, pos)) = {exp = Tr.stringExp(str), ty = T.STRING}
+    let fun trexp (A.NilExp) = {exp = Tr.transNIL, ty = T.NIL}
+	  | trexp (A.IntExp(x)) = {exp = Tr.transINT(x), ty = T.INT}
+	  | trexp (A.StringExp(str, pos)) = {exp = Tr.transSTRING(str), ty = T.STRING}
 	  | trexp (A.VarExp(var)) = trvar(var)
 	  | trexp (A.AssignExp{var, exp, pos}) =
 	    let val {exp = varExpr, ty = varType} = trvar(var)
@@ -107,9 +107,9 @@ fun transExp (venv, tenv, level, doneLabel) =
 	    in
 		if isSameType(tenv, pos, typeHelper(tenv, varType, pos),
 			   typeHelper(tenv, expType, pos))
-		then {exp = Tr.assignExp(varExpr, expExpr), ty = T.UNIT}
+		then {exp = Tr.transASSIGN(varExpr, expExpr), ty = T.UNIT}
 		else (ErrorMsg.error pos "variable and expression types do not match";
-		      {exp = Tr.nilExp(), ty = T.UNIT})
+		      {exp = Tr.transNIL, ty = T.UNIT})
 	     end	
 	  | trexp (A.IfExp{test, then', else', pos}) =
 	    let val {exp = testExp, ty = testTy} = trexp test
@@ -123,7 +123,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 			 (if isSameType(tenv, pos, typeHelper(tenv, thenTy, pos), typeHelper(tenv, elseTy, pos))
 			  then ()
 			  else ErrorMsg.error pos "then and else statements return types do not match";
-			  {exp = Tr.ifElse(testExp, thenExp, elseExp), ty = typeHelper(tenv, thenTy, pos)})
+			  {exp = Tr.transIFELSE(testExp, thenExp, elseExp), ty = typeHelper(tenv, thenTy, pos)})
 		     end
 		 else
 		     let val {exp = thenExp, ty = thenTy} = trexp then'
@@ -131,7 +131,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 			 (if isSameType(tenv, pos, typeHelper(tenv, #ty(trexp then'), pos), T.UNIT)
 			  then ()
 			  else ErrorMsg.error pos "then statement does not have type UNIT";
-			  {exp = Tr.ifThen(testExp, thenExp), ty = T.UNIT})
+			  {exp = Tr.transIFTHEN(testExp, thenExp), ty = T.UNIT})
 		     end
 		)
 	    end
@@ -150,10 +150,10 @@ fun transExp (venv, tenv, level, doneLabel) =
 		 in
 		     if isSameType(tenv, pos, tyB, T.UNIT)
 		     then (loopLevel := !loopLevel - 1;
-			   {exp = Tr.forExp(expL, expH, expB, breakLab), ty = T.UNIT})
+			   {exp = Tr.transFOR(expL, expH, expB, breakLab), ty = T.UNIT})
 		     else (loopLevel := !loopLevel - 1;
 			   ErrorMsg.error pos "body of for loop should have type UNIT";
-			   {exp = Tr.nilExp(), ty = T.INT})
+			   {exp = Tr.transNIL, ty = T.INT})
 		 end
 		)
 	    end
@@ -167,10 +167,10 @@ fun transExp (venv, tenv, level, doneLabel) =
 		(checkInt({exp = expT, ty = tyT}, pos);
 		 if isSameType(tenv, pos, tyB, T.UNIT)
 		 then (loopLevel := !loopLevel - 1;
-		       {exp = Tr.whileExp(expT, expB, breakLab, ty = T.UNIT})
+		       {exp = Tr.transWHILE(expT, expB, breakLab), ty = T.UNIT})
 		 else (loopLevel := !loopLevel - 1;
 		       ErrorMsg.error pos "body of while loop should have type UNIT";
-		       {exp = Tr.nilExp(), ty = T.INT})
+		       {exp = Tr.transNIL, ty = T.INT})
 		)
 	    end
 		
@@ -180,8 +180,8 @@ fun transExp (venv, tenv, level, doneLabel) =
 	     else ();
 	     if (!loopLevel = 0)
 	     then (ErrorMsg.error pos "break expression exists outside of a loop";
-		   {exp = Tr.nilExp(), ty = T.UNIT})
-	     else {exp = Tr.breakExp(doneLabel), ty = T.UNIT}
+		   {exp = Tr.transNIL, ty = T.UNIT})
+	     else {exp = Tr.transBREAK(doneLabel), ty = T.UNIT}
 	    )
 
 	  | trexp (A.CallExp{func, args, pos}) = 
@@ -208,7 +208,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 	    in
 		(checkInt({exp = expL, ty = tyL}, pos);
 		 checkInt({exp = expR, ty = tyR}, pos);
-		 {exp= Tr.binop(Tree.PLUS, expL, expR), ty=T.INT}
+		 {exp= Tr.transBINOP(expL, A.PlusOp, expR), ty=T.INT}
 		)
 	    end
 	  (* Uminus is just 0-num *)
@@ -218,7 +218,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 	    in
 		(checkInt({exp = expL, ty = tyL}, pos);
 		 checkInt({exp = expR, ty = tyR}, pos);
-		 {exp= Tr.binop(Tree.MINUS, expL, expR), ty=T.INT}
+		 {exp= Tr.transBINOP(expL, A.MinusOp, expR), ty=T.INT}
 		)
 	    end
 	  | trexp (A.OpExp{left, oper=A.DivideOp, right, pos}) =
@@ -227,7 +227,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 	    in
 		(checkInt({exp = expL, ty = tyL}, pos);
 		 checkInt({exp = expR, ty = tyR}, pos);
-		 {exp= Tr.binop(Tree.DIV, expL, expR), ty=T.INT}
+		 {exp= Tr.transBINOP(expL, A.DivideOp, expR), ty=T.INT}
 		)
 	    end
 	  | trexp (A.OpExp{left, oper=A.TimesOp, right, pos}) =
@@ -236,17 +236,16 @@ fun transExp (venv, tenv, level, doneLabel) =
 	    in
 		(checkInt({exp = expL, ty = tyL}, pos);
 		 checkInt({exp = expR, ty = tyR}, pos);
-		 {exp= Tr.binop(Tree.MUL, expL, expR), ty=T.INT}
+		 {exp= Tr.transBINOP(expL, A.TimesOp, expR), ty=T.INT}
 		)
 	    end
 	  (*--Arithmetic--*)
-	  (* Comparison -- int or string *)
 	  | trexp (A.OpExp{left, oper=A.GtOp, right, pos}) =
 	    let val {exp = expL, ty = tyL} = trexp left
 		val {exp = expR, ty = tyR} = trexp right
 	    in
 		(checkComp({exp = expL, ty = tyL}, {exp = expR, ty = tyR}, pos);
-		 {exp= Tr.relop(Tree.GT, expL, expR, tyL), ty=T.INT}
+		 {exp= Tr.transRELOP(expL, A.GtOp, expR, tyL), ty=T.INT}
 		)
 	    end
 	  | trexp (A.OpExp{left, oper=A.GeOp, right, pos}) =
@@ -254,7 +253,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 		val {exp = expR, ty = tyR} = trexp right
 	    in
 		(checkComp({exp = expL, ty = tyL}, {exp = expR, ty = tyR}, pos);
-		 {exp= Tr.relop(Tree.GE, expL, expR, tyL), ty=T.INT}
+		 {exp= Tr.transRELOP(expL, A.GeOp, expR, tyL), ty=T.INT}
 		)
 	    end
 	  | trexp (A.OpExp{left, oper=A.LtOp, right, pos}) =
@@ -262,7 +261,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 		val {exp = expR, ty = tyR} = trexp right
 	    in
 		(checkComp({exp = expL, ty = tyL}, {exp = expR, ty = tyR}, pos);
-		 {exp= Tr.relop(Tree.LT, expL, expR, tyL), ty=T.INT}
+		 {exp= Tr.transRELOP(expL, A.LtOp, expR, tyL), ty=T.INT}
 		)
 	    end
 	  | trexp (A.OpExp{left, oper=A.LeOp, right, pos}) =
@@ -270,7 +269,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 		val {exp = expR, ty = tyR} = trexp right
 	    in
 		(checkComp({exp = expL, ty = tyL}, {exp = expR, ty = tyR}, pos);
-		 {exp= Tr.relop(Tree.LE, expL, expR, tyL), ty=T.INT}
+		 {exp= Tr.transRELOP(expL, A.LeOp, expR, tyL), ty=T.INT}
 		)
 	    end
 	  (* EqOp and NeqOp can take int, array, record on both sides *)
@@ -279,7 +278,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 		val {exp = expR, ty = tyR} = trexp right
 	    in
 		(checkEq({exp = expL, ty = tyL}, {exp = expR, ty = tyR}, pos);
-		 {exp= Tr.relop(Tree.EQ, expL, expR, tyL), ty=T.INT}
+		 {exp= Tr.transRELOP(expL, A.EqOp, expR, tyL), ty=T.INT}
 		)
 	    end
 	  | trexp (A.OpExp{left, oper=A.NeqOp, right, pos}) =
@@ -287,7 +286,7 @@ fun transExp (venv, tenv, level, doneLabel) =
 		val {exp = expR, ty = tyR} = trexp right
 	    in
 		(checkEq({exp = expL, ty = tyL}, {exp = expR, ty = tyR}, pos);
-		 {exp= Tr.relop(Tree.NE, expL, expR, tyL), ty=T.INT}
+		 {exp= Tr.transRELOP(expL, A.NeqOp, expR, tyL), ty=T.INT}
 		)
 	    end
 	  (*--Comparison--*)

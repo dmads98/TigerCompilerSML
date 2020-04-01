@@ -38,3 +38,5 @@ end
 
 fun exp (InReg(k)) (fP) = Tree.TEMP(k)
   | exp (InFrame(k)) (fP) = Tree.MEM(Tree.BINOP(Tree.PLUS, fP, Tree.CONST(k)))
+
+fun externalCall(funcName, expList) = Tree.CALL(Tree.NAME(Temp.namedLabel(funcName)), expList)

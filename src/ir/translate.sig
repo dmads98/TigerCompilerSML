@@ -3,7 +3,6 @@ sig
     type level
     type access (* Different from Frame.access *)
     type exp
-    type frag
 
     val reset : unit -> unit
     val getResult : unit -> frag list
@@ -20,7 +19,7 @@ sig
     val subscriptVar : (exp * exp) -> exp
 
     val transIFELSE : (exp * exp * exp) -> exp
-    val transBREAK : Temp.label -> exp
+    val transBREAK : Temp.label option -> exp
     val transWHILE : (exp * exp * Temp.label) -> exp
     val transDO_WHILE : (exp * exp * Temp.label) -> exp
     val transBINOP : (exp * Absyn.oper * exp) -> exp

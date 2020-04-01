@@ -6,6 +6,7 @@ structure Frame : FRAME = MipsFrame
 structure T = Tree
 structure F = Frame
 structure A = Absyn
+structure Ty = Types
 
 datatype exp = Ex of T.exp
 	     | Nx of T.stm
@@ -34,8 +35,9 @@ fun allocLevel () = ();
 (***** IR translation *****)
 fun seq [s] = s
   | seq [s1, s2] = T.SEQ(s1, s2)
-  | seq (a::l) = T.SEQ(a, seq l);
-
+  | seq (a::l) = T.SEQ(a, seq l)
+  | seq [] = (T.EXP(T.CONST(0)))
+		 
 (* exp -> T.exp *)
 fun unEx (Ex e) = e
   | unEx (Cx genstm) =
@@ -71,7 +73,7 @@ fun unCx (Cx genstm) = genstm (* Return the genstm function *)
 (********** IF WHILE FOR  **********)
 
 (* Return an exp *)
-fun transIFELSE (cond, thenexp, elseexp) = (* allow for missing else? *)
+fun transIFELSE (cond, thenexp, elseexp) =
     let val cond' = unCx(cond)
 	val then' = unEx(thenexp)
 	val else' = unEx(elseexp)
@@ -88,9 +90,23 @@ fun transIFELSE (cond, thenexp, elseexp) = (* allow for missing else? *)
 		     T.LABEL le
 		    ],
 		 T.TEMP res))
-    end;
+    end
 
-fun transBREAK (label) : exp = Nx(T.JUMP(T.NAME label, [label]));
+fun transIFTHEN (cond, thenexp) =
+    let val cond' = unCx(cond)
+	val then' = unEx(thenexp)
+	val lt = Temp.newlabel ()
+	and le = Temp.newlabel ()
+    in Nx(seq[cond'(lt, le),
+		     T.LABEL lt,
+		     T.EXP(then'),
+		     T.LABEL le
+	     ])
+    end
+
+
+fun transBREAK (SOME(label)) = Nx(T.JUMP(T.NAME label, [label]))
+  | transBREAK (NONE) = Nx(T.EXP(T.CONST 0)) 
 
 (* Return Nx (T.stm) *)
 fun transWHILE (cond, body, lend) =
@@ -104,8 +120,30 @@ fun transWHILE (cond, body, lend) =
 	      T.LABEL ltest,
 	      cond' (lstart, lend),
 	      T.LABEL lend])
-    end;
+    end
 
+fun transFOR (lo, hi, body, lend) =
+    let val lo' = unEx lo
+	val hi' = unEx hi
+	val body' = unNx body
+	val loopVar = Temp.newtemp()
+	val hiReg = Temp.newtemp()
+	val lab1 = Temp.newlabel()
+	val lab2 = Temp.newlabel()
+    in
+	Nx(seq[T.MOVE(T.TEMP(loopVar), lo'),
+	       T.MOVE(T.TEMP(hiReg), hi'),
+	       T.CJUMP(T.LE, T.TEMP(loopVar), T.TEMP(hiReg), L2, lend),
+	       T.LABEL(lab1),
+	       T.MOVE(T.TEMP(loopVar), T.BINOP(T.PLUS, T.TEMP(loopVar), T.CONST(1))),
+	       T.LABEL(lab2),
+	       body',
+	       T.CJUMP(T.LT, T.TEMP(loopVar), T.TEMP(hiReg), L1, lend),
+	       T.LABEL(lend)
+	  ])
+    end
+	
+(*
 (* do-while same as above without first jump to test *)
 fun transDO_WHILE (cond, body, lend) =
     let val cond' = unCx cond
@@ -119,7 +157,7 @@ fun transDO_WHILE (cond, body, lend) =
 	      T.LABEL lend
 	 ])
     end;
-
+*)
 fun transBINOP (left, oper, right) =
     let val left' = unEx left
 	val right' = unEx right
@@ -129,10 +167,10 @@ fun transBINOP (left, oper, right) =
 	      | A.MinusOp => T.MINUS
 	      | A.TimesOp => T.MUL
 	      | A.DivideOp => T.DIV
-    in Ex(T.binop(oper', left', right'))
+    in Ex(T.BINOP(oper', left', right'))
     end;
 
-fun transRELOP (left, oper, right) =
+fun transRELOP (left, oper, right, ty) =
     let val left' = unEx left
 	val right' = unEx right
 	val oper' =
@@ -143,14 +181,24 @@ fun transRELOP (left, oper, right) =
 	      | A.LeOp => T.LE
 	      | A.GtOp => T.GT
 	      | A.GeOp => T.GE
-    in Cx(fn (t, f) => T.CJUMP(oper', left', right', t, f) )
-    end;
+    in
+	let fun helper (T.EQ, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringEqual", [exp1, exp2]))
+	      | helper (T.NE, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringNE", [exp1, exp2]))
+ 	      | helper (T.LE, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringLE", [exp1, exp2]))
+	      | helper (T.GE, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringGE", [exp1, exp2]))
+	      | helper (T.LT, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringLT", [exp1, exp2]))
+	      | helper (T.GT, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringGT", [exp1, exp2]))
+	      | helper (oper, exp1, exp2, _) = Cx(fn (t, f) => T.CJUMP(oper, exp1, exp2, t, f))
+	in
+	    helper(oper', left', right', ty)
+	end
+    end
 
 fun transASSIGN (lhs, rhs) =
     let val lhs' = unEx lhs
 	val rhs' = unEx rhs
     in Nx(T.MOVE(lhs', rhs'))
-    end;
+    end
 
 (********** FUNCTIONS: nested->non-nested: explict frame management  **********)
 fun procEntryExit (Level({rame, ...}, _), body) =
@@ -218,7 +266,7 @@ fun transSTRING (str : string) =
 		   in (fragments := F.STRING (nl, str) :: (!fragments);
 		       Ex(T.NAME nl)) (* and return the new label *)
 		   end
-    end;
+    end
 
 fun transARRAY (size, init) =
     let val size' = unEx size
