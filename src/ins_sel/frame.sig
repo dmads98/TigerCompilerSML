@@ -16,14 +16,14 @@ sig
     val exp : access -> Tree.exp -> Tree.exp
 (*    val procEntryExit1 : frame -> Tree.stm -> Tree.stm*)
     val procEntryExit2 : frame * Assem.instr list -> Assem.instr list
-    val procEntryExit1 : frame * Assem.instr list -> {prolog: string, body : Assem.instr list, epilog: string}
+    val procEntryExit3 : frame * Assem.instr list -> {prolog: string, body : Assem.instr list, epilog: string}
 
     val externalCall : string * Tree.exp list -> Tree.exp
 						  
     datatype frag = PROC of {body: Tree.stm, frame: frame}
 		  | STRING of Temp.label * string
 
-    val tempMap : register Temp.Table.table
+    val tempMap : string Temp.Table.table
     val getRegName : Temp.temp -> string
 
     val getCalleeSaves : unit -> Temp.temp list

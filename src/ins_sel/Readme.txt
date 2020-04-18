@@ -1,8 +1,8 @@
 Prathikshaa Rangarajan (pr109)
 Dhanush Madabusi (dm322)
 
-IR:
-* Generated IR tree in place of unit expressions in semant module using translate.
+Instruction Selection:
+* Generated infinite register MIPS in ".s" file in same directory as test file.
 
 Compile and Run:
 

@@ -59,11 +59,11 @@ fun getArgRegs() = map (fn (reg, name) => reg) argregs
 
 val tempMap = let fun addToMap ((reg, name), curMap) = Temp.Table.enter(curMap, reg, name)
 	      in
-		  foldl addToMap Temp.Table.empty (reserved @ args @ calleesaves @ callersaves)
+		  foldl addToMap Temp.Table.empty (specialregs @ argregs @ calleesaves @ callersaves)
 	      end
 
-fun getRegName reg = case Temp.Table.look(tempMap, reg) of SOME(s) =>
-							   | NONE => Temp.makestring(reg)
+fun getRegName reg = case Temp.Table.look(tempMap, reg) of SOME(s) => s (* todo: may fix*)
+							 | NONE => Temp.makestring(reg)
 
 			   
 fun name {name, formals, numLocalsAlloc} = name

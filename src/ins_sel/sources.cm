@@ -34,4 +34,9 @@ printtree.sml
 
 assem.sml
 canon.sml
+codegen.sig
 mipsgen.sml
+
+flowgraph.sml
+graph.sig
+graph.sml

@@ -579,7 +579,7 @@ and transDecs (venv, tenv, [], level, doneLabel) = {venv = venv, tenv = tenv, ex
 
 fun transProg(exp) =
     let val _ = Tr.reset()
-	val startLevel = Tr.newLevel({parent = Tr.outermost, name = Temp.newlabel("tigerMain"), formals = []})
+	val startLevel = Tr.newLevel({parent = Tr.outermost, name = Temp.namedlabel("tigerMain"), formals = []})
 	val _ = F.findEscape(exp)
 	val result = #exp(transExp(E.base_venv, E.base_tenv, startLevel, NONE) exp)
 	val _ = Tr.procEntryExit({level = startLevel, body = result})
