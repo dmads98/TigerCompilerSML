@@ -1,5 +1,4 @@
 structure Main = struct
-
    structure Tr = Translate
    structure F = Frame
    structure R = RegAlloc
@@ -34,6 +33,3 @@ structure Main = struct
        end
 
 end
-
-
-
