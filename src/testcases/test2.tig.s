@@ -1,18 +1,18 @@
-L79:
-addi t363, $sp, 0
-move $sp, t363
-li t365, 10
-addi t364, t365, 1
-move $a0, t364
-li t366, 0
-move $a1, t366
+L23:
+addi t157, $sp, 0
+move $sp, t157
+li t159, 10
+addi t158, t159, 1
+move $a0, t158
+li t160, 0
+move $a1, t160
 jal initArray
-addi t367, $sp, 0
-move $sp, t367
-move t361, $v0
-li t368, 10
-sw t368, 0(t361) 
-move t362, t361
-move $v0, t362
-j L78 
-L78:
+addi t161, $sp, 0
+move $sp, t161
+move t155, $v0
+li t162, 10
+sw t162, 0(t155) 
+move t156, t155
+move $v0, t156
+j L22 
+L22:

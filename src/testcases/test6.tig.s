@@ -1,43 +1,43 @@
-L13:str2
-L12:str
-L15:
-addi t135, $sp, 0
-move $sp, t135
-lw t136, 0($fp)
-move $a0, t136
-addi t137, t132, 1
-move $a1, t137
-jal L11
-addi t138, $sp, 0
-move $sp, t138
+L41:str2
+L40:str
+L43:
+addi t196, $sp, 0
+move $sp, t196
+lw t197, 0($fp)
+move $a0, t197
+addi t198, t193, 1
+move $a1, t198
+jal L39
+addi t199, $sp, 0
+move $sp, t199
 move $v0, $v0
-j L14 
-L14:
-L17:
-addi t139, $sp, 0
-move $sp, t139
-lw t140, 0($fp)
-move $a0, t140
-move $a1, t134
-la t141, L12
-move $a2, t141
-jal L10
-addi t142, $sp, 0
-move $sp, t142
+j L42 
+L42:
+L45:
+addi t200, $sp, 0
+move $sp, t200
+lw t201, 0($fp)
+move $a0, t201
+move $a1, t195
+la t202, L40
+move $a2, t202
+jal L38
+addi t203, $sp, 0
+move $sp, t203
 move $v0, $v0
-j L16 
-L16:
-L19:
-addi t143, $sp, 0
-move $sp, t143
+j L44 
+L44:
+L47:
+addi t204, $sp, 0
+move $sp, t204
 move $a0, $fp
-li t144, 0
-move $a1, t144
-la t145, L13
-move $a2, t145
-jal L10
-addi t146, $sp, 0
-move $sp, t146
+li t205, 0
+move $a1, t205
+la t206, L41
+move $a2, t206
+jal L38
+addi t207, $sp, 0
+move $sp, t207
 move $v0, $v0
-j L18 
-L18:
+j L46 
+L46:

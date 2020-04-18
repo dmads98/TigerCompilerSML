@@ -1,526 +1,526 @@
-L26:
+L148:
 
-L20: .
-L19: O
-L99:
-li t193, 0
-move t145, t193
-lw t196, 0('s0)
-lw t195, -4('s0)
-li t197, 1
-sub t194, t195, t197
-move t151, t194
-ble t145, t151, L28 
-L14:
-addi t198, $sp, 0
-move $sp, t198
-la t199, L26
-move $a0, t199
+L142: .
+L141: O
+L221:
+li t494, 0
+move t446, t494
+lw t497, 0('s0)
+lw t496, -4('s0)
+li t498, 1
+sub t495, t496, t498
+move t452, t495
+ble t446, t452, L150 
+L136:
+addi t499, $sp, 0
+move $sp, t499
+la t500, L148
+move $a0, t500
 jal L5
-addi t200, $sp, 0
-move $sp, t200
+addi t501, $sp, 0
+move $sp, t501
 move $v0, $v0
-j L98 
-L27:
-addi t201, t145, 1
-move t145, t201
-L28:
-li t202, 0
-move t146, t202
-lw t205, 0('s0)
-lw t204, -4('s0)
-li t206, 1
-sub t203, t204, t206
-move t150, t203
-ble t146, t150, L25 
-L15:
-addi t207, $sp, 0
-move $sp, t207
-la t208, L26
-move $a0, t208
+j L220 
+L149:
+addi t502, t446, 1
+move t446, t502
+L150:
+li t503, 0
+move t447, t503
+lw t506, 0('s0)
+lw t505, -4('s0)
+li t507, 1
+sub t504, t505, t507
+move t451, t504
+ble t447, t451, L147 
+L137:
+addi t508, $sp, 0
+move $sp, t508
+la t509, L148
+move $a0, t509
 jal L5
-addi t209, $sp, 0
-move $sp, t209
-blt t145, t151, L27 
-L100:
-j L14 
-L24:
-addi t210, t146, 1
-move t146, t210
-L25:
-move t147, t145
-lw t212, 0('s0)
-lw t211, -12('s0)
-move t148, t211
-lw t213, 0(t148)
-bge t147, t213, L16 
-L18:
-li t214, 0
-blt t147, t214, L16 
-L17:
-addi t218, t147, 1
-li t219, 4
-mul t217, t218, t219
-add t216, t148, t217
-lw t215, 0(t216)
-beq t215, t146, L21 
-L22:
-la t220, L20
-move t149, t220
-L23:
-addi t221, $sp, 0
-move $sp, t221
-move $a0, t149
+addi t510, $sp, 0
+move $sp, t510
+blt t446, t452, L149 
+L222:
+j L136 
+L146:
+addi t511, t447, 1
+move t447, t511
+L147:
+move t448, t446
+lw t513, 0('s0)
+lw t512, -12('s0)
+move t449, t512
+lw t514, 0(t449)
+bge t448, t514, L138 
+L140:
+li t515, 0
+blt t448, t515, L138 
+L139:
+addi t519, t448, 1
+li t520, 4
+mul t518, t519, t520
+add t517, t449, t518
+lw t516, 0(t517)
+beq t516, t447, L143 
+L144:
+la t521, L142
+move t450, t521
+L145:
+addi t522, $sp, 0
+move $sp, t522
+move $a0, t450
 jal L5
-addi t222, $sp, 0
-move $sp, t222
-blt t146, t150, L24 
-L101:
-j L15 
-L16:
-addi t223, $sp, 0
-move $sp, t223
-li t224, 1
-move $a0, t224
+addi t523, $sp, 0
+move $sp, t523
+blt t447, t451, L146 
+L223:
+j L137 
+L138:
+addi t524, $sp, 0
+move $sp, t524
+li t525, 1
+move $a0, t525
 jal exit
-addi t225, $sp, 0
-move $sp, t225
-j L17 
-L21:
-la t226, L19
-move t149, t226
-j L23 
-L98:
-L103:
-lw t228, 0('s0)
-lw t227, -4('s0)
-beq t144, t227, L95 
-L96:
-li t229, 0
-move t152, t229
-lw t232, 0('s0)
-lw t231, -4('s0)
-li t233, 1
-sub t230, t231, t233
-move t191, t230
-ble t152, t191, L94 
-L29:
-li t234, 0
-move t192, t234
-L97:
-move $v0, t192
-j L102 
-L95:
-addi t235, $sp, 0
-move $sp, t235
-lw t236, 0($fp)
-move $a0, t236
-jal L12
-addi t237, $sp, 0
-move $sp, t237
-move t192, $v0
-j L97 
-L93:
-addi t238, t152, 1
-move t152, t238
-L94:
-move t153, t152
-lw t240, 0('s0)
-lw t239, -8('s0)
-move t154, t239
-lw t241, 0(t154)
-bge t153, t241, L30 
-L32:
-li t242, 0
-blt t153, t242, L30 
-L31:
-addi t246, t153, 1
-li t247, 4
-mul t245, t246, t247
-add t244, t154, t245
-lw t243, 0(t244)
-li t248, 0
-beq t243, t248, L38 
-L39:
-li t249, 0
-move t158, t249
-L40:
-li t250, 0
-beq t158, t250, L47 
-L46:
-li t251, 1
-move t161, t251
-addi t253, t152, 7
-sub t252, t253, t144
-move t159, t252
-lw t255, 0('s0)
-lw t254, -20('s0)
-move t160, t254
-lw t256, 0(t160)
-bge t159, t256, L41 
-L43:
-li t257, 0
-blt t159, t257, L41 
-L42:
-addi t261, t159, 1
-li t262, 4
-mul t260, t261, t262
-add t259, t160, t260
-lw t258, 0(t259)
-li t263, 0
-beq t258, t263, L44 
-L45:
-li t264, 0
-move t161, t264
-L44:
-move t162, t161
-L48:
-li t265, 0
-beq t162, t265, L92 
-L91:
-move t163, t152
-lw t267, 0('s0)
-lw t266, -8('s0)
-move t164, t266
-lw t268, 0(t164)
-bge t163, t268, L49 
-L51:
-li t269, 0
-blt t163, t269, L49 
-L50:
-li t270, 1
-addi t273, t163, 1
-li t274, 4
-mul t272, t273, t274
-add t271, t164, t272
-sw t270, 0(t271) 
- add t275, t152, t144
-move t165, t275
-lw t277, 0('s0)
-lw t276, -16('s0)
-move t166, t276
-lw t278, 0(t166)
-bge t165, t278, L52 
-L54:
-li t279, 0
-blt t165, t279, L52 
-L53:
-li t280, 1
-addi t283, t165, 1
-li t284, 4
-mul t282, t283, t284
-add t281, t166, t282
-sw t280, 0(t281) 
- addi t286, t152, 7
-sub t285, t286, t144
-move t167, t285
-lw t288, 0('s0)
-lw t287, -20('s0)
-move t168, t287
-lw t289, 0(t168)
-bge t167, t289, L55 
-L57:
-li t290, 0
-blt t167, t290, L55 
-L56:
-li t291, 1
-addi t294, t167, 1
-li t295, 4
-mul t293, t294, t295
-add t292, t168, t293
-sw t291, 0(t292) 
- move t169, t144
-lw t297, 0('s0)
-lw t296, -12('s0)
-move t170, t296
-lw t298, 0(t170)
-bge t169, t298, L58 
-L60:
-li t299, 0
-blt t169, t299, L58 
-L59:
-addi t302, t169, 1
-li t303, 4
-mul t301, t302, t303
-add t300, t170, t301
-sw t152, 0(t300) 
- addi t304, $sp, 0
-move $sp, t304
-lw t305, 0($fp)
-move $a0, t305
-addi t306, t144, 1
-move $a1, t306
-jal L13
-addi t307, $sp, 0
-move $sp, t307
-move t171, t152
-lw t309, 0('s0)
-lw t308, -8('s0)
-move t172, t308
-lw t310, 0(t172)
-bge t171, t310, L61 
-L63:
-li t311, 0
-blt t171, t311, L61 
-L62:
-li t312, 0
-addi t315, t171, 1
-li t316, 4
-mul t314, t315, t316
-add t313, t172, t314
-sw t312, 0(t313) 
- add t317, t152, t144
-move t173, t317
-lw t319, 0('s0)
-lw t318, -16('s0)
-move t174, t318
-lw t320, 0(t174)
-bge t173, t320, L64 
-L66:
-li t321, 0
-blt t173, t321, L64 
-L65:
-li t322, 0
-addi t325, t173, 1
-li t326, 4
-mul t324, t325, t326
-add t323, t174, t324
-sw t322, 0(t323) 
- addi t328, t152, 7
-sub t327, t328, t144
-move t175, t327
-lw t330, 0('s0)
-lw t329, -20('s0)
-move t176, t329
-lw t331, 0(t176)
-bge t175, t331, L67 
-L69:
-li t332, 0
-blt t175, t332, L67 
-L68:
-li t333, 0
-addi t336, t175, 1
-li t337, 4
-mul t335, t336, t337
-add t334, t176, t335
-sw t333, 0(t334) 
- L92:
-blt t152, t191, L93 
-L104:
-j L29 
-L30:
-addi t338, $sp, 0
-move $sp, t338
-li t339, 1
-move $a0, t339
+addi t526, $sp, 0
+move $sp, t526
+j L139 
+L143:
+la t527, L141
+move t450, t527
+j L145 
+L220:
+L225:
+lw t529, 0('s0)
+lw t528, -4('s0)
+beq t445, t528, L217 
+L218:
+li t530, 0
+move t453, t530
+lw t533, 0('s0)
+lw t532, -4('s0)
+li t534, 1
+sub t531, t532, t534
+move t492, t531
+ble t453, t492, L216 
+L151:
+li t535, 0
+move t493, t535
+L219:
+move $v0, t493
+j L224 
+L217:
+addi t536, $sp, 0
+move $sp, t536
+lw t537, 0($fp)
+move $a0, t537
+jal L134
+addi t538, $sp, 0
+move $sp, t538
+move t493, $v0
+j L219 
+L215:
+addi t539, t453, 1
+move t453, t539
+L216:
+move t454, t453
+lw t541, 0('s0)
+lw t540, -8('s0)
+move t455, t540
+lw t542, 0(t455)
+bge t454, t542, L152 
+L154:
+li t543, 0
+blt t454, t543, L152 
+L153:
+addi t547, t454, 1
+li t548, 4
+mul t546, t547, t548
+add t545, t455, t546
+lw t544, 0(t545)
+li t549, 0
+beq t544, t549, L160 
+L161:
+li t550, 0
+move t459, t550
+L162:
+li t551, 0
+beq t459, t551, L169 
+L168:
+li t552, 1
+move t462, t552
+addi t554, t453, 7
+sub t553, t554, t445
+move t460, t553
+lw t556, 0('s0)
+lw t555, -20('s0)
+move t461, t555
+lw t557, 0(t461)
+bge t460, t557, L163 
+L165:
+li t558, 0
+blt t460, t558, L163 
+L164:
+addi t562, t460, 1
+li t563, 4
+mul t561, t562, t563
+add t560, t461, t561
+lw t559, 0(t560)
+li t564, 0
+beq t559, t564, L166 
+L167:
+li t565, 0
+move t462, t565
+L166:
+move t463, t462
+L170:
+li t566, 0
+beq t463, t566, L214 
+L213:
+move t464, t453
+lw t568, 0('s0)
+lw t567, -8('s0)
+move t465, t567
+lw t569, 0(t465)
+bge t464, t569, L171 
+L173:
+li t570, 0
+blt t464, t570, L171 
+L172:
+li t571, 1
+addi t574, t464, 1
+li t575, 4
+mul t573, t574, t575
+add t572, t465, t573
+sw t571, 0(t572) 
+add t576, t453, t445
+move t466, t576
+lw t578, 0('s0)
+lw t577, -16('s0)
+move t467, t577
+lw t579, 0(t467)
+bge t466, t579, L174 
+L176:
+li t580, 0
+blt t466, t580, L174 
+L175:
+li t581, 1
+addi t584, t466, 1
+li t585, 4
+mul t583, t584, t585
+add t582, t467, t583
+sw t581, 0(t582) 
+addi t587, t453, 7
+sub t586, t587, t445
+move t468, t586
+lw t589, 0('s0)
+lw t588, -20('s0)
+move t469, t588
+lw t590, 0(t469)
+bge t468, t590, L177 
+L179:
+li t591, 0
+blt t468, t591, L177 
+L178:
+li t592, 1
+addi t595, t468, 1
+li t596, 4
+mul t594, t595, t596
+add t593, t469, t594
+sw t592, 0(t593) 
+move t470, t445
+lw t598, 0('s0)
+lw t597, -12('s0)
+move t471, t597
+lw t599, 0(t471)
+bge t470, t599, L180 
+L182:
+li t600, 0
+blt t470, t600, L180 
+L181:
+addi t603, t470, 1
+li t604, 4
+mul t602, t603, t604
+add t601, t471, t602
+sw t453, 0(t601) 
+addi t605, $sp, 0
+move $sp, t605
+lw t606, 0($fp)
+move $a0, t606
+addi t607, t445, 1
+move $a1, t607
+jal L135
+addi t608, $sp, 0
+move $sp, t608
+move t472, t453
+lw t610, 0('s0)
+lw t609, -8('s0)
+move t473, t609
+lw t611, 0(t473)
+bge t472, t611, L183 
+L185:
+li t612, 0
+blt t472, t612, L183 
+L184:
+li t613, 0
+addi t616, t472, 1
+li t617, 4
+mul t615, t616, t617
+add t614, t473, t615
+sw t613, 0(t614) 
+add t618, t453, t445
+move t474, t618
+lw t620, 0('s0)
+lw t619, -16('s0)
+move t475, t619
+lw t621, 0(t475)
+bge t474, t621, L186 
+L188:
+li t622, 0
+blt t474, t622, L186 
+L187:
+li t623, 0
+addi t626, t474, 1
+li t627, 4
+mul t625, t626, t627
+add t624, t475, t625
+sw t623, 0(t624) 
+addi t629, t453, 7
+sub t628, t629, t445
+move t476, t628
+lw t631, 0('s0)
+lw t630, -20('s0)
+move t477, t630
+lw t632, 0(t477)
+bge t476, t632, L189 
+L191:
+li t633, 0
+blt t476, t633, L189 
+L190:
+li t634, 0
+addi t637, t476, 1
+li t638, 4
+mul t636, t637, t638
+add t635, t477, t636
+sw t634, 0(t635) 
+L214:
+blt t453, t492, L215 
+L226:
+j L151 
+L152:
+addi t639, $sp, 0
+move $sp, t639
+li t640, 1
+move $a0, t640
 jal exit
-addi t340, $sp, 0
-move $sp, t340
-j L31 
-L38:
-li t341, 1
-move t157, t341
-add t342, t152, t144
-move t155, t342
-lw t344, 0('s0)
-lw t343, -16('s0)
-move t156, t343
-lw t345, 0(t156)
-bge t155, t345, L33 
-L35:
-li t346, 0
-blt t155, t346, L33 
-L34:
-addi t350, t155, 1
-li t351, 4
-mul t349, t350, t351
-add t348, t156, t349
-lw t347, 0(t348)
-li t352, 0
-beq t347, t352, L36 
-L37:
-li t353, 0
-move t157, t353
-L36:
-move t158, t157
-j L40 
-L33:
-addi t354, $sp, 0
-move $sp, t354
-li t355, 1
-move $a0, t355
+addi t641, $sp, 0
+move $sp, t641
+j L153 
+L160:
+li t642, 1
+move t458, t642
+add t643, t453, t445
+move t456, t643
+lw t645, 0('s0)
+lw t644, -16('s0)
+move t457, t644
+lw t646, 0(t457)
+bge t456, t646, L155 
+L157:
+li t647, 0
+blt t456, t647, L155 
+L156:
+addi t651, t456, 1
+li t652, 4
+mul t650, t651, t652
+add t649, t457, t650
+lw t648, 0(t649)
+li t653, 0
+beq t648, t653, L158 
+L159:
+li t654, 0
+move t458, t654
+L158:
+move t459, t458
+j L162 
+L155:
+addi t655, $sp, 0
+move $sp, t655
+li t656, 1
+move $a0, t656
 jal exit
-addi t356, $sp, 0
-move $sp, t356
-j L34 
-L41:
-addi t357, $sp, 0
-move $sp, t357
-li t358, 1
-move $a0, t358
+addi t657, $sp, 0
+move $sp, t657
+j L156 
+L163:
+addi t658, $sp, 0
+move $sp, t658
+li t659, 1
+move $a0, t659
 jal exit
-addi t359, $sp, 0
-move $sp, t359
-j L42 
-L47:
-li t360, 0
-move t162, t360
-j L48 
-L49:
-addi t361, $sp, 0
-move $sp, t361
-li t362, 1
-move $a0, t362
+addi t660, $sp, 0
+move $sp, t660
+j L164 
+L169:
+li t661, 0
+move t463, t661
+j L170 
+L171:
+addi t662, $sp, 0
+move $sp, t662
+li t663, 1
+move $a0, t663
 jal exit
-addi t363, $sp, 0
-move $sp, t363
-j L50 
-L52:
-addi t364, $sp, 0
-move $sp, t364
-li t365, 1
-move $a0, t365
+addi t664, $sp, 0
+move $sp, t664
+j L172 
+L174:
+addi t665, $sp, 0
+move $sp, t665
+li t666, 1
+move $a0, t666
 jal exit
-addi t366, $sp, 0
-move $sp, t366
-j L53 
-L55:
-addi t367, $sp, 0
-move $sp, t367
-li t368, 1
-move $a0, t368
+addi t667, $sp, 0
+move $sp, t667
+j L175 
+L177:
+addi t668, $sp, 0
+move $sp, t668
+li t669, 1
+move $a0, t669
 jal exit
-addi t369, $sp, 0
-move $sp, t369
-j L56 
-L58:
-addi t370, $sp, 0
-move $sp, t370
-li t371, 1
-move $a0, t371
+addi t670, $sp, 0
+move $sp, t670
+j L178 
+L180:
+addi t671, $sp, 0
+move $sp, t671
+li t672, 1
+move $a0, t672
 jal exit
-addi t372, $sp, 0
-move $sp, t372
-j L59 
-L61:
-addi t373, $sp, 0
-move $sp, t373
-li t374, 1
-move $a0, t374
+addi t673, $sp, 0
+move $sp, t673
+j L181 
+L183:
+addi t674, $sp, 0
+move $sp, t674
+li t675, 1
+move $a0, t675
 jal exit
-addi t375, $sp, 0
-move $sp, t375
-j L62 
-L64:
-addi t376, $sp, 0
-move $sp, t376
-li t377, 1
-move $a0, t377
+addi t676, $sp, 0
+move $sp, t676
+j L184 
+L186:
+addi t677, $sp, 0
+move $sp, t677
+li t678, 1
+move $a0, t678
 jal exit
-addi t378, $sp, 0
-move $sp, t378
-j L65 
-L67:
-addi t379, $sp, 0
-move $sp, t379
-li t380, 1
-move $a0, t380
+addi t679, $sp, 0
+move $sp, t679
+j L187 
+L189:
+addi t680, $sp, 0
+move $sp, t680
+li t681, 1
+move $a0, t681
 jal exit
-addi t381, $sp, 0
-move $sp, t381
-j L68 
-L102:
-L106:
-li t386, 8
+addi t682, $sp, 0
+move $sp, t682
+j L190 
+L224:
+L228:
+li t687, 8
 sw 's0, -4($fp) 
-addi t387, $fp, -8
-move t382, t387
-addi t388, $sp, 0
-move $sp, t388
-lw t390, -4('s0)
-addi t389, t390, 1
-move $a0, t389
-li t391, 0
-move $a1, t391
+addi t688, $fp, -8
+move t683, t688
+addi t689, $sp, 0
+move $sp, t689
+lw t691, -4('s0)
+addi t690, t691, 1
+move $a0, t690
+li t692, 0
+move $a1, t692
 jal initArray
-addi t392, $sp, 0
-move $sp, t392
-move t140, $v0
-lw t393, -4('s0)
-sw t393, 0(t140) 
- sw t140, 0(t382) 
- addi t394, $fp, -12
-move t383, t394
-addi t395, $sp, 0
-move $sp, t395
-lw t397, -4('s0)
-addi t396, t397, 1
-move $a0, t396
-li t398, 0
-move $a1, t398
+addi t693, $sp, 0
+move $sp, t693
+move t441, $v0
+lw t694, -4('s0)
+sw t694, 0(t441) 
+sw t441, 0(t683) 
+addi t695, $fp, -12
+move t684, t695
+addi t696, $sp, 0
+move $sp, t696
+lw t698, -4('s0)
+addi t697, t698, 1
+move $a0, t697
+li t699, 0
+move $a1, t699
 jal initArray
-addi t399, $sp, 0
-move $sp, t399
-move t141, $v0
-lw t400, -4('s0)
-sw t400, 0(t141) 
- sw t141, 0(t383) 
- addi t401, $fp, -16
-move t384, t401
-addi t402, $sp, 0
-move $sp, t402
-lw t406, -4('s0)
-lw t407, -4('s0)
-add t405, t406, t407
-li t408, 1
-sub t404, t405, t408
-addi t403, t404, 1
-move $a0, t403
-li t409, 0
-move $a1, t409
+addi t700, $sp, 0
+move $sp, t700
+move t442, $v0
+lw t701, -4('s0)
+sw t701, 0(t442) 
+sw t442, 0(t684) 
+addi t702, $fp, -16
+move t685, t702
+addi t703, $sp, 0
+move $sp, t703
+lw t707, -4('s0)
+lw t708, -4('s0)
+add t706, t707, t708
+li t709, 1
+sub t705, t706, t709
+addi t704, t705, 1
+move $a0, t704
+li t710, 0
+move $a1, t710
 jal initArray
-addi t410, $sp, 0
-move $sp, t410
-move t142, $v0
-lw t413, -4('s0)
-lw t414, -4('s0)
-add t412, t413, t414
-li t415, 1
-sub t411, t412, t415
-sw t411, 0(t142) 
- sw t142, 0(t384) 
- addi t416, $fp, -20
-move t385, t416
-addi t417, $sp, 0
-move $sp, t417
-lw t421, -4('s0)
-lw t422, -4('s0)
-add t420, t421, t422
-li t423, 1
-sub t419, t420, t423
-addi t418, t419, 1
-move $a0, t418
-li t424, 0
-move $a1, t424
+addi t711, $sp, 0
+move $sp, t711
+move t443, $v0
+lw t714, -4('s0)
+lw t715, -4('s0)
+add t713, t714, t715
+li t716, 1
+sub t712, t713, t716
+sw t712, 0(t443) 
+sw t443, 0(t685) 
+addi t717, $fp, -20
+move t686, t717
+addi t718, $sp, 0
+move $sp, t718
+lw t722, -4('s0)
+lw t723, -4('s0)
+add t721, t722, t723
+li t724, 1
+sub t720, t721, t724
+addi t719, t720, 1
+move $a0, t719
+li t725, 0
+move $a1, t725
 jal initArray
-addi t425, $sp, 0
-move $sp, t425
-move t143, $v0
-lw t428, -4('s0)
-lw t429, -4('s0)
-add t427, t428, t429
-li t430, 1
-sub t426, t427, t430
-sw t426, 0(t143) 
- sw t143, 0(t385) 
- addi t431, $sp, 0
-move $sp, t431
+addi t726, $sp, 0
+move $sp, t726
+move t444, $v0
+lw t729, -4('s0)
+lw t730, -4('s0)
+add t728, t729, t730
+li t731, 1
+sub t727, t728, t731
+sw t727, 0(t444) 
+sw t444, 0(t686) 
+addi t732, $sp, 0
+move $sp, t732
 move $a0, $fp
-li t432, 0
-move $a1, t432
-jal L13
-addi t433, $sp, 0
-move $sp, t433
+li t733, 0
+move $a1, t733
+jal L135
+addi t734, $sp, 0
+move $sp, t734
 move $v0, $v0
-j L105 
-L105:
+j L227 
+L227:
