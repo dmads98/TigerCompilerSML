@@ -145,12 +145,13 @@ fun transExp (venv, tenv, level, doneLabel) =
 		(checkInt({exp = expL, ty = tyL}, pos);
 		 checkInt({exp = expH, ty = tyH}, pos);
 		 loopLevel := !loopLevel + 1;
-		 let val tempVenv = S.enter(venv, var, E.VarEntry{access = Tr.allocLocal(level)(!escape), ty = T.INT})
+		 let val loopVarAccess = Tr.allocLocal(level)(!escape)
+		     val tempVenv = S.enter(venv, var, E.VarEntry{access = loopVarAccess, ty = T.INT})
 		     val {exp = expB, ty = tyB} = transExp(tempVenv, tenv, level, SOME(breakLab)) body
 		 in
 		     if isSameType(tenv, pos, tyB, T.UNIT)
 		     then (loopLevel := !loopLevel - 1;
-			   {exp = Tr.transFOR(expL, expH, expB, breakLab), ty = T.UNIT})
+			   {exp = Tr.transFOR(loopVarAccess, expL, expH, expB, breakLab), ty = T.UNIT})
 		     else (loopLevel := !loopLevel - 1;
 			   ErrorMsg.error pos "body of for loop should have type UNIT";
 			   {exp = Tr.transNIL, ty = T.INT})
@@ -578,7 +579,7 @@ and transDecs (venv, tenv, [], level, doneLabel) = {venv = venv, tenv = tenv, ex
 
 fun transProg(exp) =
     let val _ = Tr.reset()
-	val startLevel = Tr.newLevel({parent = Tr.outermost, name = Temp.newlabel(), formals = []})
+	val startLevel = Tr.newLevel({parent = Tr.outermost, name = Temp.newlabel("tigerMain"), formals = []})
 	val _ = F.findEscape(exp)
 	val result = #exp(transExp(E.base_venv, E.base_tenv, startLevel, NONE) exp)
 	val _ = Tr.procEntryExit({level = startLevel, body = result})

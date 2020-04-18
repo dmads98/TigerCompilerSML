@@ -131,23 +131,23 @@ fun transWHILE (cond, body, lend) =
 	      T.LABEL lend])
     end
 
-fun transFOR (lo, hi, body, lend) =
+fun transFOR ((level, fAccess), lo, hi, body, lend) =
     let val lo' = unEx lo
 	val hi' = unEx hi
 	val body' = unNx body
-	val loopVar = Temp.newtemp()
 	val hiReg = Temp.newtemp()
 	val lab1 = Temp.newlabel()
 	val lab2 = Temp.newlabel()
+	val loopVar = F.exp(fAccess)(T.TEMP(F.FP))
     in
-	Nx(seq[T.MOVE(T.TEMP(loopVar), lo'),
+	Nx(seq[T.MOVE(loopVar, lo'),
 	       T.MOVE(T.TEMP(hiReg), hi'),
-	       T.CJUMP(T.LE, T.TEMP(loopVar), T.TEMP(hiReg), lab2, lend),
+	       T.CJUMP(T.LE, loopVar, T.TEMP(hiReg), lab2, lend),
 	       T.LABEL(lab1),
-	       T.MOVE(T.TEMP(loopVar), T.BINOP(T.PLUS, T.TEMP(loopVar), T.CONST(1))),
+	       T.MOVE(loopVar, T.BINOP(T.PLUS, loopVar, T.CONST(1))),
 	       T.LABEL(lab2),
 	       body',
-	       T.CJUMP(T.LT, T.TEMP(loopVar), T.TEMP(hiReg), lab1, lend),
+	       T.CJUMP(T.LT, loopVar, T.TEMP(hiReg), lab1, lend),
 	       T.LABEL(lend)
 	  ])
     end
@@ -213,7 +213,7 @@ fun transASSIGN (lhs, rhs) =
 (********** FUNCTIONS: nested->non-nested: explict frame management  **********)
 fun procEntryExit ({level = Level({parent, frame}, _), body}) =
     let val body' = unEx body
-	val body'' = F.PROC{body = T.MOVE(T.TEMP F.RV, body'), frame = frame}
+	val body'' = F.PROC{body = T.MOVE(T.TEMP F.V0, body'), frame = frame}
     in fragments := !fragments @ [body'']
     end
   | procEntryExit ({level = Top, body}) = (ErrorMsg.error ~1 "function is declared in outermost level"; ()) 
@@ -286,7 +286,7 @@ fun subscriptVar (arrRef, index) =
 		       T.EXP(F.externalCall("exit", [T.CONST 1])),
 		       T.LABEL(successLabel)
 		   ],
-		  memInc(T.MEM(T.TEMP arrTemp),
+		  memInc(T.TEMP arrTemp,
 			 T.BINOP(T.MUL, T.BINOP(T.PLUS, T.TEMP indexTemp, T.CONST 1), T.CONST F.wordSize))))
     end
     
@@ -323,7 +323,7 @@ fun transRECORD (fieldList) =
 			   F.externalCall("allocRecord",
 					  [T.CONST(List.length fieldList)])
 			  )
-	fun iter (exp, (list, index)) = (list @ [T.MOVE(memInc(T.MEM(T.TEMP r), T.CONST (index * F.wordSize)), unEx exp)],
+	fun iter (exp, (list, index)) = (list @ [T.MOVE(memInc(T.TEMP r, T.CONST (index * F.wordSize)), unEx exp)],
 					 index + 1)
 	val (moves, _) = foldl iter ([], 0) fieldList
     in

@@ -24,7 +24,7 @@ sig
     val transIFTHEN : (exp * exp) -> exp
     val transBREAK : Temp.label option -> exp
     val transWHILE : (exp * exp * Temp.label) -> exp
-    val transFOR : (exp * exp * exp * Temp.label) -> exp
+    val transFOR : (access * exp * exp * exp * Temp.label) -> exp
     (* val transDO_WHILE : (exp * exp * Temp.label) -> exp *)
     val transBINOP : (exp * Absyn.oper * exp) -> exp
     val transRELOP : (exp * Absyn.oper * exp * Types.ty) -> exp

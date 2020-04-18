@@ -14,7 +14,7 @@ sig
     val formals : frame -> access list
     val newFrame : {name: Temp.label, formals : bool list} -> frame
     val exp : access -> Tree.exp -> Tree.exp
-    val procEntryExit1 : frame -> Tree.stm -> Tree.stm
+(*    val procEntryExit1 : frame -> Tree.stm -> Tree.stm*)
     val procEntryExit2 : frame * Assem.instr list -> Assem.instr list
     val procEntryExit1 : frame * Assem.instr list -> {prolog: string, body : Assem.instr list, epilog: string}
 

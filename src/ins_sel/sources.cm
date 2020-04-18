@@ -31,3 +31,7 @@ temp.sml
 frame.sig
 mipsframe.sml
 printtree.sml
+
+assem.sml
+canon.sml
+mipsgen.sml
