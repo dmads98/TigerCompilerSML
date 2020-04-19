@@ -38,8 +38,8 @@ codegen.sig
 mipsgen.sml
 
 flowgraph.sml
-graph.sig
-graph.sml
+(* graph.sig
+graph.sml *)
 funcgraph.sig
 funcgraph.sml
 

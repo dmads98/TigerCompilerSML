@@ -17,9 +17,7 @@ fun emitproc out (F.PROC{body,frame}) =
         val format0 = Assem.format(MipsFrame.getRegName)
     in  app (fn i => TextIO.output(out,format0 i)) newInstrs
     end
-  | emitproc out (F.STRING(lab,s)) = TextIO.output(out, (Symbol.name(lab) ^ ":" ^ s ^ "\n"));
-
-
+  | emitproc out (F.STRING(lab,s)) = TextIO.output(out, F.string(lab, s)); (* MIPS format string *)
 
 fun withOpenFile fname f = 
     let val out = TextIO.openOut fname
