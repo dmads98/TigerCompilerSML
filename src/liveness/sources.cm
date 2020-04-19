@@ -40,3 +40,10 @@ mipsgen.sml
 flowgraph.sml
 graph.sig
 graph.sml
+funcgraph.sig
+funcgraph.sml
+
+makegraph.sig
+makegraph.sml
+liveness.sig
+liveness.sml
