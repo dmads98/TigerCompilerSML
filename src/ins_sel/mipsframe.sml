@@ -44,7 +44,9 @@ val numArgsInRegs = 4
 type frame = {name: Temp.label, formals: access list, numLocalsAlloc: int ref}
 datatype frag = PROC of {body: Tree.stm, frame: frame}
 	      | STRING of Temp.label * string
-					       
+
+(* MIPS format string *)
+fun string (label, s) : string = S.name label ^ ": .asciiz \"" ^ s ^ "\"\n"
 
 val argregs = [(A0, "$a0"), (A1, "$a1"), (A2, "$a2"), (A3, "$a3")]
 val specialregs = [(ZERO, "$r0"), (AT, "$at"), (V0, "$v0"), (V1, "$v1"), (K0, "$k0"), (K1, "$k1"), (GP, "$gp"), (SP, "$sp"), (FP, "$fp"), (RA, "$ra")]
