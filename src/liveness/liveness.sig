@@ -7,5 +7,5 @@ sig
 			       moves: (IGraph.node * IGraph.node) list}
     val interpherenceGraph :
 	Flow.flowgraph -> igraph * (Flow.Graph.node -> Temp.temp list)
-    val show : outstream * igraph -> unit
+    val show : TextIO.outstream * igraph -> unit
 end

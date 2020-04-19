@@ -12,7 +12,8 @@ datatype igraph =
 		    gtemp; IGraph.node -> Temp.temp,
 			   moves: (IGraph.node * IGraph.node) list}
 
-fun interpherenceGraph () = ();
+(* Flow.flowgraph -> igraph * (Flow.Graph.node -> Temp.temp list) *)
+fun interpherenceGraph fg = ();
 
 fun show () = ();
 
