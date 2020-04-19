@@ -26,20 +26,20 @@ val empty = NodeMap.empty
 fun getNode(g,nid) = case NodeMap.find(g,nid) of
 			 NONE => raise NoSuchNode(nid)
 		       | SOME x=> x
-fun addNode(g,nid,d) = NodeMap.insert(g,nid,(nid,d,NodeSet.empty,NodeSet.empty))
-fun addNode'(g,nid,d) = 
+fun addNode (g,nid,d) = NodeMap.insert(g,nid,(nid,d,NodeSet.empty,NodeSet.empty))
+fun addNode' (g,nid,d) = 
     let val n = (nid,d,NodeSet.empty,NodeSet.empty)
 	val g' = NodeMap.insert(g,nid,n)
     in
 	(g',n)
     end
-fun changeNodeData(g,nid,d) =
+fun changeNodeData (g,nid,d) =
     let val (_,_,s,p) = getNode(g,nid)
     in
 	NodeMap.insert(g,nid,(nid,d,s,p))
     end
 
-fun adjustSets(g,{from,to},f) = 
+fun adjustSets (g,{from,to},f) = 
     case Key.compare(from,to) of
 	EQUAL => let val (i,d,s,p) = getNode(g,from)
 		 in
@@ -54,10 +54,10 @@ fun adjustSets(g,{from,to},f) =
 				to,
 				(ti,td,ts,tp'))
 	     end
-fun addEdge(g,{from,to}) = adjustSets(g,{from=from,to=to},NodeSet.add)
-fun removeEdge(g,{from,to}) = adjustSets(g,{from=from,to=to},NodeSet.delete)
+fun addEdge (g,{from,to}) = adjustSets(g,{from=from,to=to},NodeSet.add)
+fun removeEdge (g,{from,to}) = adjustSets(g,{from=from,to=to},NodeSet.delete)
 			      handle NotFound => raise NoSuchEdge(from,to)
-fun removeEdge'(g,{from,to}) = adjustSets(g,{from=from,to=to},NodeSet.delete)
+fun removeEdge' (g,{from,to}) = adjustSets(g,{from=from,to=to},NodeSet.delete)
 			       handle NotFound => g
 
 
@@ -70,7 +70,7 @@ fun doubleEdge (g, temp1, temp2) = case Key.compare(temp1,temp2) of
         end
 
 
-fun removeNode(g,nid) = 
+fun removeNode (g,nid) = 
     let val (_,_,succ,pred) = getNode(g,nid)
 	val es1 = NodeSet.foldl (fn(s,es)=>EdgeSet.add(es,{from=nid,to=s})) 
 				EdgeSet.empty 
@@ -83,13 +83,13 @@ fun removeNode(g,nid) =
     in
 	g'
     end
-fun removeNode'(g,nid) = removeNode(g,nid) handle NoSuchNode nid => g
+fun removeNode' (g,nid) = removeNode(g,nid) handle NoSuchNode nid => g
 
-fun nodeInfo(_,x,_,_) = x
+fun nodeInfo (_,x,_,_) = x
 
-fun outDegree(_,_,s,_) = NodeSet.numItems s
-fun inDegree(_,_,_,p) = NodeSet.numItems p
-fun degree(_,_,s,p) = (NodeSet.numItems s) + (NodeSet.numItems p)
+fun outDegree (_,_,s,_) = NodeSet.numItems s
+fun inDegree (_,_,_,p) = NodeSet.numItems p
+fun degree (_,_,s,p) = (NodeSet.numItems s) + (NodeSet.numItems p)
 
 val nodes = NodeMap.listItems
 fun succs (_,_,s,_) = NodeSet.listItems s
@@ -101,7 +101,7 @@ fun adj' g n = map (fn(nid)=>getNode(g,nid)) (adj n)
 
 fun getNodeID (n,_,_,_) = n
 
-fun remove(g,n) = removeNode(g, getNodeID n)
+fun remove (g,n) = removeNode(g, getNodeID n)
 
 val foldNodes = NodeMap.foldl
 fun foldSuccs f init (_,_,s,_) = NodeSet.foldl f init s
