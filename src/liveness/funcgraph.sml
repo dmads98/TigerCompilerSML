@@ -23,7 +23,7 @@ exception NoSuchEdge of nodeID * nodeID
 
 
 val empty = NodeMap.empty
-fun getNode(g,nid) = case NodeMap.find(g,nid) of
+fun getNode (g,nid) = case NodeMap.find(g,nid) of
 			 NONE => raise NoSuchNode(nid)
 		       | SOME x=> x
 fun addNode (g,nid,d) = NodeMap.insert(g,nid,(nid,d,NodeSet.empty,NodeSet.empty))
@@ -121,7 +121,7 @@ fun printGraph stringify g =
 		"   "^ stringify(nid,data)
 	    end
 	fun prSet s = NodeSet.app (println o stringNid) s
-	fun prOneNode(nid,data,succs,preds) = 
+	fun prOneNode (nid,data,succs,preds) = 
 	    let val s = stringify(nid,data)
 		val () = println("Node: " ^ s)
 		val () = println(" -> Successors:")
