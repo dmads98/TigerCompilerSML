@@ -1,12 +1,19 @@
+structure G = FuncGraph(struct
+			 type ord_key = temp
+			 val compare = Int.compare
+			 end)
+
 signature LIVENESS =
 sig
+    type data
     datatype igraph =
-	     IGRAPH of {graph: IGraph.graph,
-			tnode: Temp.temp -> IGraph.node,
+	     IGRAPH of {graph: unit G.graph,
+			tnode: Temp.temp -> unit G.node,
 			gtemp: IGraph.node -> Temp.temp,
-			moves: (IGraph.node * IGraph.node) list}
+			moves: (unit G.node * unit G.node) list}
 
-    val interpherenceGraph :
-	Flow.flowgraph -> igraph * (Flow.Graph.node -> Temp.temp list)
-    val show : TextIO.outstream * igraph -> unit
+    type livenessData
+
+    val interferenceGraph : info G.graph -> igraph * (info G.node -> Temp.temp list)
+(*    val show : TextIO.outstream * igraph -> unit*)
 end

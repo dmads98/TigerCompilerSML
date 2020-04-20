@@ -11,7 +11,7 @@ structure A = Assem
 val index = ref 0
 
 type data = {defs: Temp.temp list,
-	     uses = Temp.temp list,
+	     uses: Temp.temp list,
 	     isMove: bool}
 
 structure labelOrdMap = SplayMapFn(struct
