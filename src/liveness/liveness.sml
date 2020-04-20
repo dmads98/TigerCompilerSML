@@ -9,8 +9,8 @@ type liveMap = liveSet Flow.Graph.Table.table
 datatype igraph =
 	 IGRAPH of {graph: IGraph.graph,
 		    tnode: Temp.temp -> IGraph.node,
-		    gtemp; IGraph.node -> Temp.temp,
-			   moves: (IGraph.node * IGraph.node) list}
+		    gtemp: IGraph.node -> Temp.temp,
+		    moves: (IGraph.node * IGraph.node) list}
 
 (* Flow.flowgraph -> igraph * (Flow.Graph.node -> Temp.temp list) *)
 fun interpherenceGraph fg = ();
