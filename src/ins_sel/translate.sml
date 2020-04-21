@@ -313,7 +313,7 @@ fun transARRAY (size, init) =
 	Ex(T.ESEQ(seq[T.MOVE(T.TEMP arrRef, F.externalCall("initArray", [T.BINOP(T.PLUS, size', T.CONST 1), init'])),
 		      T.MOVE(T.MEM(T.TEMP arrRef), size')
 		     ],
-		  T.TEMP arrRef))
+		  T.BINOP(T.PLUS, T.TEMP arrRef, T.CONST F.wordSize))) (* todo: fix array return - done *)
     end
 
 (* pg 164, 288 *)

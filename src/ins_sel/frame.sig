@@ -8,7 +8,8 @@ sig
     val V0 : Temp.temp
     val SP : Temp.temp
     val RA : Temp.temp
-    
+
+    val string : Tree.label * string -> string (* MIPS format string *)
     val allocLocal : frame -> bool -> access
     val name : frame -> Temp.label
     val formals : frame -> access list

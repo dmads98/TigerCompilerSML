@@ -1,7 +1,11 @@
 structure G = FuncGraph(struct
-			 type ord_key = temp
+			 type ord_key = int
 			 val compare = Int.compare
 			 end)
+structure GL = FuncGraph(struct
+			  type ord_key = temp
+			  val compare = Int.compare
+			  end)
 
 
 structure Liveness : LIVENESS =
@@ -10,10 +14,10 @@ struct
 type data = MakeGraph.data
 
 datatype igraph =
-	 IGRAPH of {graph: unit G.graph,
-		    tnode: Temp.temp -> unit G.node,
-		    gtemp: unit G.node -> Temp.temp,
-		    moves: (unit G.node * unit G.node) list}
+	 IGRAPH of {graph: unit GL.graph,
+		    tnode: Temp.temp -> unit GL.node,
+		    gtemp: unit GL.node -> Temp.temp,
+		    moves: (unit GL.node * unit GL.node) list}
 
 structure Map = SplayMapFn(struct
 			    type ord_key = int
@@ -69,10 +73,10 @@ fun livenessIter (lMap, graph) =
     end
 
 fun interferenceHelper (graph, liveMap) =
-    let val empty : (unit G.graph) = G.empty
+    let val empty : (unit GL.graph) = GL.empty
 	fun createNodes (curNode, curGraph) =
 	    let val {uses, defs, isMove} : data - G.nodeInfo(curNode)
-		fun addTemp (t, g) = G.addNode(g, t, ())
+		fun addTemp (t, g) = GL.addNode(g, t, ())
 	    in
 		foldl addTemp curGraph (uses @ defs)
 	    end
@@ -84,9 +88,9 @@ fun interferenceHelper (graph, liveMap) =
 								then (case uses of [u] => (case Temp.compare(curTemp, u) of EQUAL => g
 															  | _ => G.doubleEdge(g, curTemp, d)) 
 										 | _ => (print("Move Instruction has more than one Use??");
-											 G.doubleEdge(g, curTemp, d))) 
-								else G.doubleEdge(g, curTemp, d)
-						       | list => (foldl (fn (def, gr) => G.doubleEdge(gr, curTemp, def)) g list))
+											 GL.doubleEdge(g, curTemp, d))) 
+								else GL.doubleEdge(g, curTemp, d)
+						       | list => (foldl (fn (def, gr) => GL.doubleEdge(gr, curTemp, def)) g list))
 	    in
 		Set.foldl addEdge curGraph liveOut
 	    end
@@ -99,7 +103,7 @@ fun interferenceHelper (graph, liveMap) =
 
 fun moveList (interGraph, cfg) =
     let fun updateList (curNode, list) =
-	    case G.nodeInfo curNode of {uses = [use], defs = [def], isMove = true} => list @ [(G.getNode(interGraph, use), G.getNode(interGraph, def))]
+	    case G.nodeInfo curNode of {uses = [use], defs = [def], isMove = true} => list @ [(GL.getNode(interGraph, use), GL.getNode(interGraph, def))]
 										   | _ => list
     in
 	foldl updateList [] G.nodes(cfg)
@@ -110,8 +114,8 @@ fun interferenceGraph fg =
 	val interferenceG = interferenceHelper(fg, livenessMap)
 	val movesList = moveList(interferenceG, fg)
 	val igraph = IGRAPH{graph = intereferenceG,
-			    tnode = (fn temp => G.getNode(interferenceG, temp)),
-			    gtemp = G.getNodeID,
+			    tnode = (fn temp => GL.getNode(interferenceG, temp)),
+			    gtemp = GL.getNodeID,
 			    moves = movesList}
 	fun getLiveOut node = case Map.find(livenessMap, G.getNodeID node) of SOME({liveIn, liveOut}) => Set.listItems(liveOut)
 									    | _ => (print("node not in livenessMap"); []) 

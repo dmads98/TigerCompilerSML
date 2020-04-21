@@ -1,16 +1,21 @@
 structure G = FuncGraph(struct
-			 type ord_key = temp
+			 type ord_key = int
 			 val compare = Int.compare
 			 end)
-
+structure GL = FuncGraph(struct
+			  type ord_key = temp
+			  val compare = Int.compare
+			  end)
+			
+		       
 signature LIVENESS =
 sig
     type data
     datatype igraph =
-	     IGRAPH of {graph: unit G.graph,
-			tnode: Temp.temp -> unit G.node,
-			gtemp: unit G.node -> Temp.temp,
-			moves: (unit G.node * unit G.node) list}
+	     IGRAPH of {graph: unit GL.graph,
+			tnode: Temp.temp -> unit GL.node,
+			gtemp: unit GL.node -> Temp.temp,
+			moves: (unit GL.node * unit GL.node) list}
 
     type livenessData
 

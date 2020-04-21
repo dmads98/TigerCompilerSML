@@ -178,7 +178,7 @@ fun transBINOP (left, oper, right) =
 	      | A.TimesOp => T.MUL
 	      | A.DivideOp => T.DIV
     in Ex(T.BINOP(oper', left', right'))
-    end;
+    end
 
 fun transRELOP (left, oper, right, ty) =
     let val left' = unEx left
@@ -192,8 +192,8 @@ fun transRELOP (left, oper, right, ty) =
 	      | A.GtOp => T.GT
 	      | A.GeOp => T.GE
     in
-	let fun helper (T.EQ, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringEqual", [exp1, exp2]))
-	      | helper (T.NE, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringNE", [exp1, exp2]))
+	let fun helper (T.EQ, exp1, exp2, Ty.STRING) = Ex(F.externalCall("tig_stringEqual", [exp1, exp2]))
+	      | helper (T.NE, exp1, exp2, Ty.STRING) = Ex(F.externalCall("tig_not", [F.externalCall("tig_stringEqual", [exp1, exp2])]))
  	      | helper (T.LE, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringLE", [exp1, exp2]))
 	      | helper (T.GE, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringGE", [exp1, exp2]))
 	      | helper (T.LT, exp1, exp2, Ty.STRING) = Ex(F.externalCall("stringLT", [exp1, exp2]))
@@ -213,8 +213,10 @@ fun transASSIGN (lhs, rhs) =
 (********** FUNCTIONS: nested->non-nested: explict frame management  **********)
 fun procEntryExit ({level = Level({parent, frame}, _), body}) =
     let val body' = unEx body
-	val body'' = F.PROC{body = T.MOVE(T.TEMP F.V0, body'), frame = frame}
-    in fragments := !fragments @ [body'']
+	val body'' = T.MOVE(T.TEMP F.V0, body')
+	val frag = F.PROC{body = F.procEntryExit1(frame, body''), frame = frame}
+    in
+	fragments := !fragments @ [frag]
     end
   | procEntryExit ({level = Top, body}) = (ErrorMsg.error ~1 "function is declared in outermost level"; ()) 
 
@@ -283,7 +285,7 @@ fun subscriptVar (arrRef, index) =
 		       T.LABEL(nextCheckLabel),
 		       T.CJUMP(T.LT, T.TEMP indexTemp, T.CONST 0, errorLabel, successLabel),
 		       T.LABEL(errorLabel),
-		       T.EXP(F.externalCall("exit", [T.CONST 1])),
+		       T.EXP(F.externalCall("outOfBoundsSubscript", [T.CONST 1])),
 		       T.LABEL(successLabel)
 		   ],
 		  memInc(T.TEMP arrTemp,
@@ -310,7 +312,7 @@ fun transARRAY (size, init) =
 	val init' = unEx init
 	val arrRef = Temp.newtemp()
     in
-	Ex(T.ESEQ(seq[T.MOVE(T.TEMP arrRef, F.externalCall("initArray", [T.BINOP(T.PLUS, size', T.CONST 1), init'])),
+	Ex(T.ESEQ(seq[T.MOVE(T.TEMP arrRef, F.externalCall("tig_initArray", [T.BINOP(T.PLUS, size', T.CONST 1), init'])),
 		      T.MOVE(T.MEM(T.TEMP arrRef), size')
 		     ],
 		  T.TEMP arrRef))
@@ -320,14 +322,14 @@ fun transARRAY (size, init) =
 fun transRECORD (fieldList) =
     let val r = Temp.newtemp ()
 	val alloc = T.MOVE(T.TEMP r,
-			   F.externalCall("allocRecord",
-					  [T.CONST(List.length fieldList)])
+			   F.externalCall("tig_allocRecord",
+					  [T.CONST(List.length(fieldList) * MipsFrame.wordSize)])
 			  )
 	fun iter (exp, (list, index)) = (list @ [T.MOVE(memInc(T.TEMP r, T.CONST (index * F.wordSize)), unEx exp)],
 					 index + 1)
 	val (moves, _) = foldl iter ([], 0) fieldList
     in
-	Ex(T.ESEQ(seq(alloc::moves), T.TEMP r))
+	Ex(T.ESEQ(seq([alloc] @ moves), T.TEMP r))
     end
 
 fun transSEQ [] = Nx(T.EXP(T.CONST 0))

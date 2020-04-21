@@ -1,16 +1,71 @@
-structure Color : COLOR =
+structure GL = FuncGraph(struct
+			  type ord_key = temp
+			  val compare = Int.compare
+			  end)
+
+structure Color :
+sig
+    
+    type allocation = string Temp.Table.table
+    val color: {interference: Liveness.igraph,
+		initial: allocation,
+		spillCost: unit GL.node -> int,
+		registers: string list}
+	       -> allocation * Temp.temp list
+    (* returns allocation=(temp->reg map) * spilled temps *)
+end =
 struct
 
-structure Frame : FRAME = MipsFrame
-type allocation = Frame.register Temp.Map.map (* Updated temp *)
+type allocation = string Temp.Table.table (* Updated temp *)
 
+(*
 structure TempSet = Temp.Set
 structure TempMap = Temp.Map
+*)
 
+fun member (x, nil) = false
+  | member (x, y::ys) = x=y orelse member (x,ys); 
+
+			 
 (* allocation * Temp.temp list *)
 (* returns allocation=(temp->reg map) * spilled temps *)
-fun color {interference = Liveness.igraph{graph, tnode, moves}, initial = init, spillCost = spillCost, registers = regs} =
-    let
+fun color ({interference as Liveness.IGRAPH{graph, tnode, gtemp, moves}, initial = init, spillCost = spillCost, registers = regs}) =
+    let val filterPreColored = List.filter (fn node => case Temp.Table.look(init, gtemp node) of SOME(t) => not(member(regs, t))
+													| NONE => true) GL.nodes(graph) 
+    in
+	case filterPreColored of [] => (print("interference graph has no nodes"); (init, []))
+			       | [node] => let val neighborsNotSpilled = List.filter (fn t => Temp.Table.look(init, t) of SOME(e) => true
+															| NONE => false) GL.preds(node)
+					       val colorNeighbors = map (fn t => case Temp.Table.look(init, t) of SOME(e) => e
+														| NONE => (print("neighbor is not spilled and also not colored"))) neighborsNotSpilled
+					       val colorsAvailable = List.filter(fn reg => not(member(colorNeighbors, reg))) regs
+					   in
+					       if List.length(colorsAvailable) > 0
+					       then (Temp.Table.enter(init, gtemp(node), List.nth(colorsAvailable, 0)), [])
+					       else (init, [gtemp(node)])
+					   end
+			       | list => let val notSigNodes = List.filter (fn node => GL.outDegree(node) < List.length(regs)) list
+					     val nextToSimplify = if List.length(notSigNodes) = 0
+								  then List.hd(list)
+								  else List.hd(notSigNodes)
+					     val updatedGraph = GL.remove(graph, nextToSimplify)
+					     val updatedInter = Liveness.IGRAPH{graph = updatedGraph, tnode = tnode, gtemp = gtemp, moves = moves}
+					 in
+					     let val (updatedAlloc, spillList) = color({interference = updatedInter, initial = init, spillCost = spillCost, registers = regs})
+						 val neighborsNotSpilled = List.filter (fn t => Temp.Table.look(updatedAlloc, t) of SOME(e) => true
+															  | NONE => false) GL.preds(nextToSimplify)
+						 val colorNeighbors = map (fn t => case Temp.Table.look(updatedAlloc, t) of SOME(e) => e
+														| NONE => (print("neighbor is not spilled and also not colored"))) neighborsNotSpilled
+						 val colorsAvailable = List.filter(fn reg => not(member(colorNeighbors, reg))) regs
+					     in
+						 if List.length(colorsAvailable) > 0
+						 then (Temp.Table.enter(updatedAlloc, gtemp(nextToSimplify), List.hd(colorsAvailable)), spillList)
+						 else (updatedAlloc, spillList @ [gtemp(nextToSimplify)]
+						     
+					     end
+					 end
+    end
+	(*
 	val alloc : (Frame.register Temp.Map.map) = initial
 	val spilledTemps : (Temp.temp list) = []
 	val colors : Frame.register list = regs
@@ -59,13 +114,6 @@ fun color {interference = Liveness.igraph{graph, tnode, moves}, initial = init, 
 	(alloc, spilledTemps) (* return the result *)
     end;
 
-end
 
-structure RegAlloc : REG_ALLOC =
-struct
-structure Frame : FRAME = MipsFrame
-type allocation = Frame.register Temp.Map.map
-
-fun alloc () = ();
-
+	    end*)
 end

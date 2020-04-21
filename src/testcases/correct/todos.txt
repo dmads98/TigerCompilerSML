@@ -1,0 +1,30 @@
+*********************************************
+Austin
+*********************************************
+
+-  non-existant labels used for jump targets(ex. test27) -3
+- functions/program does not exit, just jumps to label with nothing -3
+
+- malloc needs number of bytes to be allocated, not number of words -1
+- seems that main is omited in some instances, causing the program entry to be in the middle of a process call w/o argumens meaning that references to arguments are random previously non-existant temps (ex. test4) -10
+- Non-existant labels used as targets for jumps (ex. test4) -3
+- results of function returned through $v0, but not read from $v0 -2
+- no nil checks for records -2
+- late (if you were granted an extension please let me know) -20
+
+*********************************************
+Fixed?
+*********************************************
+- array size stored at 0 instead of -4
+- strings formated incorrectly -3
+
+
+*********************************************
+Our Testing
+*********************************************
+- Special characters in strings should be saved as is:
+
+merge.tig: string "\n" issue
+L50: .asciiz "-"
+L22: .asciiz "
+"
