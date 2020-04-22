@@ -1,10 +1,10 @@
-structure G = FuncGraph(struct
-			 type ord_key = int
-			 val compare = Int.compare
-			 end)
-
 structure MakeGraph : MAKEGRAPH =
 struct
+
+(* structure G = FuncGraph(struct *)
+(* 			 type ord_key = int *)
+(* 			 val compare = Int.compare *)
+(* 			 end) *)
 
 structure A = Assem
 
@@ -37,13 +37,13 @@ fun instrs2graph instrList =
 	    in
 		G.addNode(curGraph, id, nodeData)
 	    end
-	  | createNode (instr as A.LABEL{assem, label}, curGraph) =
+	  | createNode (instr as A.LABEL{assem, lab}, curGraph) =
 	    let val id = getAndUpdateIndex instr
 		val nodeData = {defs = [],
 				uses = [],
 				isMove = false}
 	    in
-		labelInstrMap := labelOrdMap.insert(!labelInstrMap, Symbol.name(label), id);
+		labelInstrMap := labelOrdMap.insert(!labelInstrMap, Symbol.name(lab), id);
 		G.addNode(curGraph, id, nodeData)
 	    end
 	  | createNode (instr as A.MOVE{assem, dst, src}, curGraph) =
@@ -59,15 +59,15 @@ fun instrs2graph instrList =
 	    let val edge = {to = !index + 1, from = !index}
 	    in
 		index := !index + 1;
-		if index < List.length(G.nodes(curGraph))
+		if !index < List.length(G.nodes(curGraph))
 		then G.addEdge(curGraph, edge)
 		else curGraph
 	    end
-	  | createEdge (instr as A.LABEL{assem, label}, curGraph) =
+	  | createEdge (instr as A.LABEL{assem, lab}, curGraph) =
 	    let val edge = {to = !index + 1, from = !index}
 	    in
 		index := !index + 1;
-		if index < List.length(G.nodes(curGraph))
+		if !index < List.length(G.nodes(curGraph))
 		then G.addEdge(curGraph, edge)
 		else curGraph
 	    end
@@ -85,6 +85,6 @@ fun instrs2graph instrList =
 	val nodeGraph = (index := 0; foldl createNode G.empty instrList)
 	val completeGraph = (index := 0; foldl createEdge nodeGraph instrList)
     in
-	(completeGraph, G.node(completeGraph))
+	(completeGraph, G.nodes (completeGraph))
     end
 end

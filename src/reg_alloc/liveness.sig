@@ -1,10 +1,6 @@
-structure G = FuncGraph(struct
-			 type ord_key = int
-			 val compare = Int.compare
-			 end)
 structure GL = FuncGraph(struct
-			  type ord_key = temp
-			  val compare = Int.compare
+			  type ord_key = Temp.temp
+			  val compare = Temp.compare
 			  end)
 			
 		       

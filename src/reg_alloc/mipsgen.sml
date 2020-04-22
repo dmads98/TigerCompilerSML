@@ -41,11 +41,11 @@ fun codegen (frame) (stm: Tree.stm) : Assem.instr list =
 		 
 	  (* sw *)
 	  | munchStm (T.MOVE(T.MEM(T.BINOP(T.PLUS, e1, T.CONST i)), e2)) =
-	    emit (A.OPER{assem = "sw 's0, " ^ int i ^ "(`s1) \n",
+	    emit (A.OPER{assem = "sw `s0, " ^ int i ^ "(`s1) \n",
 			 src = [munchExp e2, munchExp e1],
 			 dst = [], jump = NONE})
 	  | munchStm (T.MOVE(T.MEM(T.BINOP(T.PLUS, T.CONST i, e1)), e2)) =
-	    emit (A.OPER{assem = "sw 's0, " ^ int i ^ "(`s1) \n",
+	    emit (A.OPER{assem = "sw `s0, " ^ int i ^ "(`s1) \n",
 			 src = [munchExp e2, munchExp e1],
 			 dst = [], jump = NONE})
 	  | munchStm (T.MOVE(T.MEM(e1), e2)) =
@@ -83,7 +83,7 @@ fun codegen (frame) (stm: Tree.stm) : Assem.instr list =
 	  | munchExp (T.MEM(T.BINOP(T.PLUS, e1, T.CONST i))) =
 	    result(fn r =>
 		      emit(A.OPER{
-				assem = "lw `d0, " ^ int i ^ "('s0)\n",
+				assem = "lw `d0, " ^ int i ^ "(`s0)\n",
 				src = [munchExp e1],
 				dst = [r],
 				jump = NONE
@@ -91,7 +91,7 @@ fun codegen (frame) (stm: Tree.stm) : Assem.instr list =
 	  | munchExp (T.MEM(T.BINOP(T.PLUS, T.CONST i, e1))) =
 	    result(fn r =>
 		      emit(A.OPER{
-				assem = "lw `d0, " ^ int i ^ "('s0)\n",
+				assem = "lw `d0, " ^ int i ^ "(`s0)\n",
 				src = [munchExp e1],
 				dst = [r],
 				jump = NONE

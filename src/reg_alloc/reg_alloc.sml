@@ -3,7 +3,7 @@ sig
     structure Frame : FRAME
     type allocation = string Temp.Table.table
     val alloc : Assem.instr list * Frame.frame ->
-		Assem.instr list * allocation
+    		Assem.instr list * allocation
 end
 =
 struct
@@ -22,24 +22,23 @@ fun handleSpills (alloc, calleeSaves, instrList, [], cur) = (alloc, cur, instrLi
 	val (fg, nodeList) = MakeGraph.instrs2graph(updatedInstrs)
 	val (ig, _) = Liveness.interferenceGraph(fg)
 	val (updatedAlloc, updatedSpills) = Color.color({interference = ig,
-							 initial = Frame.getPreColoredAlloc(),
+							 initial = Frame.getPreColoredAllocation(),
 							 spillCost = (fn r => 1),
-							 registers = Frame.getAllRegs()})
+							 registers = Frame.getAllRegNames()})
     in
 	handleSpills(updatedAlloc, calleeSaves, updatedInstrs, updatedSpills, cur @ [reg])
     end
 
-	
 fun alloc (instrList, frame) =
     let val (fg, nodeList) = MakeGraph.instrs2graph(instrList)
-	val (igraph, getLiveOut) = Liveness.interferenceGraph(fg)
-	val (alloc, spillList) = Color.color({intereference = igraph,
-					      initial = Frame.getPreColoredAlloc(),
-					      spillCost = (fn t => 1),
-					      registers = Frame.getAllRegs()})
-	val (fAlloc, frameSpills, fInstrs) = handleSpills(alloc, Frame.getCalleeSaves(), instrList, spillList, [])
-	val finalInstrs = #body(Frame.procEntryExit3(frame, fInstrs, frameSpills))
+    	val (igraph, getLiveOut) = Liveness.interferenceGraph(fg)
+    	val (alloc, spillList) = Color.color({interference = igraph,
+    					      initial = Frame.getPreColoredAllocation(),
+    					      spillCost = (fn t => 1),
+    					      registers = Frame.getAllRegNames()})
+    	val (fAlloc, frameSpills, fInstrs) = handleSpills(alloc, Frame.getCalleeSaves(), instrList, spillList, [])
+    	val finalInstrs = #body(Frame.procEntryExit3(frame, fInstrs, frameSpills))
     in
-	(finalInstrs, fAlloc)
+    	(finalInstrs, fAlloc)
     end
 end

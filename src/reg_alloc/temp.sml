@@ -1,4 +1,4 @@
-structure Temp :> TEMP =
+structure Temp : TEMP =
 struct
 type temp = int
 		
@@ -41,7 +41,7 @@ fun newlabel() =
 	val x  = !labelCount
 	val _ = labelCount := x + 1
     in
-	Symbol.symbol (Format.format "L%d" ^ [Format.INT(x)])
+	Symbol.symbol ("L" ^ Int.toString x)
     end
 val namedlabel = Symbol.symbol
 		     

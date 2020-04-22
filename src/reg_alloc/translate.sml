@@ -273,15 +273,19 @@ fun fieldVar (recRef, index) = Ex(memInc(unEx recRef, T.CONST(index * F.wordSize
     
 fun subscriptVar (arrRef, index) =
     let val indexTemp = Temp.newtemp()
+	val arrRef' = unEx arrRef
 	val arrTemp = Temp.newtemp()
+	val size = Temp.newtemp()
 	val errorLabel = Temp.newlabel()
 	val successLabel = Temp.newlabel()
 	val nextCheckLabel = Temp.newlabel()
     in
 	Ex(T.ESEQ(seq[
 		       T.MOVE(T.TEMP indexTemp, unEx index),
-		       T.MOVE(T.TEMP arrTemp, unEx arrRef),
-		       T.CJUMP(T.GE, T.TEMP indexTemp, T.MEM(T.TEMP arrTemp), errorLabel, nextCheckLabel),
+		       T.MOVE(T.TEMP arrTemp, arrRef'),
+		       T.MOVE(T.TEMP size, T.MEM(T.BINOP(T.MINUS, arrRef', T.CONST F.wordSize))),
+		       
+		       T.CJUMP(T.GE, T.TEMP indexTemp, T.MEM(T.TEMP size), errorLabel, nextCheckLabel),
 		       T.LABEL(nextCheckLabel),
 		       T.CJUMP(T.LT, T.TEMP indexTemp, T.CONST 0, errorLabel, successLabel),
 		       T.LABEL(errorLabel),
@@ -289,7 +293,7 @@ fun subscriptVar (arrRef, index) =
 		       T.LABEL(successLabel)
 		   ],
 		  memInc(T.TEMP arrTemp,
-			 T.BINOP(T.MUL, T.BINOP(T.PLUS, T.TEMP indexTemp, T.CONST 1), T.CONST F.wordSize))))
+			 T.BINOP(T.MUL,  T.TEMP indexTemp, T.CONST F.wordSize))))
     end
     
 fun transINT (num : int) = Ex(T.CONST num);
@@ -315,7 +319,7 @@ fun transARRAY (size, init) =
 	Ex(T.ESEQ(seq[T.MOVE(T.TEMP arrRef, F.externalCall("tig_initArray", [T.BINOP(T.PLUS, size', T.CONST 1), init'])),
 		      T.MOVE(T.MEM(T.TEMP arrRef), size')
 		     ],
-		  T.TEMP arrRef))
+		  T.BINOP(T.PLUS, T.TEMP arrRef, T.CONST F.wordSize))) (* todo: fix array return - done *)
     end
 
 (* pg 164, 288 *)

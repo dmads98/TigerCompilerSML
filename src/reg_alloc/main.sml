@@ -3,8 +3,6 @@ structure Tr = Translate
 structure F = MipsFrame
 (*structure R = RegAlloc*)
 		  
-fun getsome (SOME x) = x;
-
 fun emitproc out (F.PROC{body,frame}) =
     let val _ = print ("emit " ^ Symbol.name(F.name frame) ^ "\n")
 	val _ = Printtree.printtree(TextIO.stdOut,body);

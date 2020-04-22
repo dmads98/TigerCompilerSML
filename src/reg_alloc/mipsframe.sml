@@ -48,6 +48,12 @@ datatype frag = PROC of {body: Tree.stm, frame: frame}
 (* MIPS format string *)
 fun string (label, s) : string = ".data\n" ^ Symbol.name(label) ^ ":\n.word " ^ Int.toString(String.size(s)) ^ "\n.ascii \"" ^ s ^ "\"\n" ^ ".text\n"
 
+(* from translate *)
+fun seq [s] = s
+  | seq [s1, s2] = Tree.SEQ(s1, s2)
+  | seq (a::l) = Tree.SEQ(a, seq l)
+  | seq [] = (Tree.EXP(Tree.CONST(0)))
+						
 val argregs = [(A0, "$a0"), (A1, "$a1"), (A2, "$a2"), (A3, "$a3")]
 val specialregs = [(ZERO, "$r0"), (AT, "$at"), (V0, "$v0"), (V1, "$v1"), (K0, "$k0"), (K1, "$k1"), (GP, "$gp"), (SP, "$sp"), (FP, "$fp"), (RA, "$ra")]
 val calleesaves = [(S0, "$s0"), (S1, "$s1"), (S2, "$s2"), (S3, "$s3"), (S4, "$s4"), (S5, "$s5"), (S6, "$s6"), (S7, "$s7")]
@@ -104,10 +110,10 @@ fun int (x: int) =
 					       
 fun procEntryExit1 (frame : frame, body : Tree.stm) =
     let val numFormals = List.length(formals(frame))
-	val offset = num * ~4
+	val offset = numFormals * ~4
 	val fLabel = name frame
 	fun helper(index, formals) =
-	    if (index > numFormals)
+	    if (index >= numFormals)
 	    then []
 	    else
 		if (index >= 4)
@@ -127,7 +133,7 @@ fun procEntryExit2 (frame : frame, body) = body @ [Assem.OPER{assem = "",
 						      dst = [],
 						      jump = SOME ([])}]
 
-fun procEntryExit3 ({name, formals, numLocalsAlloc}, label::body, spillList) =
+fun procEntryExit3 ({name, formals, numLocalsAlloc} : frame, label::body, spillList) =
     let val retInstr = Assem.OPER{assem = "jr `s0\n\n",
 				  src = [RA],
 				  dst = [],
@@ -153,7 +159,7 @@ fun procEntryExit3 ({name, formals, numLocalsAlloc}, label::body, spillList) =
 							    dst = [spill],
 							    jump = NONE})) spillList
 	val fpPos = (!numLocalsAlloc + 1) * ~4
-	val sizeOfStack = (~numLocalsAlloc + List.length(spillList) + 2) * ~4
+	val sizeOfStack = (~(!numLocalsAlloc) + List.length(spillList) + 2) * ~4
 	val makeStackSpace = [Assem.OPER{assem = "sw `s0, " ^ int(fpPos) ^ "(`s1) \n",
 					 src=[FP, SP],
 					 dst = [],

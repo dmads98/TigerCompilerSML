@@ -37,8 +37,8 @@ canon.sml
 codegen.sig
 mipsgen.sml
 
-flowgraph.sml
-(* graph.sig
+(* flowgraph.sml
+graph.sig
 graph.sml *)
 funcgraph.sig
 funcgraph.sml
@@ -47,3 +47,6 @@ makegraph.sig
 makegraph.sml
 liveness.sig
 liveness.sml
+
+reg_alloc.sml
+reg_color.sml

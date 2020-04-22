@@ -9,14 +9,15 @@ sig
     val SP : Temp.temp
     val RA : Temp.temp
     
+    val string : Tree.label * string -> string (* MIPS format string *)
     val allocLocal : frame -> bool -> access
     val name : frame -> Temp.label
     val formals : frame -> access list
     val newFrame : {name: Temp.label, formals : bool list} -> frame
     val exp : access -> Tree.exp -> Tree.exp
-    val procEntryExit1 : frame -> Tree.stm -> Tree.stm
+    val procEntryExit1 : frame * Tree.stm -> Tree.stm
     val procEntryExit2 : frame * Assem.instr list -> Assem.instr list
-    val procEntryExit3 : frame * Assem.instr list -> {prolog: string, body : Assem.instr list, epilog: string}
+    val procEntryExit3 : frame * Assem.instr list * Temp.temp list -> {prolog: string, body : Assem.instr list, epilog: string}
 
     val externalCall : string * Tree.exp list -> Tree.exp
 						  
@@ -32,6 +33,6 @@ sig
     val getReturnRegisters : unit -> Temp.temp list
     val getReturnAddress : unit -> Temp.temp
     val getPreColoredAllocation: unit -> string Temp.Table.table
-    val getAllRegs: unit -> string list
+    val getAllRegNames: unit -> string list
     val getSinks: unit -> Temp.temp list						
 end
