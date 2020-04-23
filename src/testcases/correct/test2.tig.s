@@ -1,5 +1,46 @@
 .data
+.align 4
+L0: .asciiz "0"
 .text
+.globl tig_main
+.ent tig_main
+#-----------tig_main----------
+tig_main:
+sw $fp, -8($sp) 
+move $fp, $sp
+addi $sp, $sp, -12
+sw $ra, -4($fp) 
+sw $a0, 0($fp) 
+addi $v0, $sp, 0
+move $sp, $v0
+li $a0, 10
+addi $v1, $a0, 1
+move $a0, $v1
+li $a1, 0
+move $a1, $a1
+jal tig_initArray
+addi $a2, $sp, 0
+move $sp, $a2
+move $v0, $v0
+li $a3, 10
+sw $a3, 0($v0) 
+addi $t0, $v0, 4
+move $v0, $t0
+addi $t1, $sp, 0
+move $sp, $t1
+la $t2, L0
+move $a0, $t2
+jal tig_print
+addi $t3, $sp, 0
+move $sp, $t3
+move $v0, $v0
+j L1 
+L1:
+lw $ra, -4($fp) 
+addi $sp, $sp, 12
+lw $fp, -8($fp)
+jr $ra
+
 #-----------runtime----------
 	#.file	1 "runtime.c"
 	.option pic2
@@ -835,33 +876,3 @@ exit:
 	li $v0, 10
 	syscall
 	
-#-----------tig_main----------
-tig_main:
-sw $fp, -8($sp) 
-move $fp, $sp
-addi $sp, $sp, -12
-sw $ra, -4($fp) 
-sw $a0, 0($fp) 
-addi $v0, $sp, 0
-move $sp, $v0
-li $a0, 10
-addi $v1, $a0, 1
-move $a0, $v1
-li $a1, 0
-move $a1, $a1
-jal tig_initArray
-addi $a2, $sp, 0
-move $sp, $a2
-move $v0, $v0
-li $a3, 10
-sw $a3, 0($v0) 
-addi $t0, $v0, 4
-move $v0, $t0
-move $v0, $v0
-j L0 
-L0:
-lw $ra, -4($fp) 
-addi $sp, $sp, 12
-lw $fp, -8($fp)
-jr $ra
-
