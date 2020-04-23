@@ -40,9 +40,12 @@ fun compile filename =
 			 ( TextIO.output(out, ".data\n");
 			   app (emitproc out) strings;
 			   TextIO.output(out, ".text\n");
-			   app (emitproc out) procs;
+			   TextIO.output(out, "#-----------runtime----------\n");
 			   TextIO.output(out, runtime);
-			   TextIO.output(out, sys)))
+			   TextIO.output(out, "#-----------sys_spim----------\n");
+			   TextIO.output(out, sys);
+			   TextIO.output(out, "#-----------tig_main----------\n");
+			   app (emitproc out) procs))
     end
 
 end

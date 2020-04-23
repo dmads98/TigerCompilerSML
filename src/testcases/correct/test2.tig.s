@@ -1,34 +1,6 @@
 .data
 .text
-tig_main:
-sw $fp, -8($sp) 
-move $fp, $sp
-addi $sp, $sp, -12
-sw $ra, -4($fp) 
-sw $a0, 0($fp) 
-addi $v0, $sp, 0
-move $sp, $v0
-li $a0, 10
-addi $v1, $a0, 1
-move $a0, $v1
-li $a1, 0
-move $a1, $a1
-jal tig_initArray
-addi $a2, $sp, 0
-move $sp, $a2
-move $zero, $v0
-li $a3, 10
-sw $a3, 0($zero) 
-addi $t0, $zero, 4
-move $at, $t0
-move $v0, $at
-j L0 
-L0:
-lw $ra, -4($fp) 
-addi $sp, $sp, 12
-lw $fp, -8($fp)
-jr $ra
-
+#-----------runtime----------
 	#.file	1 "runtime.c"
 	.option pic2
 	.text
@@ -791,6 +763,7 @@ la $a0, subscriptFail
 li $v0, 4
 syscall
 j exit
+#-----------sys_spim----------
 # system calls for Tiger, when running on SPIM
 #
 # $Id: sysspim.s,v 1.1 2002/08/25 05:06:41 shivers Exp $
@@ -816,7 +789,7 @@ malloc:
 
 	.data
 	.align 4
-getchar_buf:	.byte 0,0
+getchar_buf:	.byte 0, 0
 
 	.text
 getchar:
@@ -833,7 +806,7 @@ getchar:
 
 	.data
 	.align 4
-putchar_buf:	.byte 0,0
+putchar_buf:	.byte 0, 0
 
 	.text
 putchar:
@@ -862,3 +835,33 @@ exit:
 	li $v0, 10
 	syscall
 	
+#-----------tig_main----------
+tig_main:
+sw $fp, -8($sp) 
+move $fp, $sp
+addi $sp, $sp, -12
+sw $ra, -4($fp) 
+sw $a0, 0($fp) 
+addi $v0, $sp, 0
+move $sp, $v0
+li $a0, 10
+addi $v1, $a0, 1
+move $a0, $v1
+li $a1, 0
+move $a1, $a1
+jal tig_initArray
+addi $a2, $sp, 0
+move $sp, $a2
+move $v0, $v0
+li $a3, 10
+sw $a3, 0($v0) 
+addi $t0, $v0, 4
+move $v0, $t0
+move $v0, $v0
+j L0 
+L0:
+lw $ra, -4($fp) 
+addi $sp, $sp, 12
+lw $fp, -8($fp)
+jr $ra
+
