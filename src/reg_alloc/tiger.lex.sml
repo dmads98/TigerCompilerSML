@@ -229,9 +229,9 @@ fun yyAction8 (strm, lastMatch : yymatch) = (yystrm := strm;
 fun yyAction9 (strm, lastMatch : yymatch) = (yystrm := strm;
       (strBuilder := !strBuilder ^ "\\"; continue()))
 fun yyAction10 (strm, lastMatch : yymatch) = (yystrm := strm;
-      (strBuilder := !strBuilder ^ "\t"; continue()))
+      (strBuilder := !strBuilder ^ "\\t"; continue()))
 fun yyAction11 (strm, lastMatch : yymatch) = (yystrm := strm;
-      (strBuilder := !strBuilder ^ "\n"; continue()))
+      (strBuilder := !strBuilder ^ "\\n"; continue()))
 fun yyAction12 (strm, lastMatch : yymatch) = let
       val yytext = yymktext(strm)
       in

@@ -46,7 +46,10 @@ datatype frag = PROC of {body: Tree.stm, frame: frame}
 	      | STRING of Temp.label * string
 
 (* MIPS format string *)
-fun string (label, s) : string = ".data\n" ^ Symbol.name(label) ^ ":\n.word " ^ Int.toString(String.size(s)) ^ "\n.ascii \"" ^ s ^ "\"\n" ^ ".text\n"
+(* fun string (label, s) : string = ".data\n" ^ Symbol.name(label) ^ ":\n.word " ^ Int.toString(String.size(s)) ^ "\n.ascii \"" ^ s ^ "\"\n" ^ ".text\n" *)
+
+fun string (label, string) : string = Symbol.name(label) ^ ": .asciiz \"" ^ string ^ "\"\n";
+
 
 (* from translate *)
 fun seq [s] = s
@@ -55,10 +58,10 @@ fun seq [s] = s
   | seq [] = (Tree.EXP(Tree.CONST(0)))
 						
 val argregs = [(A0, "$a0"), (A1, "$a1"), (A2, "$a2"), (A3, "$a3")]
-val specialregs = [(ZERO, "$r0"), (AT, "$at"), (V0, "$v0"), (V1, "$v1"), (K0, "$k0"), (K1, "$k1"), (GP, "$gp"), (SP, "$sp"), (FP, "$fp"), (RA, "$ra")]
+val specialregs = [(ZERO, "$zero"), (AT, "$at"), (V0, "$v0"), (V1, "$v1"), (K0, "$k0"), (K1, "$k1"), (GP, "$gp"), (SP, "$sp"), (FP, "$fp"), (RA, "$ra")]
 val calleesaves = [(S0, "$s0"), (S1, "$s1"), (S2, "$s2"), (S3, "$s3"), (S4, "$s4"), (S5, "$s5"), (S6, "$s6"), (S7, "$s7")]
 val callersaves = [(T0, "$t0"), (T1, "$t1"), (T2, "$t2"), (T3, "$t3"), (T4, "$t4"), (T5, "$t5"), (T6, "$t6"), (T7, "$t7"), (T8, "$t8"), (T9, "$t9")]
-val sinks = [(ZERO, "$r0"), (AT, "$at"), (K0, "$k0"), (K1, "$k1"), (GP, "$gp"), (SP, "$sp"), (FP, "$fp"), (RA, "$ra")]
+val sinks = [(ZERO, "$zero"), (AT, "$at"), (K0, "$k0"), (K1, "$k1"), (GP, "$gp"), (SP, "$sp"), (FP, "$fp"), (RA, "$ra")]
 
 fun getCalleeSaves () = map (fn (reg, name) => reg) calleesaves
 fun getCallerSaves () = map (fn (reg, name) => reg) callersaves
@@ -69,8 +72,11 @@ fun getAllRegNames () = map (fn (reg, name) => name) (specialregs @ argregs @ ca
 
 fun getSinks () = map (fn (reg, name) => reg) sinks
 			   
-fun getPreColoredAllocation () = foldl (fn ((reg, name), curTable) => Temp.Table.enter(curTable, reg, name)) Temp.Table.empty (calleesaves @ specialregs @ callersaves @ argregs)
-		       
+fun getPreColoredAllocation () = foldl (fn ((reg, name), curTable) =>
+					   Temp.Table.enter(curTable, reg, name))
+				       (Temp.Table.empty)
+				       (calleesaves @ specialregs @ callersaves @ argregs)
+			       
 val tempMap = let fun addToMap ((reg, name), curMap) = Temp.Table.enter(curMap, reg, name)
 	      in
 		  foldl addToMap Temp.Table.empty (specialregs @ argregs @ calleesaves @ callersaves)
@@ -91,10 +97,8 @@ fun newFrame {name, formals} =
 	val numStackFormals = ref 0
 	fun checkBools true = (numStackFormals := !numStackFormals + 1;
 			       InFrame(~1 * (!numStackFormals - 1) * wordSize))
-	  | checkBools false = if !numRegsInUse >= numArgsInRegs
-			       then checkBools true
-			       else (numRegsInUse := !numRegsInUse + 1;
-				     InReg(Temp.newtemp()))
+	  | checkBools false = (numRegsInUse := !numRegsInUse + 1;
+				InReg(Temp.newtemp()))
     in
 	{name = name, formals = (map checkBools formals), numLocalsAlloc = numStackFormals}
     end
@@ -102,7 +106,7 @@ fun newFrame {name, formals} =
 fun exp (InReg(k)) (fP) = Tree.TEMP(k)
   | exp (InFrame(k)) (fP) = Tree.MEM(Tree.BINOP(Tree.PLUS, fP, Tree.CONST(k)))
 
-fun externalCall(funcName, expList) = Tree.CALL(Tree.NAME(Temp.namedlabel(funcName)), expList)
+fun externalCall (funcName, expList) = Tree.CALL(Tree.NAME(Temp.namedlabel(funcName)), expList)
 
 fun int (x: int) =
     if (x>=0) then Int.toString x
@@ -159,7 +163,7 @@ fun procEntryExit3 ({name, formals, numLocalsAlloc} : frame, label::body, spillL
 							    dst = [spill],
 							    jump = NONE})) spillList
 	val fpPos = (!numLocalsAlloc + 1) * ~4
-	val sizeOfStack = (~(!numLocalsAlloc) + List.length(spillList) + 2) * ~4
+	val sizeOfStack = (!numLocalsAlloc + List.length(spillList) + 2) * ~4
 	val makeStackSpace = [Assem.OPER{assem = "sw `s0, " ^ int(fpPos) ^ "(`s1) \n",
 					 src=[FP, SP],
 					 dst = [],
@@ -167,7 +171,7 @@ fun procEntryExit3 ({name, formals, numLocalsAlloc} : frame, label::body, spillL
 			      Assem.MOVE{assem = "move `d0, `s0\n",
 					 src = SP,
 					 dst = FP},
-			      Assem.OPER{assem = "addi `d0, `s0, " ^ int(sizeOfStack * ~1) ^ "\n",
+			      Assem.OPER{assem = "addi `d0, `s0, " ^ int(sizeOfStack) ^ "\n",
 					 src = [SP],
 					 dst = [SP],
 					 jump = NONE}]

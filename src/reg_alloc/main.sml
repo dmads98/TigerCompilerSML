@@ -27,12 +27,22 @@ fun withOpenFile fname f =
 fun compile filename = 
     let val absyn = Parse.parse filename
         val frags = (FindEscape.findEscape absyn; Semant.transProg absyn)
+	val (strings, procs) = List.partition (fn x =>
+						  case x of
+						      F.PROC(_) => false
+						   | F.STRING(_) => true) frags
 
 	val runtime = TextIO.inputAll (TextIO.openIn "runtimele.s")
 	val sys = TextIO.inputAll (TextIO.openIn "sysspim.s")
     in 
         withOpenFile (filename ^ ".s") 
-		     (fn out => (app (emitproc out) frags; TextIO.output(out, runtime); TextIO.output(out, sys)))
+		     (fn out =>
+			 ( TextIO.output(out, ".data\n");
+			   app (emitproc out) strings;
+			   TextIO.output(out, ".text\n");
+			   app (emitproc out) procs;
+			   TextIO.output(out, runtime);
+			   TextIO.output(out, sys)))
     end
 
 end
