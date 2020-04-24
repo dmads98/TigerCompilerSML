@@ -1,16 +1,44 @@
 structure Types =
 struct
 
-  type unique = unit ref
+type unique = unit ref
 
-  datatype ty = 
-            RECORD of (Symbol.symbol * ty) list * unique
-          | NIL
-          | INT
-          | STRING
-          | ARRAY of ty * unique
-	  | NAME of Symbol.symbol * ty option ref
-	  | UNIT
+structure S = Symbol
 
+datatype ty = RECORD of (unit -> (S.symbol * S.symbol) list) * unique
+	    | NIL
+	    | INT
+	    | STRING
+	    | ARRAY of ty * unique
+	    | NAME of S.symbol * ty option ref
+	    | UNIT
+       | BOTTOM
+
+datatype compRes = EQ
+       | LT
+       | GT
+       | NC
+
+fun typeComp (BOTTOM, _) = true
+  | typeComp (_, UNIT) = true
+  | typeComp (NIL, NIL) = true
+  | typeComp (STRING, STRING) = true 
+  | typeComp (NIL, RECORD(_)) = true
+  | typeComp (INT, INT) =
+  | typeComp (NAME(s1, _), NAME(s2, _)) = STRING.compare(S.name s1, S.name s2) = EQUAL
+  | typeComp (RECORD(_, u1), RECORD(_, u2)) = u1 = u2
+  | typeComp (ARRAY(_, u1), ARRAY(_, u2)) = u1 = u2
+  | typeComp (_, _) = false
+
+fun getComp (ty1, ty2) = if (typeComp(ty1, ty2) andalso typeComp(ty1, ty2))
+			 then EQ
+			 else if(typeComp(ty1, ty2))
+			 then LT
+			 else if (typeComp(ty2, ty1))
+			 then GT
+			 else NC
+
+fun getEQ (ty1, ty2) = getComp(ty1, ty2) = EQ
+			 
 end
 
