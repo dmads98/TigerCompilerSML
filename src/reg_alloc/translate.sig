@@ -19,6 +19,7 @@ sig
     val fieldVar : (exp * int) -> exp
     val subscriptVar : (exp * exp) -> exp
 
+    val transCONST : (int -> exp)
     val transIFELSE : (exp * exp * exp) -> exp
     val transIFTHEN : (exp * exp) -> exp
     val transBREAK : Temp.label -> exp
@@ -33,6 +34,7 @@ sig
     val transSTRING : string -> exp
     val transARRAY : (exp * exp) -> exp
     val transRECORD : exp list -> exp
+    val transSEQ : exp list -> exp
     val transNIL : exp
 
     val transCALL : level * level * Temp.label * exp list -> exp

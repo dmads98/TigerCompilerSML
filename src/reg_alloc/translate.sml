@@ -203,6 +203,7 @@ fun transBINOP (left, oper, right) =
 	    (case getLogBase x of SOME(base) => Ex(T.BINOP(T.LSHIFT, unEx(exp), T.CONST(base)))
 				| NONE => Ex(T.BINOP(T.MUL, unEx(exp), unEx(Ex(T.CONST x)))))
 	  | binop (Ex(T.CONST x), T.DIV, Ex(T.CONST y)) = Ex(T.CONST (x div y))
+	  | binop (exp1, op', exp2) = Ex(T.BINOP(op', unEx(exp1), unEx(exp2))) 
     in
 	binop(left, oper', right)
     end
@@ -361,8 +362,14 @@ fun transRECORD (fieldList) =
 	Ex(T.ESEQ(help(List.rev(initFields(fieldList))), T.TEMP r))
     end
 
-fun transSEQ [] = T.CONST 0
-  | transSEQ [e] = unEx e
-  | transSEQ (e :: list) = T.ESEQ(unNx e, transSEQ(list))
+fun transSEQ ls =
+    let fun help [] = T.CONST 0
+	  | help [e] = unEx e
+	  | help (e :: list) = T.ESEQ(unNx e, help(list))
+    in
+	Ex(help(ls))
+    end
 
+fun transCONST x = Ex(T.CONST x)
+	
 end

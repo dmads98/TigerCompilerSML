@@ -13,7 +13,7 @@ type tenv = E.ty S.table
 type ty = T.ty
 type expty = {exp: Translate.exp, ty: ty}
 val loopLevel = ref 0
-						   
+		    
 (* An exp is {exp=, ty=} *)
 (* fun checkArith (exp1, exp2, pos) = *)
 (*     ((typeCheck (#ty exp1, T.INT, pos); typeCheck (#ty exp2, T.INT, pos))); *)
@@ -115,15 +115,16 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 		(equalTypes(tyL, T.INT, pos, "for exp lo is not int");
 		 equalTypes(tyH, T.INT, pos, "for exp hi is not int");
 		 let val {exp = expB, ty = tyB} = transExp(tempVenv, tenv, body, level, breakLab)
-		     val _ = equalTypes(expB, T.UNIT, pos "for exp body is not unit")
+		     val _ = equalTypes(tyB, T.UNIT, pos, "for exp body is not unit")
 		     val _ = loopLevel := !loopLevel - 1
 		 in
-		     case S.look(tempVenv, var) of SOME(v) => (case v of E.VarEntry{acces, ty, read} => {exp = Tr.transFOR(Tr.simpleVar(access, level), escape, expL, expH, expB, breakLab), ty = T.UNIT}
-								       | _ => (ErrorMsg.error 0 "error related to for loop";
-									       {exp = Tr.Ex(Tree.CONST 0), ty = T.UNIT}))
-						 | _ => (ErrorMsg.error 0 "for loop var not foundp";
-							 {exp = Tr.Ex(Tree.CONST 0), ty = T.UNIT})
-		    
+		     case S.look(tempVenv, var) of
+			 SOME(v) => (case v of E.VarEntry{access, ty, read} => {exp = Tr.transFOR(Tr.simpleVar(access, level), escape, expL, expH, expB, breakLab), ty = T.UNIT}
+					     | _ => (ErrorMsg.error 0 "error related to for loop";
+						     {exp = (Tr.transCONST 0), ty = T.UNIT}))
+		       | _ => (ErrorMsg.error 0 "for loop var not found";
+			       {exp = (Tr.transCONST 0), ty = T.UNIT})
+				  
 		 end
 		)
 	    end
@@ -132,7 +133,7 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 	    let	val {exp = expT, ty = tyT} = transExp(venv, tenv, test, level, doneLabel)
 		val breakLab = (loopLevel := !loopLevel + 1;
 				Temp.newlabel())
-		val {exp = expB, ty = tyB} = transExp(venv, tenv, body, level, SOME(breakLab))
+		val {exp = expB, ty = tyB} = transExp(venv, tenv, body, level, breakLab)
 	    in
 		(equalTypes(tyT, T.INT, pos, "while test is not an int");
 		 equalTypes(tyB, T.UNIT, pos, "while body is not unit");
@@ -157,9 +158,9 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 		    SOME(E.FunEntry{level = fLevel, label = fLabel, formals, result}) => (checkParamTypes(formals, args, pos);
 											  {exp = Tr.transCALL(fLevel, level, fLabel, exptys), ty=result})
 		  | SOME(_) => (ErrorMsg.error pos ("symbol " ^ S.name(func) ^ " is not a function");
-				{exp = Tr.Ex(Tree.CONST 0), ty = T.BOTTOM})
+				{exp = (Tr.transCONST 0), ty = T.BOTTOM})
 		  | NONE => (ErrorMsg.error pos ("function " ^ S.name(func) ^ " is not defined");
-			     {exp = Tr.Ex(Tree.CONST 0), ty = T.BOTTOM})
+			     {exp = (Tr.transCONST 0), ty = T.BOTTOM})
 	    end
 		
 	  (* Arithmetic *)
@@ -255,9 +256,9 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 	  (* transDec = Let expressions *)
 	  | trexp (A.LetExp{decs = decList, body = body, pos = pos}) =
 	    let val curLevel = !loopLevel
-		val _ = !loopLevel := 0
+		val _ = loopLevel := 0
 		val {venv = venv', tenv = tenv', expList = expList'} = transDecs (venv, tenv, decList, level, doneLabel)
-		val _ = !loopLevel := curLevel
+		val _ = loopLevel := curLevel
 		val {exp = exp', ty = ty'} = transExp(venv', tenv', body, level, doneLabel)
 	    in
 		{exp = Tr.transLET(expList', exp'), ty = ty'}
@@ -270,37 +271,38 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 			      else #ty(List.last(exptyList))
 		val expList = map (fn e => #exp(e)) exptyList
 	    in
-		{exp = T.Ex(Tr.transSEQ(expList)), ty = seqType}
+		{exp = Tr.transSEQ(expList), ty = seqType}
 	    end
-			
+		
 	  | trexp (A.RecordExp{fields = fList, typ = typ, pos = pos}) =
-	    (case S.look(tenv, typ) of SOME(t) => (case t of T.RECORD(func, _) =>
-							     (let val rFormals : (S.symbol * S.symbol) list = (func ())
-								  fun fieldType (name:string, (s, e, pos) :: ls) =
-								      if String.compare(name, S.name(s)) = EQUAL
-								      then #ty(trexp e)
-								      else fieldType(name, ls)
-								    | fieldType (name :string, []) = T.BOTTOM
-								  fun tyCheckFormals (s, ty) =
-								      if (T.typeComp(fieldType(S.name(s), fList), ty))
-								      then ()
-								      else ErrorMsg.error pos ("record formal and actual type " ^ S.name(s) ^ " do not match")
-								  fun checkRecord ((name, ty), ()) = case S.look(tenv, ty) of SOME(t) => (tyCheckFormals(name, t); ())
-															    | NONE => (ErrorMsg.error pos ("record has invalid type " ^ S.name(typ));()) 
+	    (case S.look(tenv, typ) of
+		 SOME(t) => (case t of T.RECORD(func, _) =>
+				       (let val rFormals : (S.symbol * S.symbol) list = (func ())
+					    fun fieldType (name:string, (s, e, pos) :: ls) =
+						if String.compare(name, S.name(s)) = EQUAL
+						then #ty(trexp e)
+						else fieldType(name, ls)
+					      | fieldType (name :string, []) = T.BOTTOM
+					    fun tyCheckFormals (s, ty) =
+						if (T.typeComp(fieldType(S.name(s), fList), ty))
+						then ()
+						else ErrorMsg.error pos ("record formal and actual type " ^ S.name(s) ^ " do not match")
+					    fun checkRecord ((name, ty), ()) = case S.look(tenv, ty) of SOME(t) => (tyCheckFormals(name, t); ())
+												      | NONE => (ErrorMsg.error pos ("record has invalid type " ^ S.name(typ));()) 
 
-								  val fieldExps = map #exp (map trexp(map #2 fList))
-							      in
-								  if List.length(rFormals) = List.length(fList)
-								  then (foldr checkRecord () rFormals;
-									{exp = Tr.transRECORD(fieldExps), ty = t})
-								  else (ErrorMsg.error pos ("record " ^ S.name(typ) ^ " has incorrect field list length");
-									{exp = Tr.Ex(Tree.CONST 0), ty = t})
-							      end)
-							   | _ => (ErrorMsg.error pos ("not a record type; got " ^ S.name(typ) ^ " instead");
-								   {exp = Tr.Ex(Tree.CONST 0), ty = T.NIL}))
-				    | NONE => (ErrorMsg.error pos ("record type not valid: " ^ S.name(typ));
-								   {exp = Tr.Ex(Tree.CONST 0), ty = T.NIL}))
-	    
+					    val fieldExps = map #exp (map trexp(map #2 fList))
+					in
+					    if List.length(rFormals) = List.length(fList)
+					    then (foldr checkRecord () rFormals;
+						  {exp = Tr.transRECORD(fieldExps), ty = t})
+					    else (ErrorMsg.error pos ("record " ^ S.name(typ) ^ " has incorrect field list length");
+						  {exp = (Tr.transCONST 0), ty = t})
+					end)
+				     | _ => (ErrorMsg.error pos ("not a record type; got " ^ S.name(typ) ^ " instead");
+					     {exp = (Tr.transCONST 0), ty = T.NIL}))
+	       | NONE => (ErrorMsg.error pos ("record type not valid: " ^ S.name(typ));
+			  {exp = (Tr.transCONST 0), ty = T.NIL}))
+
 
 	  | trexp (A.ArrayExp{typ = typ, size = size, init = init, pos = pos}) =
 	    let val {exp = szExp, ty = szTy} = trexp(size)
@@ -316,26 +318,26 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 								     equalTypes(inTy, getActualType ty, pos, "mismatching array and exp types");
 								     {exp = Tr.transARRAY(szExp, inExp), ty = T.ARRAY(ty, uniq)})
 								  | _ => (ErrorMsg.error pos "array not of ARRAY type";
-									  {exp = Tr.Ex(Tree.CONST 0), ty = T.BOTTOM}))
+									  {exp = (Tr.transCONST 0), ty = T.BOTTOM}))
 					 | NONE => (ErrorMsg.error pos "type does not exist";
-						    {exp = Tr.Ex(Tree.CONST 0), ty = T.BOTTOM}))
+						    {exp = (Tr.transCONST 0), ty = T.BOTTOM}))
 	    end
 		
 	and trvar (A.FieldVar(var, sym, pos)) =
 	    let val {exp = vExp, ty = vTy} = trvar(var)
-	    in case recordType
+	    in case vTy
 		of T.RECORD(func, unique) =>
 		   let val fields = func ()
 		       val (curIndex, ansIndex) =
 			   let fun findField (_, (curDex, ansDex)) : (int * int) =
-				   let val (sy, ty) = List.nth(list, curDex)
+				   let val (sy, ty) = List.nth(fields, curDex)
 				   in
 				       if S.name(sy) = S.name(sym)
 				       then (curDex + 1, curDex)
 				       else (curDex + 1, ansDex)
 				   end
 			   in
-			       foldl findField (0, ~1) list (* init ?*)
+			       foldl findField (0, ~1) fields (* init ?*)
 			   end
 		       fun getFieldTy ((s, t) :: ls, id, pos) =
 			   if String.compare(S.name(s), S.name(id)) = EQUAL
@@ -346,10 +348,10 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 			 | getFieldTy ([], id, pos) = (ErrorMsg.error pos "field does not exist";
 						       T.BOTTOM)
 		   in
-		       {exp = Tr.fieldVar(vExp, ansIndex), ty = getFieldTy(fields, ty, pos)}
+		       {exp = Tr.fieldVar(vExp, ansIndex), ty = getFieldTy(fields, sym, pos)}
 		   end
 		 | _ => (ErrorMsg.error pos "variable is not a record";
-			 {exp = Tr.Ex(Tree.CONST 0), ty = T.BOTTOM}) 
+			 {exp = (Tr.transCONST 0), ty = T.BOTTOM}) 
 	    end
 		
 	  | trvar (A.SubscriptVar(var, exp, pos)) =
@@ -364,19 +366,19 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 		     (T.ARRAY(t, uniq)) => (checkInt(dex, pos);
 					    {exp = Tr.subscriptVar(varExpr, #exp(dex)), ty = getActualType(t)})
 		   | _ => (ErrorMsg.error pos ("variable is not of ARRAY type");
-			   {exp = Tr.EX(Tree.CONST 0), ty = T.BOTTOM}))
-		
+			   {exp = (Tr.transCONST 0), ty = T.BOTTOM}))
+		    
 	    end	
 	  | trvar (A.SimpleVar(id, pos)) =
 	    (case S.look(venv, id)
 	      of SOME (E.VarEntry{access, ty, read}) => {exp = Tr.simpleVar(access, level), ty = ty}
-	       | SOME(E.FunEntry{...}) => (ErrorMsg.error pos ("improper function call or undefined variable" ^ S.name id); {exp = Tr.Ex(Tree.CONST 0), ty=T.BOTTOM})
+	       | SOME(E.FunEntry{...}) => (ErrorMsg.error pos ("improper function call or undefined variable" ^ S.name id); {exp = (Tr.transCONST 0), ty=T.BOTTOM})
 	       | NONE => (ErrorMsg.error pos ("undefined variable " ^ S.name id);
-			  {exp = Tr.Ex(Tree.CONST 0), ty=T.BOTTOM}))
+			  {exp = (Tr.transCONST 0), ty=T.BOTTOM}))
     in
-	trexp
+	trexp exp
     end
-	
+
 and transDecs (venv, tenv, decs, level, doneLabel)  = 
     let fun trdec (venv, tenv, A.VarDec{name, escape, typ = SOME(assignType, typPos), init, pos}, expList) =
 	    let val {exp = vExp, ty = typeFound} = transExp(venv, tenv, init, level, doneLabel)
@@ -426,11 +428,11 @@ and transDecs (venv, tenv, decs, level, doneLabel)  =
 								 label = fLabel,
 								 formals = map #ty (map getFieldType params),
 								 result = getReturnType(r)})
-			       | {name, params, body, pos, result = NONE} =>
-				 S.enter(venv, name, E.FunEntry{level = Tr.newLevel{parent = level, name = fLabel, formals = map escapeList params},
-								label = fLabel,
-								formals = map #ty (map getFieldType params),
-								result = T.UNIT}) 
+				| {name, params, body, pos, result = NONE} =>
+				  S.enter(venv, name, E.FunEntry{level = Tr.newLevel{parent = level, name = fLabel, formals = map escapeList params},
+								 label = fLabel,
+								 formals = map #ty (map getFieldType params),
+								 result = T.UNIT}) 
 		    end
 		val venv' = foldr updateVenv venv decList
 		fun decTypeCheck ({name, params, body, pos, result}, ()) =
@@ -441,7 +443,7 @@ and transDecs (venv, tenv, decs, level, doneLabel)  =
 			val args = map getFieldType params
 			val fList = Tr.formals(fLevel)
 			fun addParamToVenv ({name, escape, ty, pos}, (venv, index)) =
-			    (S.enter(venv, name, E.VarEntry{access = List.nth(args, index),
+			    (S.enter(venv, name, E.VarEntry{access = List.nth(fList, index),
 							    ty = ty,
 							    read = false}), index + 1)
 			val updatedVenv = #1 (foldl addParamToVenv (venv', 1) args)
@@ -457,7 +459,7 @@ and transDecs (venv, tenv, decs, level, doneLabel)  =
 		    then (ErrorMsg.error pos "mutually recursive functions have same name";
 			  ls)
 		    else (S.name(name) :: ls)
-											  
+			     
 	    in
 		foldl dupsCheck [] decList;
 		foldr decTypeCheck () decList;
@@ -482,27 +484,28 @@ and transDecs (venv, tenv, decs, level, doneLabel)  =
 		fun initTypeDec ({name, ty, pos}, tEnv) = S.enter(tEnv, name, T.BOTTOM)
 		val tenv' = foldl initTypeDec tenv decList
 		fun addToTenv ({name, ty, pos}, {venv, tenv, expList}) = {venv = venv, tenv = S.enter(tenv, name, trTypes(tenv', ty)), expList = expList}
-		fun tenv'' = foldl addToTenv {venv = venv, tenv = tenv, expList = expList} decList
+		val tenv'' = foldl addToTenv {venv = venv, tenv = tenv, expList = expList} decList
 		fun dupsExist ({name, ty, pos}, ls) = if List.exists (fn x => String.compare(S.name(name), x) = EQUAL) ls
 						      then (ErrorMsg.error pos "mutually recursive types has types of same name";
 							    ls)
 						      else (S.name(name)::ls)
 							       
 		fun cycleCheck ({name, ty, pos}, ()) =
-		    let fun help (ls, name) = (case S.look(#tenv(tenv''), name) of
-						   SOME(T.NAME(s, _)) => if List.exists (fn x => String.compare(S.name(s), S.name(x)) = EQUAL) ls
-									 then ErrorMsg.error pos "types are mutually recursive types have a cycle and are not part of record or array"
-									 else help(name::ls, s)
-						 | _ => ())
+		    let fun help (ls, name) =
+			    (case S.look(#tenv(tenv''), name) of
+				 SOME(T.NAME(s, _)) => if List.exists (fn x => String.compare(S.name(s), S.name(x)) = EQUAL) ls
+						       then ErrorMsg.error pos "types are mutually recursive types have a cycle and are not part of record or array"
+						       else help(name::ls, s)
+			       | _ => ())
 		    in
-			helper([], name)
+			help([], name)
 		    end
 	    in
 		foldl dupsExist [] decList;
 		foldl cycleCheck () decList;
 		tenv''
 	    end
-	
+		
 
 	and helper (d, {venv, tenv, expList}) = trdec(venv, tenv, d, expList)
     in
