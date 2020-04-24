@@ -1,4 +1,4 @@
-structure Env : ENV =
+structure Env :> ENV =
 struct
 
 structure Trans = Translate

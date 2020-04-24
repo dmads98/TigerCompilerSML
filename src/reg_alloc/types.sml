@@ -24,8 +24,8 @@ fun typeComp (BOTTOM, _) = true
   | typeComp (NIL, NIL) = true
   | typeComp (STRING, STRING) = true 
   | typeComp (NIL, RECORD(_)) = true
-  | typeComp (INT, INT) =
-  | typeComp (NAME(s1, _), NAME(s2, _)) = STRING.compare(S.name s1, S.name s2) = EQUAL
+  | typeComp (INT, INT) = true
+  | typeComp (NAME(s1, _), NAME(s2, _)) = String.compare(S.name s1, S.name s2) = EQUAL
   | typeComp (RECORD(_, u1), RECORD(_, u2)) = u1 = u2
   | typeComp (ARRAY(_, u1), ARRAY(_, u2)) = u1 = u2
   | typeComp (_, _) = false

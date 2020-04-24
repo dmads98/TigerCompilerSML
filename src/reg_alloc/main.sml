@@ -2,7 +2,8 @@ structure Main = struct
 structure Tr = Translate
 structure F = MipsFrame
 (*structure R = RegAlloc*)
-		  
+
+(*		 
 fun emitproc out (F.PROC{body,frame}) =
     let val _ = print ("emit " ^ Symbol.name(F.name frame) ^ "\n")
 	val _ = Printtree.printtree(TextIO.stdOut,body);
@@ -49,3 +50,16 @@ fun compile filename =
     end
 
 end
+*)
+fun main filename =
+    let
+	val t = ErrorMsg.reset()
+	val _ = Translate.reset()
+	val _ = FindEscape.reset()
+	val tree = Parse.parse filename; (* Absyn.exp *)
+	val _ = FindEscape.findEscape(tree)
+    in
+	(* Printtree.printtree(TextIO.stdOut, TR.unNx (Semant.transProg tree)) *)
+	Semant.transProg tree
+    end
+end	  

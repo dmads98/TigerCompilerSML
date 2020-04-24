@@ -7,7 +7,7 @@ datatype stm = SEQ of stm * stm
              | LABEL of label
              | JUMP of exp * label list
              | CJUMP of relop * exp * exp * label * label
-	     | MOVE of exp * exp
+	     | MOVE of pos * exp
              | EXP of exp
 
      and exp = BINOP of binop * exp * exp
@@ -22,7 +22,11 @@ datatype stm = SEQ of stm * stm
                 | AND | OR | LSHIFT | RSHIFT | ARSHIFT | XOR
 
       and relop = EQ | NE | LT | GT | LE | GE 
-	        | ULT | ULE | UGT | UGE
+	          | ULT | ULE | UGT | UGE
+
+      and pos = MEMPOS of exp
+	      | TEMPPOS of Temp.temp
+	      | ESEQPOS of stm * pos
 
 val notRel : relop -> relop
 
@@ -37,7 +41,7 @@ datatype stm = SEQ of stm * stm
              | LABEL of label
              | JUMP of exp * label list
              | CJUMP of relop * exp * exp * label * label
-	     | MOVE of exp * exp
+	     | MOVE of pos * exp
              | EXP of exp
 
      and exp = BINOP of binop * exp * exp
@@ -52,8 +56,13 @@ datatype stm = SEQ of stm * stm
                 | AND | OR | LSHIFT | RSHIFT | ARSHIFT | XOR
 
       and relop = EQ | NE | LT | GT | LE | GE 
-	        | ULT | ULE | UGT | UGE
+	          | ULT | ULE | UGT | UGE
 
+      and pos = MEMPOS of exp
+	      | TEMPPOS of Temp.temp
+	      | ESEQPOS of stm * pos
+
+(*unsure about this*)
 fun notRel GE = LT
   | notRel LE = GT
   | notRel LT = GE

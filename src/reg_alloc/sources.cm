@@ -14,6 +14,7 @@ parse.sml
 tiger.lex
 tiger.grm
 
+
 main.sml
 semant.sig
 semant.sml
@@ -31,6 +32,7 @@ temp.sml
 frame.sig
 mipsframe.sml
 printtree.sml
+(*
 
 assem.sml
 canon.sml
@@ -50,3 +52,4 @@ liveness.sml
 
 reg_alloc.sml
 reg_color.sml
+*)
