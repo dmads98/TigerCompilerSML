@@ -134,11 +134,18 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 		val breakLab = (loopLevel := !loopLevel + 1;
 				Temp.newlabel())
 		val {exp = expB, ty = tyB} = transExp(venv, tenv, body, level, breakLab)
+
+		val test_ty = #ty (trexp test)
+		val body_ty = #ty (trexp body)
 	    in
-		(equalTypes(tyT, T.INT, pos, "while test is not an int");
-		 equalTypes(tyB, T.UNIT, pos, "while body is not unit");
-		 loopLevel := !loopLevel - 1;
-		 {exp = Tr.transWHILE(expT, expB, breakLab), ty = T.UNIT})
+		( (* print("test:\n"); *)
+		  (* T.printType (test_ty); *)
+		  (* print("body:\n"); *)
+		  (* T.printType (body_ty); *)
+		  equalTypes(test_ty, T.INT, pos, "while test is not an int");
+		  equalTypes(body_ty, T.UNIT, pos, "while body is not unit");
+		  loopLevel := !loopLevel - 1;
+		  {exp = Tr.transWHILE(expT, expB, breakLab), ty = T.UNIT})
 	    end
 		
 	  | trexp (A.BreakExp(pos)) =

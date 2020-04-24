@@ -62,6 +62,7 @@ fun main filename =
 	val _ = FindEscape.findEscape(tree)
     in
 	(* Printtree.printtree(TextIO.stdOut, TR.unNx (Semant.transProg tree)) *)
+	(* PrintAbsyn.print(TextIO.stdOut, tree); *)
 	Semant.transProg tree
     end
 end	  
