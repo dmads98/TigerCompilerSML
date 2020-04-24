@@ -842,19 +842,10 @@ move $fp, $sp
 addi $sp, $sp, -12
 sw $ra, -4($fp) 
 sw $a0, 0($fp) 
-li $v1, 10
-li $v0, 20
-bgt $v1, $v0, L0 
-L1:
-li $v1, 40
-move $v0, $v1
-L2:
-j L3 
+li $v0, 0
+li $v0, 0
+j L0 
 L0:
-li $a0, 30
-move $v0, $a0
-j L2 
-L3:
 lw $ra, -4($fp) 
 addi $sp, $sp, 12
 lw $fp, -8($fp)

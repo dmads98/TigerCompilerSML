@@ -1,4 +1,5 @@
 .data
+L1: .asciiz "one"
 .text
 #-----------runtime----------
 	#.file	1 "runtime.c"
@@ -836,24 +837,41 @@ exit:
 	syscall
 	
 #-----------tig_main----------
+L0:
+sw $fp, -8($sp) 
+move $fp, $sp
+addi $sp, $sp, -12
+sw $ra, -4($fp) 
+sw $a0, 0($fp) 
+move $v1, $a1
+move $v0, $a2
+move $v0, $v1
+j L2 
+L2:
+lw $ra, -4($fp) 
+addi $sp, $sp, 12
+lw $fp, -8($fp)
+jr $ra
+
 tig_main:
 sw $fp, -8($sp) 
 move $fp, $sp
 addi $sp, $sp, -12
 sw $ra, -4($fp) 
 sw $a0, 0($fp) 
-li $v1, 10
-li $v0, 20
-bgt $v1, $v0, L0 
-L1:
-li $v1, 40
-move $v0, $v1
-L2:
+addi $v0, $sp, 0
+move $sp, $v0
+move $a0, $fp
+li $v1, 3
+move $a1, $v1
+la $a0, L1
+move $a2, $a0
+li $a1, 5
+move $a3, $a1
+jal L0
+addi $a2, $sp, 0
+move $sp, $a2
 j L3 
-L0:
-li $a0, 30
-move $v0, $a0
-j L2 
 L3:
 lw $ra, -4($fp) 
 addi $sp, $sp, 12

@@ -38,15 +38,17 @@ fun compile filename =
     in 
         withOpenFile (filename ^ ".s") 
 		     (fn out =>
-			 ( TextIO.output(out, ".data\n");
+			 ( TextIO.output(out, ".data\n.align 4\n");
 			   app (emitproc out) strings;
-			   TextIO.output(out, ".text\n");
+			   TextIO.output(out, ".text\n.globl tig_main\n.ent tig_main\n");
+			   TextIO.output(out, "#-----------tig_main----------\n");
+			   app (emitproc out) procs;
 			   TextIO.output(out, "#-----------runtime----------\n");
 			   TextIO.output(out, runtime);
 			   TextIO.output(out, "#-----------sys_spim----------\n");
-			   TextIO.output(out, sys);
-			   TextIO.output(out, "#-----------tig_main----------\n");
-			   app (emitproc out) procs))
+			   TextIO.output(out, sys)
+			 )
+		     )
     end
 
 end

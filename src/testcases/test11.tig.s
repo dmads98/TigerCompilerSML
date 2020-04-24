@@ -1,4 +1,5 @@
 .data
+L0: .asciiz " "
 .text
 #-----------runtime----------
 	#.file	1 "runtime.c"
@@ -842,19 +843,26 @@ move $fp, $sp
 addi $sp, $sp, -12
 sw $ra, -4($fp) 
 sw $a0, 0($fp) 
-li $v1, 10
-li $v0, 20
-bgt $v1, $v0, L0 
-L1:
-li $v1, 40
+li $v0, 10
+move $a0, $v0
+la $v1, L0
 move $v0, $v1
-L2:
-j L3 
-L0:
-li $a0, 30
+ble $a0, $v0, L3 
+L1:
+li $a0, 0
 move $v0, $a0
-j L2 
+j L4 
+L2:
+addi $a1, $a0, 1
+move $a0, $a1
 L3:
+li $a3, 1
+sub $a2, $a0, $a3
+move $a0, $a2
+blt $a0, $v0, L2 
+L5:
+j L1 
+L4:
 lw $ra, -4($fp) 
 addi $sp, $sp, 12
 lw $fp, -8($fp)

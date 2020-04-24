@@ -842,19 +842,17 @@ move $fp, $sp
 addi $sp, $sp, -12
 sw $ra, -4($fp) 
 sw $a0, 0($fp) 
-li $v1, 10
-li $v0, 20
-bgt $v1, $v0, L0 
-L1:
-li $v1, 40
-move $v0, $v1
-L2:
-j L3 
+addi $v0, $sp, 0
+move $sp, $v0
+li $v1, 0
+move $a0, $v1
+jal tig_allocRecord
+addi $a0, $sp, 0
+move $sp, $a0
+li $a1, 0
+move $v0, $a1
+j L0 
 L0:
-li $a0, 30
-move $v0, $a0
-j L2 
-L3:
 lw $ra, -4($fp) 
 addi $sp, $sp, 12
 lw $fp, -8($fp)
