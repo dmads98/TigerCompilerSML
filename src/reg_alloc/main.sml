@@ -3,28 +3,30 @@ structure Tr = Translate
 structure F = MipsFrame
 (*structure R = RegAlloc*)
 
-(*		 
+		 
 fun emitproc out (F.PROC{body,frame}) =
     let val _ = print ("emit " ^ Symbol.name(F.name frame) ^ "\n")
-	val _ = Printtree.printtree(TextIO.stdOut,body);
+	(*	val _ = Printtree.printtree(TextIO.stdOut, body);*)
+	val _ = Printtree.printtree(out, body);
 	val stms = Canon.linearize body
-	(*         val _ = app (fn s => Printtree.printtree(out,s)) stms; *)
+	val _ = app (fn s => Printtree.printtree(out,s)) stms;
         val stms' = Canon.traceSchedule(Canon.basicBlocks stms)
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
-	val updatedInstrs = F.procEntryExit2(frame, instrs)
-	val (instrList, alloc) = Reg_Alloc.alloc(updatedInstrs, frame)
+(*	val updatedInstrs = F.procEntryExit2(frame, instrs)
+	val (instrList, alloc) = Reg_Alloc.alloc(updatedInstrs, frame)*)
         val format0 = Assem.format((fn i => case (Temp.Table.look(alloc, i)) of SOME(a) => a
 									      | NONE => (ErrorMsg.error ~1 "was not able to allocate"; Temp.makestring(i))))
-    in  app (fn i => TextIO.output(out,format0 i)) instrList
+    in
+	app (fn i => TextIO.output(out, Assem.format(F.getRegName) i)) instrs
     end
-  | emitproc out (F.STRING(lab,s)) = TextIO.output(out, F.string(lab, s)); (* MIPS format string *)
+  | emitproc out (F.STRING(lab,s)) = TextIO.output(out, F.string(lab, s)) (* MIPS format string *)
 
 fun withOpenFile fname f = 
     let val out = TextIO.openOut fname
     in (f out before TextIO.closeOut out) 
        handle e => (TextIO.closeOut out; raise e)
     end 
-
+(*
 fun compile filename = 
     let val absyn = Parse.parse filename
         val frags = (FindEscape.findEscape absyn; Semant.transProg absyn)
@@ -53,16 +55,16 @@ fun compile filename =
 
 end
 *)
-fun main filename =
+
+fun compile filename =
     let
 	val t = ErrorMsg.reset()
 	val _ = Translate.reset()
 	val _ = FindEscape.reset()
 	val tree = Parse.parse filename; (* Absyn.exp *)
 	val _ = FindEscape.findEscape(tree)
+	val frags = Semant.transProg(tree)
     in
-	(* Printtree.printtree(TextIO.stdOut, TR.unNx (Semant.transProg tree)) *)
-	(* PrintAbsyn.print(TextIO.stdOut, tree); *)
-	Semant.transProg tree
+	withOpenFile (filename ^ ".s") (fn out => (app (emitproc TextIO.stdOut) frags))
     end
 end	  

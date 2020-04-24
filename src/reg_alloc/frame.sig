@@ -5,15 +5,14 @@ sig
 
     val wordSize: int
     val FP : Temp.temp
-    val RV : Temp.temp
-		 (*
     val SP : Temp.temp
+    val RV : Temp.temp
+    val V1 : Temp.temp
     val RA : Temp.temp
     val R0 : Temp.temp
-    val V1 : Temp.temp
-*)
     
-(*    val string : Tree.label * string -> string (* MIPS format string *)*)
+    
+    val string : Tree.label * string -> string (* MIPS format string *)
     val allocLocal : frame -> bool -> access
     val name : frame -> Temp.label
     val formals : frame -> access list
@@ -29,17 +28,14 @@ sig
     datatype frag = PROC of {body: Tree.stm, frame: frame}
 		  | STRING of Temp.label * string
 
-					       (*
+					      
     val tempMap : string Temp.Table.table
     val getRegName : Temp.temp -> string
+				      
     val specialregs : (Temp.temp * string) list
     val argregs : (Temp.temp * string) list
     val calleesaves : (Temp.temp * string) list
-    val callersaves : (Temp.temp * string) list*)
-					   
-(*					  
-    val getPreColoredAllocation: unit -> string Temp.Table.table
-    val getAllRegNames: unit -> string list
-    val getSinks: unit -> Temp.temp list
-*)						
+    val callersaves : (Temp.temp * string) list
+    val getRegTemps : (Temp.temp * string) list -> Temp.temp list
+					   						
 end
