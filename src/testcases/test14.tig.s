@@ -1,4 +1,5 @@
 .data
+L0: .asciiz "aname"
 .text
 #-----------runtime----------
 	#.file	1 "runtime.c"
@@ -839,24 +840,51 @@ exit:
 tig_main:
 sw $fp, -8($sp) 
 move $fp, $sp
-addi $sp, $sp, -12
+addi $sp, $sp, -16
 sw $ra, -4($fp) 
+sw $s0, -12($fp) 
 sw $a0, 0($fp) 
-li $v1, 10
-li $v0, 20
-bgt $v1, $v0, L0 
-L1:
-li $v1, 40
-move $v0, $v1
+addi $a1, $sp, 0
+move $sp, $a1
+li $a2, 8
+move $a0, $a2
+jal tig_allocRecord
+addi $a3, $sp, 0
+move $sp, $a3
+la $t0, L0
+sw $t0, 0($v0) 
+li $t1, 0
+sw $t1, 4($v0) 
+move $s0, $v0
+addi $t2, $sp, 0
+move $sp, $t2
+li $t4, 3
+addi $t3, $t4, 1
+move $a0, $t3
+li $t5, 0
+move $a1, $t5
+jal tig_initArray
+addi $t6, $sp, 0
+move $sp, $t6
+li $t7, 3
+sw $t7, 0($v0) 
+addi $t8, $v0, 4
+move $v1, $t8
+bne $s0, $v1, L1 
 L2:
-j L3 
-L0:
-li $a0, 30
-move $v0, $a0
-j L2 
+li $t9, 4
+move $a0, $t9
 L3:
+move $v0, $a0
+j L4 
+L1:
+li $s0, 3
+move $a0, $s0
+j L3 
+L4:
 lw $ra, -4($fp) 
-addi $sp, $sp, 12
+lw $s0, -12($fp) 
+addi $sp, $sp, 16
 lw $fp, -8($fp)
 jr $ra
 

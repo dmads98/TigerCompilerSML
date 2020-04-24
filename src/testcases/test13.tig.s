@@ -1,4 +1,5 @@
 .data
+L0: .asciiz "df"
 .text
 #-----------runtime----------
 	#.file	1 "runtime.c"
@@ -842,18 +843,16 @@ move $fp, $sp
 addi $sp, $sp, -12
 sw $ra, -4($fp) 
 sw $a0, 0($fp) 
-li $v1, 10
-li $v0, 20
-bgt $v1, $v0, L0 
-L1:
-li $v1, 40
-move $v0, $v1
+li $v0, 1
+move $a0, $v0
+li $v0, 3
+la $v1, L0
+bgt $v0, $v1, L1 
 L2:
-j L3 
-L0:
-li $a0, 30
+li $a0, 0
+L1:
 move $v0, $a0
-j L2 
+j L3 
 L3:
 lw $ra, -4($fp) 
 addi $sp, $sp, 12

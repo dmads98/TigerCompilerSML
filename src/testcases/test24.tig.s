@@ -839,24 +839,43 @@ exit:
 tig_main:
 sw $fp, -8($sp) 
 move $fp, $sp
-addi $sp, $sp, -12
+addi $sp, $sp, -16
 sw $ra, -4($fp) 
+sw $s0, -12($fp) 
 sw $a0, 0($fp) 
-li $v1, 10
-li $v0, 20
-bgt $v1, $v0, L0 
-L1:
-li $v1, 40
-move $v0, $v1
+li $a0, 0
+move $v0, $a0
+li $a1, 3
+move $s0, $a1
+li $t0, 4
+sub $a3, $v0, $t0
+lw $a2, 0($a3)
+move $v1, $a2
+lw $t1, 0($v1)
+bge $s0, $t1, L0 
 L2:
+li $t2, 0
+blt $s0, $t2, L0 
+L1:
+li $t6, 4
+mul $t5, $s0, $t6
+add $t4, $v0, $t5
+lw $t3, 0($t4)
+move $v0, $t3
 j L3 
 L0:
-li $a0, 30
-move $v0, $a0
-j L2 
+addi $t7, $sp, 0
+move $sp, $t7
+li $t8, 1
+move $a0, $t8
+jal outOfBoundsSubscript
+addi $t9, $sp, 0
+move $sp, $t9
+j L1 
 L3:
 lw $ra, -4($fp) 
-addi $sp, $sp, 12
+lw $s0, -12($fp) 
+addi $sp, $sp, 16
 lw $fp, -8($fp)
 jr $ra
 
