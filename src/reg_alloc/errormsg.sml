@@ -28,6 +28,12 @@ struct
 
   exception Error
 
+
+  fun impossible msg =
+      (app print ["Error: Compiler bug: ",msg,"\n"];
+       TextIO.flushOut TextIO.stdOut;
+       raise Error)
+
   fun error pos (msg:string) =
       let fun look(a::rest,n) =
 		if a<pos then app print [":",
@@ -43,11 +49,6 @@ struct
 	  print msg;
 	  print "\n"
       end
-
-  fun impossible msg =
-      (app print ["Error: Compiler bug: ",msg,"\n"];
-       TextIO.flushOut TextIO.stdOut;
-       raise Error)
 
 end  (* structure ErrorMsg *)
   

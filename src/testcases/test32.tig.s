@@ -1,4 +1,5 @@
 .data
+L0: .asciiz " "
 .text
 #-----------runtime----------
 	#.file	1 "runtime.c"
@@ -842,19 +843,23 @@ move $fp, $sp
 addi $sp, $sp, -12
 sw $ra, -4($fp) 
 sw $a0, 0($fp) 
-li $v1, 10
-li $v0, 20
-bgt $v1, $v0, L0 
+addi $v0, $sp, 0
+move $sp, $v0
+li $a0, 10
+addi $v1, $a0, 1
+move $a0, $v1
+la $a1, L0
+jal tig_initArray
+addi $a2, $sp, 0
+move $sp, $a2
+li $a3, 10
+sw $a3, 0($v0) 
+addi $t0, $v0, 4
+move $v0, $t0
+li $t1, 0
+move $v0, $t1
+j L1 
 L1:
-li $v1, 40
-move $v0, $v1
-L2:
-j L3 
-L0:
-li $a0, 30
-move $v0, $a0
-j L2 
-L3:
 lw $ra, -4($fp) 
 addi $sp, $sp, 12
 lw $fp, -8($fp)

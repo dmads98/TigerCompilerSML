@@ -1,4 +1,7 @@
 .data
+L5: .asciiz "str2"
+L4: .asciiz " "
+L3: .asciiz "str"
 .text
 #-----------runtime----------
 	#.file	1 "runtime.c"
@@ -836,25 +839,78 @@ exit:
 	syscall
 	
 #-----------tig_main----------
+L0:
+sw $fp, -8($sp) 
+move $fp, $sp
+addi $sp, $sp, -12
+sw $ra, -4($fp) 
+sw $a0, 0($fp) 
+move $v1, $a1
+move $v0, $a2
+addi $a0, $sp, 0
+move $sp, $a0
+lw $a1, 0($fp)
+move $a0, $a1
+addi $a2, $v1, 1
+move $a1, $a2
+jal L1
+addi $a3, $sp, 0
+move $sp, $a3
+li $t0, 0
+move $v0, $t0
+j L6 
+L6:
+lw $ra, -4($fp) 
+addi $sp, $sp, 12
+lw $fp, -8($fp)
+jr $ra
+
+L2:
+sw $fp, -8($sp) 
+move $fp, $sp
+addi $sp, $sp, -12
+sw $ra, -4($fp) 
+sw $a0, 0($fp) 
+move $v1, $a1
+addi $t1, $sp, 0
+move $sp, $t1
+lw $t2, 0($fp)
+move $a0, $t2
+move $a1, $v1
+la $t3, L3
+move $a2, $t3
+jal L0
+addi $t4, $sp, 0
+move $sp, $t4
+la $t5, L4
+move $v0, $t5
+j L7 
+L7:
+lw $ra, -4($fp) 
+addi $sp, $sp, 12
+lw $fp, -8($fp)
+jr $ra
+
 tig_main:
 sw $fp, -8($sp) 
 move $fp, $sp
 addi $sp, $sp, -12
 sw $ra, -4($fp) 
 sw $a0, 0($fp) 
-li $v1, 10
-li $v0, 20
-bgt $v1, $v0, L0 
-L1:
-li $v1, 40
-move $v0, $v1
-L2:
-j L3 
-L0:
-li $a0, 30
-move $v0, $a0
-j L2 
-L3:
+li $t6, 0
+move $v0, $t6
+addi $t7, $sp, 0
+move $sp, $t7
+move $a0, $fp
+li $t8, 0
+move $a1, $t8
+la $t9, L5
+move $a2, $t9
+jal L0
+addi $s0, $sp, 0
+move $sp, $s0
+j L8 
+L8:
 lw $ra, -4($fp) 
 addi $sp, $sp, 12
 lw $fp, -8($fp)
