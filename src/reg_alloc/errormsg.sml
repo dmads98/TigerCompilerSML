@@ -46,7 +46,7 @@ struct
 	  print (!fileName);
 	  look(!linePos,!lineNum);
 	  print ":";
-	  print msg;
+	  impossible msg;
 	  print "\n"
       end
 

@@ -16,5 +16,5 @@ sig
     type livenessData
 
     val interferenceGraph : data FG.graph -> igraph
-    val show : TextIO.outstream * igraph -> unit
+    val show : igraph -> unit
 end

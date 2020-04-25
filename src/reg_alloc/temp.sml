@@ -8,7 +8,7 @@ val temps = ref 100
 (*fun curTemp () = !temps*)
 		
 fun reset () = 
-    let val () = temps := 100
+    let val () = temps := 140
 	val () = labelCount := 0
     in
 	()
