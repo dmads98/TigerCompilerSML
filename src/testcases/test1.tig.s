@@ -9,7 +9,7 @@ sw $a0, 0($fp)
 li $a0, 10
 li $a1, 0
 jal tig_initArray
-move t132, $v0
-move $v0, t132
+move t140, $v0
+move $v0, t140
 j L1 
 L1:
