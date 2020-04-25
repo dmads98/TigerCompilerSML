@@ -126,12 +126,14 @@ fun procEntryExit1 (fr : frame, body : Tree.stm) =
     in
 	seq(mvArgReg(0, (formals fr)) @ [body])
     end
-(*
-fun procEntryExit2 (frame : frame, body) = body @ [Assem.OPER{assem = "",
-						      src = (map (fn (reg, name) => reg) sinks) @ (map (fn (reg, name) => reg) calleesaves),
-						      dst = [],
-						      jump = SOME ([])}]
+	
+fun procEntryExit2 (frame : frame, body) =
+    body @ [Assem.OPER{assem = "",
+		       src = (getRegTemps specialregs),
+		       dst = [],
+		       jump = SOME ([])}]
 
+(*
 fun procEntryExit3 ({name, formals, numLocalsAlloc} : frame, label::body, spillList) =
     let val retInstr = Assem.OPER{assem = "jr `s0\n\n",
 				  src = [RA],
