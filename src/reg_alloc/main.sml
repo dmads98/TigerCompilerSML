@@ -13,8 +13,11 @@ fun emitproc out (F.PROC{body,frame}) =
 	(* val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms; *)
         val stms' = Canon.traceSchedule(Canon.basicBlocks stms)
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
-(*	val updatedInstrs = F.procEntryExit2(frame, instrs)
-	val (instrList, alloc) = Reg_Alloc.alloc(updatedInstrs, frame)*)
+	val updatedInstrs = F.procEntryExit2(frame, instrs)
+	val (flowgraph, _) = MakeGraph.instrs2graph(updatedInstrs)
+						   
+					      
+(*	val (instrList, alloc) = Reg_Alloc.alloc(updatedInstrs, frame)*)
  (*       val format0 = Assem.format((fn i => case (Temp.Table.look(alloc, i)) of SOME(a) => a
 									      | NONE => (ErrorMsg.error ~1 "was not able to allocate"; Temp.makestring(i))))*)
     in
