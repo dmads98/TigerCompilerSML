@@ -133,5 +133,13 @@ fun interferenceGraph (fg : MakeGraph.data FG.graph) =
 	igraph
     end
 
+(* fun show (out, igraph) = *)
+(*     let fun stringify node = *)
+(* 	    "Node ID:" Int.toString LG.getNodeID ^ "\n" ^ *)
+(* 	    "Node Info: "  *)
+
+(*     in *)
+(* 	LG.printGraph stringify igraph *)
+(*     end *)
 
 end
