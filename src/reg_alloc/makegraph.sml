@@ -128,6 +128,6 @@ fun instrs2graph instrList =
 	val nodeGraph = (index := 0; foldl createNode FG.empty instrList)
 	val completeGraph = (index := 0; addEdges(nodeGraph, instrList))
     in
-	(completeGraph, FG.nodes (completeGraph))
+	completeGraph
     end
 end
