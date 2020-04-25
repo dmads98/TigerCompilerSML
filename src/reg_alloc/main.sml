@@ -14,8 +14,8 @@ fun emitproc out (F.PROC{body,frame}) =
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
 (*	val updatedInstrs = F.procEntryExit2(frame, instrs)
 	val (instrList, alloc) = Reg_Alloc.alloc(updatedInstrs, frame)*)
-        val format0 = Assem.format((fn i => case (Temp.Table.look(alloc, i)) of SOME(a) => a
-									      | NONE => (ErrorMsg.error ~1 "was not able to allocate"; Temp.makestring(i))))
+ (*       val format0 = Assem.format((fn i => case (Temp.Table.look(alloc, i)) of SOME(a) => a
+									      | NONE => (ErrorMsg.error ~1 "was not able to allocate"; Temp.makestring(i))))*)
     in
 	app (fn i => TextIO.output(out, Assem.format(F.getRegName) i)) instrs
     end

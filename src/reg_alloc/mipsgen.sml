@@ -118,15 +118,13 @@ fun codegen (frame) (stm: Tree.stm) : Assem.instr list =
 	  | munchStm (T.EXP e) = (munchExp e; ())
 				     	  (* label *)
 	  | munchStm (T.LABEL label) =
-	    emit(A.LABEL{assem = S.name label ^ ":\n", lab=label})
-
-	  | munchStm _ = (ErrorMsg.error ~1 "Error while generating assembly"; ()) 
+	    emit(A.LABEL{assem = S.name label ^ ":\n", lab=label}) 
 			     
 	and munchExp (T.CALL(T.NAME name, argList)) =
 	    let val liveRegs = F.RA ::
 			       F.RV ::
 			       F.V1 ::
-			       (F.getRegTemps(F.callersaves)) @ (F.getRegTemps(F.argsregs))										    in 
+			       (F.getRegTemps(F.callersaves)) @ (F.getRegTemps(F.argregs))										    in 
 		(emit (A.OPER{
 			    assem = "jal " ^ S.name name ^ "\n",
 			    src = munchArgs(0, 16, argList),
@@ -225,7 +223,6 @@ fun codegen (frame) (stm: Tree.stm) : Assem.instr list =
 				dst = [r],
 				jump = NONE}))
 	  | munchExp (T.TEMP temp) = temp
-	  | munchExp _ = (ErrorMsg.error ~1 "Error while generating assembly"; Temp.newtemp())
 			     
 			     
 	and munchArgs (_, _, []) = []
@@ -236,7 +233,7 @@ fun codegen (frame) (stm: Tree.stm) : Assem.instr list =
 	    in
 		if index >= 4
 		then (munchStm(T.MOVE(T.MEMPOS(T.BINOP(T.PLUS, T.TEMP(F.SP), T.CONST offset)), arg));
-		      muncArgs(i + 1, offset + 4, ls))
+		      munchArgs(index + 1, offset + 4, ls))
 		else (munchStm(T.MOVE(T.TEMPPOS(curTemp), arg));
 		      curTemp::munchArgs(index + 1, offset, ls))
 	    end

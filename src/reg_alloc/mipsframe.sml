@@ -106,17 +106,17 @@ fun int (x: int) =
     if (x>=0) then Int.toString x
     else "-" ^ Int.toString (~x)
 
-fun convertToPos (T.TEMP t) = T.TEMPPOS t
-  | convertToPos (T.MEM e) = T.MEMPOS e
-  | convertToPos (T.ESEQ (s, e as T.MEM(_))) = T.ESEQPOS(s, convertToPos(e))
-  | convertToPos (T.ESEQ (s, t as T.TEMP(_))) = T.ESEQPOS(s, convertToPos(t))
+fun convertToPos (Tree.TEMP t) = Tree.TEMPPOS t
+  | convertToPos (Tree.MEM e) = Tree.MEMPOS e
+  | convertToPos (Tree.ESEQ (s, e as Tree.MEM(_))) = Tree.ESEQPOS(s, convertToPos(e))
+  | convertToPos (Tree.ESEQ (s, t as Tree.TEMP(_))) = Tree.ESEQPOS(s, convertToPos(t))
   | convertToPos _ = (ErrorMsg.error 0 "error in converting exp to pos";
-		      T.TEMPPOS(Temp.newtemp()))
+		      Tree.TEMPPOS(Temp.newtemp()))
 					       
 fun procEntryExit1 (fr : frame, body : Tree.stm) =
     let val tempList = getRegTemps argregs
 	fun mvArgReg (offset, []) = []
-	  | mvArgReg (offset, acc: ls) =
+	  | mvArgReg (offset, acc::ls) =
 	    if offset >= 4
 	    then case acc of InReg t =>
 			     Tree.MOVE(convertToPos(exp(acc, Tree.TEMP FP)), Tree.TEMP(t)) :: mvArgReg(offset + 1, ls)
@@ -124,7 +124,7 @@ fun procEntryExit1 (fr : frame, body : Tree.stm) =
 	    else Tree.MOVE(convertToPos(exp(acc, Tree.TEMP(FP))),
 			   Tree.TEMP(List.nth(tempList, offset))) :: mvArgReg(offset + 1, ls)
     in
-	seq(mvArgReg(0, fr @ [body])
+	seq(mvArgReg(0, (formals fr)) @ [body])
     end
 (*
 fun procEntryExit2 (frame : frame, body) = body @ [Assem.OPER{assem = "",
