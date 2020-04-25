@@ -20,8 +20,7 @@ sig
     val exp : access * Tree.exp -> Tree.exp
     val procEntryExit1 : frame * Tree.stm -> Tree.stm
     val procEntryExit2 : frame * Assem.instr list -> Assem.instr list
-(*
-    val procEntryExit3 : frame * Assem.instr list * Temp.temp list -> {prolog: string, body : Assem.instr list, epilog: string}*)
+    val procEntryExit3 : frame * Assem.instr list * Temp.temp list * int -> {prolog: string, body : Assem.instr list, epilog: string}
 
     val externalCall : string * Tree.exp list -> Tree.exp
 						  
