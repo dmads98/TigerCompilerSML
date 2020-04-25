@@ -39,23 +39,23 @@ fun areMapsEqual (map1, map2, graph) =
 							(state
 							 andalso Set.equal(liveIn1, liveIn2)
 							 andalso Set.equal(liveOut1, liveOut2), index + 1)
-						    end) (true, 0) (G.nodes graph)
+						    end) (true, 0) (FG.nodes graph)
     in
 	ans
     end
 			
-fun initLivenessMap graph = foldl (fn (node, map) => Map.insert(map, G.getNodeID(node),
-								{liveIn = Set.empty, liveOut = Set.empty})) Map.empty (G.nodes(graph))
+fun initLivenessMap graph = foldl (fn (node, map) => Map.insert(map, FG.getNodeID(node),
+								{liveIn = Set.empty, liveOut = Set.empty})) Map.empty (FG.nodes(graph))
 		       
 fun livenessIter (lMap, graph) =
     let val oldMap = lMap
-	val nodeList = List.rev(G.nodes(graph))
+	val nodeList = List.rev(FG.nodes(graph))
 
 	fun dataflowCompute (node, curLiveMap) =
-	    let val {uses, defs, isMove} : data = G.nodeInfo(node)
+	    let val {uses, defs, isMove} : data = FG.nodeInfo(node)
 		val defsSet = Set.addList(Set.empty, defs)
 		val usesSet = Set.addList(Set.empty, uses)
-		val updatedOut = G.foldSuccs
+		val updatedOut = FG.foldSuccs
 				     (fn (succ, curSet)
 					 => Set.union(case Map.find(curLiveMap, succ) of
 							  NONE => (print("Successor " ^ Int.toString(succ) ^ " not in liveness map\n"); Set.empty)
@@ -65,7 +65,7 @@ fun livenessIter (lMap, graph) =
 				     
 		val updatedIn = Set.union(usesSet, Set.difference(updatedOut, defsSet))
 	    in
-		Map.insert(curLiveMap, G.getNodeID(node), {liveIn = updatedIn, liveOut = updatedOut})
+		Map.insert(curLiveMap, FG.getNodeID(node), {liveIn = updatedIn, liveOut = updatedOut})
 	    end
     in
 	let val newMap = foldl dataflowCompute lMap nodeList
@@ -77,52 +77,59 @@ fun livenessIter (lMap, graph) =
     end
 
 fun interferenceHelper (graph, liveMap) =
-    let val empty : (unit GL.graph) = GL.empty
+    let val empty : (unit LG.graph) = LG.empty
 	fun createNodes (curNode, curGraph) =
-	    let val {uses, defs, isMove} : data = G.nodeInfo(curNode)
-		fun addTemp (t, g) = GL.addNode(g, t, ())
+	    let val {uses, defs, isMove} : data = FG.nodeInfo(curNode)
+		fun addTemp (t, g) = LG.addNode(g, t, ())
 	    in
 		foldl addTemp curGraph (uses @ defs)
 	    end
 
 	fun createEdges (id, {liveIn, liveOut}, curGraph (* : GL.graph*)) =
-	    let val {uses, defs, isMove} : data = G.nodeInfo(G.getNode(graph, id))
+	    let val {uses, defs, isMove} : data = FG.nodeInfo(FG.getNode(graph, id))
 							
-		fun addEdge (curTemp, g (*: GL.graph*)) = (case defs of [d] => if isMove
-								then (case uses of [u] => (case Temp.compare(curTemp, u) of EQUAL => g
-															  | _ => GL.doubleEdge(g, curTemp, d)) 
-										 | _ => (print("Move Instruction has more than one Use??");
-											 GL.doubleEdge(g, curTemp, d))) 
-								else GL.doubleEdge(g, curTemp, d)
-						       | list => (foldl (fn (def, gr) => GL.doubleEdge(gr, curTemp, def)) g list))
+		fun addEdge (curTemp, g (*: GL.graph*)) =
+		    (case defs of [d] =>
+				  if isMove
+				  then (case Temp.compare(curTemp, List.hd(uses)) of EQUAL => g
+										   | _ => LG.doubleEdge(g, curTemp, d)) 
+											 
+				  else LG.doubleEdge(g, curTemp, d)
+				| list => (foldl (fn (def, gr) => LG.doubleEdge(gr, curTemp, def)) g list))
 	    in
 		Set.foldl addEdge curGraph liveOut
 	    end
-	val nodegraph = foldl createNodes empty (G.nodes(graph))
+	val nodegraph = foldl createNodes empty (FG.nodes(graph))
     in
 	Map.foldli createEdges nodegraph liveMap
     end
 
 fun moveList (interGraph, cfg) =
     let fun updateList (curNode, list) =
-	    case G.nodeInfo curNode of {uses = [use], defs = [def], isMove = true} => list @ [(GL.getNode(interGraph, use), GL.getNode(interGraph, def))]
-										   | _ => list
+	    let val {defs = defs, uses = uses, isMove = isMove} = FG.nodeInfo(curNode)
+		val defNode = LG.getNode(interGraph, List.hd(defs))
+		val useNode = LG.getNode(interGraph, List.hd(uses))
+	    in
+		if isMove = true andalso not (LG.isAdjacent(defNode, useNode))
+		then list @ [(useNode, defNode)]
+		else list
     in
-	foldl updateList [] (G.nodes(cfg))
+	foldl updateList [] (FG.nodes(cfg))
     end
 	
-fun interferenceGraph fg =
+fun interferenceGraph (fg : MakeGraph.data FG.graph) =
     let val livenessMap = livenessIter(initLivenessMap(fg), fg)
 	val interferenceG = interferenceHelper(fg, livenessMap) (* *)
 	val movesList = moveList(interferenceG, fg)
 	val igraph = IGRAPH{graph = interferenceG,
-			    tnode = (fn temp => GL.getNode(interferenceG, temp)),
-			    gtemp = GL.getNodeID,
+			    tnode = (fn temp => LG.getNode(interferenceG, temp)),
+			    gtemp = LG.getNodeID,
 			    moves = movesList}
+(*
 	fun getLiveOut node = case Map.find(livenessMap, G.getNodeID node) of SOME({liveIn, liveOut}) => Set.listItems(liveOut)
-									    | _ => (print("node not in livenessMap"); []) 
+									    | _ => (print("node not in livenessMap"); []) *)
     in
-	(igraph, getLiveOut)
+	igraph
     end
 
 
