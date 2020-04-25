@@ -14,7 +14,6 @@ parse.sml
 tiger.lex
 tiger.grm
 
-
 main.sml
 semant.sig
 semant.sml
@@ -33,12 +32,10 @@ frame.sig
 mipsframe.sml
 printtree.sml
 
-
 assem.sml
 canon.sml
 codegen.sig
 mipsgen.sml
-
 
 (* flowgraph.sml*)
 graph.sig
@@ -51,7 +48,5 @@ makegraph.sml
 liveness.sig
 liveness.sml
 
-(*
 reg_alloc.sml
 reg_color.sml
-*)

@@ -153,7 +153,7 @@ fun procEntryExit3 ({name, formals, numLocalsAlloc, offset} : frame, body, saveR
 		       src=[reg, SP], dst=[], jump = NONE} :: storeInstrs(offset - 4, instrList, ls)
 	val storeRegs = storeInstrs(~8, [], saveRegs)
 	fun loadInstrs (_, instrList, []) = instrList
-	  | storeInstrs (offset, instrList, reg::ls) =
+	  | loadInstrs (offset, instrList, reg::ls) =
 	    Assem.OPER{assem = "lw `d0, " ^ int(offset) ^ "(`s0)\n",
 		       src=[FP], dst=[reg], jump = NONE} :: loadInstrs(offset - 4, instrList, ls)
 	val loadRegs = rev(storeInstrs(~8, [], saveRegs))
