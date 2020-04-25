@@ -6,7 +6,7 @@ structure F = MipsFrame
 		 
 fun getMaxArgs (frags : F.frag list) =
     let fun findMax (F.STRING(_, _), max) = max
-	  | findMax (F.PROC ({_, frame}, max)) = Integer.max(max, F.formals(frame))
+	  | findMax (F.PROC ({body, frame}), max) = Int.max(max, List.length(F.formals(frame)))
     in
 	foldl findMax 0 frags
     end
@@ -27,7 +27,7 @@ fun emitproc out (F.PROC{body, frame}) =
 	    then true
 	    else let val allRegs = F.getRegTemps(F.specialregs @ F.argregs @ F.calleesaves @ F.callersaves)
 		     fun getVal NONE = "INVALID REGISTER"
-		       | getVal SOME(r) = r
+		       | getVal (SOME(r)) = r
 		     fun helper(temp, state) = if isSome(List.find (fn t => temp = t) allRegs)
 					       then state
 					       else state orelse
@@ -48,13 +48,13 @@ fun emitproc out (F.PROC{body, frame}) =
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
 	val updatedInstrs = F.procEntryExit2(frame, instrs)
 	val cfg = MakeGraph.instrs2graph(updatedInstrs)
-	val igraph = Liveness.interferenceGraph(cfg)
-	val (allocation, regsSpilled) = Reg_Alloc.alloc(igraph)
-	val tempList = map (LG.getNodeID) (LG.nodes igraph)
+	val interference as Liveness.IGRAPH{graph, tnode, gtemp, moves} = Liveness.interferenceGraph(cfg)
+	val (allocation, regsSpilled) = Reg_Alloc.alloc(interference)
+	val tempList = map (LG.getNodeID) (LG.nodes (graph))
 	val saveTemps = List.filter (fn reg => inAlloc(tempList, allocation, reg)) (F.RA::(F.getRegTemps F.calleesaves))
 	val finalInstrs = #body (F.procEntryExit3(frame, instrs, saveTemps, getMaxArgs(Tr.getResult())))
-	val format0 = Assem.format((fn i => case (Temp.Table.look(allocation, i)) of SOME(a) => a
-									      | NONE => ("REG NOT FOUND")
+	val format0 = Assem.format(fn i => case (Temp.Table.look(allocation, i)) of SOME(a) => a
+										  | NONE => ("REG NOT FOUND"))
     in
 	app (fn i => TextIO.output(out, format0 i)) finalInstrs;
 	if regsSpilled

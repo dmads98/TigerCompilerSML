@@ -1,6 +1,5 @@
 signature COLOR = 
 sig
-    structure Frame : FRAME
     type allocation = string Temp.Table.table
     val color: {interference: Liveness.igraph,
 		initial: allocation,
@@ -24,12 +23,12 @@ fun isPartOfMove (_, []) = false
 
 fun getNextToSimplify ([], _, _, _) = NONE
   | getNextToSimplify (curNode :: remaining, initialAlloc, moveList, numRegs) =
-    let val curId = LG.getNodeId(curNode)
+    let val curId = LG.getNodeID(curNode)
 	val deg = LG.outDegree(curNode)
     in
 	if deg < numRegs
-	   andalso (not isSome(Temp.Table.look(initialAlloc, curId)))
-	   andalso (not isPartOfMove(curId, moveList))
+	   andalso (not(isSome(Temp.Table.look(initialAlloc, curId))))
+	   andalso (not(isPartOfMove(curId, moveList)))
 	then SOME(curId)
 	else getNextToSimplify(remaining, initialAlloc, moveList, numRegs)
     end
@@ -78,12 +77,12 @@ fun color ({interference as Liveness.IGRAPH{graph, tnode, gtemp, moves}, initial
 	case nextToSimplify of
 	    SOME(simpId) =>
 	    let val updatedGraph = LG.removeNode(graph, simpId)
-		val (newAlloc, spillList) = color({Liveness.IGRAPH{graph = updatedGraph,
-								   tnode = tnode,
-								   gtemp = gtemp,
-								   moves = moves},
+		val (newAlloc, spillList) = color({interference = Liveness.IGRAPH{graph = updatedGraph,
+										 tnode = tnode,
+										 gtemp = gtemp,
+										 moves = moves},
 						   initial = initial,
-						   spillLost = spillCost,
+						   spillCost = spillCost,
 						   registers = registers})
 	    in
 		case getColor(simpId, graph, newAlloc, registers) of
@@ -101,25 +100,25 @@ fun color ({interference as Liveness.IGRAPH{graph, tnode, gtemp, moves}, initial
 		    if (isSome(Temp.Table.look(initial, srctemp)))
 		       andalso (not (isSome(Temp.Table.look(initial, dsttemp))))
 		       andalso (LG.inDegree(srcNode) + LG.inDegree(dstNode) < 30)
-		    then color({Liveness.IGRAPH{graph = graph,
-						tnode = tnode,
-						gtemp = gtemp,
-						moves = List.drop(moves, 1)},
+		    then color({interference = Liveness.IGRAPH{graph = graph,
+							       tnode = tnode,
+							       gtemp = gtemp,
+							       moves = List.drop(moves, 1)},
 				initial = Temp.Table.enter(initial, dsttemp, valOf(Temp.Table.look(initial, srctemp))),
-				spillLost = spillCost,
+				spillCost = spillCost,
 				registers = registers})
-		    else if (not isSome(Temp.Table.look(initial, srctemp)))
+		    else if (not(isSome(Temp.Table.look(initial, srctemp))))
 			    andalso (isSome(Temp.Table.look(initial, dsttemp)))
 			    andalso (LG.inDegree(srcNode) + LG.inDegree(dstNode) < 30)
-		    then color({Liveness.IGRAPH{graph = graph,
-						tnode = tnode,
-						gtemp = gtemp,
-						moves = List.drop(moves, 1)},
+		    then color({interference = Liveness.IGRAPH{graph = graph,
+							       tnode = tnode,
+							       gtemp = gtemp,
+							       moves = List.drop(moves, 1)},
 				initial = Temp.Table.enter(initial, srctemp, valOf(Temp.Table.look(initial, dsttemp))),
-				spillLost = spillCost,
+				spillCost = spillCost,
 				registers = registers})
-		    else if (not isSome(Temp.Table.look(initial, srctemp)))
-			    andalso (not isSome(Temp.Table.look(initial, dsttemp)))
+		    else if (not(isSome(Temp.Table.look(initial, srctemp))))
+			    andalso (not(isSome(Temp.Table.look(initial, dsttemp))))
 			    andalso (LG.inDegree(srcNode) + LG.inDegree(dstNode) < 30)
 		    then
 			let val assignedColor = getCoalescedColor(srctemp, dsttemp, graph, initial, registers)
@@ -127,22 +126,22 @@ fun color ({interference as Liveness.IGRAPH{graph, tnode, gtemp, moves}, initial
 				    Temp.Table.enter(initial, srctemp, assignedColor),
 				    dsttemp, assignedColor)
 			in
-			    color({Liveness.IGRAPH{graph = graph,
-						tnode = tnode,
-						gtemp = gtemp,
-						moves = List.drop(moves, 1)},
-				initial = updatedAlloc,
-				spillLost = spillCost,
-				registers = registers})
+			    color({interference = Liveness.IGRAPH{graph = graph,
+								  tnode = tnode,
+								  gtemp = gtemp,
+								  moves = List.drop(moves, 1)},
+				   initial = updatedAlloc,
+				   spillCost = spillCost,
+				   registers = registers})
 			end
-		    else color({Liveness.IGRAPH{graph = graph,
-						tnode = tnode,
-						gtemp = gtemp,
-						moves = List.drop(moves, 1)},
+		    else color({interference = Liveness.IGRAPH{graph = graph,
+							       tnode = tnode,
+							       gtemp = gtemp,
+							       moves = List.drop(moves, 1)},
 				initial = initial,
-				spillLost = spillCost,
+				spillCost = spillCost,
 				registers = registers})
 		end
-	
+		    
     end
 end

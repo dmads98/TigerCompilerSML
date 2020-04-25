@@ -33,7 +33,7 @@ type livenessData = {liveIn: Set.set, liveOut: Set.set}
 
 fun printNode(id, node) = (Int.toString(id))
 
-fun show(out, g as IGRAPH{graph, tnode, gtemp, moves})) = LG.printGraph printNode graph 
+fun show(out, g as IGRAPH{graph, tnode, gtemp, moves}) = LG.printGraph printNode graph 
 
 fun areMapsEqual (map1, map2, graph) =
     let val (ans, _) = foldl ( fn (node, (state, index)) =>
