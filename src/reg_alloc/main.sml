@@ -6,10 +6,11 @@ structure F = MipsFrame
 		 
 fun emitproc out (F.PROC{body,frame}) =
     let val _ = print ("emit " ^ Symbol.name(F.name frame) ^ "\n")
-	(*	val _ = Printtree.printtree(TextIO.stdOut, body);*)
-	val _ = Printtree.printtree(out, body);
+	val _ = print("------------body--------------\n")
+	val _ = Printtree.printtree(TextIO.stdOut, body);
+	val _ = print("------------stms--------------\n")
 	val stms = Canon.linearize body
-	val _ = app (fn s => Printtree.printtree(out,s)) stms;
+	val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms;
         val stms' = Canon.traceSchedule(Canon.basicBlocks stms)
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
 (*	val updatedInstrs = F.procEntryExit2(frame, instrs)
@@ -30,10 +31,10 @@ fun withOpenFile fname f =
 fun compile filename = 
     let val absyn = Parse.parse filename
         val frags = (FindEscape.findEscape absyn; Semant.transProg absyn)
-	val (strings, procs) = List.partition (fn x =>
-						  case x of
-						      F.PROC(_) => false
-						   | F.STRING(_) => true) frags
+	(* val (strings, procs) = List.partition (fn x => *)
+	(* 					  case x of *)
+	(* 					      F.PROC(_) => false *)
+	(* 					   | F.STRING(_) => true) frags *)
 
 	val runtime = TextIO.inputAll (TextIO.openIn "runtimele.s")
 	val sys = TextIO.inputAll (TextIO.openIn "sysspim.s")
@@ -64,7 +65,25 @@ fun compile filename =
 	val tree = Parse.parse filename; (* Absyn.exp *)
 	val _ = FindEscape.findEscape(tree)
 	val frags = Semant.transProg(tree)
+	val (strings, procs) = List.partition (fn x =>
+						  case x of
+						      F.PROC(_) => false
+						   | F.STRING(_) => true) frags
+
+				    
     in
-	withOpenFile (filename ^ ".s") (fn out => (app (emitproc TextIO.stdOut) frags))
+	(* withOpenFile (filename ^ ".s") (fn out => (app (emitproc out) frags)) *)
+
+	withOpenFile (filename ^ ".s") 
+		     (fn out =>
+			 ( TextIO.output(out, ".data\n.align 4\n");
+			   app (emitproc out) strings;
+			   TextIO.output(out, ".text\n.globl tig_main\n.ent tig_main\n");
+			   TextIO.output(out, "#-----------tig_main----------\n");
+			   app (emitproc out) procs
+			 )
+		     )
+
+	
     end
 end	  
