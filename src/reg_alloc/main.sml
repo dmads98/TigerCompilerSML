@@ -6,11 +6,11 @@ structure F = MipsFrame
 		 
 fun emitproc out (F.PROC{body,frame}) =
     let val _ = print ("emit " ^ Symbol.name(F.name frame) ^ "\n")
-	val _ = print("------------Before Linearize--------------\n")
-	val _ = Printtree.printtree(TextIO.stdOut, body);
+	(* val _ = print("------------Before Linearize--------------\n") *)
+	(* val _ = Printtree.printtree(TextIO.stdOut, body); *)
 	val stms = Canon.linearize body
-	val _ = print("------------After Linearize--------------\n")
-	val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms;
+	(* val _ = print("------------After Linearize--------------\n") *)
+	(* val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms; *)
         val stms' = Canon.traceSchedule(Canon.basicBlocks stms)
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
 (*	val updatedInstrs = F.procEntryExit2(frame, instrs)
@@ -62,6 +62,7 @@ fun compile filename =
 	val t = ErrorMsg.reset()
 	val _ = Translate.reset()
 	val _ = FindEscape.reset()
+	val _ = Temp.reset()
 	val tree = Parse.parse filename; (* Absyn.exp *)
 	val _ = FindEscape.findEscape(tree)
 	val frags = Semant.transProg(tree)
@@ -72,8 +73,6 @@ fun compile filename =
 
 				    
     in
-	(* withOpenFile (filename ^ ".s") (fn out => (app (emitproc out) frags)) *)
-
 	withOpenFile (filename ^ ".s") 
 		     (fn out =>
 			 ( TextIO.output(out, ".data\n.align 4\n");
