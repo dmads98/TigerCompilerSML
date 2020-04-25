@@ -146,7 +146,6 @@ fun handleTree (tree, filename) =
 						    | F.STRING(_) => true) frags
 	val out = TextIO.openOut(filename ^ ".s")
 	val _ = TextIO.output(out, ".data\n")
-			     (*TextIO.output(out, ".data\n.align 4\n");*)
 	val _ = foldl (fn (proc, spilled) => spilled orelse
 					     (emitproc out proc)) false strings
 		handle e => (TextIO.closeOut out; raise e)
@@ -157,7 +156,7 @@ fun handleTree (tree, filename) =
 						       (emitproc out proc)) false procs
 		handle e => (TextIO.closeOut out; raise e)
 			     (*TextIO.output(out, "#-----------tig_main----------\n");*)
-	val _ = runtimeOut out
+	val _ = sysspimOut out
 	val _ = TextIO.closeOut out
     in
 	if regsSpilled

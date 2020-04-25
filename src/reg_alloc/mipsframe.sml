@@ -135,7 +135,7 @@ fun procEntryExit2 (frame : frame, body) =
 
 
 fun procEntryExit3 ({name, formals, numLocalsAlloc, offset} : frame, body, saveRegs, maxArgs) =
-    let val labelInstr = Assem.LABEL{assem = (Symbol.name (name) ^ ":\n)"), lab = name}
+    let val labelInstr = Assem.LABEL{assem = (Symbol.name (name) ^ ":\n"), lab = name}
 	val moveMainFrame = Assem.OPER{assem = "move `d0, `s0\n",
 				       src=[FP], dst=[A0], jump = NONE}
 	val saveFP = Assem.OPER{assem = "sw `d0, -4(`s0)\n",
