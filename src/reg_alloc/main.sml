@@ -8,8 +8,8 @@ fun emitproc out (F.PROC{body,frame}) =
     let val _ = print ("emit " ^ Symbol.name(F.name frame) ^ "\n")
 	val _ = print("------------Before Linearize--------------\n")
 	val _ = Printtree.printtree(TextIO.stdOut, body);
-	val _ = print("------------After Linearize--------------\n")
 	val stms = Canon.linearize body
+	val _ = print("------------After Linearize--------------\n")
 	val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms;
         val stms' = Canon.traceSchedule(Canon.basicBlocks stms)
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
