@@ -133,57 +133,52 @@ fun procEntryExit2 (frame : frame, body) =
 		       dst = [],
 		       jump = SOME ([])}]
 
-(*
-fun procEntryExit3 ({name, formals, numLocalsAlloc} : frame, label::body, spillList) =
-    let val retInstr = Assem.OPER{assem = "jr `s0\n\n",
-				  src = [RA],
-				  dst = [],
-				  jump = SOME([])}
-	val saveRAInstr = Assem.OPER{assem = "sw `s0, " ^ int(!numLocalsAlloc * ~4) ^ "(`s1) \n",
-				  src = [RA, FP],
-				  dst = [],
-				  jump = NONE}
-	val loadRAInstr = Assem.OPER{assem = "lw `d0, " ^ int(!numLocalsAlloc * ~4) ^ "(`s0) \n",
-				  src = [FP],
-				  dst = [RA],
-				  jump = NONE}
-	val count = ref 0
-	val storeSpillInstrs = map (fn spill => (count := !count + 1;
-						 Assem.OPER{assem = "sw `s0, " ^ int((!numLocalsAlloc + !count + 1) * ~4) ^ "(`s1) \n",
-							    src = [spill, FP],
-							    dst = [],
-							    jump = NONE})) spillList
-	val count = ref 0
-	val loadSpillInstrs = map (fn spill => (count := !count + 1;
-						 Assem.OPER{assem = "lw `d0, " ^ int((!numLocalsAlloc + !count + 1) * ~4) ^ "(`s0) \n",
-							    src = [FP],
-							    dst = [spill],
-							    jump = NONE})) spillList
-	val fpPos = (!numLocalsAlloc + 1) * ~4
-	val sizeOfStack = (!numLocalsAlloc + List.length(spillList) + 2) * ~4
-	val makeStackSpace = [Assem.OPER{assem = "sw `s0, " ^ int(fpPos) ^ "(`s1) \n",
-					 src=[FP, SP],
-					 dst = [],
-					 jump = NONE},
-			      Assem.MOVE{assem = "move `d0, `s0\n",
-					 src = SP,
-					 dst = FP},
-			      Assem.OPER{assem = "addi `d0, `s0, " ^ int(sizeOfStack) ^ "\n",
-					 src = [SP],
-					 dst = [SP],
-					 jump = NONE}]
-	val restoreStack = [Assem.OPER{assem = "addi `d0, `s0, " ^ int(sizeOfStack * ~1) ^ "\n",
-					 src=[SP],
-					 dst = [SP],
-					 jump = NONE},
-			      Assem.OPER{assem = "lw `d0, " ^ int(fpPos) ^ "(`s0)\n",
-					 src = [FP],
-					 dst = [FP],
-					 jump = NONE}]
+
+fun procEntryExit3 ({name, formals, numLocalsAlloc, offset} : frame, body, saveRegs, maxArgs) =
+    let val labelInstr = Assem.LABEL{assem = (Symbol.name (name) ^ ":\n)"), lab = name}
+	val moveMainFrame = Assem.OPER{assem = "move `d0, `s0\n",
+				       src=[FP], dst=[A0], jump = NONE}
+	val saveFP = Assem.OPER{assem = "sw `d0, -4(`s0)\n",
+				src=[SP], dst=[FP], jump = NONE}
+	val moveSP = Assem.OPER{assem = "move `d0, `s0\n",
+				src=[SP], dst=[FP], jump = NONE}
+	val newOffset = if maxArgs >= 4
+			then !offset - (maxArgs * wordSize)
+			else !offset - (4 * wordSize)
+	val spInstr = Assem.OPER{assem = "addi `d0, `s0, -" ^ Int.toString(abs(newOffset)) ^ "\n",
+				 src=[FP], dst=[SP], jump = NONE}
+	fun storeInstrs (_, instrList, []) = instrList
+	  | storeInstrs (offset, instrList, reg::ls) =
+	    Assem.OPER{assem = "sw `s0, " ^ int(offset) ^ "(`s1)\n",
+		       src=[reg, SP], dst=[], jump = NONE} :: storeInstrs(offset - 4, instrList, ls)
+	val storeRegs = storeInstrs(~8, [], saveRegs)
+	fun loadInstrs (_, instrList, []) = instrList
+	  | storeInstrs (offset, instrList, reg::ls) =
+	    Assem.OPER{assem = "lw `d0, " ^ int(offset) ^ "(`s0)\n",
+		       src=[FP], dst=[reg], jump = NONE} :: loadInstrs(offset - 4, instrList, ls)
+	val loadRegs = rev(storeInstrs(~8, [], saveRegs))
+	val moveBackSP =  Assem.OPER{assem = "move `d0, `s0\n",
+				     src=[FP], dst=[SP], jump = NONE}
+	val loadFP = Assem.OPER{assem = "lw `d0, -4(`s0)\n",
+				src=[FP], dst=[FP], jump = NONE}
+	val retInstr = Assem.OPER{assem = "jr `d0 \n",
+				  src = [], dst = [RA], jump = NONE}
+	val instrs = [labelInstr]
+		     @ (if name = Symbol.symbol "tig_main"
+			then [moveMainFrame]
+			else [])
+		     @ [saveFP]
+		     @ [moveSP]
+		     @ [spInstr]
+		     @ storeRegs @ body @ loadRegs
+		     @ [moveBackSP]
+		     @ [loadFP]
+		     @ [retInstr]
+
     in
 	{prolog = "PROCEDURE " ^ Symbol.name(name) ^ "\n",
-	 body = [label] @ makeStackSpace @ [saveRAInstr] @ storeSpillInstrs @ body @ [loadRAInstr] @ loadSpillInstrs @ restoreStack @ [retInstr],
+	 body = instrs,
 	 epilog = "END " ^ Symbol.name(name) ^ "\n"}
-    end*)
+    end
 					       
 end
