@@ -14,10 +14,10 @@ struct
 type data = MakeGraph.data
 
 datatype igraph =
-	 IGRAPH of {graph: unit GL.graph,
-		    tnode: Temp.temp -> unit GL.node,
-		    gtemp: unit GL.node -> Temp.temp,
-		    moves: (unit GL.node * unit GL.node) list}
+	 IGRAPH of {graph: unit LG.graph,
+		    tnode: Temp.temp -> unit LG.node,
+		    gtemp: unit LG.node -> Temp.temp,
+		    moves: (unit LG.node * unit LG.node) list}
 
 structure Map = SplayMapFn(struct
 			    type ord_key = int
@@ -113,6 +113,7 @@ fun moveList (interGraph, cfg) =
 		if isMove = true andalso not (LG.isAdjacent(defNode, useNode))
 		then list @ [(useNode, defNode)]
 		else list
+	    end
     in
 	foldl updateList [] (FG.nodes(cfg))
     end
