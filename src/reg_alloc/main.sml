@@ -6,9 +6,9 @@ structure F = MipsFrame
 		 
 fun emitproc out (F.PROC{body,frame}) =
     let val _ = print ("emit " ^ Symbol.name(F.name frame) ^ "\n")
-	val _ = print("------------body--------------\n")
+	val _ = print("------------Before Linearize--------------\n")
 	val _ = Printtree.printtree(TextIO.stdOut, body);
-	val _ = print("------------stms--------------\n")
+	val _ = print("------------After Linearize--------------\n")
 	val stms = Canon.linearize body
 	val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms;
         val stms' = Canon.traceSchedule(Canon.basicBlocks stms)
