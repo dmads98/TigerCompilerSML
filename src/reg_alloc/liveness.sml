@@ -31,10 +31,6 @@ structure Set = Temp.Set
 
 type livenessData = {liveIn: Set.set, liveOut: Set.set}
 
-fun printNode(id, node) = (Int.toString(id))
-
-fun show(out, g as IGRAPH{graph, tnode, gtemp, moves})) = LG.printGraph printNode graph 
-
 fun areMapsEqual (map1, map2, graph) =
     let val (ans, _) = foldl ( fn (node, (state, index)) =>
 						    let val {liveIn = liveIn1, liveOut = liveOut1} = valOf(Map.find(map1, index))
@@ -109,13 +105,25 @@ fun interferenceHelper (graph, liveMap) =
     end
 
 fun moveList (interGraph, cfg) =
-    let fun updateList (curNode, list) =
-	    let val {defs = defs, uses = uses, isMove = isMove} = FG.nodeInfo(curNode)
-		val defNode = LG.getNode(interGraph, List.hd(defs))
-		val useNode = LG.getNode(interGraph, List.hd(uses))
+    let
+	(* val () = print "\nIn movelist\n" *)
+	fun updateList (curNode, list) =
+	    let
+		(* val () = print "\nIn update list\n" *)
+		val {defs = defs, uses = uses, isMove = isMove} = FG.nodeInfo(curNode)
+		(* val () = print "\nAfter nodeinfo \n" *)
+		(* val defNode = *)
+		(*     case isMove of *)
+		(* 	true => LG.getNode(interGraph, List.hd(defs)) *)
+		(*       | false  => () *)
+		(* val () = print "\nAfter getnode for defs \n" *)
+		(* val useNode = LG.getNode(interGraph, List.hd(uses)) *)
+		(* val () = print "\nAfter def and use\n" *)
 	    in
-		if isMove = true andalso not (LG.isAdjacent(defNode, useNode))
-		then list @ [(useNode, defNode)]
+		if isMove = true andalso not (LG.isAdjacent
+						  (LG.getNode(interGraph, List.hd(defs)),
+						   LG.getNode(interGraph, List.hd(uses))))
+		then ((LG.getNode(interGraph, List.hd(uses))), (LG.getNode(interGraph, List.hd(defs))))::list
 		else list
 	    end
     in
@@ -123,9 +131,14 @@ fun moveList (interGraph, cfg) =
     end
 	
 fun interferenceGraph (fg : MakeGraph.data FG.graph) =
-    let val livenessMap = livenessIter(initLivenessMap(fg), fg)
-	val interferenceG = interferenceHelper(fg, livenessMap) (* *)
+    let
+	(* val () = print "\nIn interferenceGraph\n" *)
+	val livenessMap = livenessIter(initLivenessMap(fg), fg)
+	(* val () = print "\nAfter Liveness iter\n" *)
+	val interferenceG = interferenceHelper(fg, livenessMap)
+	(* val () = print "\nAfter inference helper\n" *)
 	val movesList = moveList(interferenceG, fg)
+	(* val () = print "\nAfter movelist\n" *)
 	val igraph = IGRAPH{graph = interferenceG,
 			    tnode = (fn temp => LG.getNode(interferenceG, temp)),
 			    gtemp = LG.getNodeID,
@@ -145,5 +158,9 @@ fun interferenceGraph (fg : MakeGraph.data FG.graph) =
 (*     in *)
 (* 	LG.printGraph stringify igraph *)
 (*     end *)
+fun printNode(id, node) = MipsFrame.getRegName id
+
+
+fun show (g as IGRAPH{graph, tnode, gtemp, moves}) = LG.printGraph printNode graph 
 
 end

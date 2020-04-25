@@ -14,14 +14,24 @@ fun emitproc out (F.PROC{body,frame}) =
         val stms' = Canon.traceSchedule(Canon.basicBlocks stms)
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
 	val updatedInstrs = F.procEntryExit2(frame, instrs)
-	val (flowgraph, _) = MakeGraph.instrs2graph(updatedInstrs)
-						   
+	(* val _ = print "orig instrs\n" *)
+	(* val _ = app (fn i => TextIO.output(TextIO.stdOut, Assem.format(Temp.makestring) i)) instrs *)
+	val _ = print "-----updated instrs------\n"
+	val _ = app (fn i => TextIO.output(TextIO.stdOut, Assem.format(F.getRegName) i)) updatedInstrs
+
+	val flowgraph = MakeGraph.instrs2graph(updatedInstrs)
+	(* val _ = print("------------CFG--------------\n") *)
+	(* val _ = MakeGraph.show flowgraph *)
+
+	val igraph = Liveness.interferenceGraph flowgraph
+	(* val _ = print("------------Interference Graph--------------\n") *)
+	(* val _ = Liveness.show igraph *)
 					      
 (*	val (instrList, alloc) = Reg_Alloc.alloc(updatedInstrs, frame)*)
  (*       val format0 = Assem.format((fn i => case (Temp.Table.look(alloc, i)) of SOME(a) => a
 									      | NONE => (ErrorMsg.error ~1 "was not able to allocate"; Temp.makestring(i))))*)
     in
-	app (fn i => TextIO.output(out, Assem.format(F.getRegName) i)) instrs
+	app (fn i => TextIO.output(out, Assem.format(F.getRegName) i)) updatedInstrs
     end
   | emitproc out (F.STRING(lab,s)) = TextIO.output(out, F.string(lab, s)) (* MIPS format string *)
 
@@ -66,9 +76,11 @@ fun compile filename =
 	val _ = Translate.reset()
 	val _ = FindEscape.reset()
 	val _ = Temp.reset()
-	val tree = Parse.parse filename; (* Absyn.exp *)
+	val tree = Parse.parse filename
+		   handle e => OS.Process.exit(OS.Process.success)
 	val _ = FindEscape.findEscape(tree)
 	val frags = Semant.transProg(tree)
+		    handle e => OS.Process.exit(OS.Process.success)
 	val (strings, procs) = List.partition (fn x =>
 						  case x of
 						      F.PROC(_) => false

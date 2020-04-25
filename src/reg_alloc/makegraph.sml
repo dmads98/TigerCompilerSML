@@ -128,6 +128,23 @@ fun instrs2graph instrList =
 	val nodeGraph = (index := 0; foldl createNode FG.empty instrList)
 	val completeGraph = (index := 0; addEdges(nodeGraph, instrList))
     in
-	(completeGraph, FG.nodes (completeGraph))
+	completeGraph
     end
+
+fun printNodeFG (id, {defs, uses, isMove}) =
+    let (* val {defs, uses, isMove} = FG.nodeInfo node *)
+	fun temp_str (temp, prev_str) = prev_str ^   ", " ^ MipsFrame.getRegName temp
+	val defs_str = foldl temp_str "" defs
+	val uses_str = foldl temp_str "" uses
+	val isMove_str = case isMove of
+			     true => ", has Move"
+			   | false => ""
+    in
+	(* "---" ^ *)
+	"{ID: " ^ (Int.toString id) ^ " , Defs: " ^ defs_str ^ ", Uses:" ^ uses_str  ^ isMove_str ^ "}"
+	(* ^ "--" *)
+    end
+	
+fun show flowgraph = FG.printGraph printNodeFG flowgraph;
+
 end

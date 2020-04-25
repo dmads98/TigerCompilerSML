@@ -6,5 +6,6 @@ signature MAKEGRAPH =
 sig
 
     type data
-    val instrs2graph : Assem.instr list -> data FG.graph * data FG.node list
+    val instrs2graph : Assem.instr list -> data FG.graph
+    val show : data FG.graph -> unit
 end
