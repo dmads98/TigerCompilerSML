@@ -760,7 +760,7 @@ move $a0, $fp
 sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -64
-sw $ra, -8($sp)
+sw $ra, -8($fp)
 L5:
 sw $a0, 0($fp)
 li $t0, 0
@@ -782,7 +782,7 @@ addi $t1, $t1, 1
 sw $t1, -48($fp)
 j L2 
 L4:
-sw $ra, -8($sp)
+lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
 jr $ra 

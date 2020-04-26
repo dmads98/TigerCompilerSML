@@ -1,47 +1,6 @@
 .data
-.align 4
-L0: .asciiz "0"
+L1: .asciiz "0"
 .text
-.globl tig_main
-.ent tig_main
-#-----------tig_main----------
-tig_main:
-sw $fp, -8($sp) 
-move $fp, $sp
-addi $sp, $sp, -12
-sw $ra, -4($fp) 
-sw $a0, 0($fp) 
-addi $v0, $sp, 0
-move $sp, $v0
-li $a0, 10
-addi $v1, $a0, 1
-move $a0, $v1
-li $a1, 0
-move $a1, $a1
-jal tig_initArray
-addi $a2, $sp, 0
-move $sp, $a2
-move $v0, $v0
-li $a3, 10
-sw $a3, 0($v0) 
-addi $t0, $v0, 4
-move $v0, $t0
-addi $t1, $sp, 0
-move $sp, $t1
-la $t2, L0
-move $a0, $t2
-jal tig_print
-addi $t3, $sp, 0
-move $sp, $t3
-move $v0, $v0
-j L1 
-L1:
-lw $ra, -4($fp) 
-addi $sp, $sp, 12
-lw $fp, -8($fp)
-jr $ra
-
-#-----------runtime----------
 	#.file	1 "runtime.c"
 	.option pic2
 	.text
@@ -796,15 +755,26 @@ tig_exit:
   j exit
   .end tig_exit
 
-.data
-subscriptFail: .asciiz "Subscript for array was out of bounds. Exiting...\n"
-.text
-outOfBoundsSubscript:
-la $a0, subscriptFail
-li $v0, 4
-syscall
-j exit
-#-----------sys_spim----------
+#---------------------------------PROGRAM START-----------------------------------
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L3:
+sw $a0, 0($fp)
+li $a0, 10
+li $a1, 0
+jal tig_initArray
+la $a0, L1
+jal tig_print
+j L2 
+L2:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
 # system calls for Tiger, when running on SPIM
 #
 # $Id: sysspim.s,v 1.1 2002/08/25 05:06:41 shivers Exp $

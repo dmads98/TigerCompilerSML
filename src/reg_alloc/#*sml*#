@@ -1,0 +1,8776 @@
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16179, data: 239, env: 751 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+emit tig_main
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 20664, data: 544, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+emit tig_main
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16183, data: 239, env: 751 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+emit tig_main
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 20660, data: 544, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test2.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test3.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test4.tig";
+emit tig_main
+emit L1
+val it = () : unit
+- Main.compile "../testcases/test5.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test6.tig";
+emit tig_main
+emit L2
+emit L1
+val it = () : unit
+- Main.compile "../testcases/test7.tig";
+emit tig_main
+emit L2
+emit L1
+val it = () : unit
+- Main.compile "../testcases/test8.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test12.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test27.tig";
+emit tig_main
+emit L1
+val it = () : unit
+- Main.compile "../testcases/test30.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test37.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test41.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test44.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test46.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test47.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test48.tig";
+emit tig_main
+emit L2
+emit L1
+val it = () : unit
+- Main.compile "../testcases/merge.tig";
+emit tig_main
+emit L28
+emit L27
+emit L26
+emit L32
+emit L25
+emit L1
+emit L3
+emit L2
+val it = () : unit
+- Main.compile "../testcases/queens.tig";
+emit tig_main
+emit L2
+emit L1
+val it = () : unit
+- Main.compile "../testcases/correct/test2.tig";
+emit tig_main
+val it = () : unit
+- Mdsdsain.compile "../testcases/test2.tig
+= ;
+tdIn:23.18-23.41 Error: unclosed string
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 20684, data: 544, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 21132, data: 560, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+neOffset: ~60val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 21478, data: 574, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 21787, data: 587, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 22165, data: 617, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 22250, data: 638, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+testestesetesetstestestesetesetstestestesetesetstestestesetesetstestestesetesetsemit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 22245, data: 633, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+testestese
+testestese
+testestese
+testestese
+testestese
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+testestese
+testestese
+testestese
+testestese
+testestese
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):translate.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[compiling (sources.cm):translate.sml]
+translate.sml:216.6-222.24 Warning: match nonexhaustive
+          EqOp => ...
+          NeqOp => ...
+          LtOp => ...
+          LeOp => ...
+          GtOp => ...
+          GeOp => ...
+  
+translate.sml:185.6-189.29 Warning: match nonexhaustive
+          PlusOp => ...
+          MinusOp => ...
+          TimesOp => ...
+          DivideOp => ...
+  
+[code: 38097, data: 477, env: 584 bytes]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+testestese
+allocLocal escape: false
+testestese
+allocLocal escape: false
+testestese
+allocLocal escape: false
+testestese
+allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- Main.compile "../testcases/test42.sdlsk;
+= ;
+stdIn:3.14-3.41 Error: unclosed string
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):semant.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[compiling (sources.cm):semant.sml]
+[code: 52476, data: 1952, env: 49 bytes]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- Main.compile "../testcases/test42.tig";
+stdIn:1.2-1.14 Error: unbound structure: Main in path Main.compile
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16291, data: 239, env: 751 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+LetExp([
+ TypeDec[
+  (arrtype1,
+   ArrayTy(int)),
+  (rectype1,
+   RecordTy[
+    (name,false,string),
+    (address,false,string),
+    (id,false,int),
+    (age,false,int)]),
+  (arrtype2,
+   ArrayTy(rectype1)),
+  (rectype2,
+   RecordTy[
+    (name,false,string),
+    (dates,false,arrtype1)]),
+  (arrtype3,
+   ArrayTy(string))],
+ VarDec(arr1,false,NONE,
+  ArrayExp(arrtype1,
+   IntExp(10),
+   IntExp(0))),
+ VarDec(arr2,false,NONE,
+  ArrayExp(arrtype2,
+   IntExp(5),
+   RecordExp(rectype1,[
+
+    (name,
+     StringExp("aname")),
+    (address,
+     StringExp("somewhere")),
+    (id,
+     IntExp(0)),
+    (age,
+     IntExp(0))]))),
+ VarDec(arr3,false,SOME(arrtype3),
+  ArrayExp(arrtype3,
+   IntExp(100),
+   StringExp(""))),
+ VarDec(rec1,false,NONE,
+  RecordExp(rectype1,[
+
+   (name,
+    StringExp("Kapoios")),
+   (address,
+    StringExp("Kapou")),
+   (id,
+    IntExp(2432)),
+   (age,
+    IntExp(44))])),
+ VarDec(rec2,false,NONE,
+  RecordExp(rectype2,[
+
+   (name,
+    StringExp("Allos")),
+   (dates,
+    ArrayExp(arrtype1,
+     IntExp(3),
+     IntExp(1900)))]))],
+ SeqExp[
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(0)),
+   IntExp(1)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(9)),
+   IntExp(3)),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(3)),
+    name),
+   StringExp("kati")),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(1)),
+    age),
+   IntExp(23)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr3),
+    IntExp(34)),
+   StringExp("sfd")),
+  AssignExp(
+   FieldVar(
+    SimpleVar(rec1),
+    name),
+   StringExp("sdf")),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(0)),
+   IntExp(2323)),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(2)),
+   IntExp(2323))])
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+find_escape.sml:40.32 Error: syntax error: inserting  END
+sources.cm:25.1-25.16 Error: syntax error
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+find_escape.sml:42.15-42.29 Error: operator is not a function [tycon mismatch]
+  operator: depth
+  in expression:
+    d body
+find_escape.sml:42.4-42.29 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: escEnv * depth * Absyn.exp
+  operand:         (depth * bool ref) Symbol.table * _
+  in expression:
+    traverseExp (env',d body)
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 4864, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+LetExp([
+ TypeDec[
+  (arrtype1,
+   ArrayTy(int)),
+  (rectype1,
+   RecordTy[
+    (name,false,string),
+    (address,false,string),
+    (id,false,int),
+    (age,false,int)]),
+  (arrtype2,
+   ArrayTy(rectype1)),
+  (rectype2,
+   RecordTy[
+    (name,false,string),
+    (dates,false,arrtype1)]),
+  (arrtype3,
+   ArrayTy(string))],
+ VarDec(arr1,false,NONE,
+  ArrayExp(arrtype1,
+   IntExp(10),
+   IntExp(0))),
+ VarDec(arr2,false,NONE,
+  ArrayExp(arrtype2,
+   IntExp(5),
+   RecordExp(rectype1,[
+
+    (name,
+     StringExp("aname")),
+    (address,
+     StringExp("somewhere")),
+    (id,
+     IntExp(0)),
+    (age,
+     IntExp(0))]))),
+ VarDec(arr3,false,SOME(arrtype3),
+  ArrayExp(arrtype3,
+   IntExp(100),
+   StringExp(""))),
+ VarDec(rec1,false,NONE,
+  RecordExp(rectype1,[
+
+   (name,
+    StringExp("Kapoios")),
+   (address,
+    StringExp("Kapou")),
+   (id,
+    IntExp(2432)),
+   (age,
+    IntExp(44))])),
+ VarDec(rec2,false,NONE,
+  RecordExp(rectype2,[
+
+   (name,
+    StringExp("Allos")),
+   (dates,
+    ArrayExp(arrtype1,
+     IntExp(3),
+     IntExp(1900)))]))],
+ SeqExp[
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(0)),
+   IntExp(1)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(9)),
+   IntExp(3)),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(3)),
+    name),
+   StringExp("kati")),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(1)),
+    age),
+   IntExp(23)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr3),
+    IntExp(34)),
+   StringExp("sfd")),
+  AssignExp(
+   FieldVar(
+    SimpleVar(rec1),
+    name),
+   StringExp("sdf")),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(0)),
+   IntExp(2323)),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(2)),
+   IntExp(2323))])
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+find_escape.sml:19.7-19.24 Error: pattern and expression in val dec don't agree [tycon mismatch]
+  pattern:    'Z * 'Y
+  expression:    Absyn.var
+  in declaration:
+    (symb,pos) = var
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- Main.compile "../testcases/test42.tig";
+stdIn:1.2-1.14 Error: unbound structure: Main in path Main.compile
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+find_escape.sml:37.6 Error: syntax error: inserting  SEMICOLON
+sources.cm:25.1-25.16 Error: syntax error
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+find_escape.sml:36.13-36.74 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * string
+  operand:         string * Absyn.symbol
+  in expression:
+    "\nid: " ^ id
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 5549, data: 53, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+
+id: arr1|depth: 0
+
+id: arr1|depth: 0
+
+id: arr2|depth: 0
+
+id: arr2|depth: 0
+
+id: arr3|depth: 0
+
+id: rec1|depth: 0
+
+id: rec2|depth: 0
+
+id: rec2|depth: 0
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+LetExp([
+ TypeDec[
+  (arrtype1,
+   ArrayTy(int)),
+  (rectype1,
+   RecordTy[
+    (name,false,string),
+    (address,false,string),
+    (id,false,int),
+    (age,false,int)]),
+  (arrtype2,
+   ArrayTy(rectype1)),
+  (rectype2,
+   RecordTy[
+    (name,false,string),
+    (dates,false,arrtype1)]),
+  (arrtype3,
+   ArrayTy(string))],
+ VarDec(arr1,false,NONE,
+  ArrayExp(arrtype1,
+   IntExp(10),
+   IntExp(0))),
+ VarDec(arr2,false,NONE,
+  ArrayExp(arrtype2,
+   IntExp(5),
+   RecordExp(rectype1,[
+
+    (name,
+     StringExp("aname")),
+    (address,
+     StringExp("somewhere")),
+    (id,
+     IntExp(0)),
+    (age,
+     IntExp(0))]))),
+ VarDec(arr3,false,SOME(arrtype3),
+  ArrayExp(arrtype3,
+   IntExp(100),
+   StringExp(""))),
+ VarDec(rec1,false,NONE,
+  RecordExp(rectype1,[
+
+   (name,
+    StringExp("Kapoios")),
+   (address,
+    StringExp("Kapou")),
+   (id,
+    IntExp(2432)),
+   (age,
+    IntExp(44))])),
+ VarDec(rec2,false,NONE,
+  RecordExp(rectype2,[
+
+   (name,
+    StringExp("Allos")),
+   (dates,
+    ArrayExp(arrtype1,
+     IntExp(3),
+     IntExp(1900)))]))],
+ SeqExp[
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(0)),
+   IntExp(1)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(9)),
+   IntExp(3)),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(3)),
+    name),
+   StringExp("kati")),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(1)),
+    age),
+   IntExp(23)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr3),
+    IntExp(34)),
+   StringExp("sfd")),
+  AssignExp(
+   FieldVar(
+    SimpleVar(rec1),
+    name),
+   StringExp("sdf")),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(0)),
+   IntExp(2323)),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(2)),
+   IntExp(2323))])
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- 
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+ind_escape.sml:83.11-83.118 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: bool
+  operand:         bool ref
+  in expression:
+    Bool.toString escape
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 6314, data: 82, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+
+decInfo: arr1|depth: 0|escape: false
+
+decInfo: arr2|depth: 0|escape: false
+
+decInfo: arr3|depth: 0|escape: false
+
+decInfo: rec1|depth: 0|escape: false
+
+decInfo: rec2|depth: 0|escape: false
+
+id: arr1|depth: 0
+
+id: arr1|depth: 0
+
+id: arr2|depth: 0
+
+id: arr2|depth: 0
+
+id: arr3|depth: 0
+
+id: rec1|depth: 0
+
+id: rec2|depth: 0
+
+id: rec2|depth: 0
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+LetExp([
+ TypeDec[
+  (arrtype1,
+   ArrayTy(int)),
+  (rectype1,
+   RecordTy[
+    (name,false,string),
+    (address,false,string),
+    (id,false,int),
+    (age,false,int)]),
+  (arrtype2,
+   ArrayTy(rectype1)),
+  (rectype2,
+   RecordTy[
+    (name,false,string),
+    (dates,false,arrtype1)]),
+  (arrtype3,
+   ArrayTy(string))],
+ VarDec(arr1,false,NONE,
+  ArrayExp(arrtype1,
+   IntExp(10),
+   IntExp(0))),
+ VarDec(arr2,false,NONE,
+  ArrayExp(arrtype2,
+   IntExp(5),
+   RecordExp(rectype1,[
+
+    (name,
+     StringExp("aname")),
+    (address,
+     StringExp("somewhere")),
+    (id,
+     IntExp(0)),
+    (age,
+     IntExp(0))]))),
+ VarDec(arr3,false,SOME(arrtype3),
+  ArrayExp(arrtype3,
+   IntExp(100),
+   StringExp(""))),
+ VarDec(rec1,false,NONE,
+  RecordExp(rectype1,[
+
+   (name,
+    StringExp("Kapoios")),
+   (address,
+    StringExp("Kapou")),
+   (id,
+    IntExp(2432)),
+   (age,
+    IntExp(44))])),
+ VarDec(rec2,false,NONE,
+  RecordExp(rectype2,[
+
+   (name,
+    StringExp("Allos")),
+   (dates,
+    ArrayExp(arrtype1,
+     IntExp(3),
+     IntExp(1900)))]))],
+ SeqExp[
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(0)),
+   IntExp(1)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(9)),
+   IntExp(3)),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(3)),
+    name),
+   StringExp("kati")),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(1)),
+    age),
+   IntExp(23)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr3),
+    IntExp(34)),
+   StringExp("sfd")),
+  AssignExp(
+   FieldVar(
+    SimpleVar(rec1),
+    name),
+   StringExp("sdf")),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(0)),
+   IntExp(2323)),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(2)),
+   IntExp(2323))])
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+find_escape.sml:84.4-84.18 Error: unbound structure: Type in path Type.printType
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+find_escape.sml:84.4-84.23 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: Types.ty
+  operand:         (Absyn.symbol * Absyn.pos) option
+  in expression:
+    Types.printType typ
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 6314, data: 82, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+ Main.compile "../testcases/test42.tig";
+
+decInfo: arr1|depth: 0|escape: false
+
+decInfo: arr2|depth: 0|escape: false
+
+decInfo: arr3|depth: 0|escape: false
+
+decInfo: rec1|depth: 0|escape: false
+
+decInfo: rec2|depth: 0|escape: false
+
+id: arr1|depth: 0
+
+id: arr1|depth: 0
+
+id: arr2|depth: 0
+
+id: arr2|depth: 0
+
+id: arr3|depth: 0
+
+id: rec1|depth: 0
+
+id: rec2|depth: 0
+
+id: rec2|depth: 0
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+LetExp([
+ TypeDec[
+  (arrtype1,
+   ArrayTy(int)),
+  (rectype1,
+   RecordTy[
+    (name,false,string),
+    (address,false,string),
+    (id,false,int),
+    (age,false,int)]),
+  (arrtype2,
+   ArrayTy(rectype1)),
+  (rectype2,
+   RecordTy[
+    (name,false,string),
+    (dates,false,arrtype1)]),
+  (arrtype3,
+   ArrayTy(string))],
+ VarDec(arr1,false,NONE,
+  ArrayExp(arrtype1,
+   IntExp(10),
+   IntExp(0))),
+ VarDec(arr2,false,NONE,
+  ArrayExp(arrtype2,
+   IntExp(5),
+   RecordExp(rectype1,[
+
+    (name,
+     StringExp("aname")),
+    (address,
+     StringExp("somewhere")),
+    (id,
+     IntExp(0)),
+    (age,
+     IntExp(0))]))),
+ VarDec(arr3,false,SOME(arrtype3),
+  ArrayExp(arrtype3,
+   IntExp(100),
+   StringExp(""))),
+ VarDec(rec1,false,NONE,
+  RecordExp(rectype1,[
+
+   (name,
+    StringExp("Kapoios")),
+   (address,
+    StringExp("Kapou")),
+   (id,
+    IntExp(2432)),
+   (age,
+    IntExp(44))])),
+ VarDec(rec2,false,NONE,
+  RecordExp(rectype2,[
+
+   (name,
+    StringExp("Allos")),
+   (dates,
+    ArrayExp(arrtype1,
+     IntExp(3),
+     IntExp(1900)))]))],
+ SeqExp[
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(0)),
+   IntExp(1)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(9)),
+   IntExp(3)),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(3)),
+    name),
+   StringExp("kati")),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(1)),
+    age),
+   IntExp(23)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr3),
+    IntExp(34)),
+   StringExp("sfd")),
+  AssignExp(
+   FieldVar(
+    SimpleVar(rec1),
+    name),
+   StringExp("sdf")),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(0)),
+   IntExp(2323)),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(2)),
+   IntExp(2323))])
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 6299, data: 67, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16259, data: 255, env: 751 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+
+id: arr1|depth: 0|escape: false
+
+id: arr2|depth: 0|escape: false
+
+id: arr3|depth: 0|escape: false
+
+id: rec1|depth: 0|escape: false
+
+id: rec2|depth: 0|escape: false
+
+id: arr1|depth: 0
+
+id: arr1|depth: 0
+
+id: arr2|depth: 0
+
+id: arr2|depth: 0
+
+id: arr3|depth: 0
+
+id: rec1|depth: 0
+
+id: rec2|depth: 0
+
+id: rec2|depth: 0
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+
+id: arr1|depth: 0|escape: false
+
+id: arr1|depth: 0
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 4864, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+main.sml:52.6 Error: expression or pattern begins with infix identifier "-"
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16222, data: 330, env: 698 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+------------INF Register MIPS--------------
+L2:
+sw $a0, 0($fp)
+li $a0, 10
+li $a1, 0
+jal tig_initArray
+move t140, $v0
+move $v0, t140
+j L1 
+L1:
+------------INF MIPS DONE--------------
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[parsing (sources.cm):temp.sml]
+[parsing (sources.cm):reg_alloc.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[compiling (sources.cm):temp.sml]
+[code: 1634, data: 38, env: 1263 bytes]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[compiling (sources.cm):reg_alloc.sml]
+[code: 2408, env: 639 bytes]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+main.sml:64.2-64.22 Error: unbound variable or constructor: printAlloc in path Reg_Alloc.printAlloc
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):reg_alloc.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[compiling (sources.cm):reg_alloc.sml]
+[code: 3752, data: 76, env: 758 bytes]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 17311, data: 387, env: 698 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+------------INF Register MIPS--------------
+L2:
+sw $a0, 0($fp)
+li $a0, 10
+li $a1, 0
+jal tig_initArray
+move t132, $v0
+move $v0, t132
+j L1 
+L1:
+------------INF MIPS DONE--------------
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Register allocation tig_main========
+t100 -> $zero
+t101 -> $at
+t102 -> $v0
+t103 -> $v1
+t104 -> $a0
+t105 -> $a1
+t106 -> $a2
+t107 -> $a3
+t108 -> $t0
+t109 -> $t1
+t110 -> $t2
+t111 -> $t3
+t112 -> $t4
+t113 -> $t5
+t114 -> $t6
+t115 -> $t7
+t116 -> $t8
+t117 -> $t9
+t126 -> $k0
+t127 -> $k1
+t128 -> $gp
+t129 -> $sp
+t130 -> $fp
+t131 -> $ra
+t132 -> $v0
+va it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+main.sml:62.5 Error: syntax error: inserting  LOCAL
+main.sml:66.10 Error: syntax error: inserting  LPAREN
+main.sml:96.5-97.4 Error: syntax error: deleting  END BAR
+main.sml:97.52 Error: syntax error: inserting  RPAREN
+main.sml:159.1 Error: syntax error found at EOF
+sources.cm:17.1-17.9 Error: syntax error
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 18160, data: 472, env: 698 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+------------INF Register MIPS--------------
+L2:
+sw t104, 0(t130)
+li t104, 10
+li t105, 0
+jal tig_initArray
+move t132, t102
+move t102, t132
+j L1 
+L1:
+------------INF MIPS DONE--------------
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+------------CFG--------------
+Node: {ID: 0 , Defs: , Uses:}
+ -> Successors:
+   {ID: 1 , Defs: , Uses:, $a0, $fp}
+ -> Predecessors:
+Node: {ID: 1 , Defs: , Uses:, $a0, $fp}
+ -> Successors:
+   {ID: 2 , Defs: , $a0, Uses:}
+ -> Predecessors:
+   {ID: 0 , Defs: , Uses:}
+Node: {ID: 2 , Defs: , $a0, Uses:}
+ -> Successors:
+   {ID: 3 , Defs: , $a1, Uses:}
+ -> Predecessors:
+   {ID: 1 , Defs: , Uses:, $a0, $fp}
+Node: {ID: 3 , Defs: , $a1, Uses:}
+ -> Successors:
+   {ID: 4 , Defs: , $ra, $v0, $v1, $t0, $t1, $t2, $t3, $t4, $t5, $t6, $t7, $t8, $t9, $a0, $a1, $a2, $a3, Uses:, $a0, $a1}
+ -> Predecessors:
+   {ID: 2 , Defs: , $a0, Uses:}
+Node: {ID: 4 , Defs: , $ra, $v0, $v1, $t0, $t1, $t2, $t3, $t4, $t5, $t6, $t7, $t8, $t9, $a0, $a1, $a2, $a3, Uses:, $a0, $a1}
+ -> Successors:
+ -> Predecessors:
+   {ID: 3 , Defs: , $a1, Uses:}
+Node: {ID: 5 , Defs: , t132, Uses:, $v0, has Move}
+ -> Successors:
+ -> Predecessors:
+Node: {ID: 6 , Defs: , $v0, Uses:, t132, has Move}
+ -> Successors:
+   {ID: 7 , Defs: , Uses:}
+ -> Predecessors:
+Node: {ID: 7 , Defs: , Uses:}
+ -> Successors:
+   {ID: 8 , Defs: , Uses:}
+ -> Predecessors:
+   {ID: 6 , Defs: , $v0, Uses:, t132, has Move}
+Node: {ID: 8 , Defs: , Uses:}
+ -> Successors:
+   {ID: 9 , Defs: , Uses:, $zero, $at, $v0, $v1, $k0, $k1, $gp, $sp, $fp, $ra}
+ -> Predecessors:
+   {ID: 7 , Defs: , Uses:}
+Node: {ID: 9 , Defs: , Uses:, $zero, $at, $v0, $v1, $k0, $k1, $gp, $sp, $fp, $ra}
+ -> Successors:
+ -> Predecessors:
+   {ID: 8 , Defs: , Uses:}
+------------Interference Graph--------------
+Node: $zero
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $at
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $v0
+ -> Successors:
+   $zero
+   $at
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $v1
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $a0
+ -> Successors:
+   $a1
+ -> Predecessors:
+   $a1
+Node: $a1
+ -> Successors:
+   $a0
+ -> Predecessors:
+   $a0
+Node: $a2
+ -> Successors:
+ -> Predecessors:
+Node: $a3
+ -> Successors:
+ -> Predecessors:
+Node: $t0
+ -> Successors:
+ -> Predecessors:
+Node: $t1
+ -> Successors:
+ -> Predecessors:
+Node: $t2
+ -> Successors:
+ -> Predecessors:
+Node: $t3
+ -> Successors:
+ -> Predecessors:
+Node: $t4
+ -> Successors:
+ -> Predecessors:
+Node: $t5
+ -> Successors:
+ -> Predecessors:
+Node: $t6
+ -> Successors:
+ -> Predecessors:
+Node: $t7
+ -> Successors:
+ -> Predecessors:
+Node: $t8
+ -> Successors:
+ -> Predecessors:
+Node: $t9
+ -> Successors:
+ -> Predecessors:
+Node: $k0
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $k1
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $gp
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $sp
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $fp
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $ra
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: t132
+ -> Successors:
+ -> Predecessors:
+==================Register allocation tig_main========
+t100 -> $zero
+t101 -> $at
+t102 -> $v0
+t103 -> $v1
+t104 -> $a0
+t105 -> $a1
+t106 -> $a2
+t107 -> $a3
+t108 -> $t0
+t109 -> $t1
+t110 -> $t2
+t111 -> $t3
+t112 -> $t4
+t113 -> $t5
+t114 -> $t6
+t115 -> $t7
+t116 -> $t8
+t117 -> $t9
+t126 -> $k0
+t127 -> $k1
+t128 -> $gp
+t129 -> $sp
+t130 -> $fp
+t131 -> $ra
+t132 -> $v0
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):makegraph.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[compiling (sources.cm):makegraph.sml]
+[code: 7277, data: 93, env: 219 bytes]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+------------INF Register MIPS--------------
+L2:
+sw t104, 0(t130)
+li t104, 10
+li t105, 0
+jal tig_initArray
+move t132, t102
+move t102, t132
+j L1 
+L1:
+------------INF MIPS DONE--------------
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+------------CFG--------------
+Node: {ID: 0 , Defs: , Uses:}
+ -> Successors:
+   {ID: 1 , Defs: , Uses:, t104, t130}
+ -> Predecessors:
+Node: {ID: 1 , Defs: , Uses:, t104, t130}
+ -> Successors:
+   {ID: 2 , Defs: , t104, Uses:}
+ -> Predecessors:
+   {ID: 0 , Defs: , Uses:}
+Node: {ID: 2 , Defs: , t104, Uses:}
+ -> Successors:
+   {ID: 3 , Defs: , t105, Uses:}
+ -> Predecessors:
+   {ID: 1 , Defs: , Uses:, t104, t130}
+Node: {ID: 3 , Defs: , t105, Uses:}
+ -> Successors:
+   {ID: 4 , Defs: , t131, t102, t103, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t104, t105, t106, t107, Uses:, t104, t105}
+ -> Predecessors:
+   {ID: 2 , Defs: , t104, Uses:}
+Node: {ID: 4 , Defs: , t131, t102, t103, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t104, t105, t106, t107, Uses:, t104, t105}
+ -> Successors:
+ -> Predecessors:
+   {ID: 3 , Defs: , t105, Uses:}
+Node: {ID: 5 , Defs: , t132, Uses:, t102, has Move}
+ -> Successors:
+ -> Predecessors:
+Node: {ID: 6 , Defs: , t102, Uses:, t132, has Move}
+ -> Successors:
+   {ID: 7 , Defs: , Uses:}
+ -> Predecessors:
+Node: {ID: 7 , Defs: , Uses:}
+ -> Successors:
+   {ID: 8 , Defs: , Uses:}
+ -> Predecessors:
+   {ID: 6 , Defs: , t102, Uses:, t132, has Move}
+Node: {ID: 8 , Defs: , Uses:}
+ -> Successors:
+   {ID: 9 , Defs: , Uses:, t100, t101, t102, t103, t126, t127, t128, t129, t130, t131}
+ -> Predecessors:
+   {ID: 7 , Defs: , Uses:}
+Node: {ID: 9 , Defs: , Uses:, t100, t101, t102, t103, t126, t127, t128, t129, t130, t131}
+ -> Successors:
+ -> Predecessors:
+   {ID: 8 , Defs: , Uses:}
+------------Interference Graph--------------
+Node: $zero
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $at
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $v0
+ -> Successors:
+   $zero
+   $at
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $v1
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $a0
+ -> Successors:
+   $a1
+ -> Predecessors:
+   $a1
+Node: $a1
+ -> Successors:
+   $a0
+ -> Predecessors:
+   $a0
+Node: $a2
+ -> Successors:
+ -> Predecessors:
+Node: $a3
+ -> Successors:
+ -> Predecessors:
+Node: $t0
+ -> Successors:
+ -> Predecessors:
+Node: $t1
+ -> Successors:
+ -> Predecessors:
+Node: $t2
+ -> Successors:
+ -> Predecessors:
+Node: $t3
+ -> Successors:
+ -> Predecessors:
+Node: $t4
+ -> Successors:
+ -> Predecessors:
+Node: $t5
+ -> Successors:
+ -> Predecessors:
+Node: $t6
+ -> Successors:
+ -> Predecessors:
+Node: $t7
+ -> Successors:
+ -> Predecessors:
+Node: $t8
+ -> Successors:
+ -> Predecessors:
+Node: $t9
+ -> Successors:
+ -> Predecessors:
+Node: $k0
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $k1
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $gp
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $sp
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $fp
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $ra
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: t132
+ -> Successors:
+ -> Predecessors:
+==================Register allocation tig_main========
+t100 -> $zero
+t101 -> $at
+t102 -> $v0
+t103 -> $v1
+t104 -> $a0
+t105 -> $a1
+t106 -> $a2
+t107 -> $a3
+t108 -> $t0
+t109 -> $t1
+t110 -> $t2
+t111 -> $t3
+t112 -> $t4
+t113 -> $t5
+t114 -> $t6
+t115 -> $t7
+t116 -> $t8
+t117 -> $t9
+t126 -> $k0
+t127 -> $k1
+t128 -> $gp
+t129 -> $sp
+t130 -> $fp
+t131 -> $ra
+t132 -> $v0
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):makegraph.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[compiling (sources.cm):makegraph.sml]
+[code: 7415, data: 119, env: 219 bytes]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+------------INF Register MIPS--------------
+L2:
+sw t104, 0(t130)
+li t104, 10
+li t105, 0
+jal tig_initArray
+move t132, t102
+move t102, t132
+j L1 
+L1:
+------------INF MIPS DONE--------------
+MAKEGRAPH MOVE INSTR
+MAKEGRAPH MOVE INSTR
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+------------CFG--------------
+Node: {ID: 0 , Defs: , Uses:}
+ -> Successors:
+   {ID: 1 , Defs: , Uses:, t104, t130}
+ -> Predecessors:
+Node: {ID: 1 , Defs: , Uses:, t104, t130}
+ -> Successors:
+   {ID: 2 , Defs: , t104, Uses:}
+ -> Predecessors:
+   {ID: 0 , Defs: , Uses:}
+Node: {ID: 2 , Defs: , t104, Uses:}
+ -> Successors:
+   {ID: 3 , Defs: , t105, Uses:}
+ -> Predecessors:
+   {ID: 1 , Defs: , Uses:, t104, t130}
+Node: {ID: 3 , Defs: , t105, Uses:}
+ -> Successors:
+   {ID: 4 , Defs: , t131, t102, t103, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t104, t105, t106, t107, Uses:, t104, t105}
+ -> Predecessors:
+   {ID: 2 , Defs: , t104, Uses:}
+Node: {ID: 4 , Defs: , t131, t102, t103, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t104, t105, t106, t107, Uses:, t104, t105}
+ -> Successors:
+ -> Predecessors:
+   {ID: 3 , Defs: , t105, Uses:}
+Node: {ID: 5 , Defs: , t132, Uses:, t102, has Move}
+ -> Successors:
+ -> Predecessors:
+Node: {ID: 6 , Defs: , t102, Uses:, t132, has Move}
+ -> Successors:
+   {ID: 7 , Defs: , Uses:}
+ -> Predecessors:
+Node: {ID: 7 , Defs: , Uses:}
+ -> Successors:
+   {ID: 8 , Defs: , Uses:}
+ -> Predecessors:
+   {ID: 6 , Defs: , t102, Uses:, t132, has Move}
+Node: {ID: 8 , Defs: , Uses:}
+ -> Successors:
+   {ID: 9 , Defs: , Uses:, t100, t101, t102, t103, t126, t127, t128, t129, t130, t131}
+ -> Predecessors:
+   {ID: 7 , Defs: , Uses:}
+Node: {ID: 9 , Defs: , Uses:, t100, t101, t102, t103, t126, t127, t128, t129, t130, t131}
+ -> Successors:
+ -> Predecessors:
+   {ID: 8 , Defs: , Uses:}
+------------Interference Graph--------------
+Node: $zero
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $at
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $v0
+ -> Successors:
+   $zero
+   $at
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $v1
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $a0
+ -> Successors:
+   $a1
+ -> Predecessors:
+   $a1
+Node: $a1
+ -> Successors:
+   $a0
+ -> Predecessors:
+   $a0
+Node: $a2
+ -> Successors:
+ -> Predecessors:
+Node: $a3
+ -> Successors:
+ -> Predecessors:
+Node: $t0
+ -> Successors:
+ -> Predecessors:
+Node: $t1
+ -> Successors:
+ -> Predecessors:
+Node: $t2
+ -> Successors:
+ -> Predecessors:
+Node: $t3
+ -> Successors:
+ -> Predecessors:
+Node: $t4
+ -> Successors:
+ -> Predecessors:
+Node: $t5
+ -> Successors:
+ -> Predecessors:
+Node: $t6
+ -> Successors:
+ -> Predecessors:
+Node: $t7
+ -> Successors:
+ -> Predecessors:
+Node: $t8
+ -> Successors:
+ -> Predecessors:
+Node: $t9
+ -> Successors:
+ -> Predecessors:
+Node: $k0
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $k1
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $gp
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $sp
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $fp
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: $ra
+ -> Successors:
+   $v0
+ -> Predecessors:
+   $v0
+Node: t132
+ -> Successors:
+ -> Predecessors:
+==================Register allocation tig_main========
+t100 -> $zero
+t101 -> $at
+t102 -> $v0
+t103 -> $v1
+t104 -> $a0
+t105 -> $a1
+t106 -> $a2
+t107 -> $a3
+t108 -> $t0
+t109 -> $t1
+t110 -> $t2
+t111 -> $t3
+t112 -> $t4
+t113 -> $t5
+t114 -> $t6
+t115 -> $t7
+t116 -> $t8
+t117 -> $t9
+t126 -> $k0
+t127 -> $k1
+t128 -> $gp
+t129 -> $sp
+t130 -> $fp
+t131 -> $ra
+t132 -> $v0
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):makegraph.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[compiling (sources.cm):makegraph.sml]
+[code: 7205, data: 93, env: 219 bytes]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+------------INF Register MIPS--------------
+L2:
+sw t104, 0(t130)
+li t104, 10
+li t105, 0
+jal tig_initArray
+move t132, t102
+move t102, t132
+j L1 
+L1:
+------------INF MIPS DONE--------------
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+------------CFG--------------
+Node: {ID: 0 , Defs: , Uses:}
+ -> Successors:
+   {ID: 1 , Defs: , Uses:, t104, t130}
+ -> Predecessors:
+Node: {ID: 1 , Defs: , Uses:, t104, t130}
+ -> Successors:
+   {ID: 2 , Defs: , t104, Uses:}
+ -> Predecessors:
+   {ID: 0 , Defs: , Uses:}
+Node: {ID: 2 , Defs: , t104, Uses:}
+ -> Successors:
+   {ID: 3 , Defs: , t105, Uses:}
+ -> Predecessors:
+   {ID: 1 , Defs: , Uses:, t104, t130}
+Node: {ID: 3 , Defs: , t105, Uses:}
+ -> Successors:
+   {ID: 4 , Defs: , t131, t102, t103, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t104, t105, t106, t107, Uses:, t104, t105}
+ -> Predecessors:
+   {ID: 2 , Defs: , t104, Uses:}
+Node: {ID: 4 , Defs: , t131, t102, t103, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t104, t105, t106, t107, Uses:, t104, t105}
+ -> Successors:
+   {ID: 5 , Defs: , t132, Uses:, t102, has Move}
+ -> Predecessors:
+   {ID: 3 , Defs: , t105, Uses:}
+Node: {ID: 5 , Defs: , t132, Uses:, t102, has Move}
+ -> Successors:
+   {ID: 6 , Defs: , t102, Uses:, t132, has Move}
+ -> Predecessors:
+   {ID: 4 , Defs: , t131, t102, t103, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t104, t105, t106, t107, Uses:, t104, t105}
+Node: {ID: 6 , Defs: , t102, Uses:, t132, has Move}
+ -> Successors:
+   {ID: 7 , Defs: , Uses:}
+ -> Predecessors:
+   {ID: 5 , Defs: , t132, Uses:, t102, has Move}
+Node: {ID: 7 , Defs: , Uses:}
+ -> Successors:
+   {ID: 8 , Defs: , Uses:}
+ -> Predecessors:
+   {ID: 6 , Defs: , t102, Uses:, t132, has Move}
+Node: {ID: 8 , Defs: , Uses:}
+ -> Successors:
+   {ID: 9 , Defs: , Uses:, t100, t101, t102, t103, t126, t127, t128, t129, t130, t131}
+ -> Predecessors:
+   {ID: 7 , Defs: , Uses:}
+Node: {ID: 9 , Defs: , Uses:, t100, t101, t102, t103, t126, t127, t128, t129, t130, t131}
+ -> Successors:
+ -> Predecessors:
+   {ID: 8 , Defs: , Uses:}
+------------Interference Graph--------------
+Node: $zero
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $at
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $v0
+ -> Successors:
+   $zero
+   $at
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $v1
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+   t132
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+   t132
+Node: $a0
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $a1
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a0
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a0
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $a2
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $a3
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t0
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t1
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t2
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t3
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t4
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t5
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t6
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t7
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t8
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t9
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $k0
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $k1
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $gp
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $sp
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $fp
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $ra
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   t132
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   t132
+Node: t132
+ -> Successors:
+   $zero
+   $at
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+==================Register allocation tig_main========
+t100 -> $zero
+t101 -> $at
+t102 -> $v0
+t103 -> $v1
+t104 -> $a0
+t105 -> $a1
+t106 -> $a2
+t107 -> $a3
+t108 -> $t0
+t109 -> $t1
+t110 -> $t2
+t111 -> $t3
+t112 -> $t4
+t113 -> $t5
+t114 -> $t6
+t115 -> $t7
+t116 -> $t8
+t117 -> $t9
+t126 -> $k0
+t127 -> $k1
+t128 -> $gp
+t129 -> $sp
+t130 -> $fp
+t131 -> $ra
+t132 -> $t0
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+------------INF Register MIPS--------------
+L2:
+sw t104, 0(t130)
+li t104, 10
+li t105, 0
+jal tig_initArray
+move t132, t102
+move t102, t132
+j L1 
+L1:
+------------INF MIPS DONE--------------
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+------------CFG--------------
+Node: {ID: 0 , Defs: , Uses:}
+ -> Successors:
+   {ID: 1 , Defs: , Uses:, t104, t130}
+ -> Predecessors:
+Node: {ID: 1 , Defs: , Uses:, t104, t130}
+ -> Successors:
+   {ID: 2 , Defs: , t104, Uses:}
+ -> Predecessors:
+   {ID: 0 , Defs: , Uses:}
+Node: {ID: 2 , Defs: , t104, Uses:}
+ -> Successors:
+   {ID: 3 , Defs: , t105, Uses:}
+ -> Predecessors:
+   {ID: 1 , Defs: , Uses:, t104, t130}
+Node: {ID: 3 , Defs: , t105, Uses:}
+ -> Successors:
+   {ID: 4 , Defs: , t131, t102, t103, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t104, t105, t106, t107, Uses:, t104, t105}
+ -> Predecessors:
+   {ID: 2 , Defs: , t104, Uses:}
+Node: {ID: 4 , Defs: , t131, t102, t103, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t104, t105, t106, t107, Uses:, t104, t105}
+ -> Successors:
+   {ID: 5 , Defs: , t132, Uses:, t102, has Move}
+ -> Predecessors:
+   {ID: 3 , Defs: , t105, Uses:}
+Node: {ID: 5 , Defs: , t132, Uses:, t102, has Move}
+ -> Successors:
+   {ID: 6 , Defs: , t102, Uses:, t132, has Move}
+ -> Predecessors:
+   {ID: 4 , Defs: , t131, t102, t103, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t104, t105, t106, t107, Uses:, t104, t105}
+Node: {ID: 6 , Defs: , t102, Uses:, t132, has Move}
+ -> Successors:
+   {ID: 7 , Defs: , Uses:}
+ -> Predecessors:
+   {ID: 5 , Defs: , t132, Uses:, t102, has Move}
+Node: {ID: 7 , Defs: , Uses:}
+ -> Successors:
+   {ID: 8 , Defs: , Uses:}
+ -> Predecessors:
+   {ID: 6 , Defs: , t102, Uses:, t132, has Move}
+Node: {ID: 8 , Defs: , Uses:}
+ -> Successors:
+   {ID: 9 , Defs: , Uses:, t100, t101, t102, t103, t126, t127, t128, t129, t130, t131}
+ -> Predecessors:
+   {ID: 7 , Defs: , Uses:}
+Node: {ID: 9 , Defs: , Uses:, t100, t101, t102, t103, t126, t127, t128, t129, t130, t131}
+ -> Successors:
+ -> Predecessors:
+   {ID: 8 , Defs: , Uses:}
+------------Interference Graph--------------
+Node: $zero
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $at
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $v0
+ -> Successors:
+   $zero
+   $at
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $v1
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+   t132
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+   t132
+Node: $a0
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $a1
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a0
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a0
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $a2
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $a3
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t0
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t1
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t2
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t3
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t4
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t5
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t6
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t7
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t8
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $t9
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+Node: $k0
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $k1
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $gp
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $sp
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $fp
+ -> Successors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+ -> Predecessors:
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $ra
+   t132
+Node: $ra
+ -> Successors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   t132
+ -> Predecessors:
+   $zero
+   $at
+   $v0
+   $v1
+   $a0
+   $a1
+   $a2
+   $a3
+   $t0
+   $t1
+   $t2
+   $t3
+   $t4
+   $t5
+   $t6
+   $t7
+   $t8
+   $t9
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   t132
+Node: t132
+ -> Successors:
+   $zero
+   $at
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+ -> Predecessors:
+   $zero
+   $at
+   $v1
+   $k0
+   $k1
+   $gp
+   $sp
+   $fp
+   $ra
+==================Register allocation tig_main========
+t100 -> $zero
+t101 -> $at
+t102 -> $v0
+t103 -> $v1
+t104 -> $a0
+t105 -> $a1
+t106 -> $a2
+t107 -> $a3
+t108 -> $t0
+t109 -> $t1
+t110 -> $t2
+t111 -> $t3
+t112 -> $t4
+t113 -> $t5
+t114 -> $t6
+t115 -> $t7
+t116 -> $t8
+t117 -> $t9
+t126 -> $k0
+t127 -> $k1
+t128 -> $gp
+t129 -> $sp
+t130 -> $fp
+t131 -> $ra
+t132 -> $t0
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16242, data: 330, env: 698 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+------------INF Register MIPS--------------
+L2:
+sw t104, 0(t130)
+li t104, 10
+li t105, 0
+jal tig_initArray
+move t132, t102
+move t102, t132
+j L1 
+L1:
+------------INF MIPS DONE--------------
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16004, data: 236, env: 698 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L2:
+sw $a0, 0($fp)
+li $a0, 10
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+move $v0, $t0
+j L1 
+L1:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16564, data: 284, env: 698 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L2:
+sw $a0, 0($fp)
+li $a0, 10
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+move $v0, $t0
+j L1 
+L1:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test2.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L2:
+sw $a0, 0($fp)
+li $a0, 10
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+move $v0, $t0
+j L1 
+L1:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test3.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L4:
+sw $a0, 0($fp)
+li $a0, 8
+jal tig_allocRecord
+move $t0, $v0
+li $t1, 1000
+sw $t1, 0($t0)
+la $t1, L1
+sw $t1, 4($t0)
+la $t1, L2
+sw $t1, 4($t0)
+move $v0, $t0
+j L3 
+L3:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test3.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L4:
+sw $a0, 0($fp)
+li $a0, 8
+jal tig_allocRecord
+move $t0, $v0
+li $t1, 1000
+sw $t1, 0($t0)
+la $t1, L1
+sw $t1, 4($t0)
+la $t1, L2
+sw $t1, 4($t0)
+move $v0, $t0
+j L3 
+L3:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test4.tig";
+HANDLETREE
+emit tig_main
+offset: ~44
+maxArgs: 2
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L6:
+sw $a0, 0($fp)
+move $a0, $fp
+li $a1, 10
+jal L1
+j L5 
+L5:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L1
+offset: ~44
+maxArgs: 2
+newOffset: ~60
+==================Final Code L1========
+L1:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L8:
+sw $a0, 0($fp)
+beq $a1, $zero, L2 
+L3:
+move $s0, $a1
+lw $a0, 0($fp)
+addi $a1, $a1, -1
+jal L1
+move $t0, $v0
+mul $t0, $s0, $t0
+L4:
+move $v0, $t0
+j L7 
+L2:
+li $t0, 1
+j L4 
+L7:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test5.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L2:
+sw $a0, 0($fp)
+li $a0, 8
+jal tig_allocRecord
+move $t0, $v0
+sw $zero, 0($t0)
+sw $zero, 4($t0)
+move $v0, $t0
+j L1 
+L1:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test6.tig";
+HANDLETREE
+emit tig_main
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L6:
+sw $a0, 0($fp)
+move $a0, $fp
+li $a1, 0
+la $a2, L4
+jal L2
+j L5 
+L5:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L2
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L2========
+L2:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L8:
+sw $a0, 0($fp)
+lw $a0, 0($fp)
+addi $a1, $a1, 1
+jal L1
+j L7 
+L7:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L1
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L1========
+L1:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L10:
+sw $a0, 0($fp)
+lw $a0, 0($fp)
+la $a2, L3
+jal L2
+j L9 
+L9:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test7.tig";
+HANDLETREE
+emit tig_main
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L7:
+sw $a0, 0($fp)
+move $a0, $fp
+li $a1, 0
+la $a2, L5
+jal L2
+j L6 
+L6:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L2
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L2========
+L2:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L9:
+sw $a0, 0($fp)
+lw $a0, 0($fp)
+addi $a1, $a1, 1
+jal L1
+li $v0, 0
+j L8 
+L8:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L1
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L1========
+L1:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L11:
+sw $a0, 0($fp)
+lw $a0, 0($fp)
+la $a2, L3
+jal L2
+la $v0, L4
+j L10 
+L10:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test8.tig";
+HANDLETREE
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L2:
+sw $a0, 0($fp)
+li $v0, 40
+j L1 
+L1:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test12.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+testestese
+curOffset in allocLocal: ~48
+allocLocal escape: true
+emit tig_main
+offset: ~48
+maxArgs: 1
+newOffset: ~64
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -64
+sw $ra, -8($fp)
+L5:
+sw $a0, 0($fp)
+li $t0, 0
+sw $zero, -48($fp)
+lw $t2, -48($fp)
+li $t1, 100
+ble $t2, $t1, L2 
+L1:
+li $v0, 0
+j L4 
+L2:
+addi $t0, $t0, 1
+lw $t2, -48($fp)
+li $t1, 100
+bge $t2, $t1, L1 
+L3:
+lw $t1, -48($fp)
+addi $t1, $t1, 1
+sw $t1, -48($fp)
+j L2 
+L4:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test27.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 2
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L3:
+sw $a0, 0($fp)
+li $t0, 0
+move $a0, $fp
+li $a1, 2
+jal L1
+j L2 
+L2:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L1
+offset: ~44
+maxArgs: 2
+newOffset: ~60
+==================Final Code L1========
+L1:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L5:
+sw $a0, 0($fp)
+move $v0, $a1
+j L4 
+L4:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test30.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L2:
+sw $a0, 0($fp)
+li $a0, 10
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+li $t1, 2
+addi $t2, $t1, 1
+li $t1, 4
+mul $t1, $t2, $t1
+add $t0, $t0, $t1
+lw $t0, 0($t0)
+move $v0, $t0
+j L1 
+L1:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test37.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L3:
+sw $a0, 0($fp)
+li $t0, 0
+la $t0, L1
+li $v0, 0
+j L2 
+L2:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test41.tig";
+HANDLETREE
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L2:
+sw $a0, 0($fp)
+li $v0, 0
+j L1 
+L1:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test42.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+sw $s1, -16($fp)
+sw $s2, -20($fp)
+sw $s3, -24($fp)
+L11:
+sw $a0, 0($fp)
+li $a0, 100
+la $a1, L3
+jal tig_initArray
+move REG NOT FOUND, $v0
+li $a0, 10
+li $a1, 0
+jal tig_initArray
+move $s2, $v0
+li $a0, 16
+jal tig_allocRecord
+move $a1, $v0
+sw $zero, 0($a1)
+sw $zero, 4($a1)
+la $t0, L2
+sw $t0, 8($a1)
+la $t0, L1
+sw $t0, 12($a1)
+li $a0, 5
+jal tig_initArray
+move $s0, $v0
+li $a0, 16
+jal tig_allocRecord
+move $t0, $v0
+li $t1, 44
+sw $t1, 0($t0)
+li $t1, 2432
+sw $t1, 4($t0)
+la $t1, L5
+sw $t1, 8($t0)
+la $t1, L4
+sw $t1, 12($t0)
+move REG NOT FOUND, $t0
+li $a0, 8
+jal tig_allocRecord
+move $s3, $v0
+addi $t0, $s3, 0
+move $s1, $t0
+li $a0, 3
+li $a1, 1900
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s1)
+la $t0, L6
+sw $t0, 4($s3)
+move $t1, $s3
+li $t0, 1
+sw $t0, 0($s2)
+li $t0, 9
+addi $t2, $t0, 1
+li $t0, 4
+mul $t0, $t2, $t0
+add $t0, $s2, $t0
+li $t2, 3
+sw $t2, 0($t0)
+li $t0, 3
+addi $t2, $t0, 1
+li $t0, 4
+mul $t0, $t2, $t0
+add $t0, $s0, $t0
+la $t2, L7
+lw $t0, 0($t0)
+sw $t2, 12($t0)
+li $t0, 1
+addi $t2, $t0, 1
+li $t0, 4
+mul $t0, $t2, $t0
+add $t0, $s0, $t0
+li $t2, 23
+lw $t0, 0($t0)
+sw $t2, 0($t0)
+li $t0, 34
+addi $t2, $t0, 1
+li $t0, 4
+mul $t0, $t2, $t0
+add $t0, REG NOT FOUND, $t0
+la $t2, L8
+sw $t2, 0($t0)
+la $t0, L9
+sw $t0, 12(REG NOT FOUND)
+li $t2, 2323
+lw $t0, 0($t1)
+sw $t2, 0($t0)
+lw $t2, 0($t1)
+li $t0, 2
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+li $t1, 2323
+sw $t1, 0($t0)
+li $v0, 0
+j L10 
+L10:
+lw $s3, -24($fp)
+lw $s2, -20($fp)
+lw $s1, -16($fp)
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~48
+allocLocal escape: true
+emit tig_main
+offset: ~48
+maxArgs: 1
+newOffset: ~64
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -64
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+sw $s1, -16($fp)
+sw $s2, -20($fp)
+sw $s3, -24($fp)
+sw $s4, -28($fp)
+sw $s5, -32($fp)
+L22:
+sw $a0, 0($fp)
+li $a0, 100
+la $a1, L14
+jal tig_initArray
+move $s0, $v0
+li $a0, 10
+li $a1, 0
+jal tig_initArray
+move $s3, $v0
+li $a0, 16
+jal tig_allocRecord
+move $t0, $v0
+sw $zero, 0($t0)
+sw $zero, 4($t0)
+la $t1, L13
+sw $t1, 8($t0)
+la $t1, L12
+sw $t1, 12($t0)
+li $a0, 5
+move $a1, $t0
+jal tig_initArray
+move $s1, $v0
+li $a0, 16
+jal tig_allocRecord
+move $t0, $v0
+li $t1, 44
+sw $t1, 0($t0)
+li $t1, 2432
+sw $t1, 4($t0)
+la $t1, L16
+sw $t1, 8($t0)
+la $t1, L15
+sw $t1, 12($t0)
+move REG NOT FOUND, $t0
+addi $t0, $fp, -48
+move $s2, $t0
+li $a0, 8
+jal tig_allocRecord
+move $s5, $v0
+addi $t0, $s5, 0
+move $s4, $t0
+li $a0, 3
+li $a1, 1900
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s4)
+la $t0, L17
+sw $t0, 4($s5)
+sw $s5, 0($s2)
+li $t0, 1
+sw $t0, 0($s3)
+li $t0, 9
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $s3, $t0
+li $t1, 3
+sw $t1, 0($t0)
+li $t0, 3
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $s1, $t0
+la $t1, L18
+lw $t0, 0($t0)
+sw $t1, 12($t0)
+li $t0, 1
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $s1, $t0
+li $t1, 23
+lw $t0, 0($t0)
+sw $t1, 0($t0)
+li $t0, 34
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $s0, $t0
+la $t1, L19
+sw $t1, 0($t0)
+la $t0, L20
+sw $t0, 12(REG NOT FOUND)
+li $t1, 2323
+lw $t0, -48($fp)
+lw $t0, 0($t0)
+sw $t1, 0($t0)
+lw $t0, -48($fp)
+lw $t2, 0($t0)
+li $t0, 2
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+li $t1, 2323
+sw $t1, 0($t0)
+li $v0, 0
+j L21 
+L21:
+lw $s5, -32($fp)
+lw $s4, -28($fp)
+lw $s3, -24($fp)
+lw $s2, -20($fp)
+lw $s1, -16($fp)
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~48
+allocLocal escape: true
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~52
+allocLocal escape: true
+emit tig_main
+offset: ~52
+maxArgs: 1
+newOffset: ~68
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -68
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+sw $s1, -16($fp)
+sw $s2, -20($fp)
+sw $s3, -24($fp)
+sw $s4, -28($fp)
+sw $s5, -32($fp)
+L33:
+sw $a0, 0($fp)
+li $a0, 100
+la $a1, L25
+jal tig_initArray
+move $s0, $v0
+li $a0, 10
+li $a1, 0
+jal tig_initArray
+move $s3, $v0
+li $a0, 16
+jal tig_allocRecord
+move $t0, $v0
+sw $zero, 0($t0)
+sw $zero, 4($t0)
+la $t1, L24
+sw $t1, 8($t0)
+la $t1, L23
+sw $t1, 12($t0)
+li $a0, 5
+move $a1, $t0
+jal tig_initArray
+move $s2, $v0
+addi $t0, $fp, -48
+move $s1, $t0
+li $a0, 16
+jal tig_allocRecord
+move $t0, $v0
+li $t1, 44
+sw $t1, 0($t0)
+li $t1, 2432
+sw $t1, 4($t0)
+la $t1, L27
+sw $t1, 8($t0)
+la $t1, L26
+sw $t1, 12($t0)
+sw $t0, 0($s1)
+addi $t0, $fp, -52
+move $s1, $t0
+li $a0, 8
+jal tig_allocRecord
+move $s5, $v0
+addi $t0, $s5, 0
+move $s4, $t0
+li $a0, 3
+li $a1, 1900
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s4)
+la $t0, L28
+sw $t0, 4($s5)
+sw $s5, 0($s1)
+li $t0, 1
+sw $t0, 0($s3)
+li $t0, 9
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $s3, $t0
+li $t1, 3
+sw $t1, 0($t0)
+li $t0, 3
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $s2, $t0
+la $t1, L29
+lw $t0, 0($t0)
+sw $t1, 12($t0)
+li $t0, 1
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $s2, $t0
+li $t1, 23
+lw $t0, 0($t0)
+sw $t1, 0($t0)
+li $t0, 34
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $s0, $t0
+la $t1, L30
+sw $t1, 0($t0)
+la $t1, L31
+lw $t0, -48($fp)
+sw $t1, 12($t0)
+li $t1, 2323
+lw $t0, -52($fp)
+lw $t0, 0($t0)
+sw $t1, 0($t0)
+lw $t0, -52($fp)
+lw $t2, 0($t0)
+li $t0, 2
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+li $t1, 2323
+sw $t1, 0($t0)
+li $v0, 0
+j L32 
+L32:
+lw $s5, -32($fp)
+lw $s4, -28($fp)
+lw $s3, -24($fp)
+lw $s2, -20($fp)
+lw $s1, -16($fp)
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test44.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L2:
+sw $a0, 0($fp)
+li $t0, 0
+li $t0, 0
+li $v0, 0
+j L1 
+L1:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test46.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L6:
+sw $a0, 0($fp)
+li $t1, 0
+li $t0, 1
+beq $t1, $zero, L1 
+L2:
+li $t0, 0
+L1:
+li $v0, 1
+bne $t1, $zero, L3 
+L4:
+li $v0, 0
+L3:
+j L5 
+L5:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test47.tig";
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L2:
+sw $a0, 0($fp)
+li $t0, 4
+li $v0, 0
+j L1 
+L1:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/test48.tig";
+HANDLETREE
+emit tig_main
+offset: ~44
+maxArgs: 2
+newOffset: ~60
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L4:
+sw $a0, 0($fp)
+li $v0, 0
+j L3 
+L3:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L2
+offset: ~44
+maxArgs: 2
+newOffset: ~60
+==================Final Code L2========
+L2:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L6:
+sw $a0, 0($fp)
+move $v0, $a1
+j L5 
+L5:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L1
+offset: ~44
+maxArgs: 2
+newOffset: ~60
+==================Final Code L1========
+L1:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L8:
+sw $a0, 0($fp)
+move $v0, $a1
+j L7 
+L7:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/merge.tig";
+HANDLETREE
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~48
+allocLocal escape: true
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~48
+maxArgs: 3
+newOffset: ~64
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -64
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+sw $s1, -16($fp)
+L55:
+sw $a0, 0($fp)
+addi $t0, $fp, -48
+move $s0, $t0
+jal tig_getchar
+move $t0, $v0
+sw $t0, 0($s0)
+move $a0, $fp
+jal L28
+move $s1, $v0
+addi $t0, $fp, -48
+move $s0, $t0
+jal tig_getchar
+move $t0, $v0
+sw $t0, 0($s0)
+move $a0, $fp
+jal L28
+move $a2, $v0
+move $s0, $fp
+move $a0, $fp
+move $a1, $s1
+jal L27
+move $a1, $v0
+move $a0, $s0
+jal L25
+j L54 
+L54:
+lw $s1, -16($fp)
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L28
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L28========
+L28:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+sw $s1, -16($fp)
+sw $s2, -20($fp)
+L57:
+sw $a0, 0($fp)
+li $a0, 4
+jal tig_allocRecord
+move $t0, $v0
+sw $zero, 0($t0)
+move $s0, $t0
+lw $a0, 0($fp)
+move $a1, $s0
+jal L1
+move $s2, $v0
+li $t1, 1
+lw $t0, 0($s0)
+beq $t1, $t0, L51 
+L52:
+li $t0, 0
+L53:
+move $v0, $t0
+j L56 
+L51:
+li $a0, 8
+jal tig_allocRecord
+move $s1, $v0
+addi $t0, $s1, 0
+move $s0, $t0
+lw $a0, 0($fp)
+jal L28
+move $t0, $v0
+sw $t0, 0($s0)
+sw $s2, 4($s1)
+move $t0, $s1
+j L53 
+L56:
+lw $s2, -20($fp)
+lw $s1, -16($fp)
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L27
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L27========
+L27:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+sw $s1, -16($fp)
+sw $s2, -20($fp)
+sw $s3, -24($fp)
+L59:
+sw $a0, 0($fp)
+move $s3, $a1
+move $s2, $a2
+beq $s3, $zero, L48 
+L49:
+beq $s2, $zero, L45 
+L46:
+lw $t1, 4($s3)
+lw $t0, 4($s2)
+blt $t1, $t0, L42 
+L43:
+li $a0, 8
+jal tig_allocRecord
+move $s1, $v0
+addi $t0, $s1, 0
+move $s0, $t0
+lw $a0, 0($fp)
+move $a1, $s3
+lw $a2, 0($s2)
+jal L27
+move $t0, $v0
+sw $t0, 0($s0)
+lw $t0, 4($s2)
+sw $t0, 4($s1)
+move $t0, $s1
+L44:
+L47:
+L50:
+move $v0, $t0
+j L58 
+L48:
+move $t0, $s2
+j L50 
+L45:
+move $t0, $s3
+j L47 
+L42:
+li $a0, 8
+jal tig_allocRecord
+move $s1, $v0
+addi $t0, $s1, 0
+move $s0, $t0
+lw $a0, 0($fp)
+lw $a1, 0($s3)
+move $a2, $s2
+jal L27
+move $t0, $v0
+sw $t0, 0($s0)
+lw $t0, 4($s3)
+sw $t0, 4($s1)
+move $t0, $s1
+j L44 
+L58:
+lw $s3, -24($fp)
+lw $s2, -20($fp)
+lw $s1, -16($fp)
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L26
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L26========
+L26:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L61:
+sw $a0, 0($fp)
+move $s0, $a1
+blt $s0, $zero, L39 
+L40:
+bgt $s0, $zero, L36 
+L37:
+la $a0, L15
+jal tig_print
+move $t0, $v0
+L38:
+L41:
+move $v0, $t0
+j L60 
+L39:
+la $a0, L35
+jal tig_print
+move $a0, $fp
+sub $a1, $zero, $s0
+jal L32
+move $t0, $v0
+j L41 
+L36:
+move $a0, $fp
+move $a1, $s0
+jal L32
+move $t0, $v0
+j L38 
+L60:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L32
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L32========
+L32:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L63:
+sw $a0, 0($fp)
+move $s0, $a1
+bgt $s0, $zero, L33 
+L34:
+li $v0, 0
+j L62 
+L33:
+lw $a0, 0($fp)
+li $t0, 10
+div $a1, $s0, $t0
+jal L32
+li $t0, 10
+div $t1, $s0, $t0
+li $t0, 10
+mul $t0, $t1, $t0
+sub $t0, $s0, $t0
+move $s0, $t0
+la $a0, L15
+jal tig_ord
+move $t0, $v0
+add $a0, $s0, $t0
+jal tig_chr
+move $a0, $v0
+jal tig_print
+j L34 
+L62:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L25
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L25========
+L25:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L65:
+sw $a0, 0($fp)
+move $s0, $a1
+beq $s0, $zero, L29 
+L30:
+lw $a0, 0($fp)
+lw $a1, 4($s0)
+jal L26
+la $a0, L4
+jal tig_print
+lw $a0, 0($fp)
+lw $a1, 0($s0)
+jal L25
+move $t0, $v0
+L31:
+move $v0, $t0
+j L64 
+L29:
+la $a0, L5
+jal tig_print
+move $t0, $v0
+j L31 
+L64:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L1
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L1========
+L1:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+sw $s1, -16($fp)
+L67:
+sw $a0, 0($fp)
+move $s0, $a1
+li $s1, 0
+move $a0, $fp
+jal L2
+addi $t0, $s0, 0
+move $s0, $t0
+move $a0, $fp
+lw $t0, 0($fp)
+lw $a1, -48($t0)
+jal L3
+move $t0, $v0
+sw $t0, 0($s0)
+L23:
+move $a0, $fp
+lw $t0, 0($fp)
+lw $a1, -48($t0)
+jal L3
+move $t0, $v0
+li $t1, 1
+beq $t1, $t0, L24 
+L22:
+move $v0, $s1
+j L66 
+L24:
+li $t0, 10
+mul $t0, $s1, $t0
+move $s0, $t0
+lw $t0, 0($fp)
+lw $a0, -48($t0)
+jal tig_ord
+move $t0, $v0
+add $t0, $s0, $t0
+move $s0, $t0
+la $a0, L15
+jal tig_ord
+move $t0, $v0
+sub $t0, $s0, $t0
+move $s1, $t0
+lw $t0, 0($fp)
+addi $t0, $t0, -48
+move $s0, $t0
+jal tig_getchar
+move $t0, $v0
+sw $t0, 0($s0)
+j L23 
+L66:
+lw $s1, -16($fp)
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L3
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L3========
+L3:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+sw $s1, -16($fp)
+L69:
+sw $a0, 0($fp)
+lw $t0, 0($fp)
+lw $t0, 0($t0)
+lw $a0, -48($t0)
+jal tig_ord
+move $t0, $v0
+move $s0, $t0
+la $a0, L15
+jal tig_ord
+move $t0, $v0
+bge $s0, $t0, L19 
+L20:
+li $t0, 0
+L21:
+move $v0, $t0
+j L68 
+L19:
+li $s1, 1
+lw $t0, 0($fp)
+lw $t0, 0($t0)
+lw $a0, -48($t0)
+jal tig_ord
+move $t0, $v0
+move $s0, $t0
+la $a0, L16
+jal tig_ord
+move $t0, $v0
+ble $s0, $t0, L17 
+L18:
+li $s1, 0
+L17:
+move $t0, $s1
+j L21 
+L68:
+lw $s1, -16($fp)
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L2
+offset: ~44
+maxArgs: 3
+newOffset: ~60
+==================Final Code L2========
+L2:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L71:
+sw $a0, 0($fp)
+L13:
+lw $t0, 0($fp)
+lw $t0, 0($t0)
+lw $a0, -48($t0)
+la $a1, L4
+jal tig_stringEqual
+move $t0, $v0
+li $t1, 1
+beq $t1, $t0, L6 
+L7:
+lw $t0, 0($fp)
+lw $t0, 0($t0)
+lw $a0, -48($t0)
+la $a1, L5
+jal tig_stringEqual
+move $t0, $v0
+L8:
+li $t1, 1
+beq $t1, $t0, L14 
+L9:
+li $v0, 0
+j L70 
+L6:
+li $t0, 1
+j L8 
+L14:
+lw $t0, 0($fp)
+lw $t0, 0($t0)
+addi $t0, $t0, -48
+move $s0, $t0
+jal tig_getchar
+move $t0, $v0
+sw $t0, 0($s0)
+j L13 
+L70:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/queens.tig";
+HANDLETREE
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~48
+allocLocal escape: true
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~52
+allocLocal escape: true
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~56
+allocLocal escape: true
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~60
+allocLocal escape: true
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~64
+allocLocal escape: true
+testestese
+curOffset in allocLocal: ~48
+allocLocal escape: true
+testestese
+curOffset in allocLocal: ~48
+allocLocal escape: true
+testestese
+curOffset in allocLocal: ~52
+allocLocal escape: true
+emit tig_main
+offset: ~64
+maxArgs: 2
+newOffset: ~80
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -80
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L37:
+sw $a0, 0($fp)
+li $t0, 8
+sw $t0, -48($fp)
+addi $t0, $fp, -52
+move $s0, $t0
+lw $a0, -48($fp)
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s0)
+addi $t0, $fp, -56
+move $s0, $t0
+lw $a0, -48($fp)
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s0)
+addi $t0, $fp, -60
+move $s0, $t0
+lw $t1, -48($fp)
+lw $t0, -48($fp)
+add $t0, $t1, $t0
+addi $a0, $t0, -1
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s0)
+addi $t0, $fp, -64
+move $s0, $t0
+lw $t1, -48($fp)
+lw $t0, -48($fp)
+add $t0, $t1, $t0
+addi $a0, $t0, -1
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s0)
+move $a0, $fp
+li $a1, 0
+jal L1
+j L36 
+L36:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L2
+offset: ~52
+maxArgs: 2
+newOffset: ~68
+==================Final Code L2========
+L2:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -68
+sw $ra, -8($fp)
+L39:
+sw $a0, 0($fp)
+sw $zero, -48($fp)
+lw $t1, -48($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+ble $t1, $t0, L34 
+L21:
+la $a0, L33
+jal tig_print
+j L38 
+L34:
+sw $zero, -52($fp)
+lw $t1, -52($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+ble $t1, $t0, L31 
+L22:
+la $a0, L33
+jal tig_print
+lw $t1, -48($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+bge $t1, $t0, L21 
+L35:
+lw $t0, -48($fp)
+addi $t0, $t0, 1
+sw $t0, -48($fp)
+j L34 
+L31:
+lw $t0, 0($fp)
+lw $t2, -56($t0)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+lw $t1, 0($t0)
+lw $t0, -52($fp)
+beq $t1, $t0, L25 
+L26:
+la $a0, L24
+L27:
+jal tig_print
+lw $t1, -52($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+bge $t1, $t0, L22 
+L32:
+lw $t0, -52($fp)
+addi $t0, $t0, 1
+sw $t0, -52($fp)
+j L31 
+L25:
+la $a0, L23
+j L27 
+L38:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L1
+offset: ~48
+maxArgs: 2
+newOffset: ~64
+==================Final Code L1========
+L1:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -64
+sw $ra, -8($fp)
+L41:
+sw $a0, 0($fp)
+move REG NOT FOUND, $a1
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+beq REG NOT FOUND, $t0, L18 
+L19:
+sw $zero, -48($fp)
+lw $t1, -48($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+ble $t1, $t0, L16 
+L3:
+li $t0, 0
+L20:
+move $v0, $t0
+j L40 
+L18:
+lw $a0, 0($fp)
+jal L2
+move $t0, $v0
+j L20 
+L16:
+lw $t0, 0($fp)
+lw $t2, -52($t0)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+lw $t0, 0($t0)
+beq $t0, $zero, L6 
+L7:
+li $t0, 0
+L8:
+li $t1, 1
+beq $t1, $t0, L11 
+L12:
+li $t0, 0
+L13:
+li $t1, 1
+beq $t1, $t0, L14 
+L15:
+lw $t1, -48($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+bge $t1, $t0, L3 
+L17:
+lw $t0, -48($fp)
+addi $t0, $t0, 1
+sw $t0, -48($fp)
+j L16 
+L6:
+li $t1, 1
+lw $t0, 0($fp)
+lw $t3, -60($t0)
+lw $t0, -48($fp)
+add $t0, $t0, REG NOT FOUND
+addi $t2, $t0, 1
+li $t0, 4
+mul $t0, $t2, $t0
+add $t0, $t3, $t0
+lw $t0, 0($t0)
+beq $t0, $zero, L4 
+L5:
+li $t1, 0
+L4:
+move $t0, $t1
+j L8 
+L11:
+li $t1, 1
+lw $t0, 0($fp)
+lw $t3, -64($t0)
+lw $t0, -48($fp)
+addi $t0, $t0, 7
+sub $t0, $t0, REG NOT FOUND
+addi $t2, $t0, 1
+li $t0, 4
+mul $t0, $t2, $t0
+add $t0, $t3, $t0
+lw $t0, 0($t0)
+beq $t0, $zero, L9 
+L10:
+li $t1, 0
+L9:
+move $t0, $t1
+j L13 
+L14:
+lw $t0, 0($fp)
+lw $t2, -52($t0)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+li $t1, 1
+sw $t1, 0($t0)
+lw $t0, 0($fp)
+lw $t2, -60($t0)
+lw $t0, -48($fp)
+add $t0, $t0, REG NOT FOUND
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+li $t1, 1
+sw $t1, 0($t0)
+lw $t0, 0($fp)
+lw $t2, -64($t0)
+lw $t0, -48($fp)
+addi $t0, $t0, 7
+sub $t0, $t0, REG NOT FOUND
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+li $t1, 1
+sw $t1, 0($t0)
+lw $t0, 0($fp)
+lw $t2, -56($t0)
+addi $t1, REG NOT FOUND, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+lw $t1, -48($fp)
+sw $t1, 0($t0)
+lw $a0, 0($fp)
+addi $a1, REG NOT FOUND, 1
+jal L1
+lw $t0, 0($fp)
+lw $t2, -52($t0)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+sw $zero, 0($t0)
+lw $t0, 0($fp)
+lw $t2, -60($t0)
+lw $t0, -48($fp)
+add $t0, $t0, REG NOT FOUND
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+sw $zero, 0($t0)
+lw $t0, 0($fp)
+lw $t2, -64($t0)
+lw $t0, -48($fp)
+addi $t0, $t0, 7
+sub $t0, $t0, REG NOT FOUND
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+sw $zero, 0($t0)
+j L15 
+L40:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+HANDLETREE
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~48
+allocLocal escape: true
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~52
+allocLocal escape: true
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~56
+allocLocal escape: true
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~60
+allocLocal escape: true
+transDecs allocLocal escape: true
+testestese
+curOffset in allocLocal: ~64
+allocLocal escape: true
+testestese
+curOffset in allocLocal: ~48
+allocLocal escape: true
+testestese
+curOffset in allocLocal: ~48
+allocLocal escape: true
+testestese
+curOffset in allocLocal: ~52
+allocLocal escape: true
+emit tig_main
+offset: ~64
+maxArgs: 2
+newOffset: ~80
+==================Final Code tig_main========
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -80
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L78:
+sw $a0, 0($fp)
+li $t0, 8
+sw $t0, -48($fp)
+addi $t0, $fp, -52
+move $s0, $t0
+lw $a0, -48($fp)
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s0)
+addi $t0, $fp, -56
+move $s0, $t0
+lw $a0, -48($fp)
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s0)
+addi $t0, $fp, -60
+move $s0, $t0
+lw $t1, -48($fp)
+lw $t0, -48($fp)
+add $t0, $t1, $t0
+addi $a0, $t0, -1
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s0)
+addi $t0, $fp, -64
+move $s0, $t0
+lw $t1, -48($fp)
+lw $t0, -48($fp)
+add $t0, $t1, $t0
+addi $a0, $t0, -1
+li $a1, 0
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s0)
+move $a0, $fp
+li $a1, 0
+jal L42
+j L77 
+L77:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L43
+offset: ~52
+maxArgs: 2
+newOffset: ~68
+==================Final Code L43========
+L43:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -68
+sw $ra, -8($fp)
+L80:
+sw $a0, 0($fp)
+sw $zero, -48($fp)
+lw $t1, -48($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+ble $t1, $t0, L75 
+L62:
+la $a0, L74
+jal tig_print
+j L79 
+L75:
+sw $zero, -52($fp)
+lw $t1, -52($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+ble $t1, $t0, L72 
+L63:
+la $a0, L74
+jal tig_print
+lw $t1, -48($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+bge $t1, $t0, L62 
+L76:
+lw $t0, -48($fp)
+addi $t0, $t0, 1
+sw $t0, -48($fp)
+j L75 
+L72:
+lw $t0, 0($fp)
+lw $t2, -56($t0)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+lw $t1, 0($t0)
+lw $t0, -52($fp)
+beq $t1, $t0, L66 
+L67:
+la $a0, L65
+L68:
+jal tig_print
+lw $t1, -52($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+bge $t1, $t0, L63 
+L73:
+lw $t0, -52($fp)
+addi $t0, $t0, 1
+sw $t0, -52($fp)
+j L72 
+L66:
+la $a0, L64
+j L68 
+L79:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+emit L42
+offset: ~48
+maxArgs: 2
+newOffset: ~64
+==================Final Code L42========
+L42:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -64
+sw $ra, -8($fp)
+L82:
+sw $a0, 0($fp)
+sw $a1, 4($fp)
+lw $t1, 4($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+beq $t1, $t0, L59 
+L60:
+sw $zero, -48($fp)
+lw $t1, -48($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+ble $t1, $t0, L57 
+L44:
+li $t0, 0
+L61:
+move $v0, $t0
+j L81 
+L59:
+lw $a0, 0($fp)
+jal L43
+move $t0, $v0
+j L61 
+L57:
+lw $t0, 0($fp)
+lw $t2, -52($t0)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+lw $t0, 0($t0)
+beq $t0, $zero, L47 
+L48:
+li $t0, 0
+L49:
+li $t1, 1
+beq $t1, $t0, L52 
+L53:
+li $t0, 0
+L54:
+li $t1, 1
+beq $t1, $t0, L55 
+L56:
+lw $t1, -48($fp)
+lw $t0, 0($fp)
+lw $t0, -48($t0)
+addi $t0, $t0, -1
+bge $t1, $t0, L44 
+L58:
+lw $t0, -48($fp)
+addi $t0, $t0, 1
+sw $t0, -48($fp)
+j L57 
+L47:
+li $t1, 1
+lw $t0, 0($fp)
+lw $t3, -60($t0)
+lw $t2, -48($fp)
+lw $t0, 4($fp)
+add $t0, $t2, $t0
+addi $t2, $t0, 1
+li $t0, 4
+mul $t0, $t2, $t0
+add $t0, $t3, $t0
+lw $t0, 0($t0)
+beq $t0, $zero, L45 
+L46:
+li $t1, 0
+L45:
+move $t0, $t1
+j L49 
+L52:
+li $t1, 1
+lw $t0, 0($fp)
+lw $t3, -64($t0)
+lw $t0, -48($fp)
+addi $t2, $t0, 7
+lw $t0, 4($fp)
+sub $t0, $t2, $t0
+addi $t2, $t0, 1
+li $t0, 4
+mul $t0, $t2, $t0
+add $t0, $t3, $t0
+lw $t0, 0($t0)
+beq $t0, $zero, L50 
+L51:
+li $t1, 0
+L50:
+move $t0, $t1
+j L54 
+L55:
+lw $t0, 0($fp)
+lw $t2, -52($t0)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+li $t1, 1
+sw $t1, 0($t0)
+lw $t0, 0($fp)
+lw $t2, -60($t0)
+lw $t1, -48($fp)
+lw $t0, 4($fp)
+add $t0, $t1, $t0
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+li $t1, 1
+sw $t1, 0($t0)
+lw $t0, 0($fp)
+lw $t2, -64($t0)
+lw $t0, -48($fp)
+addi $t1, $t0, 7
+lw $t0, 4($fp)
+sub $t0, $t1, $t0
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+li $t1, 1
+sw $t1, 0($t0)
+lw $t0, 0($fp)
+lw $t2, -56($t0)
+lw $t0, 4($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+lw $t1, -48($fp)
+sw $t1, 0($t0)
+lw $a0, 0($fp)
+lw $t0, 4($fp)
+addi $a1, $t0, 1
+jal L42
+lw $t0, 0($fp)
+lw $t2, -52($t0)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+sw $zero, 0($t0)
+lw $t0, 0($fp)
+lw $t2, -60($t0)
+lw $t1, -48($fp)
+lw $t0, 4($fp)
+add $t0, $t1, $t0
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+sw $zero, 0($t0)
+lw $t0, 0($fp)
+lw $t2, -64($t0)
+lw $t0, -48($fp)
+addi $t1, $t0, 7
+lw $t0, 4($fp)
+sub $t0, $t1, $t0
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+sw $zero, 0($t0)
+j L56 
+L81:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra 
+val it = () : unit
+- Main.compile "../testcases/factorial.tig";
+../testcases/factorial.tig:6.23:Error: Compiler bug: syntax error: deleting  SEMICOLON
+
+Process sml finished

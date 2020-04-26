@@ -763,7 +763,7 @@ move $a0, $fp
 sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -60
-sw $ra, -8($sp)
+sw $ra, -8($fp)
 L7:
 sw $a0, 0($fp)
 move $a0, $fp
@@ -772,7 +772,7 @@ la $a2, L5
 jal L2
 j L6 
 L6:
-sw $ra, -8($sp)
+lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
 jr $ra 
@@ -780,7 +780,7 @@ L2:
 sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -60
-sw $ra, -8($sp)
+sw $ra, -8($fp)
 L9:
 sw $a0, 0($fp)
 lw $a0, 0($fp)
@@ -789,7 +789,7 @@ jal L1
 li $v0, 0
 j L8 
 L8:
-sw $ra, -8($sp)
+lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
 jr $ra 
@@ -797,7 +797,7 @@ L1:
 sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -60
-sw $ra, -8($sp)
+sw $ra, -8($fp)
 L11:
 sw $a0, 0($fp)
 lw $a0, 0($fp)
@@ -806,7 +806,7 @@ jal L2
 la $v0, L4
 j L10 
 L10:
-sw $ra, -8($sp)
+lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
 jr $ra 

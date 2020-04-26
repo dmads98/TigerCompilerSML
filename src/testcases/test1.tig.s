@@ -760,15 +760,17 @@ move $a0, $fp
 sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -60
-sw $ra, -8($sp)
+sw $ra, -8($fp)
 L2:
 sw $a0, 0($fp)
 li $a0, 10
 li $a1, 0
 jal tig_initArray
+move $t0, $v0
+move $v0, $t0
 j L1 
 L1:
-sw $ra, -8($sp)
+lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
 jr $ra 

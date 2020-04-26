@@ -3,7 +3,8 @@ sig
     structure Frame : FRAME
     type allocation = string Temp.Table.table
     val alloc : Liveness.igraph ->
-    		 allocation * bool
+    		allocation * bool
+    val printAlloc : string Temp.Table.table * Temp.temp list -> unit
 end
 
 structure Reg_Alloc : REG_ALLOC = 
@@ -12,6 +13,14 @@ struct
 structure Frame = MipsFrame
 type allocation = string Temp.Table.table
 
+fun printAlloc (alloc, tList) =
+    let fun printTemp(temp) = case Temp.Table.look(alloc, temp) of
+				  SOME(x) => print(Temp.makestring(temp) ^ " -> " ^ x ^ "\n")
+				| NONE => print("===Unable to allocate: " ^ Temp.makestring(temp) ^ "===\n")
+    in
+	app printTemp tList
+    end
+			 
 val initAlloc =
     let fun addReg ((reg, strReg), curTable) = Temp.Table.enter(curTable, reg, strReg)
     in

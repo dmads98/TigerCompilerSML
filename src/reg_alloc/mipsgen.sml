@@ -124,7 +124,8 @@ fun codegen (frame) (stm: Tree.stm) : Assem.instr list =
 	    let val liveRegs = F.RA ::
 			       F.RV ::
 			       F.V1 ::
-			       (F.getRegTemps(F.callersaves)) @ (F.getRegTemps(F.argregs))										    in 
+			       (F.getRegTemps(F.callersaves)) @ (F.getRegTemps(F.argregs))
+	    in 
 		(emit (A.OPER{
 			    assem = "jal " ^ S.name name ^ "\n",
 			    src = munchArgs(0, 16, argList),

@@ -82,11 +82,13 @@ fun getRegName reg = case Temp.Table.look(tempMap, reg) of SOME(s) => s (* todo:
 fun name {name, formals, numLocalsAlloc, offset} = name
 fun formals {name, formals, numLocalsAlloc, offset} = formals
 fun allocLocal ({name, formals, numLocalsAlloc, offset}) (esc) =
-		(numLocalsAlloc := !numLocalsAlloc + 1;
-		 case esc of true => (offset := !offset - wordSize;
-				      InFrame(!offset))
-			   | false => InReg(Temp.newtemp()))
-										   
+    (numLocalsAlloc := !numLocalsAlloc + 1;
+     print("testestese\n");
+     case esc of true => (offset := !offset - wordSize;
+			  print("curOffset in allocLocal: " ^ Int.toString(!offset) ^ "\n");
+			  InFrame(!offset))
+	       | false => InReg(Temp.newtemp()))
+	
 
 fun newFrame {name, formals} =
     let fun formalsAlloc ([], list, index, offset) = list
@@ -103,8 +105,8 @@ fun exp (InReg(k), fP) = Tree.TEMP(k)
 fun externalCall (funcName, expList) = Tree.CALL(Tree.NAME(Temp.namedlabel(funcName)), expList)
 
 fun int (x: int) =
-    if (x>=0) then Int.toString x
-    else "-" ^ Int.toString (~x)
+    if (x>=0) then Int.toString(x)
+    else "-" ^ Int.toString(abs(x))
 
 fun convertToPos (Tree.TEMP t) = Tree.TEMPPOS t
   | convertToPos (Tree.MEM e) = Tree.MEMPOS e
@@ -145,18 +147,22 @@ fun procEntryExit3 ({name, formals, numLocalsAlloc, offset} : frame, body, saveR
 	val newOffset = if maxArgs >= 4
 			then !offset - (maxArgs * wordSize)
 			else !offset - (4 * wordSize)
+	val _ = print("offset: " ^ Int.toString(!offset) ^ "\n")
+	val _ = print("maxArgs: " ^ Int.toString(maxArgs) ^ "\n")
+	val _ = print("newOffset: " ^ Int.toString(newOffset) ^ "\n")
+					   
 	val spInstr = Assem.OPER{assem = "addi `d0, `s0, -" ^ Int.toString(abs(newOffset)) ^ "\n",
 				 src=[FP], dst=[SP], jump = NONE}
 	fun storeInstrs (_, instrList, []) = instrList
 	  | storeInstrs (offset, instrList, reg::ls) =
 	    Assem.OPER{assem = "sw `s0, " ^ int(offset) ^ "(`s1)\n",
-		       src=[reg, SP], dst=[], jump = NONE} :: storeInstrs(offset - 4, instrList, ls)
+		       src=[reg, FP], dst=[], jump = NONE} :: storeInstrs(offset - 4, instrList, ls)
 	val storeRegs = storeInstrs(~8, [], saveRegs)
 	fun loadInstrs (_, instrList, []) = instrList
 	  | loadInstrs (offset, instrList, reg::ls) =
 	    Assem.OPER{assem = "lw `d0, " ^ int(offset) ^ "(`s0)\n",
 		       src=[FP], dst=[reg], jump = NONE} :: loadInstrs(offset - 4, instrList, ls)
-	val loadRegs = rev(storeInstrs(~8, [], saveRegs))
+	val loadRegs = rev(loadInstrs(~8, [], saveRegs))
 	val moveBackSP =  Assem.OPER{assem = "move `d0, `s0\n",
 				     src=[FP], dst=[SP], jump = NONE}
 	val loadFP = Assem.OPER{assem = "lw `d0, -4(`s0)\n",

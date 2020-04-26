@@ -1,0 +1,3114 @@
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16179, data: 239, env: 751 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+emit tig_main
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 20664, data: 544, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+emit tig_main
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16183, data: 239, env: 751 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+emit tig_main
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 20660, data: 544, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test2.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test3.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test4.tig";
+emit tig_main
+emit L1
+val it = () : unit
+- Main.compile "../testcases/test5.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test6.tig";
+emit tig_main
+emit L2
+emit L1
+val it = () : unit
+- Main.compile "../testcases/test7.tig";
+emit tig_main
+emit L2
+emit L1
+val it = () : unit
+- Main.compile "../testcases/test8.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test12.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test27.tig";
+emit tig_main
+emit L1
+val it = () : unit
+- Main.compile "../testcases/test30.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test37.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test41.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test44.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test46.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test47.tig";
+emit tig_main
+val it = () : unit
+- Main.compile "../testcases/test48.tig";
+emit tig_main
+emit L2
+emit L1
+val it = () : unit
+- Main.compile "../testcases/merge.tig";
+emit tig_main
+emit L28
+emit L27
+emit L26
+emit L32
+emit L25
+emit L1
+emit L3
+emit L2
+val it = () : unit
+- Main.compile "../testcases/queens.tig";
+emit tig_main
+emit L2
+emit L1
+val it = () : unit
+- Main.compile "../testcases/correct/test2.tig";
+emit tig_main
+val it = () : unit
+- Mdsdsain.compile "../testcases/test2.tig
+= ;
+tdIn:23.18-23.41 Error: unclosed string
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 20684, data: 544, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 21132, data: 560, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+neOffset: ~60val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 21478, data: 574, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 21787, data: 587, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 22165, data: 617, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 22250, data: 638, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+testestesetesetstestestesetesetstestestesetesetstestestesetesetstestestesetesetsemit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):mipsframe.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[compiling (sources.cm):mipsframe.sml]
+[code: 22245, data: 633, env: 580 bytes]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+testestese
+testestese
+testestese
+testestese
+testestese
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+testestese
+testestese
+testestese
+testestese
+testestese
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):translate.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[compiling (sources.cm):translate.sml]
+translate.sml:216.6-222.24 Warning: match nonexhaustive
+          EqOp => ...
+          NeqOp => ...
+          LtOp => ...
+          LeOp => ...
+          GtOp => ...
+          GeOp => ...
+  
+translate.sml:185.6-189.29 Warning: match nonexhaustive
+          PlusOp => ...
+          MinusOp => ...
+          TimesOp => ...
+          DivideOp => ...
+  
+[code: 38097, data: 477, env: 584 bytes]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+testestese
+allocLocal escape: false
+testestese
+allocLocal escape: false
+testestese
+allocLocal escape: false
+testestese
+allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- Main.compile "../testcases/test42.sdlsk;
+= ;
+stdIn:3.14-3.41 Error: unclosed string
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):semant.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[compiling (sources.cm):semant.sml]
+[code: 52476, data: 1952, env: 49 bytes]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- Main.compile "../testcases/test42.tig";
+stdIn:1.2-1.14 Error: unbound structure: Main in path Main.compile
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16291, data: 239, env: 751 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+LetExp([
+ TypeDec[
+  (arrtype1,
+   ArrayTy(int)),
+  (rectype1,
+   RecordTy[
+    (name,false,string),
+    (address,false,string),
+    (id,false,int),
+    (age,false,int)]),
+  (arrtype2,
+   ArrayTy(rectype1)),
+  (rectype2,
+   RecordTy[
+    (name,false,string),
+    (dates,false,arrtype1)]),
+  (arrtype3,
+   ArrayTy(string))],
+ VarDec(arr1,false,NONE,
+  ArrayExp(arrtype1,
+   IntExp(10),
+   IntExp(0))),
+ VarDec(arr2,false,NONE,
+  ArrayExp(arrtype2,
+   IntExp(5),
+   RecordExp(rectype1,[
+
+    (name,
+     StringExp("aname")),
+    (address,
+     StringExp("somewhere")),
+    (id,
+     IntExp(0)),
+    (age,
+     IntExp(0))]))),
+ VarDec(arr3,false,SOME(arrtype3),
+  ArrayExp(arrtype3,
+   IntExp(100),
+   StringExp(""))),
+ VarDec(rec1,false,NONE,
+  RecordExp(rectype1,[
+
+   (name,
+    StringExp("Kapoios")),
+   (address,
+    StringExp("Kapou")),
+   (id,
+    IntExp(2432)),
+   (age,
+    IntExp(44))])),
+ VarDec(rec2,false,NONE,
+  RecordExp(rectype2,[
+
+   (name,
+    StringExp("Allos")),
+   (dates,
+    ArrayExp(arrtype1,
+     IntExp(3),
+     IntExp(1900)))]))],
+ SeqExp[
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(0)),
+   IntExp(1)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(9)),
+   IntExp(3)),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(3)),
+    name),
+   StringExp("kati")),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(1)),
+    age),
+   IntExp(23)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr3),
+    IntExp(34)),
+   StringExp("sfd")),
+  AssignExp(
+   FieldVar(
+    SimpleVar(rec1),
+    name),
+   StringExp("sdf")),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(0)),
+   IntExp(2323)),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(2)),
+   IntExp(2323))])
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+find_escape.sml:40.32 Error: syntax error: inserting  END
+sources.cm:25.1-25.16 Error: syntax error
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+find_escape.sml:42.15-42.29 Error: operator is not a function [tycon mismatch]
+  operator: depth
+  in expression:
+    d body
+find_escape.sml:42.4-42.29 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: escEnv * depth * Absyn.exp
+  operand:         (depth * bool ref) Symbol.table * _
+  in expression:
+    traverseExp (env',d body)
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 4864, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+LetExp([
+ TypeDec[
+  (arrtype1,
+   ArrayTy(int)),
+  (rectype1,
+   RecordTy[
+    (name,false,string),
+    (address,false,string),
+    (id,false,int),
+    (age,false,int)]),
+  (arrtype2,
+   ArrayTy(rectype1)),
+  (rectype2,
+   RecordTy[
+    (name,false,string),
+    (dates,false,arrtype1)]),
+  (arrtype3,
+   ArrayTy(string))],
+ VarDec(arr1,false,NONE,
+  ArrayExp(arrtype1,
+   IntExp(10),
+   IntExp(0))),
+ VarDec(arr2,false,NONE,
+  ArrayExp(arrtype2,
+   IntExp(5),
+   RecordExp(rectype1,[
+
+    (name,
+     StringExp("aname")),
+    (address,
+     StringExp("somewhere")),
+    (id,
+     IntExp(0)),
+    (age,
+     IntExp(0))]))),
+ VarDec(arr3,false,SOME(arrtype3),
+  ArrayExp(arrtype3,
+   IntExp(100),
+   StringExp(""))),
+ VarDec(rec1,false,NONE,
+  RecordExp(rectype1,[
+
+   (name,
+    StringExp("Kapoios")),
+   (address,
+    StringExp("Kapou")),
+   (id,
+    IntExp(2432)),
+   (age,
+    IntExp(44))])),
+ VarDec(rec2,false,NONE,
+  RecordExp(rectype2,[
+
+   (name,
+    StringExp("Allos")),
+   (dates,
+    ArrayExp(arrtype1,
+     IntExp(3),
+     IntExp(1900)))]))],
+ SeqExp[
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(0)),
+   IntExp(1)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(9)),
+   IntExp(3)),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(3)),
+    name),
+   StringExp("kati")),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(1)),
+    age),
+   IntExp(23)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr3),
+    IntExp(34)),
+   StringExp("sfd")),
+  AssignExp(
+   FieldVar(
+    SimpleVar(rec1),
+    name),
+   StringExp("sdf")),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(0)),
+   IntExp(2323)),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(2)),
+   IntExp(2323))])
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+find_escape.sml:19.7-19.24 Error: pattern and expression in val dec don't agree [tycon mismatch]
+  pattern:    'Z * 'Y
+  expression:    Absyn.var
+  in declaration:
+    (symb,pos) = var
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- Main.compile "../testcases/test42.tig";
+stdIn:1.2-1.14 Error: unbound structure: Main in path Main.compile
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+find_escape.sml:37.6 Error: syntax error: inserting  SEMICOLON
+sources.cm:25.1-25.16 Error: syntax error
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+find_escape.sml:36.13-36.74 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * string
+  operand:         string * Absyn.symbol
+  in expression:
+    "\nid: " ^ id
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 5549, data: 53, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+
+id: arr1|depth: 0
+
+id: arr1|depth: 0
+
+id: arr2|depth: 0
+
+id: arr2|depth: 0
+
+id: arr3|depth: 0
+
+id: rec1|depth: 0
+
+id: rec2|depth: 0
+
+id: rec2|depth: 0
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+LetExp([
+ TypeDec[
+  (arrtype1,
+   ArrayTy(int)),
+  (rectype1,
+   RecordTy[
+    (name,false,string),
+    (address,false,string),
+    (id,false,int),
+    (age,false,int)]),
+  (arrtype2,
+   ArrayTy(rectype1)),
+  (rectype2,
+   RecordTy[
+    (name,false,string),
+    (dates,false,arrtype1)]),
+  (arrtype3,
+   ArrayTy(string))],
+ VarDec(arr1,false,NONE,
+  ArrayExp(arrtype1,
+   IntExp(10),
+   IntExp(0))),
+ VarDec(arr2,false,NONE,
+  ArrayExp(arrtype2,
+   IntExp(5),
+   RecordExp(rectype1,[
+
+    (name,
+     StringExp("aname")),
+    (address,
+     StringExp("somewhere")),
+    (id,
+     IntExp(0)),
+    (age,
+     IntExp(0))]))),
+ VarDec(arr3,false,SOME(arrtype3),
+  ArrayExp(arrtype3,
+   IntExp(100),
+   StringExp(""))),
+ VarDec(rec1,false,NONE,
+  RecordExp(rectype1,[
+
+   (name,
+    StringExp("Kapoios")),
+   (address,
+    StringExp("Kapou")),
+   (id,
+    IntExp(2432)),
+   (age,
+    IntExp(44))])),
+ VarDec(rec2,false,NONE,
+  RecordExp(rectype2,[
+
+   (name,
+    StringExp("Allos")),
+   (dates,
+    ArrayExp(arrtype1,
+     IntExp(3),
+     IntExp(1900)))]))],
+ SeqExp[
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(0)),
+   IntExp(1)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(9)),
+   IntExp(3)),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(3)),
+    name),
+   StringExp("kati")),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(1)),
+    age),
+   IntExp(23)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr3),
+    IntExp(34)),
+   StringExp("sfd")),
+  AssignExp(
+   FieldVar(
+    SimpleVar(rec1),
+    name),
+   StringExp("sdf")),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(0)),
+   IntExp(2323)),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(2)),
+   IntExp(2323))])
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- 
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+ind_escape.sml:83.11-83.118 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: bool
+  operand:         bool ref
+  in expression:
+    Bool.toString escape
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 6314, data: 82, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+
+decInfo: arr1|depth: 0|escape: false
+
+decInfo: arr2|depth: 0|escape: false
+
+decInfo: arr3|depth: 0|escape: false
+
+decInfo: rec1|depth: 0|escape: false
+
+decInfo: rec2|depth: 0|escape: false
+
+id: arr1|depth: 0
+
+id: arr1|depth: 0
+
+id: arr2|depth: 0
+
+id: arr2|depth: 0
+
+id: arr3|depth: 0
+
+id: rec1|depth: 0
+
+id: rec2|depth: 0
+
+id: rec2|depth: 0
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+LetExp([
+ TypeDec[
+  (arrtype1,
+   ArrayTy(int)),
+  (rectype1,
+   RecordTy[
+    (name,false,string),
+    (address,false,string),
+    (id,false,int),
+    (age,false,int)]),
+  (arrtype2,
+   ArrayTy(rectype1)),
+  (rectype2,
+   RecordTy[
+    (name,false,string),
+    (dates,false,arrtype1)]),
+  (arrtype3,
+   ArrayTy(string))],
+ VarDec(arr1,false,NONE,
+  ArrayExp(arrtype1,
+   IntExp(10),
+   IntExp(0))),
+ VarDec(arr2,false,NONE,
+  ArrayExp(arrtype2,
+   IntExp(5),
+   RecordExp(rectype1,[
+
+    (name,
+     StringExp("aname")),
+    (address,
+     StringExp("somewhere")),
+    (id,
+     IntExp(0)),
+    (age,
+     IntExp(0))]))),
+ VarDec(arr3,false,SOME(arrtype3),
+  ArrayExp(arrtype3,
+   IntExp(100),
+   StringExp(""))),
+ VarDec(rec1,false,NONE,
+  RecordExp(rectype1,[
+
+   (name,
+    StringExp("Kapoios")),
+   (address,
+    StringExp("Kapou")),
+   (id,
+    IntExp(2432)),
+   (age,
+    IntExp(44))])),
+ VarDec(rec2,false,NONE,
+  RecordExp(rectype2,[
+
+   (name,
+    StringExp("Allos")),
+   (dates,
+    ArrayExp(arrtype1,
+     IntExp(3),
+     IntExp(1900)))]))],
+ SeqExp[
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(0)),
+   IntExp(1)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(9)),
+   IntExp(3)),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(3)),
+    name),
+   StringExp("kati")),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(1)),
+    age),
+   IntExp(23)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr3),
+    IntExp(34)),
+   StringExp("sfd")),
+  AssignExp(
+   FieldVar(
+    SimpleVar(rec1),
+    name),
+   StringExp("sdf")),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(0)),
+   IntExp(2323)),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(2)),
+   IntExp(2323))])
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+find_escape.sml:84.4-84.18 Error: unbound structure: Type in path Type.printType
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+find_escape.sml:84.4-84.23 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: Types.ty
+  operand:         (Absyn.symbol * Absyn.pos) option
+  in expression:
+    Types.printType typ
+val it = false : bool
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 6314, data: 82, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+ Main.compile "../testcases/test42.tig";
+
+decInfo: arr1|depth: 0|escape: false
+
+decInfo: arr2|depth: 0|escape: false
+
+decInfo: arr3|depth: 0|escape: false
+
+decInfo: rec1|depth: 0|escape: false
+
+decInfo: rec2|depth: 0|escape: false
+
+id: arr1|depth: 0
+
+id: arr1|depth: 0
+
+id: arr2|depth: 0
+
+id: arr2|depth: 0
+
+id: arr3|depth: 0
+
+id: rec1|depth: 0
+
+id: rec2|depth: 0
+
+id: rec2|depth: 0
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+LetExp([
+ TypeDec[
+  (arrtype1,
+   ArrayTy(int)),
+  (rectype1,
+   RecordTy[
+    (name,false,string),
+    (address,false,string),
+    (id,false,int),
+    (age,false,int)]),
+  (arrtype2,
+   ArrayTy(rectype1)),
+  (rectype2,
+   RecordTy[
+    (name,false,string),
+    (dates,false,arrtype1)]),
+  (arrtype3,
+   ArrayTy(string))],
+ VarDec(arr1,false,NONE,
+  ArrayExp(arrtype1,
+   IntExp(10),
+   IntExp(0))),
+ VarDec(arr2,false,NONE,
+  ArrayExp(arrtype2,
+   IntExp(5),
+   RecordExp(rectype1,[
+
+    (name,
+     StringExp("aname")),
+    (address,
+     StringExp("somewhere")),
+    (id,
+     IntExp(0)),
+    (age,
+     IntExp(0))]))),
+ VarDec(arr3,false,SOME(arrtype3),
+  ArrayExp(arrtype3,
+   IntExp(100),
+   StringExp(""))),
+ VarDec(rec1,false,NONE,
+  RecordExp(rectype1,[
+
+   (name,
+    StringExp("Kapoios")),
+   (address,
+    StringExp("Kapou")),
+   (id,
+    IntExp(2432)),
+   (age,
+    IntExp(44))])),
+ VarDec(rec2,false,NONE,
+  RecordExp(rectype2,[
+
+   (name,
+    StringExp("Allos")),
+   (dates,
+    ArrayExp(arrtype1,
+     IntExp(3),
+     IntExp(1900)))]))],
+ SeqExp[
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(0)),
+   IntExp(1)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr1),
+    IntExp(9)),
+   IntExp(3)),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(3)),
+    name),
+   StringExp("kati")),
+  AssignExp(
+   FieldVar(
+    SubscriptVar(
+     SimpleVar(arr2),
+     IntExp(1)),
+    age),
+   IntExp(23)),
+  AssignExp(
+   SubscriptVar(
+    SimpleVar(arr3),
+    IntExp(34)),
+   StringExp("sfd")),
+  AssignExp(
+   FieldVar(
+    SimpleVar(rec1),
+    name),
+   StringExp("sdf")),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(0)),
+   IntExp(2323)),
+  AssignExp(
+   SubscriptVar(
+    FieldVar(
+     SimpleVar(rec2),
+     dates),
+    IntExp(2)),
+   IntExp(2323))])
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 6299, data: 67, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+[code: 16259, data: 255, env: 751 bytes]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test42.tig";
+
+id: arr1|depth: 0|escape: false
+
+id: arr2|depth: 0|escape: false
+
+id: arr3|depth: 0|escape: false
+
+id: rec1|depth: 0|escape: false
+
+id: rec2|depth: 0|escape: false
+
+id: arr1|depth: 0
+
+id: arr1|depth: 0
+
+id: arr2|depth: 0
+
+id: arr2|depth: 0
+
+id: arr3|depth: 0
+
+id: rec1|depth: 0
+
+id: rec2|depth: 0
+
+id: rec2|depth: 0
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[loading (sources.cm):find_escape.sml]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[loading (sources.cm):main.sml]
+[New bindings added.]
+val it = true : bool
+- Main.compile "../testcases/test1.tig";
+
+id: arr1|depth: 0|escape: false
+
+id: arr1|depth: 0
+HANDLETREE
+transDecs allocLocal escape: false
+testestese
+allocLocal escape: false
+emit tig_main
+offset: ~44
+maxArgs: 1
+newOffset: ~60
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- CM.make "sources.cm";
+[autoloading]
+[library $smlnj/cm/cm.cm is stable]
+[library $smlnj/internal/cm-sig-lib.cm is stable]
+[library $/pgraph.cm is stable]
+[library $smlnj/internal/srcpath-lib.cm is stable]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+[scanning sources.cm]
+[library $/ml-yacc-lib.cm is stable]
+[attempting to load plugin $/lex-ext.cm]
+[library $/lex-ext.cm is stable]
+[library $smlnj/cm/tools.cm is stable]
+[library $smlnj/internal/cm-lib.cm is stable]
+[plugin $/lex-ext.cm loaded successfully]
+[attempting to load plugin $/mllex-tool.cm]
+[library $/mllex-tool.cm is stable]
+[plugin $/mllex-tool.cm loaded successfully]
+[attempting to load plugin $/grm-ext.cm]
+[library $/grm-ext.cm is stable]
+[plugin $/grm-ext.cm loaded successfully]
+[attempting to load plugin $/mlyacc-tool.cm]
+[library $/mlyacc-tool.cm is stable]
+[plugin $/mlyacc-tool.cm loaded successfully]
+[parsing (sources.cm):main.sml]
+[parsing (sources.cm):find_escape.sml]
+[library $SMLNJ-LIB/Util/smlnj-lib.cm is stable]
+[library $SMLNJ-ML-YACC-LIB/ml-yacc-lib.cm is stable]
+[loading (sources.cm):table.sig]
+[loading (sources.cm):table.sml]
+[loading (sources.cm):symbol.sml]
+[loading (sources.cm):temp.sig]
+[loading (sources.cm):temp.sml]
+[loading (sources.cm):errormsg.sml]
+[loading (sources.cm):tree.sml]
+[loading (sources.cm):assem.sml]
+[loading (sources.cm):frame.sig]
+[loading (sources.cm):mipsframe.sml]
+[loading (sources.cm):absyn.sml]
+[loading (sources.cm):types.sml]
+[loading (sources.cm):translate.sig]
+[loading (sources.cm):translate.sml]
+[loading (sources.cm):prabsyn.sml]
+[loading (sources.cm):codegen.sig]
+[loading (sources.cm):mipsgen.sml]
+[loading (sources.cm):tiger.grm.sig]
+[compiling (sources.cm):find_escape.sml]
+[code: 4864, env: 311 bytes]
+[loading (sources.cm):tiger.lex.sml]
+[loading (sources.cm):funcgraph.sig]
+[loading (sources.cm):funcgraph.sml]
+[loading (sources.cm):makegraph.sig]
+[loading (sources.cm):liveness.sig]
+[loading (sources.cm):makegraph.sml]
+[loading (sources.cm):liveness.sml]
+[loading (sources.cm):reg_color.sml]
+[loading (sources.cm):reg_alloc.sml]
+[loading (sources.cm):tiger.grm.sml]
+[loading (sources.cm):parse.sml]
+[loading (sources.cm):graph.sig]
+[loading (sources.cm):graph.sml]
+[loading (sources.cm):canon.sml]
+[loading (sources.cm):printtree.sml]
+[loading (sources.cm):env.sig]
+[loading (sources.cm):env.sml]
+[loading (sources.cm):semant.sig]
+[loading (sources.cm):semant.sml]
+[compiling (sources.cm):main.sml]
+main.sml:52.6 Error: expression or pattern begins with infix identifier "-"
+val it = false : bool
+- 
+
+Process sml finished

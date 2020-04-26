@@ -389,6 +389,7 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 and transDecs (venv, tenv, decs, level, doneLabel)  = 
     let fun trdec (venv, tenv, A.VarDec{name, escape, typ = SOME(assignType, typPos), init, pos}, expList) =
 	    let val {exp = vExp, ty = typeFound} = transExp(venv, tenv, init, level, doneLabel)
+		val _ = print("transDecs allocLocal escape: " ^ Bool.toString(!escape) ^ "\n")
 		val varAccess = Tr.allocLocal(level)(!escape)
 		fun getTy (SOME(ty)) = ty
 		  | getTy (NONE) = T.BOTTOM
@@ -405,6 +406,7 @@ and transDecs (venv, tenv, decs, level, doneLabel)  =
 	    end
 	  | trdec (venv, tenv, A.VarDec{name, escape, typ = NONE, init, pos}, expList) =
 	    let val {exp = vExp, ty = typeFound} = transExp(venv, tenv, init, level, doneLabel)
+		val _ = print("transDecs allocLocal escape: " ^ Bool.toString(!escape) ^ "\n")
 		val varAccess = Tr.allocLocal(level)(!escape)
 		fun getTy (SOME(ty)) = ty
 		  | getTy (NONE) = T.BOTTOM

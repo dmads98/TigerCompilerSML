@@ -14,13 +14,29 @@ val escRefs = ref [] : (bool ref) list ref
 
 fun traverseVar (env:escEnv, d:depth, s:A.var) : unit =
     let
-	fun trVar (A.FieldVar(var, symb, pos)) = trVar(var)
+	fun trVar (A.FieldVar(var, symb, pos)) =
+	    let
+	    in
+		(
+		  
+		  (* case var of *)
+		  (*     SimpleVar (sym, pos) =>  *)
+		  (*     print ("var sym: " ^ S.name symb ^ " in trvar\n") *)
+		  (*   | FieldVar () =>  *)
+	      trVar(var)
+	    )
+	    end
+		   
 	  | trVar (A.SubscriptVar(var, exp, pos)) = (trVar(var);
 						     traverseExp(env, d, exp))
-	  | trVar (A.SimpleVar(id, pos)) = (case S.look(env, id) of SOME(actualDepth, escape) => if actualDepth < d
-												 then escape := true
-												 else ()
-								  | NONE => ())
+	  | trVar (A.SimpleVar(id, pos)) =
+	    (case S.look(env, id) of
+		 SOME(actualDepth, escape) =>
+		 (if actualDepth < d
+		  then escape := true
+		  else ()
+		 )
+	       | NONE => ())
     in
 	trVar(s)
     end
@@ -34,9 +50,13 @@ and traverseExp (env:escEnv, d:depth, s:A.exp) :unit =
 	  | trExp (A.BreakExp(pos)) = ()
 	  | trExp (A.CallExp{func, args, pos}) = List.app trExp args
 	  | trExp (A.LetExp{decs, body, pos}) = traverseExp(traverseDecs(env, d, decs), d, body)
-	  | trExp (A.ForExp{var, escape, lo, hi, body, pos}) = (traverseExp(S.enter(env, var, (d, escape)), d, body);
-								trExp(lo);
-								trExp(hi))
+	  | trExp (A.ForExp{var, escape, lo, hi, body, pos}) =
+	    let val env' = S.enter(env, var, (d, escape))
+	    in
+		(traverseExp (env', d, lo);
+		 traverseExp(env', d, hi);
+		 traverseExp(env', d, body))
+	    end
 	  | trExp (A.WhileExp{test, body, pos}) = (trExp(test);
 						   trExp(body))
 	  | trExp (A.SeqExp(expList)) = List.app (fn (exp, pos) => trExp(exp)) expList
