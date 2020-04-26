@@ -16,4 +16,6 @@ Main.compile "../testcases/test42.tig";
 Main.compile "../testcases/test44.tig";
 Main.compile "../testcases/test46.tig";
 Main.compile "../testcases/test47.tig";
-Main.compile "../testcases/test48.tig"
+Main.compile "../testcases/test48.tig";
+Main.compile "../testcases/merge.tig";
+Main.compile "../testcases/queens.tig"

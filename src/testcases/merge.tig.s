@@ -1,9 +1,19 @@
 .data
-L35: .asciiz "-"
-L16: .asciiz "9"
-L15: .asciiz "0"
-L5: .asciiz "\n"
-L4: .asciiz " "
+L35:
+ .word 1
+ .ascii "-"
+L16:
+ .word 1
+ .ascii "9"
+L15:
+ .word 1
+ .ascii "0"
+L5:
+ .word 2
+ .ascii "\n"
+L4:
+ .word 1
+ .ascii " "
 .text
 	#.file	1 "runtime.c"
 	.option pic2
@@ -759,7 +769,8 @@ tig_exit:
   j exit
   .end tig_exit
 
-#---------------------------------PROGRAM START-----------------------------------
+# ==================== START PROGRAM ==============
+
 tig_main:
 move $a0, $fp
 sw $fp, -4($sp)
@@ -793,14 +804,14 @@ jal L27
 move $a1, $v0
 move $a0, $s0
 jal L25
-j L54 
+j L54
 L54:
 lw $s1, -16($fp)
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 L28:
 sw $fp, -4($sp)
 move $fp, $sp
@@ -822,12 +833,12 @@ jal L1
 move $s2, $v0
 li $t1, 1
 lw $t0, 0($s0)
-beq $t1, $t0, L51 
+beq $t1, $t0, L51
 L52:
 li $t0, 0
 L53:
 move $v0, $t0
-j L56 
+j L56
 L51:
 li $a0, 8
 jal tig_allocRecord
@@ -840,7 +851,7 @@ move $t0, $v0
 sw $t0, 0($s0)
 sw $s2, 4($s1)
 move $t0, $s1
-j L53 
+j L53
 L56:
 lw $s2, -20($fp)
 lw $s1, -16($fp)
@@ -848,7 +859,7 @@ lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 L27:
 sw $fp, -4($sp)
 move $fp, $sp
@@ -862,13 +873,13 @@ L59:
 sw $a0, 0($fp)
 move $s3, $a1
 move $s2, $a2
-beq $s3, $zero, L48 
+beq $s3, $zero, L48
 L49:
-beq $s2, $zero, L45 
+beq $s2, $zero, L45
 L46:
 lw $t1, 4($s3)
 lw $t0, 4($s2)
-blt $t1, $t0, L42 
+blt $t1, $t0, L42
 L43:
 li $a0, 8
 jal tig_allocRecord
@@ -888,13 +899,13 @@ L44:
 L47:
 L50:
 move $v0, $t0
-j L58 
+j L58
 L48:
 move $t0, $s2
-j L50 
+j L50
 L45:
 move $t0, $s3
-j L47 
+j L47
 L42:
 li $a0, 8
 jal tig_allocRecord
@@ -910,7 +921,7 @@ sw $t0, 0($s0)
 lw $t0, 4($s3)
 sw $t0, 4($s1)
 move $t0, $s1
-j L44 
+j L44
 L58:
 lw $s3, -24($fp)
 lw $s2, -20($fp)
@@ -919,7 +930,7 @@ lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 L26:
 sw $fp, -4($sp)
 move $fp, $sp
@@ -929,9 +940,9 @@ sw $s0, -12($fp)
 L61:
 sw $a0, 0($fp)
 move $s0, $a1
-blt $s0, $zero, L39 
+blt $s0, $zero, L39
 L40:
-bgt $s0, $zero, L36 
+bgt $s0, $zero, L36
 L37:
 la $a0, L15
 jal tig_print
@@ -939,7 +950,7 @@ move $t0, $v0
 L38:
 L41:
 move $v0, $t0
-j L60 
+j L60
 L39:
 la $a0, L35
 jal tig_print
@@ -947,19 +958,19 @@ move $a0, $fp
 sub $a1, $zero, $s0
 jal L32
 move $t0, $v0
-j L41 
+j L41
 L36:
 move $a0, $fp
 move $a1, $s0
 jal L32
 move $t0, $v0
-j L38 
+j L38
 L60:
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 L32:
 sw $fp, -4($sp)
 move $fp, $sp
@@ -969,10 +980,10 @@ sw $s0, -12($fp)
 L63:
 sw $a0, 0($fp)
 move $s0, $a1
-bgt $s0, $zero, L33 
+bgt $s0, $zero, L33
 L34:
 li $v0, 0
-j L62 
+j L62
 L33:
 lw $a0, 0($fp)
 li $t0, 10
@@ -991,13 +1002,13 @@ add $a0, $s0, $t0
 jal tig_chr
 move $a0, $v0
 jal tig_print
-j L34 
+j L34
 L62:
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 L25:
 sw $fp, -4($sp)
 move $fp, $sp
@@ -1007,7 +1018,7 @@ sw $s0, -12($fp)
 L65:
 sw $a0, 0($fp)
 move $s0, $a1
-beq $s0, $zero, L29 
+beq $s0, $zero, L29
 L30:
 lw $a0, 0($fp)
 lw $a1, 4($s0)
@@ -1020,18 +1031,18 @@ jal L25
 move $t0, $v0
 L31:
 move $v0, $t0
-j L64 
+j L64
 L29:
 la $a0, L5
 jal tig_print
 move $t0, $v0
-j L31 
+j L31
 L64:
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 L1:
 sw $fp, -4($sp)
 move $fp, $sp
@@ -1060,10 +1071,10 @@ lw $a1, -48($t0)
 jal L3
 move $t0, $v0
 li $t1, 1
-beq $t1, $t0, L24 
+beq $t1, $t0, L24
 L22:
 move $v0, $s1
-j L66 
+j L66
 L24:
 li $t0, 10
 mul $t0, $s1, $t0
@@ -1085,14 +1096,14 @@ move $s0, $t0
 jal tig_getchar
 move $t0, $v0
 sw $t0, 0($s0)
-j L23 
+j L23
 L66:
 lw $s1, -16($fp)
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 L3:
 sw $fp, -4($sp)
 move $fp, $sp
@@ -1111,12 +1122,12 @@ move $s0, $t0
 la $a0, L15
 jal tig_ord
 move $t0, $v0
-bge $s0, $t0, L19 
+bge $s0, $t0, L19
 L20:
 li $t0, 0
 L21:
 move $v0, $t0
-j L68 
+j L68
 L19:
 li $s1, 1
 lw $t0, 0($fp)
@@ -1128,19 +1139,19 @@ move $s0, $t0
 la $a0, L16
 jal tig_ord
 move $t0, $v0
-ble $s0, $t0, L17 
+ble $s0, $t0, L17
 L18:
 li $s1, 0
 L17:
 move $t0, $s1
-j L21 
+j L21
 L68:
 lw $s1, -16($fp)
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 L2:
 sw $fp, -4($sp)
 move $fp, $sp
@@ -1157,7 +1168,7 @@ la $a1, L4
 jal tig_stringEqual
 move $t0, $v0
 li $t1, 1
-beq $t1, $t0, L6 
+beq $t1, $t0, L6
 L7:
 lw $t0, 0($fp)
 lw $t0, 0($t0)
@@ -1167,13 +1178,13 @@ jal tig_stringEqual
 move $t0, $v0
 L8:
 li $t1, 1
-beq $t1, $t0, L14 
+beq $t1, $t0, L14
 L9:
 li $v0, 0
-j L70 
+j L70
 L6:
 li $t0, 1
-j L8 
+j L8
 L14:
 lw $t0, 0($fp)
 lw $t0, 0($t0)
@@ -1182,13 +1193,16 @@ move $s0, $t0
 jal tig_getchar
 move $t0, $v0
 sw $t0, 0($s0)
-j L13 
+j L13
 L70:
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
+
+# =========== END PROGRAM ============
+
 # system calls for Tiger, when running on SPIM
 #
 # $Id: sysspim.s,v 1.1 2002/08/25 05:06:41 shivers Exp $
