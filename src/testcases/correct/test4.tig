@@ -7,7 +7,16 @@ function nfactor(n: int): int =
 			then 1
 			else n * nfactor(n-1)
 
+	function printint(i: int) =
+	let function f(i:int) = if i>0 
+				then (f(i/10); print(chr(i-i/10*10+ord("0"))))
+	in if i<0 then (print("-"); f(-i))
+	   else if i>0 then f(i)
+	   else print("0")
+	end
 in
-	nfactor(10)
+    print("factorial of 10 = ");
+    printint(nfactor(10));
+    print("\n")
 end
 

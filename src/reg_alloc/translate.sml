@@ -292,7 +292,7 @@ fun transLET (decs, body) = (* check if this works *)
 	val body' = unEx body
 	val decs' = map unNx decs
     in case num_decs of
-	   0 => Ex(body')
+	   0 => Ex(T.ESEQ(seq ([]), body'))
 	 | _ => Ex(T.ESEQ(seq decs', body'))
     end
 
@@ -309,7 +309,14 @@ fun simpleVar ((lg, fAccess), lf) = Ex(F.exp (fAccess, follow lg lf (T.TEMP F.FP
 fun fieldVar (recRef, index) = Ex(memInc(unEx recRef, T.CONST(index * F.wordSize)))
 
     
-fun subscriptVar (arrRef, Ex(T.CONST 0)) = Ex(T.MEM(unEx arrRef))
+fun subscriptVar (arrRef, Ex(T.CONST 0)) =
+    let val arrRef' = unEx arrRef
+	val tmp = Temp.newtemp()
+    in
+	Ex(T.ESEQ(T.MOVE(T.TEMPPOS(tmp),
+			 T.BINOP(T.PLUS, arrRef', T.CONST(F.wordSize))),
+		  T.MEM(T.TEMP tmp)))
+    end			     
   | subscriptVar (arrRef, index) =
     let val index' = unEx index
 	val arrRef' = unEx arrRef

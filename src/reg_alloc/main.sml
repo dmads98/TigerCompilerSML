@@ -39,11 +39,11 @@ fun emitproc out (F.PROC{body, frame}) =
 		 end
 
 	val _ = print ("emit " ^ Symbol.name(F.name frame) ^ "\n")
-	val _ = print("------------Before Linearize--------------\n")
-	val _ = Printtree.printtree(TextIO.stdOut, body);
+	(* val _ = print("------------Before Linearize--------------\n") *)
+	(* val _ = Printtree.printtree(TextIO.stdOut, body); *)
 	val stms = Canon.linearize body
-	val _ = print("------------After Linearize--------------\n")
-	val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms;
+	(* val _ = print("------------After Linearize--------------\n") *)
+	(* val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms; *)
         val stms' = Canon.traceSchedule(Canon.basicBlocks stms)
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
 	val updatedInstrs = F.procEntryExit2(frame, instrs)
@@ -65,8 +65,8 @@ fun emitproc out (F.PROC{body, frame}) =
 	
 	print("==================Post Canon Tree========\n");
 	app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms';*)
-	(* print("==================Final Code " ^ S.name(F.name frame) ^ "========\n"); *)
-	(* app (fn i => TextIO.output(TextIO.stdOut, format0 i)) finalInstrs; *)
+	print("==================Final Code " ^ S.name(F.name frame) ^ "========\n");
+	app (fn i => TextIO.output(TextIO.stdOut, format0 i)) finalInstrs;
 	
 	(* print("------------CFG--------------\n"); *)
 	(* MakeGraph.show cfg; *)
@@ -82,25 +82,6 @@ fun emitproc out (F.PROC{body, frame}) =
 	     else (ErrorMsg.impossible "Unable to perform register allocation")
 	else ();
 	regsSpilled
-(*
-	(* val _ = print "orig instrs\n" *)
-	(* val _ = app (fn i => TextIO.output(TextIO.stdOut, Assem.format(Temp.makestring) i)) instrs *)
-	val _ = print "-----updated instrs------\n"
-	val _ = app (fn i => TextIO.output(TextIO.stdOut, Assem.format(F.getRegName) i)) updatedInstrs
-
-	val flowgraph = MakeGraph.instrs2graph(updatedInstrs)
-	(* val _ = print("------------CFG--------------\n") *)
-	(* val _ = MakeGraph.show flowgraph *)
-
-	val igraph = Liveness.interferenceGraph flowgraph
-	(* val _ = print("------------Interference Graph--------------\n") *)
-	(* val _ = Liveness.show igraph *)
-					      
-(*	val (instrList, alloc) = Reg_Alloc.alloc(updatedInstrs, frame)*)
- (*       val format0 = Assem.format((fn i => case (Temp.Table.look(alloc, i)) of SOME(a) => a
-									      | NONE => (ErrorMsg.error ~1 "was not able to allocate"; Temp.makestring(i))))*)
-    in
-	app (fn i => TextIO.output(out, Assem.format(F.getRegName) i)) updatedInstrs *)
     end
   | emitproc out (F.STRING(lab,s)) = (TextIO.output(out, F.string(lab, s)); false) (* MIPS format string *)
 
@@ -128,6 +109,7 @@ fun handleTree (tree, filename) =
 						  case x of
 						      F.PROC(_) => false
 						    | F.STRING(_) => true) frags
+	val _ = print ("PROC SIZE: " ^ Int.toString(List.length(procs)))
 	(* val _ = PrintAbsyn.print(TextIO.stdOut, tree) *)
 	val out = TextIO.openOut(filename ^ ".s")
 	val _ = TextIO.output(out, ".data\n")
@@ -135,13 +117,11 @@ fun handleTree (tree, filename) =
 					     (emitproc out proc)) false strings
 		handle e => (TextIO.closeOut out; raise e)
 	val _ = TextIO.output(out, ".text\n")
-			  (* TextIO.output(out, ".text\n.globl tig_main\n.ent tig_main\n");*)
 	val _ = runtimeOut out
 
 	val regsSpilled = foldl (fn (proc, spilled) => spilled orelse
 						       (emitproc out proc)) false procs
 		handle e => (TextIO.closeOut out; raise e)
-			     (*TextIO.output(out, "#-----------tig_main----------\n");*)
 	val _ = sysspimOut out
 	val _ = TextIO.closeOut out
     in

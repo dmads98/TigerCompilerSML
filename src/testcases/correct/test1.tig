@@ -11,5 +11,11 @@ let
 	end
 	    
 in
-	arr1
+    print("arr[0]=");
+    printint(arr1[0]);
+    print("\n");
+    print("arr[1]=");
+    printint(arr1[1]);
+    print("\n")
+
 end

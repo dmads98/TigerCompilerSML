@@ -1,29 +1,29 @@
 .data
-L31:
+L42:
  .word 3
  .ascii "sdf"
-L30:
+L41:
  .word 3
  .ascii "sfd"
-L29:
+L40:
  .word 4
  .ascii "kati"
-L28:
+L39:
  .word 5
  .ascii "Allos"
-L27:
+L38:
  .word 5
  .ascii "Kapou"
-L26:
+L37:
  .word 7
  .ascii "Kapoios"
-L25:
+L36:
  .word 0
  .ascii ""
-L24:
+L35:
  .word 9
  .ascii "somewhere"
-L23:
+L34:
  .word 5
  .ascii "aname"
 .text
@@ -787,38 +787,39 @@ tig_main:
 move $a0, $fp
 sw $fp, -4($sp)
 move $fp, $sp
-addi $sp, $fp, -68
+addi $sp, $fp, -72
 sw $ra, -8($fp)
 sw $s0, -12($fp)
 sw $s1, -16($fp)
 sw $s2, -20($fp)
 sw $s3, -24($fp)
 sw $s4, -28($fp)
-sw $s5, -32($fp)
-L33:
+L44:
 sw $a0, 0($fp)
+addi $t0, $fp, -48
+move $s0, $t0
 li $a0, 100
-la $a1, L25
+la $a1, L36
 jal tig_initArray
-move $s0, $v0
+move $t0, $v0
+sw $t0, 0($s0)
 li $a0, 10
 li $a1, 0
 jal tig_initArray
-move $s3, $v0
+move $s2, $v0
 li $a0, 16
 jal tig_allocRecord
-move $t0, $v0
-sw $zero, 0($t0)
-sw $zero, 4($t0)
-la $t1, L24
-sw $t1, 8($t0)
-la $t1, L23
-sw $t1, 12($t0)
+move $a1, $v0
+sw $zero, 0($a1)
+sw $zero, 4($a1)
+la $t0, L35
+sw $t0, 8($a1)
+la $t0, L34
+sw $t0, 12($a1)
 li $a0, 5
-move $a1, $t0
 jal tig_initArray
-move $s2, $v0
-addi $t0, $fp, -48
+move $s0, $v0
+addi $t0, $fp, -52
 move $s1, $t0
 li $a0, 16
 jal tig_allocRecord
@@ -827,66 +828,69 @@ li $t1, 44
 sw $t1, 0($t0)
 li $t1, 2432
 sw $t1, 4($t0)
-la $t1, L27
+la $t1, L38
 sw $t1, 8($t0)
-la $t1, L26
+la $t1, L37
 sw $t1, 12($t0)
 sw $t0, 0($s1)
-addi $t0, $fp, -52
+addi $t0, $fp, -56
 move $s1, $t0
 li $a0, 8
 jal tig_allocRecord
-move $s5, $v0
-addi $t0, $s5, 0
-move $s4, $t0
+move $s4, $v0
+addi $t0, $s4, 0
+move $s3, $t0
 li $a0, 3
 li $a1, 1900
 jal tig_initArray
 move $t0, $v0
-sw $t0, 0($s4)
-la $t0, L28
-sw $t0, 4($s5)
-sw $s5, 0($s1)
-li $t0, 1
 sw $t0, 0($s3)
+la $t0, L39
+sw $t0, 4($s4)
+sw $s4, 0($s1)
+addi $t0, $s2, 4
+li $t1, 1
+sw $t1, 0($t0)
 li $t0, 9
 addi $t1, $t0, 1
 li $t0, 4
 mul $t0, $t1, $t0
-add $t0, $s3, $t0
+add $t0, $s2, $t0
 li $t1, 3
 sw $t1, 0($t0)
 li $t0, 3
 addi $t1, $t0, 1
 li $t0, 4
 mul $t0, $t1, $t0
-add $t0, $s2, $t0
-la $t1, L29
+add $t0, $s0, $t0
+la $t1, L40
 lw $t0, 0($t0)
 sw $t1, 12($t0)
 li $t0, 1
 addi $t1, $t0, 1
 li $t0, 4
 mul $t0, $t1, $t0
-add $t0, $s2, $t0
+add $t0, $s0, $t0
 li $t1, 23
 lw $t0, 0($t0)
 sw $t1, 0($t0)
+lw $t2, -48($fp)
 li $t0, 34
 addi $t1, $t0, 1
 li $t0, 4
 mul $t0, $t1, $t0
-add $t0, $s0, $t0
-la $t1, L30
+add $t0, $t2, $t0
+la $t1, L41
 sw $t1, 0($t0)
-la $t1, L31
-lw $t0, -48($fp)
+la $t1, L42
+lw $t0, -52($fp)
 sw $t1, 12($t0)
-li $t1, 2323
-lw $t0, -52($fp)
+lw $t0, -56($fp)
 lw $t0, 0($t0)
+addi $t0, $t0, 4
+li $t1, 2323
 sw $t1, 0($t0)
-lw $t0, -52($fp)
+lw $t0, -56($fp)
 lw $t2, 0($t0)
 li $t0, 2
 addi $t1, $t0, 1
@@ -896,9 +900,8 @@ add $t0, $t2, $t0
 li $t1, 2323
 sw $t1, 0($t0)
 li $v0, 0
-j L32
-L32:
-lw $s5, -32($fp)
+j L43
+L43:
 lw $s4, -28($fp)
 lw $s3, -24($fp)
 lw $s2, -20($fp)

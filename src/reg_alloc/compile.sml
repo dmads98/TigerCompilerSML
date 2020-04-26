@@ -1,5 +1,7 @@
 (* Generating Compilation Script *)
 CM.make "sources.cm";
+(*------- ../testcases/correct/factorial.tig -------*)
+Main.compile "../testcases/correct/factorial.tig";
 (*------- ../testcases/correct/merge.tig -------*)
 Main.compile "../testcases/correct/merge.tig";
 (*------- ../testcases/correct/queens.tig -------*)

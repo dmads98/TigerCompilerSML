@@ -1,4 +1,16 @@
 .data
+L15:
+ .word 2
+ .ascii "\n"
+L14:
+ .word 7
+ .ascii "g(2) = "
+L7:
+ .word 1
+ .ascii "-"
+L4:
+ .word 1
+ .ascii "0"
 .text
 	#.file	1 "runtime.c"
 	.option pic2
@@ -762,14 +774,102 @@ sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -60
 sw $ra, -8($fp)
-L3:
+sw $s0, -12($fp)
+L17:
 sw $a0, 0($fp)
 li $t0, 0
+la $a0, L14
+jal tig_print
+move $s0, $fp
 move $a0, $fp
 li $a1, 2
 jal L1
-j L2
+move $a1, $v0
+move $a0, $s0
+jal L2
+la $a0, L15
+jal tig_print
+j L16
+L16:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
 L2:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L19:
+sw $a0, 0($fp)
+move $s0, $a1
+blt $s0, $zero, L11
+L12:
+bgt $s0, $zero, L8
+L9:
+la $a0, L4
+jal tig_print
+move $t0, $v0
+L10:
+L13:
+move $v0, $t0
+j L18
+L11:
+la $a0, L7
+jal tig_print
+move $a0, $fp
+sub $a1, $zero, $s0
+jal L3
+move $t0, $v0
+j L13
+L8:
+move $a0, $fp
+move $a1, $s0
+jal L3
+move $t0, $v0
+j L10
+L18:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L3:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L21:
+sw $a0, 0($fp)
+move $s0, $a1
+bgt $s0, $zero, L5
+L6:
+li $v0, 0
+j L20
+L5:
+lw $a0, 0($fp)
+li $t0, 10
+div $a1, $s0, $t0
+jal L3
+li $t0, 10
+div $t1, $s0, $t0
+li $t0, 10
+mul $t0, $t1, $t0
+sub $t0, $s0, $t0
+move $s0, $t0
+la $a0, L4
+jal tig_ord
+move $t0, $v0
+add $a0, $s0, $t0
+jal tig_chr
+move $a0, $v0
+jal tig_print
+j L6
+L20:
+lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
@@ -779,11 +879,11 @@ sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -60
 sw $ra, -8($fp)
-L5:
+L23:
 sw $a0, 0($fp)
 move $v0, $a1
-j L4
-L4:
+j L22
+L22:
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)

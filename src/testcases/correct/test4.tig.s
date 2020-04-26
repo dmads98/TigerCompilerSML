@@ -1,4 +1,16 @@
 .data
+L18:
+ .word 2
+ .ascii "\n"
+L17:
+ .word 18
+ .ascii "factorial of 10 = "
+L7:
+ .word 1
+ .ascii "-"
+L4:
+ .word 1
+ .ascii "0"
 .text
 	#.file	1 "runtime.c"
 	.option pic2
@@ -762,13 +774,51 @@ sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -60
 sw $ra, -8($fp)
-L6:
+sw $s0, -12($fp)
+L20:
 sw $a0, 0($fp)
+la $a0, L17
+jal tig_print
+move $s0, $fp
 move $a0, $fp
 li $a1, 10
+jal L2
+move $a1, $v0
+move $a0, $s0
 jal L1
-j L5
-L5:
+la $a0, L18
+jal tig_print
+j L19
+L19:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L2:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L22:
+sw $a0, 0($fp)
+beq $a1, $zero, L14
+L15:
+move $s0, $a1
+lw $a0, 0($fp)
+addi $a1, $a1, -1
+jal L2
+move $t0, $v0
+mul $t0, $s0, $t0
+L16:
+move $v0, $t0
+j L21
+L14:
+li $t0, 1
+j L16
+L21:
+lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
@@ -779,23 +829,73 @@ move $fp, $sp
 addi $sp, $fp, -60
 sw $ra, -8($fp)
 sw $s0, -12($fp)
-L8:
+L24:
 sw $a0, 0($fp)
-beq $a1, $zero, L2
-L3:
 move $s0, $a1
-lw $a0, 0($fp)
-addi $a1, $a1, -1
-jal L1
+blt $s0, $zero, L11
+L12:
+bgt $s0, $zero, L8
+L9:
+la $a0, L4
+jal tig_print
 move $t0, $v0
-mul $t0, $s0, $t0
-L4:
+L10:
+L13:
 move $v0, $t0
-j L7
-L2:
-li $t0, 1
-j L4
-L7:
+j L23
+L11:
+la $a0, L7
+jal tig_print
+move $a0, $fp
+sub $a1, $zero, $s0
+jal L3
+move $t0, $v0
+j L13
+L8:
+move $a0, $fp
+move $a1, $s0
+jal L3
+move $t0, $v0
+j L10
+L23:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L3:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L26:
+sw $a0, 0($fp)
+move $s0, $a1
+bgt $s0, $zero, L5
+L6:
+li $v0, 0
+j L25
+L5:
+lw $a0, 0($fp)
+li $t0, 10
+div $a1, $s0, $t0
+jal L3
+li $t0, 10
+div $t1, $s0, $t0
+li $t0, 10
+mul $t0, $t1, $t0
+sub $t0, $s0, $t0
+move $s0, $t0
+la $a0, L4
+jal tig_ord
+move $t0, $v0
+add $a0, $s0, $t0
+jal tig_chr
+move $a0, $v0
+jal tig_print
+j L6
+L25:
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp

@@ -1,7 +1,25 @@
 .data
-L2:
+L18:
+ .word 14
+ .ascii "After change\n"
+L17:
  .word 8
  .ascii "Somebody"
+L16:
+ .word 9
+ .ascii "rec1.age="
+L15:
+ .word 2
+ .ascii "\n"
+L14:
+ .word 10
+ .ascii "rec1.name="
+L7:
+ .word 1
+ .ascii "-"
+L4:
+ .word 1
+ .ascii "0"
 L1:
  .word 6
  .ascii "Nobody"
@@ -768,7 +786,8 @@ sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -60
 sw $ra, -8($fp)
-L4:
+sw $s0, -12($fp)
+L20:
 sw $a0, 0($fp)
 li $a0, 8
 jal tig_allocRecord
@@ -777,11 +796,119 @@ li $t1, 1000
 sw $t1, 0($t0)
 la $t1, L1
 sw $t1, 4($t0)
-la $t1, L2
-sw $t1, 4($t0)
+move $s0, $t0
+la $a0, L14
+jal tig_print
+lw $a0, 4($s0)
+jal tig_print
+la $a0, L15
+jal tig_print
+la $a0, L16
+jal tig_print
+move $a0, $fp
+lw $a1, 0($s0)
+jal L2
+la $a0, L15
+jal tig_print
+la $t0, L17
+sw $t0, 4($s0)
+la $a0, L18
+jal tig_print
+la $a0, L14
+jal tig_print
+lw $a0, 4($s0)
+jal tig_print
+la $a0, L15
+jal tig_print
+la $a0, L16
+jal tig_print
+move $a0, $fp
+lw $a1, 0($s0)
+jal L2
+la $a0, L15
+jal tig_print
+move $v0, $s0
+j L19
+L19:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L2:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L22:
+sw $a0, 0($fp)
+move $s0, $a1
+blt $s0, $zero, L11
+L12:
+bgt $s0, $zero, L8
+L9:
+la $a0, L4
+jal tig_print
+move $t0, $v0
+L10:
+L13:
 move $v0, $t0
-j L3
+j L21
+L11:
+la $a0, L7
+jal tig_print
+move $a0, $fp
+sub $a1, $zero, $s0
+jal L3
+move $t0, $v0
+j L13
+L8:
+move $a0, $fp
+move $a1, $s0
+jal L3
+move $t0, $v0
+j L10
+L21:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
 L3:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L24:
+sw $a0, 0($fp)
+move $s0, $a1
+bgt $s0, $zero, L5
+L6:
+li $v0, 0
+j L23
+L5:
+lw $a0, 0($fp)
+li $t0, 10
+div $a1, $s0, $t0
+jal L3
+li $t0, 10
+div $t1, $s0, $t0
+li $t0, 10
+mul $t0, $t1, $t0
+sub $t0, $s0, $t0
+move $s0, $t0
+la $a0, L4
+jal tig_ord
+move $t0, $v0
+add $a0, $s0, $t0
+jal tig_chr
+move $a0, $v0
+jal tig_print
+j L6
+L23:
+lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)

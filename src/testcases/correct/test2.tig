@@ -10,7 +10,18 @@ let
 	   else print("0")
 	end
 	    
-	var arr1:arrtype := arrtype [10] of 0
+	    var arr1:arrtype := arrtype [10] of 3
+
 in
-	printint(arr1[1])
+    print("arr[0]=");
+    printint(arr1[0]);
+    print("\n");
+    print("arr[1]=");
+    printint(arr1[1]);
+    print("\n");
+    arr1[1] := 10;
+    print("arr[1]=");
+    printint(arr1[1]);
+    print("\n")
+    
 end

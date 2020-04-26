@@ -2,7 +2,27 @@
 let
 	type  rectype = {name:string, age:int}
 	var rec1:rectype := rectype {name="Nobody", age=1000}
+	function printint(i: int) =
+	let function f(i:int) = if i>0 
+				then (f(i/10); print(chr(i-i/10*10+ord("0"))))
+	in if i<0 then (print("-"); f(-i))
+	   else if i>0 then f(i)
+	   else print("0")
+	end
 in
+    	print("rec1.name=");
+	print(rec1.name);
+	print("\n");
+	print("rec1.age=");
+	printint(rec1.age);
+	print("\n");
 	rec1.name := "Somebody";
+	print("After change\n");
+	print("rec1.name=");
+	print(rec1.name);
+	print("\n");
+	print("rec1.age=");
+	printint(rec1.age);
+	print("\n");
 	rec1
 end
