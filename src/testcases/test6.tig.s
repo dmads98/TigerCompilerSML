@@ -760,7 +760,8 @@ tig_exit:
   j exit
   .end tig_exit
 
-#---------------------------------PROGRAM START-----------------------------------
+# ==================== START PROGRAM ==============
+	
 tig_main:
 move $a0, $fp
 sw $fp, -4($sp)
@@ -811,6 +812,9 @@ lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
 jr $ra 
+
+# =========== END PROGRAM ============
+
 # system calls for Tiger, when running on SPIM
 #
 # $Id: sysspim.s,v 1.1 2002/08/25 05:06:41 shivers Exp $
