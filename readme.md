@@ -1,3 +1,5 @@
+#Tiger Compiler in SML
+
 Prathikshaa Rangarajan (pr109)
 Dhanush Madabusi (dm322)
 
@@ -23,3 +25,14 @@ Main.compile "/path/to/tiger/file";
  - Removing unneccessary moves.
  - Coalescing in register allocation.
  - 
+ 
+ Prathikshaa Rangarajan (pr109)
+Dhanush Madabusi (dm322)
+
+This directory contains the final compiler, including working liveness analysis and register allocation.
+To test all files, you can run "sml < testscript" at the shell, which will generate ".tig.s" files in the same directory as the test file.
+
+Or to compile and run manually, use:
+
+CM.make "sources.cm";
+Main.main "/path/to/tiger/file";
