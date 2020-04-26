@@ -9,10 +9,10 @@ Or to compile and run manually, use:
 CM.make "sources.cm";
 Main.main "/path/to/tiger/file";
 
-We lost points on for errors in previous phases and have made the following fixes to our compiler to deal with all of them.
+We lost points for errors in previous phases and have made the following fixes to our compiler to deal with all of them.
 Parser:
-- Call Exp correctly parses parameters
-- No longer errors on valid programs in terms of empty in...end or side effects
+ - Call Exp correctly parses parameters
+ - No longer errors on valid programs in terms of empty in...end or side effects
 
 IR & Instruction Selection:
 - String are now formatted correctly
