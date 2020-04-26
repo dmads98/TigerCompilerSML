@@ -1,6 +1,10 @@
 .data
-L2: .asciiz "Somebody"
-L1: .asciiz "Nobody"
+L2:
+ .word 8
+ .ascii "Somebody"
+L1:
+ .word 6
+ .ascii "Nobody"
 .text
 	#.file	1 "runtime.c"
 	.option pic2

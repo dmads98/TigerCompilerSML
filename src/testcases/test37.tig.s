@@ -1,5 +1,7 @@
 .data
-L1: .asciiz " "
+L1:
+ .word 1
+ .ascii " "
 .text
 	#.file	1 "runtime.c"
 	.option pic2

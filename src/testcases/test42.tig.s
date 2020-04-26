@@ -1,13 +1,31 @@
 .data
-L31: .asciiz "sdf"
-L30: .asciiz "sfd"
-L29: .asciiz "kati"
-L28: .asciiz "Allos"
-L27: .asciiz "Kapou"
-L26: .asciiz "Kapoios"
-L25: .asciiz ""
-L24: .asciiz "somewhere"
-L23: .asciiz "aname"
+L31:
+ .word 3
+ .ascii "sdf"
+L30:
+ .word 3
+ .ascii "sfd"
+L29:
+ .word 4
+ .ascii "kati"
+L28:
+ .word 5
+ .ascii "Allos"
+L27:
+ .word 5
+ .ascii "Kapou"
+L26:
+ .word 7
+ .ascii "Kapoios"
+L25:
+ .word 0
+ .ascii ""
+L24:
+ .word 9
+ .ascii "somewhere"
+L23:
+ .word 5
+ .ascii "aname"
 .text
 	#.file	1 "runtime.c"
 	.option pic2

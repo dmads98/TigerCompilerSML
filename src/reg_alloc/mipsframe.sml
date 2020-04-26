@@ -52,9 +52,7 @@ datatype frag = PROC of {body: Tree.stm, frame: frame}
 	      | STRING of Temp.label * string
 
 (* MIPS format string *)
-(* fun string (label, s) : string = ".data\n" ^ Symbol.name(label) ^ ":\n.word " ^ Int.toString(String.size(s)) ^ "\n.ascii \"" ^ s ^ "\"\n" ^ ".text\n" *)
-
-fun string (label, string) : string = Symbol.name(label) ^ ": .asciiz \"" ^ string ^ "\"\n";
+fun string (label, s) : string = Symbol.name(label) ^ ":\n .word " ^ Int.toString(String.size(s)) ^ "\n .ascii \"" ^ s ^ "\"\n"
 
 
 (* from translate *)
