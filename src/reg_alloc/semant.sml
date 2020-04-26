@@ -138,11 +138,7 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 		val test_ty = #ty (trexp test)
 		val body_ty = #ty (trexp body)
 	    in
-		( (* print("test:\n"); *)
-		  (* T.printType (test_ty); *)
-		  (* print("body:\n"); *)
-		  (* T.printType (body_ty); *)
-		  equalTypes(test_ty, T.INT, pos, "while test is not an int");
+		( equalTypes(test_ty, T.INT, pos, "while test is not an int");
 		  equalTypes(body_ty, T.UNIT, pos, "while body is not unit");
 		  loopLevel := !loopLevel - 1;
 		  {exp = Tr.transWHILE(expT, expB, breakLab), ty = T.UNIT})
@@ -389,7 +385,6 @@ fun transExp (venv, tenv, exp, level : Tr.level, doneLabel) : expty =
 and transDecs (venv, tenv, decs, level, doneLabel)  = 
     let fun trdec (venv, tenv, A.VarDec{name, escape, typ = SOME(assignType, typPos), init, pos}, expList) =
 	    let val {exp = vExp, ty = typeFound} = transExp(venv, tenv, init, level, doneLabel)
-		val _ = print("transDecs allocLocal escape: " ^ Bool.toString(!escape) ^ "\n")
 		val varAccess = Tr.allocLocal(level)(!escape)
 		fun getTy (SOME(ty)) = ty
 		  | getTy (NONE) = T.BOTTOM
@@ -406,7 +401,6 @@ and transDecs (venv, tenv, decs, level, doneLabel)  =
 	    end
 	  | trdec (venv, tenv, A.VarDec{name, escape, typ = NONE, init, pos}, expList) =
 	    let val {exp = vExp, ty = typeFound} = transExp(venv, tenv, init, level, doneLabel)
-		val _ = print("transDecs allocLocal escape: " ^ Bool.toString(!escape) ^ "\n")
 		val varAccess = Tr.allocLocal(level)(!escape)
 		fun getTy (SOME(ty)) = ty
 		  | getTy (NONE) = T.BOTTOM

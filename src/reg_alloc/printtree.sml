@@ -36,7 +36,7 @@ fun printtree (outstream, s0) =
 			   say ")")
 
   and pos (T.MEMPOS(a), b) = (indent b; sayln "MEM("; exp(a, b + 1); say ")")
-    | pos (T.TEMPPOS(a), b) = (indent b; sayln "TEMP t"; say (Int.toString(a)))
+    | pos (T.TEMPPOS(a), b) = (indent b; say "TEMP t"; say (Int.toString(a)))
     | pos (T.ESEQPOS(s, a), b) = (indent b; sayln "ESEQ("; stm(s, b + 1); sayln ","; pos(a, b+ 1); say ")") 
 
   and binop T.PLUS = say "PLUS"

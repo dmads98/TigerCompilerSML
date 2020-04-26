@@ -1,0 +1,235 @@
+------------Before Linearize--------------
+SEQ(
+ MOVE(
+  MEM(
+   BINOP(PLUS,
+    TEMP t130,
+    CONST 0)),
+  TEMP t104),
+ MOVE(
+  TEMP t102,
+  ESEQ(
+   SEQ(
+    MOVE(
+     TEMP t135,
+     CALL(
+      NAME tig_initArray,
+       CONST 100,
+       NAME L3)),
+    SEQ(
+     MOVE(
+      TEMP t132,
+      CALL(
+       NAME tig_initArray,
+        CONST 10,
+        CONST 0)),
+     SEQ(
+      MOVE(
+       TEMP t134,
+       CALL(
+        NAME tig_initArray,
+         CONST 5,
+         ESEQ(
+          SEQ(
+           MOVE(
+            TEMP t133,
+            CALL(
+             NAME tig_allocRecord,
+              CONST 16)),
+           SEQ(
+            MOVE(
+             MEM(
+              BINOP(PLUS,
+               TEMP t133,
+               CONST 0)),
+             CONST 0),
+            SEQ(
+             MOVE(
+              MEM(
+               BINOP(PLUS,
+                TEMP t133,
+                CONST 4)),
+              CONST 0),
+             SEQ(
+              MOVE(
+               MEM(
+                BINOP(PLUS,
+                 TEMP t133,
+                 CONST 8)),
+               NAME L2),
+              MOVE(
+               MEM(
+                BINOP(PLUS,
+                 TEMP t133,
+                 CONST 12)),
+               NAME L1))))),
+          TEMP t133))),
+      SEQ(
+       MOVE(
+        TEMP t137,
+        ESEQ(
+         SEQ(
+          MOVE(
+           TEMP t136,
+           CALL(
+            NAME tig_allocRecord,
+             CONST 16)),
+          SEQ(
+           MOVE(
+            MEM(
+             BINOP(PLUS,
+              TEMP t136,
+              CONST 0)),
+            CONST 44),
+           SEQ(
+            MOVE(
+             MEM(
+              BINOP(PLUS,
+               TEMP t136,
+               CONST 4)),
+             CONST 2432),
+            SEQ(
+             MOVE(
+              MEM(
+               BINOP(PLUS,
+                TEMP t136,
+                CONST 8)),
+              NAME L5),
+             MOVE(
+              MEM(
+               BINOP(PLUS,
+                TEMP t136,
+                CONST 12)),
+              NAME L4))))),
+         TEMP t136)),
+       MOVE(
+        TEMP t139,
+        ESEQ(
+         SEQ(
+          MOVE(
+           TEMP t138,
+           CALL(
+            NAME tig_allocRecord,
+             CONST 8)),
+          SEQ(
+           MOVE(
+            MEM(
+             BINOP(PLUS,
+              TEMP t138,
+              CONST 0)),
+            CALL(
+             NAME tig_initArray,
+              CONST 3,
+              CONST 1900)),
+           MOVE(
+            MEM(
+             BINOP(PLUS,
+              TEMP t138,
+              CONST 4)),
+            NAME L6))),
+         TEMP t138)))))),
+   ESEQ(
+    MOVE(
+     MEM(
+      TEMP t132),
+     CONST 1),
+    ESEQ(
+     MOVE(
+      ESEQ(
+       MOVE(
+        TEMP t140,
+        BINOP(PLUS,
+         TEMP t132,
+         BINOP(MUL,
+          BINOP(PLUS,
+           CONST 9,
+           CONST 1),
+          CONST 4))),
+       MEM(
+        TEMP t140)),
+      CONST 3),
+     ESEQ(
+      MOVE(
+       MEM(
+        BINOP(PLUS,
+         ESEQ(
+          MOVE(
+           TEMP t141,
+           BINOP(PLUS,
+            TEMP t134,
+            BINOP(MUL,
+             BINOP(PLUS,
+              CONST 3,
+              CONST 1),
+             CONST 4))),
+          MEM(
+           TEMP t141)),
+         CONST 12)),
+       NAME L7),
+      ESEQ(
+       MOVE(
+        MEM(
+         BINOP(PLUS,
+          ESEQ(
+           MOVE(
+            TEMP t142,
+            BINOP(PLUS,
+             TEMP t134,
+             BINOP(MUL,
+              BINOP(PLUS,
+               CONST 1,
+               CONST 1),
+              CONST 4))),
+           MEM(
+            TEMP t142)),
+          CONST 0)),
+        CONST 23),
+       ESEQ(
+        MOVE(
+         ESEQ(
+          MOVE(
+           TEMP t143,
+           BINOP(PLUS,
+            TEMP t135,
+            BINOP(MUL,
+             BINOP(PLUS,
+              CONST 34,
+              CONST 1),
+             CONST 4))),
+          MEM(
+           TEMP t143)),
+         NAME L8),
+        ESEQ(
+         MOVE(
+          MEM(
+           BINOP(PLUS,
+            TEMP t137,
+            CONST 12)),
+          NAME L9),
+         ESEQ(
+          MOVE(
+           MEM(
+            MEM(
+             BINOP(PLUS,
+              TEMP t139,
+              CONST 0))),
+           CONST 2323),
+          ESEQ(
+           MOVE(
+            ESEQ(
+             MOVE(
+              TEMP t144,
+              BINOP(PLUS,
+               MEM(
+                BINOP(PLUS,
+                 TEMP t139,
+                 CONST 0)),
+               BINOP(MUL,
+                BINOP(PLUS,
+                 CONST 2,
+                 CONST 1),
+                CONST 4))),
+             MEM(
+              TEMP t144)),
+            CONST 2323),
+           CONST 0)))))))))))

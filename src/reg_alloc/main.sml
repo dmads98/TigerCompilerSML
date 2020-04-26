@@ -39,18 +39,18 @@ fun emitproc out (F.PROC{body, frame}) =
 		 end
 
 	val _ = print ("emit " ^ Symbol.name(F.name frame) ^ "\n")
-	(* val _ = print("------------Before Linearize--------------\n") *)
-	(* val _ = Printtree.printtree(TextIO.stdOut, body); *)
+	val _ = print("------------Before Linearize--------------\n")
+	val _ = Printtree.printtree(TextIO.stdOut, body);
 	val stms = Canon.linearize body
 	val _ = print("------------After Linearize--------------\n")
 	val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms;
         val stms' = Canon.traceSchedule(Canon.basicBlocks stms)
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
 	val updatedInstrs = F.procEntryExit2(frame, instrs)
-(*	val _ = print("------------INF Register MIPS--------------\n")
+	val _ = print("------------INF Register MIPS--------------\n")
 	val format1 = Assem.format(fn t => Temp.makestring t)
 	val _ = app(fn i => TextIO.output(TextIO.stdOut, format1 i)) updatedInstrs
-	val _ = print("------------INF MIPS DONE--------------\n")*)
+	val _ = print("------------INF MIPS DONE--------------\n")
 	val cfg = MakeGraph.instrs2graph(updatedInstrs)
 	val interference as Liveness.IGRAPH{graph, tnode, gtemp, moves} = Liveness.interferenceGraph(cfg)
 	val (allocation, regsSpilled) = Reg_Alloc.alloc(interference)
@@ -60,21 +60,21 @@ fun emitproc out (F.PROC{body, frame}) =
 	val format0 = Assem.format(fn i => case (Temp.Table.look(allocation, i)) of SOME(a) => a
 										  | NONE => ("REG NOT FOUND"))
     in
-	print("==================Translated Tree========\n");
+	(*print("==================Translated Tree========\n");
 	Printtree.printtree(TextIO.stdOut, body);
 	
 	print("==================Post Canon Tree========\n");
-	app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms';
+	app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms';*)
+	(* print("==================Final Code " ^ S.name(F.name frame) ^ "========\n"); *)
+	(* app (fn i => TextIO.output(TextIO.stdOut, format0 i)) finalInstrs; *)
 	
-	(*print("------------CFG--------------\n");
-	MakeGraph.show cfg;
-	print("------------Interference Graph--------------\n");
-	Liveness.show interference;
+	(* print("------------CFG--------------\n"); *)
+	(* MakeGraph.show cfg; *)
+	(* print("------------Interference Graph--------------\n"); *)
+	(* Liveness.show interference; *)
 	
-	print("==================Register allocation " ^ S.name(F.name frame) ^ "========\n");
-	Reg_Alloc.printAlloc(allocation, tempList);*)
-	print("==================Final Code " ^ S.name(F.name frame) ^ "========\n");
-	app (fn i => TextIO.output(TextIO.stdOut, format0 i)) finalInstrs;
+	(* print("==================Register allocation " ^ S.name(F.name frame) ^ "========\n"); *)
+	(* Reg_Alloc.printAlloc(allocation, tempList); *)
 	app (fn i => TextIO.output(out, format0 i)) finalInstrs;
 	if regsSpilled
 	then if alterEscapes(0)
@@ -122,7 +122,6 @@ fun sysspimOut out =
 	
 fun handleTree (tree, filename) =
     let val _ = Translate.reset()
-	val _ = print("HANDLETREE\n")
 	val frags = Semant.transProg(tree)
 		    handle e => OS.Process.exit(OS.Process.success)
 	val (strings, procs) = List.partition (fn x =>

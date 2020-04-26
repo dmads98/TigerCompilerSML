@@ -40,7 +40,6 @@ fun allocLocal (Top) (escape) = ((ErrorMsg.error ~1 "Cannot allocate variables i
     let val newAcc = F.allocLocal(frame)(escape)
 	val retVal = (Level({parent = parent, frame = frame, uniq = uniq}), newAcc)
     in
-	print("allocLocal escape: " ^ Bool.toString(escape) ^ "\n");
 	retVal
     end
 

@@ -81,7 +81,6 @@ fun name {name, formals, numLocalsAlloc, offset} = name
 fun formals {name, formals, numLocalsAlloc, offset} = formals
 fun allocLocal ({name, formals, numLocalsAlloc, offset}) (esc) =
     (numLocalsAlloc := !numLocalsAlloc + 1;
-     print("testestese\n");
      case esc of true => (offset := !offset - wordSize;
 			  print("curOffset in allocLocal: " ^ Int.toString(!offset) ^ "\n");
 			  InFrame(!offset))
