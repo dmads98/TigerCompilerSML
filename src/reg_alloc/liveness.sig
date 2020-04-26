@@ -1,4 +1,4 @@
-structure GL = FuncGraph(struct
+structure LG = FuncGraph(struct
 			  type ord_key = Temp.temp
 			  val compare = Temp.compare
 			  end)
@@ -8,13 +8,13 @@ signature LIVENESS =
 sig
     type data
     datatype igraph =
-	     IGRAPH of {graph: unit GL.graph,
-			tnode: Temp.temp -> unit GL.node,
-			gtemp: unit GL.node -> Temp.temp,
-			moves: (unit GL.node * unit GL.node) list}
+	     IGRAPH of {graph: unit LG.graph,
+			tnode: Temp.temp -> unit LG.node,
+			gtemp: unit LG.node -> Temp.temp,
+			moves: (unit LG.node * unit LG.node) list}
 
     type livenessData
 
-    val interferenceGraph : data G.graph -> igraph * (data G.node -> Temp.temp list)
-(*    val show : TextIO.outstream * igraph -> unit*)
+    val interferenceGraph : data FG.graph -> igraph
+    val show : igraph -> unit
 end

@@ -5,8 +5,10 @@ structure Trans = Translate
 
 type access = unit
 type ty = Types.ty
-datatype enventry = VarEntry of {access: Translate.access, ty : ty}
-		  | FunEntry of {level: Translate.level, label:Temp.label, formals: ty list, result : ty}
+datatype enventry = VarEntry of {access: Translate.access,
+				 ty : ty, read: bool}
+		  | FunEntry of {level: Translate.level, label:Temp.label,
+				 formals: ty list, result : ty}
 
 val base_tenv = let val map : (ty Symbol.table) = Symbol.empty
 		    val tyList = [(Symbol.symbol("string"), Types.STRING), (Symbol.symbol("int"), Types.INT)]

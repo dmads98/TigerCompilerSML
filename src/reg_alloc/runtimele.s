@@ -752,11 +752,5 @@ tig_exit:
   j exit
   .end tig_exit
 
-.data
-subscriptFail: .asciiz "Subscript for array was out of bounds. Exiting...\n"
-.text
-outOfBoundsSubscript:
-la $a0, subscriptFail
-li $v0, 4
-syscall
-j exit
+# ==================== START PROGRAM ==============
+

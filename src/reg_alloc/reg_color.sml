@@ -1,130 +1,147 @@
-(* structure GL = FuncGraph(struct *)
-(* 			  type ord_key = temp *)
-(* 			  val compare = Int.compare *)
-(* 			  end) *)
+signature COLOR = 
+sig
+    type allocation = string Temp.Table.table
+    val color: {interference: Liveness.igraph,
+		initial: allocation,
+		spillCost: unit LG.node -> int,
+		registers: string list}
+	       -> allocation * Temp.temp list
+					 
+end
 
-structure Color :
-	  sig
-	      
-	      type allocation = string Temp.Table.table
-	      val color: {interference: Liveness.igraph,
-			  initial: allocation,
-			  spillCost: unit GL.node -> int,
-			  registers: string list}
-			 -> allocation * Temp.temp list
-						   (* returns allocation=(temp->reg map) * spilled temps *)
-	  end =
+structure Color : COLOR = 
 struct
 
 type allocation = string Temp.Table.table (* Updated temp *)
 
-(*
-structure TempSet = Temp.Set
-structure TempMap = Temp.Map
-*)
 
-fun member (ls : string list, str : string) = List.length(List.filter (fn s => s = str) ls) > 0
+fun isPartOfMove (_, []) = false
+  | isPartOfMove (temp, (srcNode, dstNode) :: list) =
+    if temp = LG.getNodeID(srcNode) orelse temp = LG.getNodeID(dstNode)
+    then true
+    else isPartOfMove(temp, list)
 
-												  
+fun getNextToSimplify ([], _, _, _) = NONE
+  | getNextToSimplify (curNode :: remaining, initialAlloc, moveList, numRegs) =
+    let val curId = LG.getNodeID(curNode)
+	val deg = LG.outDegree(curNode)
+    in
+	if deg < numRegs
+	   andalso (not(isSome(Temp.Table.look(initialAlloc, curId))))
+	   andalso (not(isPartOfMove(curId, moveList)))
+	then SOME(curId)
+	else getNextToSimplify(remaining, initialAlloc, moveList, numRegs)
+    end
+
+fun getColor (_, _, _, []) = NONE
+  | getColor (id, graph, curAlloc, curColor::list) =
+    let fun checkNeighbors (neighbor, state) = state orelse
+					       case Temp.Table.look(curAlloc, neighbor) of
+						   SOME(neighborColor) => (curColor = neighborColor)
+						 | NONE => false
+	val failedColoring = foldl checkNeighbors false (LG.adj(LG.getNode(graph, id)))
+    in
+	if failedColoring
+	then getColor(id, graph, curAlloc, list)
+	else SOME(curColor)
+    end
+
+fun getSpillNodes (curAlloc, graph) =
+    let fun isPossibleSpillNode (curNode, list) =
+	    if (isSome(Temp.Table.look(curAlloc, LG.getNodeID(curNode))))
+	    then list
+	    else (LG.getNodeID(curNode)::list)
+    in
+	foldl isPossibleSpillNode [] (LG.nodes(graph))
+    end
+
+fun getCoalescedColor (_, _, _, _, []) = "REG NOT FOUND"
+  | getCoalescedColor (temp1, temp2, graph, curAlloc, curColor::list) =
+    let fun checkNeighbors (neighbor, state) = state orelse
+					       case Temp.Table.look(curAlloc, neighbor) of
+						   SOME(neighborColor) => (curColor = neighborColor)
+						 | NONE => false
+	val failedColoring = foldl checkNeighbors false (LG.adj(LG.getNode(graph, temp1)) @
+							LG.adj(LG.getNode(graph, temp2)))
+    in
+	if failedColoring
+	then getCoalescedColor(temp1, temp2, graph, curAlloc, list)
+	else curColor
+    end
+
 (* allocation * Temp.temp list *)
 (* returns allocation=(temp->reg map) * spilled temps *)
 fun color ({interference as Liveness.IGRAPH{graph, tnode, gtemp, moves}, initial, spillCost, registers}) =
-    let val
-	filterPreColored = List.filter (fn node =>
-					   case Temp.Table.look(initial, gtemp node) of
-					       SOME(t) =>  not(member(registers, t))
-					     | NONE => true) (GL.nodes graph)
+    let val nextToSimplify = getNextToSimplify(LG.nodes(graph), initial, moves, List.length(registers))
     in
-	case filterPreColored of
-	    [] => (print("interference graph has no nodes"); (initial, []))
-	  | [node] =>
-	    let val neighborsNotSpilled =
-		    List.filter (fn t =>
-				    case Temp.Table.look(initial, t) of
-					SOME(e) => true
-				      | NONE => false) (GL.preds node)
-		val colorNeighbors =
-		    map (fn t => case Temp.Table.look(initial, t) of
-				     SOME(e) => e
-				   | NONE => (print("neighbor is not spilled and also not colored"); "")) neighborsNotSpilled
-		val colorsAvailable = List.filter(fn reg => not(member(colorNeighbors, reg))) registers
+	case nextToSimplify of
+	    SOME(simpId) =>
+	    let val updatedGraph = LG.removeNode(graph, simpId)
+		val (newAlloc, spillList) = color({interference = Liveness.IGRAPH{graph = updatedGraph,
+										 tnode = tnode,
+										 gtemp = gtemp,
+										 moves = moves},
+						   initial = initial,
+						   spillCost = spillCost,
+						   registers = registers})
 	    in
-		if List.length(colorsAvailable) > 0
-		then (Temp.Table.enter(initial, gtemp(node), List.hd(colorsAvailable)), [])
-		else (initial, [gtemp(node)])
+		case getColor(simpId, graph, newAlloc, registers) of
+		    SOME(col) => (Temp.Table.enter(newAlloc, simpId, col), spillList)
+		 | NONE => (newAlloc, simpId::spillList)
 	    end
-	  | list => let val notSigNodes = List.filter (fn node => GL.outDegree(node) < List.length(registers)) list
-			val nextToSimplify = if List.length(notSigNodes) = 0
-					     then List.hd(list)
-					     else List.hd(notSigNodes)
-			val updatedGraph = GL.remove(graph, nextToSimplify)
-			val updatedInter = Liveness.IGRAPH{graph = updatedGraph, tnode = tnode, gtemp = gtemp, moves = moves}
-		    in
-			let val (updatedAlloc, spillList) = color({interference = updatedInter, initial = initial, spillCost = spillCost, registers = registers})
-			    val neighborsNotSpilled = List.filter (fn t => case Temp.Table.look(updatedAlloc, t) of
-									       SOME(e) => true
-									     | NONE => false) (GL.preds(nextToSimplify))
-			    val colorNeighbors = map (fn t => case Temp.Table.look(updatedAlloc, t) of
-								  SOME(e) => e
-								| NONE => (print("neighbor is not spilled and also not colored"); "")) neighborsNotSpilled
-			    val colorsAvailable = List.filter(fn reg => not(member(colorNeighbors, reg))) registers
+	  | NONE =>
+	    if List.length(moves) = 0
+	    then (initial, getSpillNodes(initial, graph))
+	    else
+		let val (srcNode, dstNode) = List.hd(moves)
+		    val srctemp = LG.getNodeID(srcNode)
+		    val dsttemp = LG.getNodeID(dstNode)
+		in
+		    if (isSome(Temp.Table.look(initial, srctemp)))
+		       andalso (not (isSome(Temp.Table.look(initial, dsttemp))))
+		       andalso (LG.inDegree(srcNode) + LG.inDegree(dstNode) < 30)
+		    then color({interference = Liveness.IGRAPH{graph = graph,
+							       tnode = tnode,
+							       gtemp = gtemp,
+							       moves = List.drop(moves, 1)},
+				initial = Temp.Table.enter(initial, dsttemp, valOf(Temp.Table.look(initial, srctemp))),
+				spillCost = spillCost,
+				registers = registers})
+		    else if (not(isSome(Temp.Table.look(initial, srctemp))))
+			    andalso (isSome(Temp.Table.look(initial, dsttemp)))
+			    andalso (LG.inDegree(srcNode) + LG.inDegree(dstNode) < 30)
+		    then color({interference = Liveness.IGRAPH{graph = graph,
+							       tnode = tnode,
+							       gtemp = gtemp,
+							       moves = List.drop(moves, 1)},
+				initial = Temp.Table.enter(initial, srctemp, valOf(Temp.Table.look(initial, dsttemp))),
+				spillCost = spillCost,
+				registers = registers})
+		    else if (not(isSome(Temp.Table.look(initial, srctemp))))
+			    andalso (not(isSome(Temp.Table.look(initial, dsttemp))))
+			    andalso (LG.inDegree(srcNode) + LG.inDegree(dstNode) < 30)
+		    then
+			let val assignedColor = getCoalescedColor(srctemp, dsttemp, graph, initial, registers)
+			    val updatedAlloc = Temp.Table.enter(
+				    Temp.Table.enter(initial, srctemp, assignedColor),
+				    dsttemp, assignedColor)
 			in
-			    if List.length(colorsAvailable) > 0
-			    then (Temp.Table.enter(updatedAlloc, gtemp(nextToSimplify), (List.hd(colorsAvailable))), spillList)
-			    else (updatedAlloc, spillList @ [gtemp(nextToSimplify)] )
-				     
+			    color({interference = Liveness.IGRAPH{graph = graph,
+								  tnode = tnode,
+								  gtemp = gtemp,
+								  moves = List.drop(moves, 1)},
+				   initial = updatedAlloc,
+				   spillCost = spillCost,
+				   registers = registers})
 			end
-		    end
+		    else color({interference = Liveness.IGRAPH{graph = graph,
+							       tnode = tnode,
+							       gtemp = gtemp,
+							       moves = List.drop(moves, 1)},
+				initial = initial,
+				spillCost = spillCost,
+				registers = registers})
+		end
+		    
     end
-(*
-	val alloc : (Frame.register Temp.Map.map) = initial
-	val spilledTemps : (Temp.temp list) = []
-	val colors : Frame.register list = regs
-
-	(* Returns new graph and node that can be colored *)
-	(* (graph * nodelist) -> (graph * nid option) *)
-	fun simplify (graph, []) = (graph, NONE)
-	  | simplify (graph, hdNode::tlNodes) = 
-	    let
-		val temp = G.nodeInfo hdNode
-		val nodeDegree = G.degree hdNode
-		val k = List.length regs
-
-		fun isPrecolored temp' =
-		    case TempMap.find (initial, temp') of
-			SOME x => true
-		      | NONE => false
-
-	    in if isPrecolored temp
-	       then simplify (graph, tlNodes)
-	       else if nodeDegree < k
-	       then let val nid = G.getNodeID hdNode
-			val graph' = G.removeNode(graph, nid)
-		    in (graph', SOME nid) end (* returns the first simple node *)
-	       else simplify (graph, tlNodes)
-	    end
-
-	fun assign_color graph' =
-	    let val (graph'', nidopt) = simplify (graph', G.nodes graph')
-	    in case nidopt of
-		   SOME nid =>
-		   let val (alloc, spilledTemps) = assign_color graph''
-		       val temp = G.nodeInfo nid
-		   in
-		       case colors of
-			   [] => (alloc, temp::spilledTemps) (* actual spill - insufficient regs *)
-			 | reg::l=> 
-			   (TempMap.insert (alloc, temp, reg); (* assign color *)
-			    List.drop (colors, 1); (* remove color *)
-			    (alloc, spilledTemps))
-		   end
-		 | NONE => (init, spilledTemps)
-		   (* either temps spilled or we're done - assume done *)
-    in
-	assign_color interference; (* do reg alloc *)
-	(alloc, spilledTemps) (* return the result *)
-    end;
-
-
-	    end*)
 end

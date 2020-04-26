@@ -1,4 +1,4 @@
-structure G = FuncGraph(struct
+structure FG = FuncGraph(struct
 			 type ord_key = int
 			 val compare = Int.compare
 			 end)
@@ -6,5 +6,7 @@ signature MAKEGRAPH =
 sig
 
     type data
-    val instrs2graph : Assem.instr list -> data G.graph * data G.node list
+    val instrs2graph : Assem.instr list -> data FG.graph
+    val show : data FG.graph -> unit
+
 end

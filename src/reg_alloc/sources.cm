@@ -37,9 +37,9 @@ canon.sml
 codegen.sig
 mipsgen.sml
 
-(* flowgraph.sml
+(* flowgraph.sml*)
 graph.sig
-graph.sml *)
+graph.sml
 funcgraph.sig
 funcgraph.sml
 

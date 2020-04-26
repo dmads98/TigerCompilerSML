@@ -1,47 +1,20 @@
 .data
-.align 4
-L0: .asciiz "0"
+L32:
+ .word 7
+ .ascii "arr[1]="
+L31:
+ .word 2
+ .ascii "\n"
+L30:
+ .word 7
+ .ascii "arr[0]="
+L23:
+ .word 1
+ .ascii "-"
+L20:
+ .word 1
+ .ascii "0"
 .text
-.globl tig_main
-.ent tig_main
-#-----------tig_main----------
-tig_main:
-sw $fp, -8($sp) 
-move $fp, $sp
-addi $sp, $sp, -12
-sw $ra, -4($fp) 
-sw $a0, 0($fp) 
-addi $v0, $sp, 0
-move $sp, $v0
-li $a0, 10
-addi $v1, $a0, 1
-move $a0, $v1
-li $a1, 0
-move $a1, $a1
-jal tig_initArray
-addi $a2, $sp, 0
-move $sp, $a2
-move $v0, $v0
-li $a3, 10
-sw $a3, 0($v0) 
-addi $t0, $v0, 4
-move $v0, $t0
-addi $t1, $sp, 0
-move $sp, $t1
-la $t2, L0
-move $a0, $t2
-jal tig_print
-addi $t3, $sp, 0
-move $sp, $t3
-move $v0, $v0
-j L1 
-L1:
-lw $ra, -4($fp) 
-addi $sp, $sp, 12
-lw $fp, -8($fp)
-jr $ra
-
-#-----------runtime----------
 	#.file	1 "runtime.c"
 	.option pic2
 	.text
@@ -796,15 +769,157 @@ tig_exit:
   j exit
   .end tig_exit
 
-.data
-subscriptFail: .asciiz "Subscript for array was out of bounds. Exiting...\n"
-.text
-outOfBoundsSubscript:
-la $a0, subscriptFail
-li $v0, 4
-syscall
-j exit
-#-----------sys_spim----------
+# ==================== START PROGRAM ==============
+
+tig_main:
+move $a0, $fp
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -64
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L34:
+sw $a0, 0($fp)
+addi $t0, $fp, -48
+move $s0, $t0
+li $a0, 10
+li $a1, 3
+jal tig_initArray
+move $t0, $v0
+sw $t0, 0($s0)
+la $a0, L30
+jal tig_print
+move $a0, $fp
+lw $t0, -48($fp)
+addi $t0, $t0, 4
+lw $a1, 0($t0)
+jal L18
+la $a0, L31
+jal tig_print
+la $a0, L32
+jal tig_print
+move $t1, $fp
+lw $t3, -48($fp)
+li $t0, 1
+addi $t2, $t0, 1
+li $t0, 4
+mul $t0, $t2, $t0
+add $t0, $t3, $t0
+move $a0, $t1
+lw $a1, 0($t0)
+jal L18
+la $a0, L31
+jal tig_print
+lw $t2, -48($fp)
+li $t0, 1
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+li $t1, 10
+sw $t1, 0($t0)
+la $a0, L32
+jal tig_print
+move $t1, $fp
+lw $t3, -48($fp)
+li $t0, 1
+addi $t2, $t0, 1
+li $t0, 4
+mul $t0, $t2, $t0
+add $t0, $t3, $t0
+move $a0, $t1
+lw $a1, 0($t0)
+jal L18
+la $a0, L31
+jal tig_print
+j L33
+L33:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L18:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L36:
+sw $a0, 0($fp)
+move $s0, $a1
+blt $s0, $zero, L27
+L28:
+bgt $s0, $zero, L24
+L25:
+la $a0, L20
+jal tig_print
+move $t0, $v0
+L26:
+L29:
+move $v0, $t0
+j L35
+L27:
+la $a0, L23
+jal tig_print
+move $a0, $fp
+sub $a1, $zero, $s0
+jal L19
+move $t0, $v0
+j L29
+L24:
+move $a0, $fp
+move $a1, $s0
+jal L19
+move $t0, $v0
+j L26
+L35:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L19:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L38:
+sw $a0, 0($fp)
+move $s0, $a1
+bgt $s0, $zero, L21
+L22:
+li $v0, 0
+j L37
+L21:
+lw $a0, 0($fp)
+li $t0, 10
+div $a1, $s0, $t0
+jal L19
+li $t0, 10
+div $t1, $s0, $t0
+li $t0, 10
+mul $t0, $t1, $t0
+sub $t0, $s0, $t0
+move $s0, $t0
+la $a0, L20
+jal tig_ord
+move $t0, $v0
+add $a0, $s0, $t0
+jal tig_chr
+move $a0, $v0
+jal tig_print
+j L22
+L37:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+
+# =========== END PROGRAM ============
+
 # system calls for Tiger, when running on SPIM
 #
 # $Id: sysspim.s,v 1.1 2002/08/25 05:06:41 shivers Exp $

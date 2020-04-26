@@ -1,0 +1,3 @@
+# ERRORS:
+ - arr[0] contains size
+ - Fix lexer - allow all escapes to be saved as is. e.g. \n, \t already fixed. do same for others.

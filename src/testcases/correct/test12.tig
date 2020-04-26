@@ -1,7 +1,17 @@
 /* valid for and let */
 
 let
-	var a:= 0
+	function printint(i: int) =
+	let function f(i:int) = if i>0 
+				then (f(i/10); print(chr(i-i/10*10+ord("0"))))
+	in if i<0 then (print("-"); f(-i))
+	   else if i>0 then f(i)
+	   else print("0")
+	end
+    var a:= 0
 in 
-	for i:=0 to 100 do (a:=a+1;())
+    for i:=0 to 100 do (a:=a+1;());
+    print("a=");
+    printint(a);
+    print("\n")
 end

@@ -10,7 +10,7 @@ fun printtree (outstream, s0) =
   fun indent 0 = ()
     | indent i = (say " "; indent(i-1))
 
-  fun stm(T.SEQ(a,b),d) =
+  fun stm (T.SEQ(a,b),d) =
           (indent d; sayln "SEQ("; stm(a,d+1); sayln ","; stm(b,d+1); say ")")
     | stm(T.LABEL lab, d) = (indent d; say "LABEL "; say (Symbol.name lab))
     | stm(T.JUMP (e,_), d) =  (indent d; sayln "JUMP("; exp(e,d+1); say ")")
@@ -19,11 +19,11 @@ fun printtree (outstream, s0) =
 				exp(a,d+1); sayln ","; exp(b,d+1); sayln ",";
 				indent(d+1); say(Symbol.name t); 
 				say ","; say (Symbol.name f); say ")")
-    | stm(T.MOVE(a,b),d) = (indent d; sayln "MOVE("; exp(a,d+1); sayln ",";
+    | stm(T.MOVE(a,b),d) = (indent d; sayln "MOVE("; pos(a,d+1); sayln ",";
 			    exp(b,d+1); say ")")
     | stm(T.EXP e, d) = (indent d; sayln "EXP("; exp(e,d+1); say ")")
 
-  and exp(T.BINOP(p,a,b),d) = (indent d; say "BINOP("; binop p; sayln ",";
+  and exp (T.BINOP(p,a,b),d) = (indent d; say "BINOP("; binop p; sayln ",";
 			       exp(a,d+1); sayln ","; exp(b,d+1); say ")")
     | exp(T.MEM(e),d) = (indent d; sayln "MEM("; exp(e,d+1); say ")")
     | exp(T.TEMP t, d) = (indent d; say "TEMP t"; say(Int.toString t))
@@ -34,6 +34,10 @@ fun printtree (outstream, s0) =
     | exp(T.CALL(e,el),d) = (indent d; sayln "CALL("; exp(e,d+1);
 			   app (fn a => (sayln ","; exp(a,d+2))) el;
 			   say ")")
+
+  and pos (T.MEMPOS(a), b) = (indent b; sayln "MEM("; exp(a, b + 1); say ")")
+    | pos (T.TEMPPOS(a), b) = (indent b; say "TEMP t"; say (Int.toString(a)))
+    | pos (T.ESEQPOS(s, a), b) = (indent b; sayln "ESEQ("; stm(s, b + 1); sayln ","; pos(a, b+ 1); say ")") 
 
   and binop T.PLUS = say "PLUS"
     | binop T.MINUS = say "MINUS"

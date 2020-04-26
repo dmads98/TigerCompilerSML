@@ -4,9 +4,11 @@ type temp = int
 		
 val labelCount = ref 0
 val temps = ref 100
+
+(*fun curTemp () = !temps*)
 		
 fun reset () = 
-    let val () = temps := 100
+    let val () = temps := 132
 	val () = labelCount := 0
     in
 	()
@@ -27,6 +29,7 @@ fun makestring t = "t" ^ Int.toString t
 type label = Symbol.symbol
 		 
 val compare = Int.compare
+		  
 structure TempOrd =
 struct
 type ord_key = temp
@@ -41,7 +44,8 @@ fun newlabel() =
 	val x  = !labelCount
 	val _ = labelCount := x + 1
     in
-	Symbol.symbol ("L" ^ Int.toString x)
+	(*Symbol.symbol ("L" ^ Int.toString x)*)
+	Symbol.symbol(Format.format "L%d" [Format.INT(!labelCount)])
     end
 val namedlabel = Symbol.symbol
 		     

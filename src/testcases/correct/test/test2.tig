@@ -1,0 +1,16 @@
+/* arr1 is valid since expression 0 is int = myint */
+let
+	type myint = int
+	type  arrtype = array of myint
+	function printint(i: int) =
+	let function f(i:int) = if i>0 
+				then (f(i/10); print(chr(i-i/10*10+ord("0"))))
+	in if i<0 then (print("-"); f(-i))
+	   else if i>0 then f(i)
+	   else print("0")
+	end
+	    
+	var arr1:arrtype := arrtype [10] of 0
+in
+	printint(arr1[1])
+end
