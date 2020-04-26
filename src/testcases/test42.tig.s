@@ -907,7 +907,7 @@ lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 
 # =========== END PROGRAM ============
 

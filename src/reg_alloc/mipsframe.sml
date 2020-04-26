@@ -165,7 +165,7 @@ fun procEntryExit3 ({name, formals, numLocalsAlloc, offset} : frame, body, saveR
 				     src=[FP], dst=[SP], jump = NONE}
 	val loadFP = Assem.OPER{assem = "lw `d0, -4(`s0)\n",
 				src=[FP], dst=[FP], jump = NONE}
-	val retInstr = Assem.OPER{assem = "jr `d0 \n",
+	val retInstr = Assem.OPER{assem = "jr `d0\n",
 				  src = [], dst = [RA], jump = NONE}
 	val instrs = [labelInstr]
 		     @ (if name = Symbol.symbol "tig_main"

@@ -773,7 +773,7 @@ L2:
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 L1:
 sw $fp, -4($sp)
 move $fp, $sp
@@ -787,7 +787,7 @@ L4:
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
-jr $ra 
+jr $ra
 
 # =========== END PROGRAM ============
 
