@@ -1,10 +1,4 @@
 .data
-L6:
- .word 1
- .ascii "-"
-L3:
- .word 1
- .ascii "0"
 .text
 	#.file	1 "runtime.c"
 	.option pic2
@@ -768,100 +762,11 @@ sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -60
 sw $ra, -8($fp)
-L14:
-sw $a0, 0($fp)
-li $a0, 10
-li $a1, 0
-jal tig_initArray
-move $t0, $v0
-move $a0, $fp
-li $t1, 1
-addi $t2, $t1, 1
-li $t1, 4
-mul $t1, $t2, $t1
-add $t0, $t0, $t1
-lw $a1, 0($t0)
-jal L1
-j L13
-L13:
-lw $ra, -8($fp)
-move $sp, $fp
-lw $fp, -4($fp)
-jr $ra
-L1:
-sw $fp, -4($sp)
-move $fp, $sp
-addi $sp, $fp, -60
-sw $ra, -8($fp)
-sw $s0, -12($fp)
-L16:
-sw $a0, 0($fp)
-move $s0, $a1
-blt $s0, $zero, L10
-L11:
-bgt $s0, $zero, L7
-L8:
-la $a0, L3
-jal tig_print
-move $t0, $v0
-L9:
-L12:
-move $v0, $t0
-j L15
-L10:
-la $a0, L6
-jal tig_print
-move $a0, $fp
-sub $a1, $zero, $s0
-jal L2
-move $t0, $v0
-j L12
-L7:
-move $a0, $fp
-move $a1, $s0
-jal L2
-move $t0, $v0
-j L9
-L15:
-lw $s0, -12($fp)
-lw $ra, -8($fp)
-move $sp, $fp
-lw $fp, -4($fp)
-jr $ra
 L2:
-sw $fp, -4($sp)
-move $fp, $sp
-addi $sp, $fp, -60
-sw $ra, -8($fp)
-sw $s0, -12($fp)
-L18:
 sw $a0, 0($fp)
-move $s0, $a1
-bgt $s0, $zero, L4
-L5:
 li $v0, 0
-j L17
-L4:
-lw $a0, 0($fp)
-li $t0, 10
-div $a1, $s0, $t0
-jal L2
-li $t0, 10
-div $t1, $s0, $t0
-li $t0, 10
-mul $t0, $t1, $t0
-sub $t0, $s0, $t0
-move $s0, $t0
-la $a0, L3
-jal tig_ord
-move $t0, $v0
-add $a0, $s0, $t0
-jal tig_chr
-move $a0, $v0
-jal tig_print
-j L5
-L17:
-lw $s0, -12($fp)
+j L1
+L1:
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
