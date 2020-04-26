@@ -35,12 +35,12 @@ fun codegen (frame) (stm: Tree.stm) : Assem.instr list =
 	fun munchStm (T.SEQ(a, b)) = (munchStm a; munchStm b)
 					 
 	  | munchStm (T.CJUMP(oper, e1, e2, tl, fl)) =
-	    emit (A.OPER{assem = getRelop(oper) ^ " `s0, `s1, " ^ S.name(tl) ^ " \n",
+	    emit (A.OPER{assem = getRelop(oper) ^ " `s0, `s1, " ^ S.name(tl) ^ "\n",
 			 src = [munchExp e1, munchExp e2],
 			 dst = [],
 			 jump = SOME([tl, fl])}) (* todo: fl, ?*)
 	  | munchStm (T.JUMP(T.NAME lab, labs)) =
-	    emit (A.OPER{assem = "j " ^ S.name(lab) ^ " \n",
+	    emit (A.OPER{assem = "j " ^ S.name(lab) ^ "\n",
 			 src = [],
 			 dst = [],
 			 jump = SOME(labs)})

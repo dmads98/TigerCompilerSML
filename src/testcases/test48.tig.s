@@ -755,7 +755,7 @@ tig_exit:
   .end tig_exit
 
 # ==================== START PROGRAM ==============
-	
+
 tig_main:
 move $a0, $fp
 sw $fp, -4($sp)
@@ -765,7 +765,7 @@ sw $ra, -8($fp)
 L4:
 sw $a0, 0($fp)
 li $v0, 0
-j L3 
+j L3
 L3:
 lw $ra, -8($fp)
 move $sp, $fp
@@ -779,7 +779,7 @@ sw $ra, -8($fp)
 L6:
 sw $a0, 0($fp)
 move $v0, $a1
-j L5 
+j L5
 L5:
 lw $ra, -8($fp)
 move $sp, $fp
@@ -793,7 +793,7 @@ sw $ra, -8($fp)
 L8:
 sw $a0, 0($fp)
 move $v0, $a1
-j L7 
+j L7
 L7:
 lw $ra, -8($fp)
 move $sp, $fp

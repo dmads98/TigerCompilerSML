@@ -42,8 +42,8 @@ fun emitproc out (F.PROC{body, frame}) =
 	(* val _ = print("------------Before Linearize--------------\n") *)
 	(* val _ = Printtree.printtree(TextIO.stdOut, body); *)
 	val stms = Canon.linearize body
-	(* val _ = print("------------After Linearize--------------\n") *)
-	(* val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms; *)
+	val _ = print("------------After Linearize--------------\n")
+	val _ = app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms;
         val stms' = Canon.traceSchedule(Canon.basicBlocks stms)
 	val instrs = List.concat(map (MipsGen.codegen frame) stms')
 	val updatedInstrs = F.procEntryExit2(frame, instrs)
@@ -60,6 +60,12 @@ fun emitproc out (F.PROC{body, frame}) =
 	val format0 = Assem.format(fn i => case (Temp.Table.look(allocation, i)) of SOME(a) => a
 										  | NONE => ("REG NOT FOUND"))
     in
+	print("==================Translated Tree========\n");
+	Printtree.printtree(TextIO.stdOut, body);
+	
+	print("==================Post Canon Tree========\n");
+	app (fn s => Printtree.printtree(TextIO.stdOut, s)) stms';
+	
 	(*print("------------CFG--------------\n");
 	MakeGraph.show cfg;
 	print("------------Interference Graph--------------\n");
