@@ -2,10 +2,6 @@
 CM.make "sources.cm";
 (*------- ../testcases/correct/factorial.tig -------*)
 Main.compile "../testcases/correct/factorial.tig";
-(*------- ../testcases/correct/merge.tig -------*)
-Main.compile "../testcases/correct/merge.tig";
-(*------- ../testcases/correct/queens.tig -------*)
-Main.compile "../testcases/correct/queens.tig";
 (*------- ../testcases/correct/test12.tig -------*)
 Main.compile "../testcases/correct/test12.tig";
 (*------- ../testcases/correct/test1.tig -------*)

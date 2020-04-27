@@ -1,31 +1,64 @@
 .data
-L42:
+L642:
  .word 3
  .ascii "sdf"
-L41:
+L641:
  .word 3
  .ascii "sfd"
-L40:
+L640:
  .word 4
  .ascii "kati"
-L39:
+L636:
+ .word 7
+ .ascii ", age= "
+L635:
+ .word 6
+ .ascii ", id= "
+L634:
+ .word 11
+ .ascii ", address= "
+L633:
+ .word 9
+ .ascii ", dates= "
+L632:
+ .word 6
+ .ascii "name= "
+L629:
+ .word 2
+ .ascii "\n"
+L627:
+ .word 3
+ .ascii "]\n"
+L624:
+ .word 1
+ .ascii " "
+L622:
+ .word 1
+ .ascii "["
+L616:
  .word 5
  .ascii "Allos"
-L38:
+L615:
  .word 5
  .ascii "Kapou"
-L37:
+L614:
  .word 7
  .ascii "Kapoios"
-L36:
+L613:
  .word 0
  .ascii ""
-L35:
+L612:
  .word 9
  .ascii "somewhere"
-L34:
+L611:
  .word 5
  .ascii "aname"
+L604:
+ .word 1
+ .ascii "-"
+L601:
+ .word 1
+ .ascii "0"
 .text
 	#.file	1 "runtime.c"
 	.option pic2
@@ -787,40 +820,45 @@ tig_main:
 move $a0, $fp
 sw $fp, -4($sp)
 move $fp, $sp
-addi $sp, $fp, -72
+addi $sp, $fp, -80
 sw $ra, -8($fp)
 sw $s0, -12($fp)
 sw $s1, -16($fp)
 sw $s2, -20($fp)
-sw $s3, -24($fp)
-sw $s4, -28($fp)
-L44:
+L644:
 sw $a0, 0($fp)
-addi $t0, $fp, -48
+addi $t0, $fp, -56
 move $s0, $t0
 li $a0, 100
-la $a1, L36
+la $a1, L613
 jal tig_initArray
 move $t0, $v0
 sw $t0, 0($s0)
+addi $t0, $fp, -48
+move $s0, $t0
 li $a0, 10
 li $a1, 0
 jal tig_initArray
-move $s2, $v0
+move $t0, $v0
+sw $t0, 0($s0)
+addi $t0, $fp, -52
+move $s0, $t0
 li $a0, 16
 jal tig_allocRecord
-move $a1, $v0
-sw $zero, 0($a1)
-sw $zero, 4($a1)
-la $t0, L35
-sw $t0, 8($a1)
-la $t0, L34
-sw $t0, 12($a1)
+move $t0, $v0
+sw $zero, 0($t0)
+sw $zero, 4($t0)
+la $t1, L612
+sw $t1, 8($t0)
+la $t1, L611
+sw $t1, 12($t0)
 li $a0, 5
+move $a1, $t0
 jal tig_initArray
-move $s0, $v0
-addi $t0, $fp, -52
-move $s1, $t0
+move $t0, $v0
+sw $t0, 0($s0)
+addi $t0, $fp, -60
+move $s0, $t0
 li $a0, 16
 jal tig_allocRecord
 move $t0, $v0
@@ -828,69 +866,73 @@ li $t1, 44
 sw $t1, 0($t0)
 li $t1, 2432
 sw $t1, 4($t0)
-la $t1, L38
+la $t1, L615
 sw $t1, 8($t0)
-la $t1, L37
+la $t1, L614
 sw $t1, 12($t0)
-sw $t0, 0($s1)
-addi $t0, $fp, -56
-move $s1, $t0
+sw $t0, 0($s0)
+addi $t0, $fp, -64
+move $s0, $t0
 li $a0, 8
 jal tig_allocRecord
-move $s4, $v0
-addi $t0, $s4, 0
-move $s3, $t0
+move $s2, $v0
+addi $t0, $s2, 0
+move $s1, $t0
 li $a0, 3
 li $a1, 1900
 jal tig_initArray
 move $t0, $v0
-sw $t0, 0($s3)
-la $t0, L39
-sw $t0, 4($s4)
-sw $s4, 0($s1)
-addi $t0, $s2, 4
+sw $t0, 0($s1)
+la $t0, L616
+sw $t0, 4($s2)
+sw $s2, 0($s0)
+lw $t0, -48($fp)
+addi $t0, $t0, 4
 li $t1, 1
 sw $t1, 0($t0)
+lw $t2, -48($fp)
 li $t0, 9
 addi $t1, $t0, 1
 li $t0, 4
 mul $t0, $t1, $t0
-add $t0, $s2, $t0
+add $t0, $t2, $t0
 li $t1, 3
 sw $t1, 0($t0)
+lw $t2, -52($fp)
 li $t0, 3
 addi $t1, $t0, 1
 li $t0, 4
 mul $t0, $t1, $t0
-add $t0, $s0, $t0
-la $t1, L40
+add $t0, $t2, $t0
+la $t1, L640
 lw $t0, 0($t0)
 sw $t1, 12($t0)
+lw $t2, -52($fp)
 li $t0, 1
 addi $t1, $t0, 1
 li $t0, 4
 mul $t0, $t1, $t0
-add $t0, $s0, $t0
+add $t0, $t2, $t0
 li $t1, 23
 lw $t0, 0($t0)
 sw $t1, 0($t0)
-lw $t2, -48($fp)
+lw $t2, -56($fp)
 li $t0, 34
 addi $t1, $t0, 1
 li $t0, 4
 mul $t0, $t1, $t0
 add $t0, $t2, $t0
-la $t1, L41
+la $t1, L641
 sw $t1, 0($t0)
-la $t1, L42
-lw $t0, -52($fp)
+la $t1, L642
+lw $t0, -60($fp)
 sw $t1, 12($t0)
-lw $t0, -56($fp)
+lw $t0, -64($fp)
 lw $t0, 0($t0)
 addi $t0, $t0, 4
 li $t1, 2323
 sw $t1, 0($t0)
-lw $t0, -56($fp)
+lw $t0, -64($fp)
 lw $t2, 0($t0)
 li $t0, 2
 addi $t1, $t0, 1
@@ -899,13 +941,305 @@ mul $t0, $t1, $t0
 add $t0, $t2, $t0
 li $t1, 2323
 sw $t1, 0($t0)
-li $v0, 0
-j L43
-L43:
-lw $s4, -28($fp)
-lw $s3, -24($fp)
+move $a0, $fp
+lw $a1, -48($fp)
+li $a2, 10
+jal L621
+move $a0, $fp
+lw $a1, -52($fp)
+li $a2, 5
+jal L618
+move $a0, $fp
+lw $a1, -56($fp)
+li $a2, 100
+jal L617
+move $a0, $fp
+lw $a1, -60($fp)
+jal L620
+move $a0, $fp
+lw $a1, -64($fp)
+jal L619
+j L643
+L643:
 lw $s2, -20($fp)
 lw $s1, -16($fp)
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L621:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -64
+sw $ra, -8($fp)
+L646:
+sw $a0, 0($fp)
+sw $a1, 4($fp)
+sw $a2, 8($fp)
+la $a0, L622
+jal tig_print
+sw $zero, -48($fp)
+lw $t1, -48($fp)
+lw $t0, 8($fp)
+addi $t0, $t0, -1
+ble $t1, $t0, L638
+L637:
+la $a0, L627
+jal tig_print
+j L645
+L638:
+lw $a0, 0($fp)
+lw $t2, 4($fp)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+lw $a1, 0($t0)
+jal L599
+la $a0, L624
+jal tig_print
+lw $t1, -48($fp)
+lw $t0, 8($fp)
+addi $t0, $t0, -1
+bge $t1, $t0, L637
+L639:
+lw $t0, -48($fp)
+addi $t0, $t0, 1
+sw $t0, -48($fp)
+j L638
+L645:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L620:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L648:
+sw $a0, 0($fp)
+sw $a1, 4($fp)
+la $a0, L632
+jal tig_print
+lw $t0, 4($fp)
+lw $a0, 12($t0)
+jal tig_print
+la $a0, L634
+jal tig_print
+lw $t0, 4($fp)
+lw $a0, 8($t0)
+jal tig_print
+la $a0, L635
+jal tig_print
+lw $a0, 0($fp)
+lw $t0, 4($fp)
+lw $a1, 4($t0)
+jal L599
+la $a0, L636
+jal tig_print
+lw $a0, 0($fp)
+lw $t0, 4($fp)
+lw $a1, 0($t0)
+jal L599
+j L647
+L647:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L619:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+L650:
+sw $a0, 0($fp)
+sw $a1, 4($fp)
+la $a0, L632
+jal tig_print
+lw $t0, 4($fp)
+lw $a0, 4($t0)
+jal tig_print
+la $a0, L633
+jal tig_print
+lw $a0, 0($fp)
+lw $t0, 4($fp)
+lw $a1, 0($t0)
+li $a2, 3
+jal L621
+j L649
+L649:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L618:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -64
+sw $ra, -8($fp)
+L652:
+sw $a0, 0($fp)
+sw $a1, 4($fp)
+sw $a2, 8($fp)
+la $a0, L622
+jal tig_print
+sw $zero, -48($fp)
+lw $t1, -48($fp)
+lw $t0, 8($fp)
+addi $t0, $t0, -1
+ble $t1, $t0, L630
+L628:
+la $a0, L627
+jal tig_print
+j L651
+L630:
+lw $a0, 0($fp)
+lw $t2, 4($fp)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+lw $a1, 0($t0)
+jal L620
+la $a0, L629
+jal tig_print
+lw $t1, -48($fp)
+lw $t0, 8($fp)
+addi $t0, $t0, -1
+bge $t1, $t0, L628
+L631:
+lw $t0, -48($fp)
+addi $t0, $t0, 1
+sw $t0, -48($fp)
+j L630
+L651:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L617:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -64
+sw $ra, -8($fp)
+L654:
+sw $a0, 0($fp)
+sw $a1, 4($fp)
+sw $a2, 8($fp)
+la $a0, L622
+jal tig_print
+sw $zero, -48($fp)
+lw $t1, -48($fp)
+lw $t0, 8($fp)
+addi $t0, $t0, -1
+ble $t1, $t0, L625
+L623:
+la $a0, L627
+jal tig_print
+j L653
+L625:
+lw $t2, 4($fp)
+lw $t0, -48($fp)
+addi $t1, $t0, 1
+li $t0, 4
+mul $t0, $t1, $t0
+add $t0, $t2, $t0
+lw $a0, 0($t0)
+jal tig_print
+la $a0, L624
+jal tig_print
+lw $t1, -48($fp)
+lw $t0, 8($fp)
+addi $t0, $t0, -1
+bge $t1, $t0, L623
+L626:
+lw $t0, -48($fp)
+addi $t0, $t0, 1
+sw $t0, -48($fp)
+j L625
+L653:
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L599:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L656:
+sw $a0, 0($fp)
+move $s0, $a1
+blt $s0, $zero, L608
+L609:
+bgt $s0, $zero, L605
+L606:
+la $a0, L601
+jal tig_print
+move $t0, $v0
+L607:
+L610:
+move $v0, $t0
+j L655
+L608:
+la $a0, L604
+jal tig_print
+move $a0, $fp
+sub $a1, $zero, $s0
+jal L600
+move $t0, $v0
+j L610
+L605:
+move $a0, $fp
+move $a1, $s0
+jal L600
+move $t0, $v0
+j L607
+L655:
+lw $s0, -12($fp)
+lw $ra, -8($fp)
+move $sp, $fp
+lw $fp, -4($fp)
+jr $ra
+L600:
+sw $fp, -4($sp)
+move $fp, $sp
+addi $sp, $fp, -60
+sw $ra, -8($fp)
+sw $s0, -12($fp)
+L658:
+sw $a0, 0($fp)
+move $s0, $a1
+bgt $s0, $zero, L602
+L603:
+li $v0, 0
+j L657
+L602:
+lw $a0, 0($fp)
+li $t0, 10
+div $a1, $s0, $t0
+jal L600
+li $t0, 10
+div $t1, $s0, $t0
+li $t0, 10
+mul $t0, $t1, $t0
+sub $t0, $s0, $t0
+move $s0, $t0
+la $a0, L601
+jal tig_ord
+move $t0, $v0
+add $a0, $s0, $t0
+jal tig_chr
+move $a0, $v0
+jal tig_print
+j L603
+L657:
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp

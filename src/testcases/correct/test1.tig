@@ -14,8 +14,8 @@ in
     print("arr[0]=");
     printint(arr1[0]);
     print("\n");
-    print("arr[1]=");
+    print("arr[1]=\"");
     printint(arr1[1]);
-    print("\n")
+    print("\"\n")
 
 end

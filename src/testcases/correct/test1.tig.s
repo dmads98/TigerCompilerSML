@@ -1,7 +1,10 @@
 .data
+L16:
+ .word 4
+ .ascii "\"\n"
 L15:
- .word 7
- .ascii "arr[1]="
+ .word 9
+ .ascii "arr[1]=\""
 L14:
  .word 2
  .ascii "\n"
@@ -778,7 +781,7 @@ move $fp, $sp
 addi $sp, $fp, -60
 sw $ra, -8($fp)
 sw $s0, -12($fp)
-L17:
+L18:
 sw $a0, 0($fp)
 li $a0, 10
 li $a1, 0
@@ -802,10 +805,10 @@ mul $t0, $t1, $t0
 add $t0, $s0, $t0
 lw $a1, 0($t0)
 jal L1
-la $a0, L14
+la $a0, L16
 jal tig_print
-j L16
-L16:
+j L17
+L17:
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
@@ -817,7 +820,7 @@ move $fp, $sp
 addi $sp, $fp, -60
 sw $ra, -8($fp)
 sw $s0, -12($fp)
-L19:
+L20:
 sw $a0, 0($fp)
 move $s0, $a1
 blt $s0, $zero, L10
@@ -830,7 +833,7 @@ move $t0, $v0
 L9:
 L12:
 move $v0, $t0
-j L18
+j L19
 L10:
 la $a0, L6
 jal tig_print
@@ -845,7 +848,7 @@ move $a1, $s0
 jal L2
 move $t0, $v0
 j L9
-L18:
+L19:
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp
@@ -857,13 +860,13 @@ move $fp, $sp
 addi $sp, $fp, -60
 sw $ra, -8($fp)
 sw $s0, -12($fp)
-L21:
+L22:
 sw $a0, 0($fp)
 move $s0, $a1
 bgt $s0, $zero, L4
 L5:
 li $v0, 0
-j L20
+j L21
 L4:
 lw $a0, 0($fp)
 li $t0, 10
@@ -883,7 +886,7 @@ jal tig_chr
 move $a0, $v0
 jal tig_print
 j L5
-L20:
+L21:
 lw $s0, -12($fp)
 lw $ra, -8($fp)
 move $sp, $fp

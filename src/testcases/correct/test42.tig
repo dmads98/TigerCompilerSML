@@ -1,6 +1,14 @@
 /* correct declarations */
 let 
 
+function printint(i: int) =
+	let function f(i:int) = if i>0 
+				then (f(i/10); print(chr(i-i/10*10+ord("0"))))
+	in if i<0 then (print("-"); f(-i))
+	   else if i>0 then f(i)
+	   else print("0")
+	end
+
 type arrtype1 = array of int
 type rectype1 = {name:string, address:string, id: int , age: int}
 type arrtype2 = array of rectype1
@@ -9,11 +17,49 @@ type rectype2 = {name : string, dates: arrtype1}
 type arrtype3 = array of string
 
 var arr1 := arrtype1 [10] of 0
-var arr2  := arrtype2 [5] of rectype1 {name="aname", address="somewhere", id=0, age=0}
+var arr2 := arrtype2 [5] of rectype1 {name="aname", address="somewhere", id=0, age=0}
 var arr3:arrtype3 := arrtype3 [100] of ""
 
 var rec1 := rectype1 {name="Kapoios", address="Kapou", id=02432, age=44}
 var rec2 := rectype2 {name="Allos", dates= arrtype1 [3] of 1900}
+
+function printArr1(arr: arrtype1, N : int) =
+	(
+	  print("[");
+	  for i:= 0 to N-1
+	    do (printint(arr[i]); print(" ") );
+	 print("]\n")
+	)
+
+function printRec1(record : rectype1) =
+	(
+	  print("name= "); print(record.name);
+	  print(", address= "); print(record.address);
+	  print(", id= "); printint(record.id);
+	  print(", age= "); printint(record.age)
+	)
+
+function printRec2(record : rectype2) =
+	(
+	  print("name= "); print(record.name);
+	  print(", dates= "); printArr1(record.dates, 3)
+	)
+
+function printArr2(arr: arrtype2, N : int) =
+	(
+	  print("[");
+	  for i:= 0 to N-1
+	    do ( printRec1(arr[i]); print("\n") );
+	 print("]\n")
+	)
+
+function printArr3(arr: arrtype3, N : int) =
+	(
+	  print("[");
+	  for i:= 0 to N-1
+	    do ( print(arr[i]); print(" ") );
+	 print("]\n")
+	)
 
 in
 
@@ -25,6 +71,14 @@ arr3[34] := "sfd";
 
 rec1.name := "sdf";
 rec2.dates[0] := 2323;
-rec2.dates[2] := 2323
+rec2.dates[2] := 2323;
+
+printArr1(arr1, 10);
+printArr2(arr2, 5);
+printArr3(arr3, 100);
+
+printRec1(rec1);
+printRec2(rec2)
+
 
 end

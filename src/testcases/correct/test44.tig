@@ -4,8 +4,25 @@ let
 	type rectype = {name:string, id:int}
 	var b:rectype := nil
 
-in
+function printint(i: int) =
+	let function f(i:int) = if i>0 
+				then (f(i/10); print(chr(i-i/10*10+ord("0"))))
+	in if i<0 then (print("-"); f(-i))
+	   else if i>0 then f(i)
+	   else print("0")
+	end
 
-	b := nil
+function printRecord (rec : rectype) =
+	(
+	  print("name: ");
+	  print(rec.name);
+	  print("\nid: ");
+	  printint(rec.id);
+	  print("\n")
+	)
+in
+    b := nil;
+    b := rectype {name="name-haha", id=23};
+    printRecord(b)
 
 end

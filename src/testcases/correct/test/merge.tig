@@ -51,6 +51,15 @@ function readint(any: any) : int =
 
 
   /* BODY OF MAIN PROGRAM */
- in printlist(merge(list1,list2))
+in
+/*    print("list1: ");
+    printlist(list1);
+    print("\n");
+    print("list2: ");
+    printlist(list2);
+    print("\n")
+	 */
+
+	 printlist(merge(list1, list2))
 end
 

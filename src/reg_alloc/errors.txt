@@ -1,3 +1,7 @@
 # ERRORS:
  - arr[0] contains size
  - Fix lexer - allow all escapes to be saved as is. e.g. \n, \t already fixed. do same for others.
+ - test 42
+ var arr2 := arrtype2 [5] of rectype1 {name="aname", address="somewhere", id=0, age=0}
+
+ creates an array of 5 pointing to the same record

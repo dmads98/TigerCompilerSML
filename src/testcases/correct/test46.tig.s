@@ -1,4 +1,10 @@
 .data
+L2:
+ .word 10
+ .ascii "working!\n"
+L1:
+ .word 18
+ .ascii "not working :( !\n"
 .text
 	#.file	1 "runtime.c"
 	.option pic2
@@ -762,21 +768,28 @@ sw $fp, -4($sp)
 move $fp, $sp
 addi $sp, $fp, -60
 sw $ra, -8($fp)
-L6:
+L9:
 sw $a0, 0($fp)
 li $t1, 0
 li $t0, 1
-beq $t1, $zero, L1
-L2:
+beq $t1, $zero, L6
+L7:
 li $t0, 0
-L1:
-li $v0, 1
+L6:
 bne $t1, $zero, L3
 L4:
-li $v0, 0
-L3:
-j L5
+la $a0, L2
+jal tig_print
+move $t0, $v0
 L5:
+move $v0, $t0
+j L8
+L3:
+la $a0, L1
+jal tig_print
+move $t0, $v0
+j L5
+L8:
 lw $ra, -8($fp)
 move $sp, $fp
 lw $fp, -4($fp)
