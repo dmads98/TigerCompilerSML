@@ -1,7 +1,7 @@
 # Tiger Compiler in SML
 
-Prathikshaa Rangarajan (pr109)  
-Dhanush Madabusi (dm322)  
+**Developers**: Prathikshaa Rangarajan (pr109), Dhanush Madabusi (dm322)  
+**Language**:   SML
 
 This compiler is for Andrew Appel's Tiger language and was written in SML. This project is part of Professor Drew Hilton's ECE 553 Compiler Construction class at Duke.  
 
