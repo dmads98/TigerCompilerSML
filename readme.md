@@ -1,19 +1,21 @@
 # Tiger Compiler in SML
 
-Prathikshaa Rangarajan (pr109)
+Prathikshaa Rangarajan (pr109)  
+Dhanush Madabusi (dm322)  
 
-Dhanush Madabusi (dm322)
+This compiler is for Andrew Appel's Tiger language and was written in SML. This project is part of Professor Drew Hilton's ECE 553 Compiler Construction class at Duke.  
 
-This compiler is for Andrew Appel's Tiger language and was written in SML. This project is part of Professor Drew Hilton's ECE 553 Compiler Construction class at Duke.
-
-The reg_alloc directory contains the final compiler.
-To test all files, you can run "sml < testscript" at the shell, which will generate ".tig.s" files in the same directory as the test file.
-
-Or to compile and run manually, use:
-
+## Setup and Run
+- The final compiler is in the `reg_alloc/` directory. 
+- The following can be used to build the compiler then compile a tiger file.  
+```
 CM.make "sources.cm";
-
 Main.main "/path/to/tiger/file";
+```
+This generates the MIPS assembly file  `filename.tig.s` in the same directory as `filename.tig`. 
+
+## Test Scripts
+- TBD
 
 ## Optimizations
 
