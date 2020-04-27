@@ -57,10 +57,10 @@ fun eof() = let val pos = hd(!linePos)
 	     end);
 <STR> \\\^[@-_] => (strBuilder := !strBuilder ^ String.str(chr(ord(String.sub(yytext, 2)) - 64)); continue());
 <STR> \\[0-1][0-9][0-9]|\\2[0-4][0-9]|\\25[0-5] => (strBuilder := !strBuilder ^ String.str(chr(valOf(Int.fromString(String.substring(yytext, 1, 3))))); continue());
-<STR> \\\" => (strBuilder := !strBuilder ^ "\""; continue());
+<STR> \\\" => (strBuilder := !strBuilder ^ "\\\""; continue());
 <STR> \\\\ => (strBuilder := !strBuilder ^ "\\"; continue());
-<STR> \\t => (strBuilder := !strBuilder ^ "\\t"; continue());
-<STR> \\n => (strBuilder := !strBuilder ^ "\\n"; continue());
+<STR> \\t => (strBuilder := !strBuilder ^ yytext; continue());
+<STR> [\\n] => (strBuilder := !strBuilder ^ yytext; continue());
 
 <STR> \\[\012\t\n\r ] => (YYBEGIN FORMATSEQ;
 			if (String.substring(yytext, 1, 1) = "\n")
