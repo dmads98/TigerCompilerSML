@@ -1,4 +1,4 @@
-# **Tiger Compiler in SML**
+# Tiger Compiler in SML
 
 Prathikshaa Rangarajan (pr109)
 
