@@ -6,7 +6,7 @@
 This compiler is for Andrew Appel's Tiger language and was written in SML. This project is part of Professor Drew Hilton's ECE 553 Compiler Construction class at Duke.  
 
 ## Setup and Run
-- The final compiler is in the `reg_alloc/` directory. 
+- The final compiler is in the "reg_alloc/" directory. 
 - The following can be used to build the compiler then compile a tiger file.  
 ```
 CM.make "sources.cm";
@@ -15,7 +15,23 @@ Main.main "/path/to/tiger/file";
 This generates the MIPS assembly file  `filename.tig.s` in the same directory as `filename.tig`. 
 
 ## Test Scripts
-- TBD
+- To compile the correct tests in the "/src/testcases" directory, you may run `sml < testscript` in "/src/reg_alloc".
+
+Additionally, "/src/reg_alloc" contains a bash script `compile.sh` which can generate the sml code required to compile tests in any directory. Use as:
+```
+chmod +x *.sh
+./compile.sh /path/to/tig
+```
+e.g. `./compile.sh /src/testcases/correct` which generates a file `compile.sml` in the current directory. This can be used in a manner similar to `testscript`.
+
+Copy "compile.sml" to the directory containing the source code - reg_alloc and run as `sml < compile.sml`.
+
+Then to run the generated assembly in "/src/testcases/correct/", just run the script `./spim.sh` which runs all available .s files in the same directory.
+
+## Test Cases
+- The provided tests in "/src/testcases" aer divided into two sets "/src/testcases/correct" and "/src/testcases/failure" based on whether the tiger code is supposed to compile or fail during the compilation process either due to syntax or type check errors.
+- The test cases in "/src/testcases/correct" have been updated to print out all the data that is being used in the tests to verify correctness.
+- Any tests such as the ones in "/src/testcases/failure" when compiled in SML using Main.compile "/path/to/tig/file" throw the appropriate error and exit the SML process and do not generate a .s file.
 
 ## Optimizations
 
